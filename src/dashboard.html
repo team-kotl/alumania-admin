@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Alumania</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/res/Alumania_logo.png" alt="Logo">
+            <span class="logo-text">ALUMANIA</span>
+        </div>
+
+        <button class="nav-toggle">
+            <span></span>
+        </button>
+
+        <ul class="nav-links">
+            <li>
+                <a href="dashboard.html" class="active">
+                    <img src ="/res/dashboard-logo.png" alt="Dashboard">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src ="/res/add_circle.png" alt="Create">
+                    <span>Create</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src ="/res/account_circle.png" alt="Users">
+                    <span>Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src ="/res/folder.png" alt="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src ="/res/settings.png" alt="Settings">
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="user-profile">
+            <img src="/res/avatar.png" alt="User profile">
+            <div class="user-info">
+                <div class="user-name">Freskkie Earl</div>
+                <div class="user-role">Admin</div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const navToggle = document.querySelector('.nav-toggle');
+        const toggleIcon = navToggle.querySelector('span');
+
+        navToggle.addEventListener('click', () => {
+            navbar.classList.toggle('collapsed');
+        });  
+    </script>
+</body>
+</html>
+</body>
+
