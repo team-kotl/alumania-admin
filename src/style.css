@@ -80,9 +80,8 @@ body {
     padding: 0px 25px 0px;
 }
 
-
 .nav-links li {
-    margin-bottom:30px;
+    margin-bottom:32px;
 }
 
 .nav-links a {
@@ -95,11 +94,9 @@ body {
     border-radius: 8px;
 }
 
-
 .nav-links a:hover {
     background-color: rgba(255,255,255,0.1);
 }
-
 
 .nav-links a.active {
     background-color: white;
@@ -111,7 +108,6 @@ body {
     margin-right: -5px;
 }
 
-
 .nav-links span {
     transition: opacity 0.3s ease;
 }
@@ -120,6 +116,7 @@ body {
     opacity: 0;
     display: none;
 }
+
 
 /* User Profile */
 .user-profile {
