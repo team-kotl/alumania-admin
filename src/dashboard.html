@@ -66,16 +66,28 @@
         </div>
     </nav>
 
-    <script>
-        const navbar = document.querySelector('.navbar');
-        const navToggle = document.querySelector('.nav-toggle');
-        const toggleIcon = navToggle.querySelector('span');
+   <!-- Wrapper for content that adjusts based on navbar state -->
+   <div class="content-container">
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+        </div>
+        <!-- Other content goes here -->
+    </main>
+</div>
 
-        navToggle.addEventListener('click', () => {
-            navbar.classList.toggle('collapsed');
-        });  
-    </script>
+<script>
+    const navbar = document.querySelector('.navbar');
+    const navToggle = document.querySelector('.nav-toggle');
+    const contentContainer = document.querySelector('.content-container');
+
+    navToggle.addEventListener('click', () => {
+        navbar.classList.toggle('collapsed');
+        mainContent.classList.toggle('shifted'); 
+    });  
+</script>
 </body>
+
 </html>
 </body>
 

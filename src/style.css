@@ -8,6 +8,7 @@
 body {
     height: 100vh;
     background-color: white;
+    display: flex;
 }
 
 .navbar {
@@ -18,10 +19,21 @@ body {
     position: fixed;
     left: 0;
     top: 0;
+    transition: width 0.3s ease;
+    z-index: 1000;
 }
 
 .navbar.collapsed {
     width: 100px;
+}
+
+.content-container {
+    margin-left: 250px; 
+    transition: margin-left 0.3s ease;
+}
+
+.navbar.collapsed + .content-container {
+    margin-left: 100px; 
 }
 
 /* LOGO */
@@ -29,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .logo img {
@@ -51,7 +64,7 @@ body {
 .nav-toggle {
     position: absolute;
     right: -35px;
-    top: 20px;
+    top: 30px;
     background: #D9D9D9;
     border: none;
     width: 35px;
@@ -150,4 +163,9 @@ body {
 .user-role {
     font-size: 12px;
     opacity: 0.8;
+}
+
+.dashboard-header {
+    margin: 25px 70px;
+    transition: margin-left 0.3s ease;
 }
