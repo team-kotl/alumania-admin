@@ -7,18 +7,10 @@
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
-}
-
-body {
   background-color: white;
-  height: 100vh;
-}
-
-#login-image {
-  justify-content: left;
 }
 
 .login-container {
@@ -27,8 +19,14 @@ body {
 }
 
 #login-img {
+  height: 100%;
   justify-content: left;
   padding-right: 200px;
+}
+
+#login-img img {
+  width: auto;
+  height: 100vh;
 }
 
 #user-fields {
@@ -104,7 +102,6 @@ button:hover {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  margin-left: -150px;
 }
 
 .welcome-img img {
