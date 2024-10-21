@@ -314,3 +314,39 @@ body {
     outline: none;
     border-radius: 5px;
 }
+.input-container {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 1rem; 
+}
+
+.input-left, .input-right {
+    width: 48%; 
+}
+
+.input-left input, .input-right input {
+    width: 100%; 
+}
+.input-left {
+    margin-top: -20px; 
+}
+
+.input-right {
+    margin-top: -20px; 
+}
+
+.category-input {
+    width: 100%;
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 2px #666666 solid;
+    color: #666666;
+    border-radius: 5px;
+    background: #ffffff;
+    appearance: none;
+    background-image: url('/res/Arrow.png'); 
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    background-size: 12px 12px;
+    height: 44px;
+}
