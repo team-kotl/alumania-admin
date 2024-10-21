@@ -19,6 +19,13 @@
         <div class="welcome-img">
           <img src="../res/welcome_back.png" alt="welcome back" />
         </div>
+
+        <?php if (isset($_GET['error'])): ?>
+        <div class="error-message">
+          <?php echo htmlspecialchars($_GET['error']); ?>
+        </div>
+        <?php endif; ?>
+
         <div id="user-fields">
           <form action="login.php" method="POST">
             <div class="input-field">
@@ -26,7 +33,7 @@
               <label>Username</label>
             </div>
             <div class="input-field">
-              <input type="password" name= "password" required id="password" />
+              <input type="password" name="password" required id="password" />
               <label>Password</label>
               <img src="../res/show_pass.png" alt="show" id="showicon" />
             </div>
@@ -43,10 +50,10 @@
       showicon.onclick = function () {
         if (password.type == "password") {
           password.type = "text";
-          showicon.src = "../res/show_pass.png";
+          showicon.src = "../res/hide_pass.png";
         } else {
           password.type = "password";
-          showicon.src = "../res/hide_pass.png";
+          showicon.src = "../res/show_pass.png";
         }
       };
     </script>
