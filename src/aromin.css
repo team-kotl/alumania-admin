@@ -31,7 +31,7 @@ body {
 
 #user-fields {
   text-align: center;
-  width: 300px;
+  width: 500px;
 }
 
 form {
@@ -42,9 +42,10 @@ form {
 .input-field {
   border-bottom: 2px solid #ccc;
   position: relative;
-  margin: 15px 0;
+  margin: 15px auto;
   display: flex;
   align-items: center;
+  width: 500px;
 }
 
 .input-field input {
@@ -89,7 +90,9 @@ button {
   border-radius: 50px;
   cursor: pointer;
   transition: 0.3s ease;
-  margin-top: 50px;
+  margin: 50px auto 0;
+  width: 200px;
+  display: block;
 }
 
 button:hover {
