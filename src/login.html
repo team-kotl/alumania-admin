@@ -15,19 +15,40 @@
       <div id="login-img">
         <img src="../res/login_image.jpg" alt="Alumania" />
       </div>
-      <div id="user-fields">
-        <form action="#">
-          <div class="input-field">
-            <input type="text" required />
-            <label>Username</label>
-          </div>
-          <div class="input-field">
-            <input type="password" required />
-            <label>Password</label>
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <div class="form-container">
+        <div class="welcome-img">
+          <img src="../res/welcome_back.png" alt="welcome back" />
+        </div>
+        <div id="user-fields">
+          <form action="#">
+            <div class="input-field">
+              <input type="text" required />
+              <label>Username</label>
+            </div>
+            <div class="input-field">
+              <input type="password" required id="password" />
+              <label>Password</label>
+              <img src="../res/show_pass.png" alt="show" id="showicon" />
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        </div>
       </div>
     </div>
+
+    <script>
+      let showicon = document.getElementById("showicon");
+      let password = document.getElementById("password");
+
+      showicon.onclick = function () {
+        if (password.type == "password") {
+          password.type = "text";
+          showicon.src = "../res/show_pass.png";
+        } else {
+          password.type = "password";
+          showicon.src = "../res/hide_pass.png";
+        }
+      };
+    </script>
   </body>
 </html>
