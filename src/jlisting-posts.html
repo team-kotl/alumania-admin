@@ -79,7 +79,8 @@
                 <ul id="ul-posts">
                     <li><a href="#"><img src="/res/experience-posts.png" alt="User experience">Experience</a></li>
                     <li><a href="#"><img src="/res/calendar-posts.png" alt="Events">Events</a></li>
-                    <li><a style="color: #0662D9;" href="#"><img src="/res/jlisting-posts-blue.png" alt="Listing">Job Listing</a></li>
+                    <li><a style="color: #0662D9;" href="#"><img src="/res/jlisting-posts-blue.png" alt="Listing">Job
+                            Listing</a></li>
                 </ul>
             </div>
             <div class="cards">
@@ -92,22 +93,40 @@
                         <h5>Quezon City, NCR, Philippines</h5>
                     </div>
                     <div class="listing-summary">
-                        <p>Role is to provide Learning Operations Support to the IBM Consulting Learning & Knowledge team in China. Ability to communicate fluently (both spoken & written) in Chinese is essential.
-    
+                        <p>Role is to provide Learning Operations Support to the IBM Consulting Learning & Knowledge
+                            team in China. Ability to communicate fluently (both spoken & written) in Chinese is
+                            essential.
+
                             Required Technical Skills:
                             The skills needed to perform this role are:
                             Ability to communicate fluently (both spoken & written) in Chinese is essential.
                             Ability to use excel to a high level is essential.
-                            Ability to work to tight deadlines over financial timescales (such as month & quarter end) is essential.
+                            Ability to work to tight deadlines over financial timescales (such as month & quarter end)
+                            is essential.
                             Experience of data analysis is required.
-                            </p>
+                        </p>
                     </div>
                     <div class="button">
-                        <button class="bdesign">View Interested</button>
+                        <button class="bdesign" onclick="togglePopup()">View Interested</button>
                     </div>
-                    <div class="more-options">
-                        <a href="#"><img src="/res/more-options.png" alt="More Options"></li>
-                        <a href="#"><img src="/res/close-posts.png" alt="Close Listing"></li>
+                    <div class="more">
+                        <a href="#"><img src="/res/more-options.png" alt="More Options">
+                         
+                    </div>
+                    <div class="exit">
+        
+                            <a href="#"><img src="/res/close-posts.png" alt="Close Listing">
+                    </div>
+                </div>
+                <div class="popup" id="popup1">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup()">&times;</div>
+                        <h2>Number of Interested: 6</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi maxime adipisci, dolor,
+                            explicabo ipsam vero perspiciatis eaque modi voluptatibus vitae temporibus facere dicta
+                            esse
+                            magni, laboriosam eum quod velit non.</p>
                     </div>
                 </div>
             </div>
@@ -125,7 +144,11 @@
             mainContent.classList.toggle('shifted');
         });  
     </script>
-
+    <script>
+        function togglePopup() {
+            document.getElementById("popup1").classList.toggle("active");
+        }
+    </script>
 </body>
 
 </html>
