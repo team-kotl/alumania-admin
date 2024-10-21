@@ -1,33 +1,49 @@
+/* posts navbar */
 .navigation {
-    width: 100%;
-    background-color: #555;
-    overflow: auto;
-  }
-  
-  .navigation a {
-    float: left;
-    padding: 12px;
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
+
+    padding: 16px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #ul-posts {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  #li-posts {
-    float: left;
-  }
+    list-style: none;
+}
 
-  a{
+#ul-posts li {
+    display: inline;
+    margin-right: 5px;
+}
 
-  }
+/* posts job listing */
+.joblisting {
+    background-color: white;
+    margin-left: 5%;
+    margin-top: 1%;
+    padding: 2%;
+    width: 90%;
+    height: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 1%;
+}
 
-  .navigation{
-    background-color: black;
-  }
-  
+.listing-title h3 a {
+    color: #333;
+    font-weight: 100;
+}
+
+.listing-com-loc h5 {
+    color: #7e7575;
+}
+
+.listing-summary p {
+    margin-left: 2%;
+    margin-top: 1%;
+    color: lighten(#333, 10%);
+}
+
+.right-button {
+    border-radius: 5px;
+    background: #0662D9;
+    }
