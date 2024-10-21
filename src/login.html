@@ -20,13 +20,13 @@
           <img src="../res/welcome_back.png" alt="welcome back" />
         </div>
         <div id="user-fields">
-          <form action="#">
+          <form action="login.php" method="POST">
             <div class="input-field">
-              <input type="text" required />
+              <input type="text" name="username" required />
               <label>Username</label>
             </div>
             <div class="input-field">
-              <input type="password" required id="password" />
+              <input type="password" name= "password" required id="password" />
               <label>Password</label>
               <img src="../res/show_pass.png" alt="show" id="showicon" />
             </div>
