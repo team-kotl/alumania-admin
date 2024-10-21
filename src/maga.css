@@ -1,33 +1,4 @@
-/* posts navbar */
-.navigation {
-    padding: 16px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#ul-posts {
-    list-style: none;
-}
-
-#ul-posts li {
-    display: inline-flex;
-    margin-right: 15px;
-}
-
-#ul-posts li a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-#ul-posts li a img {
-    height: 30px;
-    width: auto;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
+/* Event Cards */
 .cards-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
