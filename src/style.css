@@ -165,7 +165,8 @@ body {
     opacity: 0.8;
 }
 
-.dashboard-header {
+.header {
     margin: 25px 70px;
     transition: margin-left 0.3s ease;
+    font-size: 20px;
 }
