@@ -1,6 +1,5 @@
 /* posts navbar */
 .navigation {
-
     padding: 16px 80px;
     display: flex;
     justify-content: space-between;
@@ -12,8 +11,21 @@
 }
 
 #ul-posts li {
-    display: inline;
+    display: inline-flex;
+    margin-right: 15px;
+}
+
+#ul-posts li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#ul-posts li a img {
+    height: 30px;
+    width: auto;
     margin-right: 5px;
+    vertical-align: middle;
 }
 
 /* posts job listing */
@@ -21,11 +33,12 @@
     background-color: white;
     margin-left: 5%;
     margin-top: 1%;
-    padding: 2%;
-    width: 90%;
-    height: auto;
+    padding: 3%;
+    width: 158vh;
+    max-width: auto;
+    max-height: auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 1%;
+    border-radius: 10px;
 }
 
 .listing-title h3 a {
@@ -43,7 +56,43 @@
     color: lighten(#333, 10%);
 }
 
-.right-button {
-    border-radius: 5px;
-    background: #0662D9;
-    }
+.button {
+    text-align: right;
+    border: none;
+    padding: 16px 32px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+.bdesign {
+    color: white;
+    background-color: #0662D9;
+    border: 2px solid #0662D9;
+    height: 4vh;
+    width: 10%;
+    border-radius: 10px;
+}
+
+.bdesign:hover {
+    background-color: #5E87BA;
+}
+
+.more-options {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.more-options img {
+    width: 20px;
+    height: 20px;
+}
