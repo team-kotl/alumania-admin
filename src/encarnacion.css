@@ -169,7 +169,7 @@ body {
     margin: 25px 70px;
     transition: margin-left 0.3s ease;
     font-size: 20px;
-    color: #343434
+    color: #343434;
 }
 
 .header p {
@@ -180,9 +180,7 @@ body {
 .main-content {
     display: flex;
     justify-content: flex-start;
-    
     position: relative;
-     /* Center the images horizontally */
     margin-top: 10px;
 }
 
@@ -194,32 +192,34 @@ body {
 
 .select-image {
     width: 300px; /* width ng picture */
-    margin-bottom: 40px; /* Space between images */
+    margin-bottom: 40px; 
 }
 
 .vertical-line {
-    width: 1px; /* Width of the vertical line */
-    height: 900px; /* Adjust to match total height of images */
-    background-color: #CCCCCC; /* Color of the vertical line */
-    margin-left: 30px; /* Space between right-panel and the line */
+    width: 1px; 
+    height: 900px; 
+    background-color: #CCCCCC; 
+    margin-left: 30px; 
 }
 
 .right-panel {
     display: flex;
-    flex-direction: column; /* Stack the elements vertically */
-    align-items: center; /* Center the elements horizontally */
-    justify-content: flex-start; /* Align to the top */
-    padding: 20px 100px; /* Add some padding to the right panel */
-    width: 100%; /* Ensure it takes full width */ /* Adjust space between the line and the text */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 20px 100px; 
+    width: 100%;
 }
 
 .right-panel p {
-    font-size: 12;
-    color: #343434
+    font-size: 18px; 
+    color: #CCCCCC;
+    text-align: center;
+    margin: 320px 350px;
 }
 
-/* Corrected custom file upload styling */
-.custom-file-upload {
+
+.file-upload {
     height: 250px;
     width: 1150px;
     display: flex;
@@ -236,29 +236,29 @@ body {
     margin-bottom: 10px;
 }
 
-.custom-file-upload .icon {
+.file-upload .icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.custom-file-upload .icon svg {
+.file-upload .icon svg {
     height: 80px;
     color: rgba(75, 85, 99, 1);
 }
 
-.custom-file-upload .text {
+.file-upload .text {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.custom-file-upload .text span {
+.file-upload .text span {
     font-weight: 400;
     color: rgba(75, 85, 99, 1);
 }
 
-.custom-file-upload input {
+.file-upload input {
     display: none;
 }
 
