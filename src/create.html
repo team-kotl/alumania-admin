@@ -104,11 +104,23 @@
                 <label for="location" class="text">Location</label>
                 <input type="text" placeholder="Insert location here" name="location" class="input">
             
-                <label for="category" class="text">Category</label>
-                <input type="text" placeholder="Select Category" name="category" class="input">
-            
-                <label for="schedule" class="text">Schedule</label>
-                <input type="text" placeholder="Set date and time" name="schedule" class="input">
+               
+    <div class="input-container">
+        <div class="input-left">
+            <label for="category" class="text">Category</label>
+            <select name="category" class="input category-input" id="category">
+                <option value="" selected>Select Category</option>
+                <option value="reunion">Reunion</option>
+                <option value="community_service">Community Service</option>
+                <option value="seminar">Seminar</option>
+                <option value="family">Family</option>
+            </select>
+        </div>
+                    <div class="input-right">
+                        <label for="schedule" class="text">Schedule</label>
+                        <input type="text" placeholder="Set date and time" name="schedule" class="input">
+                    </div>
+                </div>
             </div>
             
 
