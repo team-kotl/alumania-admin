@@ -1,0 +1,33 @@
+.navigation {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+  
+  .navigation a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+#ul-posts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  #li-posts {
+    float: left;
+  }
+
+  a{
+
+  }
+
+  .navigation{
+    background-color: black;
+  }
+  
