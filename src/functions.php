@@ -23,7 +23,7 @@ function loginAdmin($user) {
                     header("Location: dashboard.html");
                     exit();
                 } else {
-                    return "User is not admin!";
+                    return "Account is not Administrator!";
                 }
             }
         }

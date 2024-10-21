@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($loginMessage === true) {
         echo "Login successful!";
     } else {
-        header("Location: index.php?error=" . urlencode($loginMessage));
+        header("Location: loginView.php?error=" . urlencode($loginMessage));
         exit();
     }
 }
