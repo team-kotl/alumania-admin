@@ -76,14 +76,14 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    background-image: url('/res/left.png');
+    background-image: url('../left.png');
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .navbar.collapsed .nav-toggle {
-    background-image: url('/res/right.png');
+    background-image: url('../right.png');
 }
 
 
@@ -111,7 +111,7 @@ body {
     background-color: rgba(255,255,255,0.1);
 }
 
-.nav-links a.active {
+.active-tab {
     background-color: white;
     color: #0066ff;
     padding: 10px;

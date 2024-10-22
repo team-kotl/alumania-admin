@@ -11,38 +11,38 @@
 
     <ul class="nav-links">
         <li>
-            <a href="#" onclick="wipAlert()">
-                <img src="../../res/dashboard.png" alt="Dashboard">
+            <a href="#" onclick="wipAlert()" id="dashtab">
+                <img src="../../res/dashboard.png" alt="Dashboard" id="dashicon">
                 <span>Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="create.php" class="active">
-                <img src="../../res/create-blue.png" alt="Create">
+            <a href="create.php" class="active" id="createtab">
+                <img src="../../res/create.png" alt="Create" id="createicon">
                 <span>Create</span>
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()">
-                <img src="../../res/account_circle.png" alt="Users">
+            <a href="#" onclick="wipAlert()" id="userstab">
+                <img src="../../res/users.png" alt="Users" id="usersicon">
                 <span>Users</span>
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()">
-                <img src="../../res/applications.png" alt="Applications">
+            <a href="#" onclick="wipAlert()" id="appltab">
+                <img src="../../res/applications.png" alt="Applications" id="applicon">
                 <span>Applications</span>
             </a>
         </li>
         <li>
-            <a href="posts.php">
-                <img src="../../res/folder.png" alt="Posts">
+            <a href="posts.php" id="poststab">
+                <img src="../../res/posts.png" alt="Posts" id="postsicon">
                 <span>Posts</span>
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()">
-                <img src="../../res/settings.png" alt="Settings">
+            <a href="#" onclick="wipAlert()" id="settingstab">
+                <img src="../../res/settings.png" alt="Settings" id="settingsicon">
                 <span>Settings</span>
             </a>
         </li>
@@ -57,8 +57,4 @@
     </div>
 </nav>
 
-<script>
-    function wipAlert() {
-        alert('This section is currently being worked on :)');
-    }
-</script>
+<script src="../js/navbar.js"></script>

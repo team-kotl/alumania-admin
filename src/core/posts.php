@@ -11,6 +11,7 @@
 
 <body>
     <?php include 'navbar.php'; ?>
+    <script defer> setActiveNav("poststab", "postsicon", 5); </script>
 
     <div class="content-container">
         <main class="main-content">
@@ -28,18 +29,6 @@
             </div>
         </main>
     </div>
-
-    <script>
-        const navbar = document.querySelector('.navbar');
-        const navToggle = document.querySelector('.nav-toggle');
-        const contentContainer = document.querySelector('.content-container');
-
-        navToggle.addEventListener('click', () => {
-            navbar.classList.toggle('collapsed');
-            mainContent.classList.toggle('shifted');
-        });  
-    </script>
-
 </body>
 
 </html>
