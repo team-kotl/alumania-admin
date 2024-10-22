@@ -1,18 +1,35 @@
 <?php
-
-function OpenCon()
+class Database
 {
-    $config = require __DIR__ . '/../../config/dbconfig.php';
-    $db_server = $config['HOST'];
-    $db_user = $config['USERNAME'];
-    $db_pass = $config['PASSWORD'];
-    $db_name = $config['DB_NAME'];    
-    
-    $con = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-    return $con;
-}
+    private static $instance = null;
+    private $mysqli;
 
-function CloseCon($con)
-{
-    $con -> close();
+    // Private constructor to prevent instantiation
+    private function __construct()
+    {
+        $config = require __DIR__ . '/../../config/config.php';
+        $this->mysqli = new mysqli(
+            $config['HOST'],
+            $config['USERNAME'],
+            $config['PASSWORD'],
+            $config['DB_NAME']
+        );
+
+        if ($this->mysqli->connect_error) {
+            die("Connection failed: " . $this->mysqli->connect_error);
+        }
+    }
+
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection()
+    {
+        return $this->mysqli;
+    }
 }

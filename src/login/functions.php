@@ -31,4 +31,3 @@ function loginAdmin($user) {
 
     return "Invalid login credentials!";
 }
-?>
