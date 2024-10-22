@@ -7,7 +7,7 @@ class Database
     // Private constructor to prevent instantiation
     private function __construct()
     {
-        $config = require __DIR__ . '/../../config/config.php';
+        $config = require 'dbconfig.php';
         $this->mysqli = new mysqli(
             $config['HOST'],
             $config['USERNAME'],
