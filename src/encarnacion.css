@@ -234,7 +234,7 @@ body {
     align-items: center;  
     gap: 20px;
     cursor: pointer;
-    border: 3px dashed #666666;
+    border: 2px dashed #666666;
     background-color: rgba(255, 255, 255, 1);
     padding: 1.5rem;
     border-radius: 20px 20px 0 0;
