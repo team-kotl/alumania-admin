@@ -5,68 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="../../res/styles/encarnacion.css">
+    <link rel="stylesheet" href="../../res/styles/create.css">
     <title>Alumania</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="/res/Alumania_logo.png" alt="Logo">
-            <span class="logo-text">ALUMANIA</span>
-        </div>
-
-        <button class="nav-toggle">
-            <span></span>
-        </button>
-
-        <ul class="nav-links">
-            <li>
-                <a href="dashboard.html">
-                    <img src="/res/dashboard.png" alt="Dashboard">
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="create.html" class="active">
-                    <img src="/res/create-blue.png" alt="Create">
-                    <span>Create</span>
-                </a>
-            </li>
-            <li>
-                <a href="users.html">
-                    <img src="/res/account_circle.png" alt="Users">
-                    <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="applications.html">
-                    <img src="/res/applications.png" alt="Applications">
-                    <span>Applications</span>
-                </a>
-            </li>
-            <li>
-                <a href="posts.html">
-                    <img src="/res/folder.png" alt="Posts">
-                    <span>Posts</span>
-                </a>
-            </li>
-            <li>
-                <a href="settings.html">
-                    <img src="/res/settings.png" alt="Settings">
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="user-profile">
-            <img src="/res/avatar.png" alt="User profile">
-            <div class="user-info">
-                <div class="user-name">Freskkie Earl</div>
-                <div class="user-role">Admin</div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <div class="content-container">
         <div class="header">
@@ -76,8 +20,8 @@
 
         <div class="main-content">
             <div class="image-container">
-                <img src="/res/event.png" alt="Event Picture" class="select-image" id="eventImage">
-                <img src="/res/job-listing.png" alt="Job Listing Picture" class="select-image" id="jobImage">
+                <img src="../../res/event.png" alt="Event Picture" class="select-image" id="eventImage">
+                <img src="../../res/job-listing.png" alt="Job Listing Picture" class="select-image" id="jobImage">
             </div>
             <div class="vertical-line"></div>
 
@@ -157,12 +101,9 @@
         navToggle.addEventListener('click', () => {
             navbar.classList.toggle('collapsed');
             mainContent.classList.toggle('shifted');
-        });  
-    </script>
-
-    <script>
-        const originalEventImageSrc = '/res/event.png';
-        const originalJobImageSrc = '/res/job-listing.png';
+        });
+        const originalEventImageSrc = '../../res/event.png';
+        const originalJobImageSrc = '../../res/job-listing.png';
         const fileUploadSection = document.getElementById('fileUploadSection');
         const inputSectionEvent = document.getElementById('inputSectionEvent');
         const inputSectionJob = document.getElementById('inputSectionJob');
@@ -177,7 +118,7 @@
             document.getElementById('rightPanel').appendChild(fileUploadSection);
             document.getElementById('rightPanel').appendChild(inputSectionEvent);
 
-            this.src = '/res/event-blue.png';
+            this.src = '../../res/event-blue.png';
             document.getElementById('jobImage').src = originalJobImageSrc;
         });
 
@@ -188,7 +129,7 @@
             document.getElementById('rightPanel').innerHTML = '';
             document.getElementById('rightPanel').appendChild(inputSectionJob);
 
-            this.src = '/res/job-listing-blue.png';
+            this.src = '../../res/job-listing-blue.png';
             document.getElementById('eventImage').src = originalEventImageSrc;
         });
 
@@ -202,6 +143,7 @@
                 console.log("File selected:", selectedFile.name);
             }
         });
+
     </script>
 
 </body>

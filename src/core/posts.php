@@ -1,101 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="lapig.css">
+    <link rel="stylesheet" href="../../res/styles/posts.css">
     <title>Alumania</title>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="/res/Alumania_logo.png" alt="Logo">
-            <span class="logo-text">ALUMANIA</span>
-        </div>
+    <?php include 'navbar.php'; ?>
 
-        <button class="nav-toggle">
-            <span></span>
-        </button>
-
-        <ul class="nav-links">
-            <li>
-                <a href="dashboard.html">
-                    <img src ="/res/dashboard.png" alt="Dashboard">
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="create.html">
-                    <img src ="/res/add_circle.png" alt="Create">
-                    <span>Create</span>
-                </a>
-            </li>
-            <li>
-                <a href="users.html">
-                    <img src ="/res/account_circle.png" alt="Users">
-                    <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="applications.html">
-                    <img src ="/res/applications.png" alt="Applications">
-                    <span>Applications</span>
-                </a>
-            </li>
-            <li>
-                <a href="posts.html"  class="active">
-                    <img src ="/res/posts-blue.png" alt="Posts">
-                    <span>Posts</span>
-                </a>
-            </li>
-            <li>
-                <a href="settings.html">
-                    <img src ="/res/settings.png" alt="Settings">
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="user-profile">
-            <img src="/res/avatar.png" alt="User profile">
-            <div class="user-info">
-                <div class="user-name">Freskkie Earl</div>
-                <div class="user-role">Admin</div>
+    <div class="content-container">
+        <main class="main-content">
+            <div class="header">
+                <h1>Posts</h1>
             </div>
-        </div>
-    </nav>
 
-   <div class="content-container">
-    <main class="main-content">
-        <div class="header">
-            <h1>Posts</h1>
-        </div>
+            <div class="navigation">
+                <ul id="ul-posts">
+                    <li><a href="#"><img src="../../res/experience-posts-blue.png" alt="User experience">Experience</a>
+                    </li>
+                    <li><a href="#"><img src="../../res/calendar-posts.png" alt="Events">Events</a></li>
+                    <li><a href="#"><img src="../../res/jlisting-posts.png" alt="Listing">Job Listing</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
 
-        <div class="navigation">
-            <ul id="ul-posts">
-                <li><a href="#"><img src="/res/experience-posts-blue.png" alt="User experience">Experience</a></li>
-                <li><a href="#"><img src="/res/calendar-posts.png" alt="Events">Events</a></li>   
-                <li><a href="#"><img src="/res/jlisting-posts.png" alt="Listing">Job Listing</a></li>    
-            </ul>
-        </div>
-    </main>
-</div>
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const navToggle = document.querySelector('.nav-toggle');
+        const contentContainer = document.querySelector('.content-container');
 
-<script>
-    const navbar = document.querySelector('.navbar');
-    const navToggle = document.querySelector('.nav-toggle');
-    const contentContainer = document.querySelector('.content-container');
-
-    navToggle.addEventListener('click', () => {
-        navbar.classList.toggle('collapsed');
-        mainContent.classList.toggle('shifted'); 
-    });  
-</script>
+        navToggle.addEventListener('click', () => {
+            navbar.classList.toggle('collapsed');
+            mainContent.classList.toggle('shifted');
+        });  
+    </script>
 
 </body>
 
 </html>
 </body>
-
