@@ -354,3 +354,33 @@ body {
     background-size: 12px 12px;
     height: 44px;
 }
+
+.publishBTN {
+    display: none; 
+    position: absolute; 
+    right: 4%;
+    bottom: 2%;
+    text-align: center;
+    
+}
+
+.publishBTN button {
+    padding: 10px 40px;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.publishBTN button:hover {
+    background-color: #0144a8;
+}
+
+.publishBTN button:active {
+    background-color: #0066ff;
+    transform: scale(0.98); 
+}

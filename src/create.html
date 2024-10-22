@@ -136,6 +136,9 @@
                     <input type="text" placeholder="Insert company name here" name="category" class="input">
                 </div>
 
+                <div class="publishBTN" id="publishBTN" style="display: none;">
+                    <button>Publish</button>
+                </div>
         </div>
 </div>
 
@@ -157,16 +160,19 @@
     const fileInput = document.getElementById('file');
     const inputSectionEvent = document.getElementById('inputSectionEvent');
     const inputSectionJob = document.getElementById('inputSectionJob');
-    
+    const publishBTN = document.getElementById('publishBTN')
 
     document.getElementById('eventImage').addEventListener('click', function() {
-        
+
+
         document.getElementById('rightPanel').innerHTML = '';
         document.getElementById('rightPanel').appendChild(fileUploadSection);
         document.getElementById('rightPanel').appendChild(inputSectionEvent);
-        
+        document.getElementById('rightPanel').appendChild(publishBTN);
+
         fileUploadSection.style.display = 'flex';
         inputSectionEvent.style.display = 'flex';
+        publishBTN.style.display = 'block';
 
         this.src = '/res/event-blue.png';
         document.getElementById('jobImage').src = originalJobImageSrc; 
@@ -176,8 +182,10 @@
 
         document.getElementById('rightPanel').innerHTML = '';
         document.getElementById('rightPanel').appendChild(inputSectionJob);
+        document.getElementById('rightPanel').appendChild(publishBTN);
 
         inputSectionJob.style.display = 'flex';
+        publishBTN.style.display = 'block';
 
         this.src = '/res/job-listing-blue.png'; 
         document.getElementById('eventImage').src = originalEventImageSrc; 
