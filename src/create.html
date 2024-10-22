@@ -104,43 +104,39 @@
                 <label for="location" class="text">Location</label>
                 <input type="text" placeholder="Insert location here" name="location" class="input">
             
-               
-    <div class="input-container">
-        <div class="input-left">
-            <label for="category" class="text">Category</label>
-            <select name="category" class="input category-input" id="category">
-                <option value="" selected>Select Category</option>
-                <option value="reunion">Reunion</option>
-                <option value="community_service">Community Service</option>
-                <option value="seminar">Seminar</option>
-                <option value="family">Family</option>
-            </select>
-        </div>
-                    <div class="input-right">
-                        <label for="schedule" class="text">Schedule</label>
-                        <input type="text" placeholder="Set date and time" name="schedule" class="input">
-                    </div>
+            <div class="input-container">
+                <div class="input-left">
+                    <label for="category" class="text">Category</label>
+                    <select name="category" class="input category-input" id="category">
+                        <option value="" selected>Select Category</option>
+                        <option value="reunion">Reunion</option>
+                        <option value="community_service">Community Service</option>
+                        <option value="seminar">Seminar</option>
+                        <option value="family">Family</option>
+                    </select>
                 </div>
-            </div>
-            
+                            <div class="input-right">
+                                <label for="schedule" class="text">Schedule</label>
+                                <input type="text" placeholder="Set date and time" name="schedule" class="input">
+                            </div>
+                        </div>
+                </div>
 
-            <div class="input" id="inputSectionJob" style="display: none;">
-                <label for="jobTitle" class="text">Job Title</label>
-                <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                <div class="input" id="inputSectionJob" style="display: none;">
+                    <label for="jobTitle" class="text">Job Title</label>
+                    <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                    
+                    <label for="description" class="text">Description</label>
+                    <textarea placeholder="Insert description here" name="description" class="input description-input" rows="4"></textarea>
+                    
+                    <label for="location" class="text">Location</label>
+                    <input type="text" placeholder="Insert location here" name="location" class="input">
                 
-                <label for="description" class="text">Description</label>
-                <textarea placeholder="Insert description here" name="description" class="input description-input" rows="4"></textarea>
-                
-                
-                <label for="location" class="text">Location</label>
-                <input type="text" placeholder="Insert location here" name="location" class="input">
-            
-                <label for="category" class="text">Category</label>
-                <input type="text" placeholder="Insert company name here" name="category" class="input">
-            </div>
-            
+                    <label for="category" class="text">Category</label>
+                    <input type="text" placeholder="Insert company name here" name="category" class="input">
+                </div>
+
         </div>
-    </div>
 </div>
 
 <script>
@@ -158,42 +154,67 @@
     const originalEventImageSrc = '/res/event.png'; 
     const originalJobImageSrc = '/res/job-listing.png';
     const fileUploadSection = document.getElementById('fileUploadSection');
+    const fileInput = document.getElementById('file');
     const inputSectionEvent = document.getElementById('inputSectionEvent');
     const inputSectionJob = document.getElementById('inputSectionJob');
-    const fileInput = document.getElementById('file');
+    
 
     document.getElementById('eventImage').addEventListener('click', function() {
-
-        fileUploadSection.style.display = 'flex';
-        inputSectionEvent.style.display = 'flex';
-
+        
         document.getElementById('rightPanel').innerHTML = '';
         document.getElementById('rightPanel').appendChild(fileUploadSection);
         document.getElementById('rightPanel').appendChild(inputSectionEvent);
         
+
+        
+        fileUploadSection.style.display = 'flex';
+        inputSectionEvent.style.display = 'flex';
+
         this.src = '/res/event-blue.png';
         document.getElementById('jobImage').src = originalJobImageSrc; 
     });
 
     document.getElementById('jobImage').addEventListener('click', function() {
 
-        inputSectionJob.style.display = 'flex';
-
         document.getElementById('rightPanel').innerHTML = '';
         document.getElementById('rightPanel').appendChild(inputSectionJob);
+
+        inputSectionJob.style.display = 'flex';
 
         this.src = '/res/job-listing-blue.png'; 
         document.getElementById('eventImage').src = originalEventImageSrc; 
     });
 
+    
     fileUploadSection.addEventListener('click', function() {
         fileInput.click();
     });
+
 
     fileInput.addEventListener('change', function(event) {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
             console.log("File selected:", selectedFile.name);
+        }
+    });
+
+    fileUploadSection.addEventListener('dragover', function(event) {
+        event.preventDefault();  
+        fileUploadSection.style.borderColor = '#0066ff'; 
+    });
+
+    fileUploadSection.addEventListener('dragleave', function() {
+        fileUploadSection.style.borderColor = '#666';  
+    });
+
+    fileUploadSection.addEventListener('drop', function(event) {
+        event.preventDefault(); 
+        
+        const droppedFiles = event.dataTransfer.files;
+        if (droppedFiles.length > 0) {
+            const droppedFile = droppedFiles[0];
+            console.log("File dropped:", droppedFile.name);
+            fileInput.files = droppedFiles;
         }
     });
 </script>
