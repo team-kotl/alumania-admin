@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: white;
+    display: flex;
+}
+
+.navbar {
+    width: 250px;
+    height: 100%;
+    background-color: #0066ff;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.3s ease;
+    z-index: 1000;
+}
+
+.navbar.collapsed {
+    width: 100px;
+}
+
+.content-container {
+    margin-left: 250px; 
+    transition: margin-left 0.3s ease;
+}
+
+.navbar.collapsed + .content-container {
+    margin-left: 100px; 
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.logo img {
+    width: 80px;
+    height: 70px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.collapsed .logo-text {
+    opacity: 0;
+    display: none;
+}
+
+/* Collapse Arrow */
+.nav-toggle {
+    position: absolute;
+    right: -35px;
+    top: 30px;
+    background: #D9D9D9;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-top-right-radius: 30%;
+    border-bottom-right-radius: 30%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-image: url('/res/left.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navbar.collapsed .nav-toggle {
+    background-image: url('/res/right.png');
+}
+
+
+/* Nav Bar Sections */
+.nav-links {
+    list-style: none;
+    padding: 0px 25px 0px;
+}
+
+.nav-links li {
+    margin-bottom:32px;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.nav-links a.active {
+    background-color: white;
+    color: #0066ff;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-right: -5px;
+}
+
+.nav-links span {
+    transition: opacity 0.3s ease;
+}
+
+.collapsed .nav-links span {
+    opacity: 0;
+    display: none;
+}
+
+
+/* User Profile */
+.user-profile {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.user-info {
+    transition: opacity 0.3s ease;
+}
+
+.collapsed .user-info {
+    opacity: 0;
+    display: none;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-role {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.header {
+    margin: 25px 70px;
+    transition: margin-left 0.3s ease;
+    font-size: 20px;
+    color: #343434;
+}
+
+.header p {
+    font-size: 20px;
+    color: #CCCCCC;
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    margin-top: 10px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 70px;
+}
+
+.select-image {
+    width: 300px; /* width ng picture */
+    margin-bottom: 40px; 
+}
+
+.vertical-line {
+    width: 1px; 
+    height: 900px; 
+    background-color: #CCCCCC; 
+    margin-left: 30px; 
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 20px 100px; 
+    width: 100%;
+}
+
+.right-panel p {
+    font-size: 18px; 
+    color: #CCCCCC;
+    text-align: center;
+    margin: 320px 350px;
+}
+
+
+.file-upload {
+    height: 250px;
+    width: 1150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    gap: 20px;
+    cursor: pointer;
+    border: 3px dashed #666666;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-upload .icon svg {
+    height: 80px;
+    color: rgba(75, 85, 99, 1);
+}
+
+.file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+}
+
+.file-upload input {
+    display: none;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    width: 1150px;
+}
+
+.input label.text {
+    font-size: 0.75rem;
+    color: #666666;
+    font-weight: 700;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 0 0 7px;
+    padding: 0 3px;
+    background: #ffffff;
+    width: fit-content;
+}
+
+.input input[type=text].input {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 2px #666666 solid;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.input input[type=text].input:focus {
+    outline: none;
+}
+.description-input {
+    height: 300px; 
+    width: 100%; 
+    resize: vertical; 
+    padding-top: 10px; 
+    padding-left: 10px; 
+    box-sizing: border-box; 
+    border: 2px solid #666666;
+    outline: none;
+    border-radius: 5px;
+}
+.description-input-event {
+    height: 150px; 
+    width: 100%; 
+    resize: vertical; 
+    padding-top: 10px; 
+    padding-left: 10px; 
+    box-sizing: border-box; 
+    border: 2px solid #666666;
+    outline: none;
+    border-radius: 5px;
+}
+.input-container {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 1rem; 
+}
+
+.input-left, .input-right {
+    width: 48%; 
+}
+
+.input-left input, .input-right input {
+    width: 100%; 
+}
+.input-left {
+    margin-top: -20px; 
+}
+
+.input-right {
+    margin-top: -20px; 
+}
+
+.category-input {
+    width: 100%;
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 2px #666666 solid;
+    color: #666666;
+    border-radius: 5px;
+    background: #ffffff;
+    appearance: none;
+    background-image: url('/res/Arrow.png'); 
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    background-size: 12px 12px;
+    height: 44px;
+}
