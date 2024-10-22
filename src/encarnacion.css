@@ -249,7 +249,8 @@ body {
 }
 
 .file-upload .icon svg {
-    height: 80px;
+    height: 8vh;
+    width: 8vw;
     color: rgba(75, 85, 99, 1);
 }
 
