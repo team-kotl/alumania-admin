@@ -277,7 +277,7 @@ body {
 }
 
 .input label.text {
-    font-size: 0.75rem;
+    font-size: 0.90rem;
     color: #666666;
     font-weight: 700;
     position: relative;
@@ -289,8 +289,8 @@ body {
 }
 
 .input input[type=text].input {
-    padding: 11px 10px;
-    font-size: 0.75rem;
+    padding: 12px 10px;
+    font-size: 0.85rem;
     border: 2px #666666 solid;
     border-radius: 5px;
     background: #ffffff;
@@ -300,9 +300,9 @@ body {
     outline: none;
 }
 .description-input {
-    height: 350px; 
+    height: 50vh; 
     width: 100%; 
-    resize: vertical; 
+    resize: none; 
     padding-top: 10px; 
     padding-left: 10px; 
     box-sizing: border-box; 
@@ -311,20 +311,21 @@ body {
     border-radius: 5px;
 }
 .description-input-event {
-    height: 150px; 
+    height: 20vh; 
     width: 100%; 
-    resize: vertical; 
+    resize: none; 
     padding-top: 10px; 
     padding-left: 10px; 
     box-sizing: border-box; 
     border: 2px solid #666666;
     outline: none;
     border-radius: 5px;
+    font-size: 0.85rem;
 }
 .input-container {
     display: flex;
     justify-content: space-between; 
-    margin-top: 1rem; 
+    
 }
 
 .input-left, .input-right {
@@ -341,8 +342,8 @@ body {
 
 .category-input {
     width: 100%;
-    padding: 11px 10px;
-    font-size: 0.75rem;
+    padding: 15px 10px;
+    font-size: 0.85rem;
     border: 2px #666666 solid;
     color: #666666;
     border-radius: 5px;
@@ -352,16 +353,15 @@ body {
     background-repeat: no-repeat;
     background-position: right 10px center; 
     background-size: 12px 12px;
-    height: 44px;
+    height: 48px;
 }
 
 .publishBTN {
     display: none; 
     position: absolute; 
     right: 4%;
-    bottom: 2%;
+    bottom: 4%;
     text-align: center;
-    
 }
 
 .publishBTN button {
@@ -369,15 +369,15 @@ body {
     background-color: #0066ff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }
 
 .publishBTN button:hover {
     background-color: #0144a8;
+    box-shadow: 0px 4px 6px rgba(143, 143, 143, 0.493);
 }
 
 .publishBTN button:active {
