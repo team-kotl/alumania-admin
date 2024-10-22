@@ -291,7 +291,7 @@ body {
 .input input[type=text].input {
     padding: 12px 10px;
     font-size: 0.85rem;
-    border: 2px #666666 solid;
+    border: 1px #666666 solid;
     border-radius: 5px;
     background: #ffffff;
 }
@@ -300,13 +300,13 @@ body {
     outline: none;
 }
 .description-input {
-    height: 50vh; 
+    height: 45vh; 
     width: 100%; 
     resize: none; 
     padding-top: 10px; 
     padding-left: 10px; 
     box-sizing: border-box; 
-    border: 2px solid #666666;
+    border: 1px solid #666666;
     outline: none;
     border-radius: 5px;
 }
@@ -317,7 +317,7 @@ body {
     padding-top: 10px; 
     padding-left: 10px; 
     box-sizing: border-box; 
-    border: 2px solid #666666;
+    border: 1px solid #666666;
     outline: none;
     border-radius: 5px;
     font-size: 0.85rem;
@@ -343,8 +343,8 @@ body {
 .category-input {
     width: 100%;
     padding: 15px 10px;
-    font-size: 0.85rem;
-    border: 2px #666666 solid;
+    font-size: 0.80rem;
+    border: 1px #666666 solid;
     color: #666666;
     border-radius: 5px;
     background: #ffffff;
