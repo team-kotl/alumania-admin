@@ -1,0 +1,138 @@
+
+
+/* posts job listing */
+#card-jobs {
+    padding: 16px 80px 16px 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.joblisting {
+    background-color: white;
+    padding: 40px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.listing-title h3 a {
+    color: #333;
+    font-weight: 100;
+}
+
+.listing-com-loc p {
+    color: #7e7575;
+}
+
+.listing-summary p {
+    margin-left: 2%;
+    margin-top: 1%;
+    color: lighten(#333, 10%);
+}
+
+.listing-button {
+    text-align: right;
+    border: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.listing-bdesign {
+    color: white;
+    background-color: #0662D9;
+    border-style: none;
+    height: 4vh;
+    width: 10%;
+    border-radius: 10px;
+    transition: 150ms;
+}
+
+.listing-bdesign:hover {
+    background-color: #5E87BA;
+}
+
+.listing-more {
+    position: absolute;
+    right: 65px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.listing-exit {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.listing-more-options img {
+    width: 20px;
+    height: 20px;
+}
+
+.listing-popup .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vw;
+    background: rgba(133, 177, 190, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.listing-popup .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(0);
+    background: #fff;
+    width: 600px;
+    height: 520px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    padding: 3%;
+}
+
+.listing-popup .close-btn{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    color: #564a4a;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+}
+
+.listing-popup.active .overlay{
+    display: block;
+}
+
+.listing-popup.active .content{
+    transition: all 300ms ease-in-out;
+    transform:translate(-50%, -50%) scale(1);
+}

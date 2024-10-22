@@ -30,12 +30,8 @@ body {
 .content-container {
     margin-left: 250px; 
     transition: margin-left 0.3s ease;
+    width: 100%;
 }
-
-.navbar.collapsed + .content-container {
-    margin-left: 100px; 
-}
-
 /* LOGO */
 .logo {
     display: flex;

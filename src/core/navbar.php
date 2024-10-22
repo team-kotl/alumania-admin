@@ -41,9 +41,9 @@
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()" id="settingstab">
+            <a href="../../index.php" id="settingstab">
                 <img src="../../res/settings.png" alt="Settings" id="settingsicon">
-                <span>Settings</span>
+                <span>Logout</span>
             </a>
         </li>
     </ul>
