@@ -1,5 +1,5 @@
 const allTabs = document.getElementById('ul-posts').children;
-var sortOrder = 1;
+let sortOrder = 1;
 
 function setActiveTab(index) {
     const tab = allTabs.item(index);
@@ -31,7 +31,7 @@ function setActiveTab(index) {
         case 1:
             document.getElementById('searchContainer').innerHTML = `
                 <div class="event-search-bar">
-                <input type="text" class="event-search-input" placeholder="Event Name" id="event-search-text">
+                <input type="text" class="event-search-input" placeholder="Search" id="event-search-text">
                 <button class="event-search-button" onclick="
                         currentEvents = searchEvent(currentEvents);
                         displayEvents(currentEvents);
@@ -64,19 +64,32 @@ function setActiveTab(index) {
                         ">Reunion</button>
                     </div>
                 </div>
-                <button class="event-sort-button" onclick="
-                    sortEvent(currentEvents);
-                    displayEvents(currentEvents);
-                ">
-                    <img src="../../res/sort.png" alt="Sort">
-                </button>
+                <div class="sort-dropdown">
+                    <button class="sort-button" onclick="
+                        sortCategory();
+                    ">
+                        <img src="../../res/sort.png" alt="Sort">
+                    </button>
+                    <div class="sort-content" id="sortDropdown">
+                        <button onclick="
+                        sortCategory();
+                        sortEventsAsc(currentEvents);
+                        displayEvents(currentEvents);
+                        " class="sort-item">Ascending</button>
+                        <button onclick="
+                        sortCategory();
+                        sortEventsDesc(currentEvents);
+                        displayEvents(currentEvents);
+                        " class="sort-item">Descending</button>
+                    </div>
+                </div>
             `;
             tab.children.item(0).src = '../../res/calendar-posts-white.png';
             break;
         case 2:
             document.getElementById('searchContainer').innerHTML = `
                 <div class="job-search-bar">
-                <input type="text" class="job-search-input" placeholder="Event Name" id="job-search-text">
+                <input type="text" class="job-search-input" placeholder="Search" id="job-search-text">
                 <button class="job-search-button" onclick="
                     currentJobs = searchJobs(jobs);
                     displayJobs(currentJobs);
@@ -84,16 +97,28 @@ function setActiveTab(index) {
                     <img src="../../res/search.png" alt="Search">
                 </button>
                 </div>
-                <button class="job-sort-button" onclick="
-                sortJobs();
-                displayJobs(currentJobs);
-                ">
-                    <img src="../../res/sort.png" alt="Sort">
-                </button>
+                <div class="sort-dropdown">
+                    <button class="sort-button" onclick="
+                        sortCategory();
+                    ">
+                        <img src="../../res/sort.png" alt="Sort">
+                    </button>
+                    <div class="sort-content" id="sortDropdown">
+                        <button onclick="
+                        sortCategory();
+                        sortJobsAsc(currentJobs);
+                        displayJobs(currentJobs);
+                        " class="sort-item">Ascending</button>
+                        <button onclick="
+                        sortCategory();
+                        sortJobsDesc(currentJobs);
+                        displayJobs(currentJobs);
+                        " class="sort-item">Descending</button>
+                    </div>
+                </div>
             `;
             tab.children.item(0).src = '../../res/jlisting-posts-white.png';
             break;
-
     }
 }
 
@@ -113,23 +138,6 @@ function searchEvent(events) {
     return events.filter(searchEvent);
 }
 
-function sortEvent(events) {
-    events.sort(function (a, b) {
-        let dateA = new Date(`${a.eventdate}T${a.eventtime}`);
-        let dateB = new Date(`${b.eventdate}T${b.eventtime}`);
-
-        if (sortOrder == 1) {
-            // Ascending order
-            sortOrder++;
-            return dateA - dateB;
-        } else {
-            // Descending order
-            sortOrder--;
-            return dateB - dateA;
-        }
-    });
-}
-
 function searchJobs(jobs) {
     query = document.getElementById('job-search-text').value;
     function searchJob(job) {
@@ -138,36 +146,26 @@ function searchJobs(jobs) {
     return jobs.filter(searchJob);
 }
 
-function sortJobs(jobs) {
-    jobs.sort(function (a, b) {
-        let dateA = new Date(`${a.eventdate}T${a.eventtime}`);
-        let dateB = new Date(`${b.eventdate}T${b.eventtime}`);
+function sortEventsAsc(events) {
+    events.sort((a, b) => new Date(`${a.eventdate}T${a.eventtime}`) - new Date(`${b.eventdate}T${b.eventtime}`));
+}
 
-        if (sortOrder == 1) {
-            // Ascending order
-            sortOrder++;
-            return dateA - dateB;
-        } else {
-            // Descending order
-            sortOrder--;
-            return dateB - dateA;
-        }
-    });
+function sortEventsDesc(events) {
+    events.sort((a, b) => new Date(`${b.eventdate}T${b.eventtime}`) - new Date(`${a.eventdate}T${a.eventtime}`));
+}
+
+function sortJobsAsc(jobs) {
+    jobs.sort((a, b) => new Date(a.publishtimestamp.replace(' ', 'T')) - new Date(b.publishtimestamp.replace(' ', 'T')));
+}
+
+function sortJobsDesc(jobs) {
+    jobs.sort((a, b) => new Date(b.publishtimestamp.replace(' ', 'T')) - new Date(a.publishtimestamp.replace(' ', 'T')));
 }
 
 function eventCategory() {
     document.getElementById("categoryDropdown").classList.toggle("show");
 }
 
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
+function sortCategory() {
+    document.getElementById("sortDropdown").classList.toggle("show");
 }

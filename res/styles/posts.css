@@ -132,6 +132,38 @@
     display: grid;
 }
 
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.sort-item {
+    height: 30px;
+    background-color: white;
+    border: none;
+    transition: 150ms;
+}
+
+.sort-item:hover {
+    opacity: .7;
+}
+
+.show {
+    display: grid;
+}
+
 .event-dropdown-content button {
     padding: 12px 16px;
     text-decoration: none;
@@ -147,23 +179,24 @@
 }
 
 /* Sort button */
-.event-sort-button, .job-sort-button {
+.sort-button{
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 15px;
     cursor: pointer;
     display: flex;
+    height: 40px;
     align-items: center;
     justify-content: center;
 }
 
-.event-sort-button img, .job-sort-button img {
+.sort-button img {
     width: 20px;
     height: 20px;
     opacity: 0.6;
 }
 
-.event-sort-button:hover, .job-sort-button:hover{
+.sort-button:hover {
     background: #f5f5f5;
 }

@@ -49,7 +49,7 @@
     function getDefaultJobs($db) {
         $jobs = [];
         $job_query = "SELECT 
-            jp.jobpid, jp.title, jp.location, jp.description,
+            jp.jobpid, jp.title, jp.location, jp.description, jp.publishtimestamp,
             jp.companyname, (SELECT COUNT(*) FROM interestedinjobpost ijp 
             WHERE ijp.jobpid = jp.jobpid) AS interested FROM jobpost jp
             ORDER BY jp.publishtimestamp DESC;";
@@ -61,6 +61,7 @@
                     "title" => $rowjob["title"],
                     "location" => $rowjob["location"],
                     "description" => $rowjob["description"],
+                    "publishtimestamp" => $rowjob["publishtimestamp"],
                     "companyname" => $rowjob["companyname"],
                     "interested" => $rowjob["interested"]
                 ];
