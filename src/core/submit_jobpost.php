@@ -2,23 +2,21 @@
 
 require_once '..\database\database.php';
 
-
-function getNextJobID($conn) {
+#to get last id
+function getNextJobID($db) {
     
-    $sql = "SELECT jobpid FROM jobpost ORDER BY CAST(SUBSTRING(jobpid, 2) AS UNSIGNED) DESC LIMIT 1";
+    $query = "SELECT jobpid FROM jobpost ORDER BY CAST(SUBSTRING(jobpid, 2) AS UNSIGNED) DESC LIMIT 1";
     
-    $result = $conn->query($sql);
+    $result = $db->query($query);
     if ($result && $row = $result->fetch_assoc()) {
         
         $lastJobID = $row['jobpid'];
         $numPart = (int) substr($lastJobID, 2); 
         $nextNum = $numPart + 1; 
     } else {
-        
         $nextNum = 1;
     }
 
-    
     return 'JP' . str_pad($nextNum, 3, '0', STR_PAD_LEFT);
 }
 
@@ -30,44 +28,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = htmlspecialchars($_POST['location']);
     $company = htmlspecialchars($_POST['category']); 
 
-    
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
+    $db = Database::getInstance()->getConnection();
 
-    
-    $jobId = getNextJobID($conn);
+    $jobId = getNextJobID($db);
 
     #replace with session
     $userId = 'U005'; 
 
-    // Insert into the database
     try {
-        
-        $sql = "INSERT INTO jobpost (jobpid, title, location, description, companyname, publishtimestamp, userid)
+        $query = "INSERT INTO jobpost (jobpid, title, location, description, companyname, publishtimestamp, userid)
                 VALUES (?, ?, ?, ?, ?, NOW(), ?)";
 
-        
-        if ($stmt = $conn->prepare($sql)) {
-            // Bind variables to the prepared statement as parameters
+        if ($stmt = $db->prepare($query)) {
+            
             $stmt->bind_param("ssssss", $jobId, $jobTitle, $location, $description, $company, $userId);
 
-            
             if ($stmt->execute()) {
-                // Success notification
+                
                 echo "Job post created successfully!";
             } else {
                 echo "Failed to create job post." . $stmt->error;
             }
-
-            // Close the statement
-            $stmt->close();
             
+            $stmt->close();
         }
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
-
-    // Close the connection
-    $conn->close();
+    $db->close();
 }
 ?>

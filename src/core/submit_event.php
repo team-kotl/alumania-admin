@@ -2,12 +2,12 @@
 
 require_once '..\database\database.php';
 
-
-function getNextEventID($conn) {
+#to get last id
+function getNextEventID($db) {
     
-    $sql = "SELECT eventid FROM event ORDER BY CAST(SUBSTRING(eventid, 2) AS UNSIGNED) DESC LIMIT 1";
+    $query = "SELECT eventid FROM event ORDER BY CAST(SUBSTRING(eventid, 2) AS UNSIGNED) DESC LIMIT 1";
     
-    $result = $conn->query($sql);
+    $result = $db->query($query);
     if ($result && $row = $result->fetch_assoc()) {
         
         $lastEventID = $row['eventid'];
@@ -36,11 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventTime = date('H:i:s', strtotime($schedule));
 
     
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
+    $db = \Database::getInstance()->getConnection();
 
     
-    $eventId = getNextEventID($conn);
+    $eventId = getNextEventID($db);
 
     #replace with session
     $userId = 'U005'; 
@@ -48,29 +47,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     try {
         
-        $sql = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, userid)
+        $query = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, userid)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
         
-        if ($stmt = $conn->prepare($sql)) {
+        if ($stmt = $db->prepare($query)) {
             
             $stmt->bind_param("ssssssss", $eventId, $eventTitle, $description, $category, $eventTime, $eventDate, $location, $userId);
 
-            
             if ($stmt->execute()) {
                 echo "Event created successfully!";
             } else {
                 echo "Failed to create event";
             }
-
-        
             $stmt->close();
         }
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
-
-    // Close the connection
-    $conn->close();
+    
+    $db->close();
 }
 ?>
