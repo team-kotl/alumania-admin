@@ -1,4 +1,5 @@
 const allTabs = document.getElementById('ul-posts').children;
+const sortOrder = 1;
 
 function setActiveTab(index) {
     const tab = allTabs.item(index);
@@ -33,3 +34,68 @@ function setActiveTab(index) {
             break;
     }
 }
+
+function filterEvent(events, category) {
+    function checkCategory(event) {
+        return event.category == category;
+    }
+
+    events = events.filter(checkCategory);
+}
+
+function searchEvent(events, query) {
+    function searchEvent(event) {
+        return `${event.title} ${event.description} ${event.location}`.toLowerCase().includes(query.toLowerCase());
+    }
+
+    events = events.filter(searchEvent);
+}
+
+function sortEvent(events) {
+    if (sortOrder % 2 != 0) {
+        events.sort(function (a, b) {
+            return Date(a) < Date(b);
+        });
+    } else {
+        events.sort(function (a, b) {
+            return Date(a) > Date(b);
+        });
+    }
+}
+
+function searchJob(events, query) {
+    function searchEvent(event) {
+        return `${event.title} ${event.description} ${event.location}`.toLowerCase().includes(query.toLowerCase());
+    }
+
+    events = events.filter(searchEvent);
+}
+
+function sortJobs(events) {
+    if (sortOrder % 2 != 0) {
+        events.sort(function (a, b) {
+            return Date(a) < Date(b);
+        });
+    } else {
+        events.sort(function (a, b) {
+            return Date(a) > Date(b);
+        });
+    }
+}
+
+function eventCategory() {
+    document.getElementById("categoryDropdown").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+} 

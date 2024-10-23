@@ -15,42 +15,57 @@
     <?php
     require_once '..\database\database.php';
     $db = \Database::getInstance()->getConnection();
+    $jobpostings = getDefaultJobs($db);
+    $eventpostings = getDefaultEvents($db);
 
-    $event_hasResults = false;
-    $job_hasResults = false;
-    $job_query = "SELECT jobpid, title, location, description, companyname FROM jobpost";
-    $event_query = "SELECT eventid, title, description, category, eventtime, eventdate, eventloc, eventphoto FROM event";
-    $job_result = mysqli_query($db, $job_query);
-    $event_result = mysqli_query($db, $event_query);
-    $jobpostings = [];
-    $eventpostings = [];
+    function getDefaultEvents($db): array {
+        $events = [];
+        $event_query = "SELECT 
+            e.eventid, e.title, e.description, e.category,
+            e.location, e.eventtime, e.eventdate, e.eventphoto,
+            (SELECT COUNT(*) FROM interestedinevent ie WHERE ie.eventid = e.eventid) AS interested
+            FROM event e;";
+        $event_result = mysqli_query($db, $event_query); 
 
-    if (mysqli_num_rows($job_result) > 0) {
-        while ($rowjob = mysqli_fetch_assoc($job_result)) {
-            $jobpostings[] = [
-                "jobpid" => $rowjob["jobpid"],
-                "title" => $rowjob["title"],
-                "location" => $rowjob["location"],
-                "description" => $rowjob["description"],
-                "companyname" => $rowjob["companyname"]
-            ];
+        if (mysqli_num_rows($event_result) > 0) {
+            while ($rowevent = mysqli_fetch_assoc($event_result)) {
+                $events[] = [
+                    "eventid" => $rowevent["eventid"],
+                    "title" => $rowevent["title"],
+                    "description" => $rowevent["description"],
+                    "category" => $rowevent["category"],
+                    "eventtime" => $rowevent["eventtime"],
+                    "eventdate" => $rowevent["eventdate"],
+                    "eventloc" => $rowevent["eventloc"],
+                    "eventphoto" => $rowevent["eventphoto"],
+                    "interested" => $rowevent["interested"]
+                ];
+            }
         }
-        $job_hasResults = true;
+
+        return $events;
     }
 
-    if (mysqli_num_rows($event_result) > 0) {
-        while ($rowevent = mysqli_fetch_assoc($event_result)) {
-            $eventpostings[] = [
-                "eventid" => $rowevent["eventid"],
-                "title" => $rowevent["title"],
-                "description" => $rowevent["description"],
-                "category" => $rowevent["category"],
-                "eventtime" => $rowevent["eventtime"],
-                "eventdate" => $rowevent["eventdate"],
-                "eventloc" => $rowevent["eventloc"]
-            ];
+    function getDefaultJobs($db) {
+        $jobs = [];
+        $job_query = "SELECT 
+            jp.jobpid, jp.title, jp.location, jp.description,
+            jp.companyname, (SELECT COUNT(*) FROM interestedinjobpost ijp 
+            WHERE ijp.jobpid = jp.jobpid) AS interested FROM jobpost jp;";
+        $job_result = mysqli_query($db, $job_query);
+        if (mysqli_num_rows($job_result) > 0) {
+            while ($rowjob = mysqli_fetch_assoc($job_result)) {
+                $jobs[] = [
+                    "jobpid" => $rowjob["jobpid"],
+                    "title" => $rowjob["title"],
+                    "location" => $rowjob["location"],
+                    "description" => $rowjob["description"],
+                    "companyname" => $rowjob["companyname"],
+                    "interested" => $rowjob["interested"]
+                ];
+            }
         }
-        $event_hasResults = true;
+        return $jobs;
     }
     ?>
 
@@ -60,6 +75,32 @@
             <p>
                 Delete or edit a post
             </p>
+        </div>
+
+        <div class="search-container">
+            <div class="event-search-bar">
+                <input type="text" class="event-search-input" placeholder="Event Name">
+                <button class="search-button">
+                    <img src="../../res/search.png" alt="Search">
+                </button>
+            </div>
+
+            <div class="event-category-dropdown">
+                <button class="event-category-button" onclick="eventCategory()">
+                    Category
+                    <img src="../../res/arrow.png" alt="Dropdown Arrow" class="event-dropdown-arrow">
+                </button>
+                <div class="event-dropdown-content" id="categoryDropdown">
+                    <button onclick="eventCategory()">Seminar</button>
+                    <button onclick="eventCategory()">Thanksgiving</button>
+                    <button onclick="eventCategory()">Festival</button>
+                    <button onclick="eventCategory()">Reunion</button>
+                </div>
+            </div>
+
+            <button class="event-sort-button">
+                <img src="../../res/sort.png" alt="Sort">
+            </button>
         </div>
 
         <div class="navigation">
@@ -120,12 +161,15 @@
                     <div class="listing-button">
                         <button class="listing-bdesign" onclick="">View Interested</button>
                     </div>
+                    <!--
                     <div class="listing-more">
                         <a href="#"><img src="../../res/more-options.png" alt="More Options"></a>
                     </div>
                     <div class="listing-exit">
                         <a href="#"><img src="../../res/close-posts.png" alt="Close Listing"></a>
                     </div>
+                    
+                    -->
                 `;
                 container.appendChild(cardContainer);
             }
@@ -144,9 +188,9 @@
                 cardContainer.innerHTML = `
                 <div class="event-card-image">
                     <img src="data:image/jpeg;base64,${eventsData[i].eventphoto}">
-                        <div class="more-options">
-                            <img src="../../res/eventbutton.png">
-                        </div>
+                    <div class="event-more-options">
+                        <img src="../../res/eventbutton.png">
+                    </div>
                 </div>
                 <div class="event-card-content">
                     <h2 class="event-title">${eventsData[i].title}</h2>

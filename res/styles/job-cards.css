@@ -34,6 +34,7 @@
     text-align: right;
     border: none;
     transition-duration: 0.4s;
+    height: auto;
     cursor: pointer;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .listing-more {
-    position: absolute;
+    position: relative;
     right: 65px;
     top: 20px;
     width: 30px;

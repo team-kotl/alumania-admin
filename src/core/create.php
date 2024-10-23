@@ -38,7 +38,7 @@
                         </svg>
                     </div>
                     <div class="text">
-                        <span>Click to upload image</span>
+                        <span>Click to upload image or drag files</span>
                     </div>
                     <input type="file" id="file">
                 </div>
@@ -53,7 +53,6 @@
 
                     <label for="location" class="text">Location</label>
                     <input type="text" placeholder="Insert location here" name="location" class="input">
-
 
                     <div class="input-container">
                         <div class="input-left">
@@ -73,7 +72,6 @@
                     </div>
                 </div>
 
-
                 <div class="input" id="inputSectionJob" style="display: none;">
                     <label for="jobTitle" class="text">Job Title</label>
                     <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
@@ -82,19 +80,20 @@
                     <textarea placeholder="Insert description here" name="description" class="input description-input"
                         rows="4"></textarea>
 
-
                     <label for="location" class="text">Location</label>
                     <input type="text" placeholder="Insert location here" name="location" class="input">
 
-                    <label for="category" class="text">Category</label>
+                    <label for="category" class="text">Company</label>
                     <input type="text" placeholder="Insert company name here" name="category" class="input">
                 </div>
 
+                <div class="publishBTN" id="publishBTN" style="display: none;">
+                    <button>Publish</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="../js/create.js"></script>
+        <script src="../js/create.js"></script>
 
 </body>
 

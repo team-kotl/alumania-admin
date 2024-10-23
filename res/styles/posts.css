@@ -56,3 +56,114 @@
     background-color: #0661d9;
     color: white;
 }
+
+/* Search bar */
+.search-container {
+    height: 40px;
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    gap: 30px;
+}
+
+.event-search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid rgb(187, 186, 186);
+    border-radius: 10px;
+    padding: 3px 5px;
+}
+
+.event-search-input {
+    border: none;
+    background: none;
+    padding: 5px;
+    width: 180px;
+    outline: none;
+    font-size: 14px;
+}
+
+.event-search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.event-category-button {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    transition: 150ms;
+}
+
+.event-category-button:hover, .event-category-button:focus {
+    opacity: .7;
+}
+
+.event-category-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.event-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.show {
+    display: grid;
+}
+
+.event-dropdown-content button {
+    padding: 12px 16px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+
+.event-dropdown-content button:hover {
+    background-color: #f5f5f5;
+}
+
+/* Sort button */
+.event-sort-button {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-sort-button img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.event-sort-button:hover, .category-button:hover {
+    background: #f5f5f5;
+}
