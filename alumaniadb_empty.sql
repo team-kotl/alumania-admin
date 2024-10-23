@@ -53,6 +53,7 @@ CREATE TABLE event (
     eventdate DATE,
     eventloc VARCHAR(255),
     publishtimestamp timestamp,
+    eventphoto BLOB,
     userid VARCHAR(15),
     FOREIGN KEY (userid) REFERENCES USER(userid)
 );
@@ -116,10 +117,4 @@ CREATE TABLE interestedinjobpost (
     FOREIGN KEY (jobpid) REFERENCES jobpost(jobpid),
     FOREIGN KEY (userid) REFERENCES alumni(userid),
     PRIMARY KEY (jobpid, userid)
-);
-
-CREATE TABLE jobpostimage (
-    jobpid VARCHAR(20) PRIMARY KEY,
-    jobpimage MEDIUMBLOB,
-    FOREIGN KEY (jobpid) REFERENCES jobpost(jobpid)
 );
