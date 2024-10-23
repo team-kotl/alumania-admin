@@ -20,7 +20,6 @@ function getNextJobID($db) {
     return 'JP' . str_pad($nextNum, 3, '0', STR_PAD_LEFT);
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $jobTitle = htmlspecialchars($_POST['jobTitle']);
@@ -32,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $jobId = getNextJobID($db);
 
-    #replace with session
-    $userId = 'U005'; 
+    $userId = '7777';
 
     try {
         $query = "INSERT INTO jobpost (jobpid, title, location, description, companyname, publishtimestamp, userid)
@@ -57,4 +55,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $db->close();
 }
-?>

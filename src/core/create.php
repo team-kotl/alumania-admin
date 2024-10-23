@@ -10,10 +10,10 @@
 </head>
 
 <body>
-<div id="notificationContainer"></div>
+    <div id="notificationContainer"></div>
     <?php include 'navbar.php'; ?>
     <script defer> setActiveNav("createtab", "createicon", 2); </script>
-    
+
     <div class="content-container">
         <div class="header">
             <h1>Create</h1>
@@ -39,65 +39,65 @@
                         </svg>
                     </div>
                     <div class="text">
-                        <span>Click to upload image or drag files</span>
+                        <span>Click to upload image or drag files <i>&#40;Currently Disabled&#41;</i></span>
                     </div>
-                    <input type="file" id="file">
+                    <input type="file" id="file" name="file">
                 </div>
 
                 <div class="input" id="inputSectionEvent" style="display: none;">
-                <form id="eventForm" method="POST" action="submit_event.php" onsubmit="handleSubmit(event);">
-                    <label for="eventTitle" class="text">Event Title</label>
-                    <input type="text" placeholder="Insert title here" name="eventTitle" class="input">
+                    <form id="eventForm" method="POST" action="submit_event.php" onsubmit="handleSubmit(event);">
+                        <label for="eventTitle" class="text">Event Title</label>
+                        <input type="text" placeholder="Insert title here" name="eventTitle" class="input">
 
-                    <label for="description" class="text">Description</label>
-                    <textarea placeholder="Insert description here" name="description"
-                        class="input description-input-event" rows="4"></textarea>
+                        <label for="description" class="text">Description</label>
+                        <textarea placeholder="Insert description here" name="description"
+                            class="input description-input-event" rows="4"></textarea>
 
-                    <label for="location" class="text">Location</label>
-                    <input type="text" placeholder="Insert location here" name="location" class="input">
+                        <label for="location" class="text">Location</label>
+                        <input type="text" placeholder="Insert location here" name="location" class="input">
 
-                    <div class="input-container">
-                        <div class="input-left">
-                            <label for="category" class="text">Category</label>
-                            <select name="category" class="input category-input" id="category">
-                                <option value="" selected>Select Category</option>
-                                <option value="reunion">Reunion</option>
-                                <option value="community_service">Community Service</option>
-                                <option value="seminar">Seminar</option>
-                                <option value="family">Family</option>
-                            </select>
+                        <div class="input-container">
+                            <div class="input-left">
+                                <label for="category" class="text">Category</label>
+                                <select name="category" class="input category-input" id="category">
+                                    <option value="" selected>Select Category</option>
+                                    <option value="reunion">Reunion</option>
+                                    <option value="Thanksgiving">Thanksgiving</option>
+                                    <option value="seminar">Seminar</option>
+                                    <option value="festival">Festival</option>
+                                </select>
+                            </div>
+                            <div class="input-right">
+                                <label for="schedule" class="text">Schedule</label>
+                                <input type="text" placeholder="YYYY-MM-DD HH:MM:SS" name="schedule" class="input">
+                            </div>
                         </div>
-                        <div class="input-right">
-                            <label for="schedule" class="text">Schedule</label>
-                            <input type="text" placeholder="Set date and time" name="schedule" class="input">
+                        <div class="publishBTN" id="publishBTN" style="display:block;">
+                            <button type="submit">Publish</button>
                         </div>
-                    </div>
-                    <div class="publishBTN" id="publishBTN" style="display:block;">
-                    <button type="submit">Publish</button>
-                    </div>
-                </form>
+                    </form>
                 </div>
 
                 <div class="input" id="inputSectionJob" style="display: none;">
-                    <form id ="jobpostForm" method="POST" action="submit_jobpost.php">
-                    <label for="jobTitle" class="text">Job Title</label>
-                    <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                    <form id="jobpostForm" method="POST" action="submit_jobpost.php">
+                        <label for="jobTitle" class="text">Job Title</label>
+                        <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
 
-                    <label for="description" class="text">Description</label>
-                    <textarea placeholder="Insert description here" name="description" class="input description-input"
-                        rows="4"></textarea>
+                        <label for="description" class="text">Description</label>
+                        <textarea placeholder="Insert description here" name="description"
+                            class="input description-input" rows="4"></textarea>
 
-                    <label for="location" class="text">Location</label>
-                    <input type="text" placeholder="Insert location here" name="location" class="input">
+                        <label for="location" class="text">Location</label>
+                        <input type="text" placeholder="Insert location here" name="location" class="input">
 
-                    <label for="category" class="text">Company</label>
-                    <input type="text" placeholder="Insert company name here" name="category" class="input">
-                    <div class="publishBTN" id="publishBTN" style="display:block;">
-                    <button type="submit">Publish</button>
-                    </div>
+                        <label for="category" class="text">Company</label>
+                        <input type="text" placeholder="Insert company name here" name="category" class="input">
+                        <div class="publishBTN" id="publishBTN" style="display:block;">
+                            <button type="submit">Publish</button>
+                        </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
 

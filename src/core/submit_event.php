@@ -41,16 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $eventId = getNextEventID($db);
 
-    #replace with session
-    $userId = 'U005'; 
+    $userId = '7777'; 
 
     
     try {
         
-        $query = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, userid)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, publishtimestamp, userid)
+                VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
         
-        if ($stmt = $db->prepare($query)) {
+        if ($stmt = $db->prepare($query)) { 
             
             $stmt->bind_param("ssssssss", $eventId, $eventTitle, $description, $category, $eventTime, $eventDate, $location, $userId);
 
@@ -67,4 +66,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $db->close();
 }
-?>

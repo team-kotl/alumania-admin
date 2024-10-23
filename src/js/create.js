@@ -29,16 +29,16 @@ document.getElementById('jobImage').addEventListener('click', function () {
     document.getElementById('eventImage').src = originalEventImageSrc;
 });
 
-fileUploadSection.addEventListener('click', function () {
-    fileInput.click();
-});
+// fileUploadSection.addEventListener('click', function () {
+//     fileInput.click();
+// });
 
-fileInput.addEventListener('change', function (event) {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-        console.log("File selected:", selectedFile.name);
-    }
-});
+// fileInput.addEventListener('change', function (event) {
+//     const selectedFile = event.target.files[0];
+//     if (selectedFile) {
+//         console.log("File selected:", selectedFile.name);
+//     }
+// });
 
 function showNotification(message) {
     
@@ -67,7 +67,7 @@ function validateForm() {
     const location = document.querySelector('input[name="location"]');
     const category = document.querySelector('select[name="category"]');
     const schedule = document.querySelector('input[name="schedule"]');
-
+    const dateAndTimeRegex = /((((19|20)([2468][048]|[13579][26]|0[48])|2000)-02-29|((19|20)[0-9]{2}-(0[4678]|1[02])-(0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}-(0[1359]|11)-(0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}-02-(0[1-9]|1[0-9]|2[0-8])))\s([01][0-9]|2[0-3]):([012345][0-9]):([012345][0-9]))/;
     
     if (!eventTitle.value.trim()) {
         showNotification('Event Title cannot be empty.');
@@ -87,6 +87,10 @@ function validateForm() {
     }
     if (!schedule.value.trim()) {
         showNotification('Schedule cannot be empty.');
+        return false;
+    }
+    if(!dateAndTimeRegex.test(schedule.value)) {
+        showNotification('Invalid Schedule!');
         return false;
     }
 

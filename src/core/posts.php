@@ -183,7 +183,7 @@
                 cardContainer.classList.add("event-card");
                 cardContainer.innerHTML = `
                 <div class="event-card-image">
-                    <img src="data:image/jpeg;base64,${eventsData[i].eventphoto}">
+                    <img src="../../res/event_placeholder.jpg">
                 </div>
                 <div class="event-card-content">
                     <h2 class="event-title">${eventsData[i].title}</h2>
