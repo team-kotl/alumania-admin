@@ -410,20 +410,20 @@ body {
 }
 
 #notificationContainer {
-    position: absolute; /* Positioning to allow for notifications to appear at the top */
-    top: 20px; /* Distance from the top */
-    right: 20px; /* Distance from the right */
-    z-index: 1000; /* Ensure it's on top of other content */
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
 }
 
 .notification {
     background-color: rgb(3, 152, 197); 
     color: white;
     padding: 15px;
-    margin: 10px 0; /* Margin for spacing between notifications */
+    margin: 10px 0; 
     border-radius: 5px;
     position: relative;
-    animation: fadeIn 0.5s; /* Optional fade-in effect */
+    animation: fadeIn 0.5s; 
 }
 
 .close-button {
@@ -432,7 +432,7 @@ body {
     color: white;
     cursor: pointer;
     position: absolute;
-    right: 10px; /* Positioning for the close button */
+    right: 10px; 
     top: 50%;
     transform: translateY(-50%);
 }

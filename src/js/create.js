@@ -41,18 +41,18 @@ fileInput.addEventListener('change', function (event) {
 });
 
 function showNotification(message) {
-    // Create notification element
+    
     const notification = document.createElement('div');
     notification.classList.add('notification');
 
-    // Create message text
+    
     const messageText = document.createElement('span');
     messageText.textContent = message;
     
-    // Append message and close button to notification
+    
     notification.appendChild(messageText);
     
-    // Append notification to container
+    
     document.getElementById('notificationContainer').appendChild(notification);
 
     setTimeout(() => {
@@ -60,7 +60,7 @@ function showNotification(message) {
     }, 5000);
 }
 
-// Validate form input
+
 function validateForm() {
     const eventTitle = document.querySelector('input[name="eventTitle"]');
     const description = document.querySelector('textarea[name="description"]');
@@ -68,7 +68,7 @@ function validateForm() {
     const category = document.querySelector('select[name="category"]');
     const schedule = document.querySelector('input[name="schedule"]');
 
-    // Check if the fields are empty
+    
     if (!eventTitle.value.trim()) {
         showNotification('Event Title cannot be empty.');
         return false;
@@ -90,15 +90,15 @@ function validateForm() {
         return false;
     }
 
-    return true; // All checks passed
+    return true; 
 }
 
-// Handle form submission
+
 function handleSubmit(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
 
     if (!validateForm()) {
-        return; // Validation failed, do not proceed
+        return; 
     }
 
     const formData = new FormData(document.getElementById('eventForm'));
@@ -109,7 +109,7 @@ function handleSubmit(event) {
     })
     .then(response => response.text())
     .then(data => {
-        showNotification(data); // Show the success message or any other response from the server
+        showNotification(data); 
     })
     .catch(error => {
         showNotification('An error occurred: ' + error.message);
