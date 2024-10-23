@@ -384,3 +384,26 @@ body {
     background-color: #0066ff;
     transform: scale(0.98); 
 }
+
+.schedule-input {
+    width: 100%; 
+    padding-right: 40px; 
+    padding-left: 10px;
+    font-size: 0.75rem;
+    border: 2px #666666 solid;
+    border-radius: 5px;
+    background: #ffffff;
+    height: 44px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 510px;
+    top: -23px;
+    transform: translateY(-50%);
+    width: 30px;  
+    height: 28px; 
+    pointer-events: none;
+    position: relative; 
+    
+}
