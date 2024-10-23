@@ -37,7 +37,7 @@
                     "eventtime" => $rowevent["eventtime"],
                     "eventdate" => $rowevent["eventdate"],
                     "eventloc" => $rowevent["eventloc"],
-                    "eventphoto" => $rowevent["eventphoto"],
+                    "eventphoto" => base64_encode($rowevent["eventphoto"]),
                     "interested" => $rowevent["interested"]
                 ];
             }
@@ -162,18 +162,10 @@
                     <div class="listing-summary">
                         <p>${jobsData[i].description}</p>
                     </div>
-                    <div class="listing-button">
-                        <button class="listing-bdesign" onclick="">View Interested</button>
+                    <div class="job-interest-count">
+                        <img src="../../res/star.png" alt="star">
+                            <span>${jobsData[i].interested} interested</span>
                     </div>
-                    <!--
-                    <div class="listing-more">
-                        <a href="#"><img src="../../res/more-options.png" alt="More Options"></a>
-                    </div>
-                    <div class="listing-exit">
-                        <a href="#"><img src="../../res/close-posts.png" alt="Close Listing"></a>
-                    </div>
-                    
-                    -->
                 `;
                 container.appendChild(cardContainer);
             }
@@ -192,9 +184,6 @@
                 cardContainer.innerHTML = `
                 <div class="event-card-image">
                     <img src="data:image/jpeg;base64,${eventsData[i].eventphoto}">
-                    <div class="event-more-options">
-                        <img src="../../res/eventbutton.png">
-                    </div>
                 </div>
                 <div class="event-card-content">
                     <h2 class="event-title">${eventsData[i].title}</h2>
@@ -207,7 +196,6 @@
                         <img src="../../res/star.png" alt="star">
                             <span>${eventsData[i].interested} interested</span>
                     </div>
-                    <button class="event-view-button">View interested</button>
                 </div>
                 `;
                 container.appendChild(cardContainer);

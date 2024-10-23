@@ -80,10 +80,9 @@
 
 .event-interest-count {
     display: flex;
-    align-items: center;
+    justify-content: end;
     gap: 5px;
     color: #666;
-    margin-bottom: 30px;
     font-size: 14px;
     margin-top: 4px;
 }
