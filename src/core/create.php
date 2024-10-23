@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div id="notificationContainer"></div>
     <?php include 'navbar.php'; ?>
     <script defer> setActiveNav("createtab", "createicon", 2); </script>
 
@@ -44,6 +45,7 @@
                 </div>
 
                 <div class="input" id="inputSectionEvent" style="display: none;">
+                <form id="eventForm" method="POST" action="submit_event.php" onsubmit="handleSubmit(event);">
                     <label for="eventTitle" class="text">Event Title</label>
                     <input type="text" placeholder="Insert title here" name="eventTitle" class="input">
 
@@ -70,9 +72,14 @@
                             <input type="text" placeholder="Set date and time" name="schedule" class="input">
                         </div>
                     </div>
+                    <div class="publishBTN" id="publishBTN" style="display:block;">
+                    <button type="submit">Publish</button>
+                    </div>
+                </form>
                 </div>
 
                 <div class="input" id="inputSectionJob" style="display: none;">
+                    <form id ="jobpostForm" method="POST" action="submit_jobpost">
                     <label for="jobTitle" class="text">Job Title</label>
                     <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
 
@@ -85,11 +92,9 @@
 
                     <label for="category" class="text">Company</label>
                     <input type="text" placeholder="Insert company name here" name="category" class="input">
+                    </form>
                 </div>
-
-                <div class="publishBTN" id="publishBTN" style="display: none;">
-                    <button>Publish</button>
-                </div>
+                
             </div>
         </div>
 
