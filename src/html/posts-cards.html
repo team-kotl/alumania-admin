@@ -73,10 +73,47 @@
     <main class="main-content">
         <div class="header">
             <h1>Posts</h1>
+            <p>Delete or edit a post</p>
         </div>
 
-        <div id="card-events">
-        <div class="event-card">
+        
+        <div class="navigation">
+            <ul id="ul-posts">
+                <li><a href="#"><img src="/res/experience-posts-blue.png" alt="User experience">Experience</a></li>
+                <li><a href="#"><img src="/res/calendar-posts.png" alt="Events">Events</a></li>   
+                <li><a href="#"><img src="/res/jlisting-posts.png" alt="Listing">Job Listing</a></li>    
+            </ul>
+
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Event Name">
+                <button class="search-button">
+                    <img src="/res/search.png" alt="Search">
+                </button>
+            </div>
+            
+              
+        <div class="category-dropdown">
+            <button class="category-button">
+                CATEGORY
+                <img src="/res/arrow.png" alt="Dropdown Arrow" class="dropdown-arrow">
+            </button>
+            <div class="dropdown-content" id="categoryDropdown">
+                <a href="#">Seminar</a>
+                <a href="#">Thanksgiving</a>
+                <a href="#">Festival</a>
+                <a href="#">Reunion</a>
+            </div>
+        </div>
+
+        <button class="sort-button">
+            <img src="/res/sort.png" alt="Sort">
+        </button>
+    </div>
+    </div>
+
+        <div class="cards-container">
+        <div class="card">
             <div class="card-image">
                 <img src="/res/slu-awarding.png" alt="SLU Awarding Night">
                 <div class="more-options">
@@ -100,7 +137,7 @@
                 <button class="view-button">View interested</button>
             </div>
         </div>
-
+    
 
         <div class="card">
             <div class="card-image">
@@ -190,6 +227,23 @@
         mainContent.classList.toggle('shifted'); 
     });  
 </script>
+
+<script>
+    const categoryButton = document.querySelector('.category-button');
+    const categoryDropdown = document.getElementById('categoryDropdown');
+    
+    categoryButton.addEventListener('click', () => {
+        categoryDropdown.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.category-dropdown')) {
+            categoryDropdown.classList.remove('show');
+        }
+    });
+</script>
+    
+
 
 </body>
 </html>
