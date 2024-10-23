@@ -4,7 +4,6 @@ const contentContainer = document.querySelector('.content-container');
 
 navToggle.addEventListener('click', () => {
     navbar.classList.toggle('collapsed');
-    mainContent.classList.toggle('shifted');
 });
 
 function wipAlert() {
