@@ -61,7 +61,7 @@ function showNotification(message) {
 }
 
 
-function validateForm() {
+function validateForm() {    
     const eventTitle = document.querySelector('input[name="eventTitle"]');
     const description = document.querySelector('textarea[name="description"]');
     const location = document.querySelector('input[name="location"]');
@@ -94,12 +94,12 @@ function validateForm() {
         return false;
     }
 
-    return true; 
+    return true;
 }
 
 
 function handleSubmit(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     if (!validateForm()) {
         return; 

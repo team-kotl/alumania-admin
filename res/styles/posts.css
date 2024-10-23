@@ -1,5 +1,9 @@
 @import url('job-cards.css');
 @import url('event-cards.css');
+@font-face {
+    font-family: "Poppins";
+    src: url('../font/Poppins-Regular.ttf');
+}
 
 * {
     margin: 0;
@@ -199,4 +203,16 @@
 
 .sort-button:hover {
     background: #f5f5f5;
+}
+
+.header {
+    margin: 25px 70px;
+    transition: margin-left 0.3s ease;
+    font-size: 20px;
+    color: #343434;
+}
+
+.header p {
+    font-size: 20px;
+    color: #CCCCCC;
 }

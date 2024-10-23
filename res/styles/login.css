@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Poppins";
+  src: url('../font/Poppins-Regular.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -113,8 +118,35 @@ button:hover {
   margin-bottom: 100px;
 }
 
-.error-message {
-  color: red;
-  font-weight: bold;
-  margin-bottom: 15px;
+#notificationContainer {
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000; 
+}
+
+.notification {
+  background-color: rgb(3, 152, 197); 
+  color: white;
+  padding: 15px;
+  margin: 10px 0; 
+  border-radius: 5px;
+  position: relative;
+  animation: fadeIn 0.5s; 
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

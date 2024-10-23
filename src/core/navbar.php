@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="../../res/Alumania_logo.png" type="image/x-icon">
 <link rel="stylesheet" href="../../res/styles/style.css">
 <nav class="navbar">
     <div class="logo">
@@ -51,7 +52,7 @@
     <div class="user-profile">
         <img src="../../res/avatar.png" alt="User profile">
         <div class="user-info">
-            <div class="user-name">Freskkie Earl</div>
+            <div class="user-name">admin</div>
             <div class="user-role">Admin</div>
         </div>
     </div>

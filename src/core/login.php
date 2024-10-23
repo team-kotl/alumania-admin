@@ -17,16 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         while ($row = $result->fetch_assoc()) {
             if ($password === $row['password']) {
-                header('Location: create.php');
+                echo 'Login Successful';
                 die();
             }
         }
     }
 
-    header('Location: ../../index.php');
+    echo 'Invalid Credentials';
+    // header('Location: ../../index.php');
     exit();
-}
-
-function FunctionName() : string {
-    return "aa";
 }
