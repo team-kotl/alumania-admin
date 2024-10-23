@@ -77,7 +77,7 @@
             </p>
         </div>
 
-        <div class="search-container">
+        <div id="searchContainer" class="search-container">
             <div class="event-search-bar">
                 <input type="text" class="event-search-input" placeholder="Event Name">
                 <button class="search-button">
