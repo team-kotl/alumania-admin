@@ -22,9 +22,9 @@
         $events = [];
         $event_query = "SELECT 
             e.eventid, e.title, e.description, e.category,
-            e.location, e.eventtime, e.eventdate, e.eventphoto,
+            e.eventloc, e.eventtime, e.eventdate, e.eventphoto,
             (SELECT COUNT(*) FROM interestedinevent ie WHERE ie.eventid = e.eventid) AS interested
-            FROM event e;";
+            FROM event e ORDER BY e.eventdate DESC, e.eventtime DESC;";
         $event_result = mysqli_query($db, $event_query); 
 
         if (mysqli_num_rows($event_result) > 0) {
@@ -51,7 +51,8 @@
         $job_query = "SELECT 
             jp.jobpid, jp.title, jp.location, jp.description,
             jp.companyname, (SELECT COUNT(*) FROM interestedinjobpost ijp 
-            WHERE ijp.jobpid = jp.jobpid) AS interested FROM jobpost jp;";
+            WHERE ijp.jobpid = jp.jobpid) AS interested FROM jobpost jp
+            ORDER BY jp.publishtimestamp DESC;";
         $job_result = mysqli_query($db, $job_query);
         if (mysqli_num_rows($job_result) > 0) {
             while ($rowjob = mysqli_fetch_assoc($job_result)) {
@@ -132,6 +133,8 @@
     <script>
         let jobs = <?php echo json_encode($jobpostings); ?>;
         let events = <?php echo json_encode($eventpostings); ?>;
+        let currentEvents = JSON.parse(JSON.stringify(events));
+        let currentJobs = JSON.parse(JSON.stringify(jobs));
 
         function wipAlert() {
             alert('This section is currently being worked on :)');
@@ -201,7 +204,7 @@
                     <div class="event-location">${eventsData[i].eventloc}</div>
                     <div class="event-interest-count">
                         <img src="../../res/star.png" alt="star">
-                            <span>0 interested</span>
+                            <span>${eventsData[i].interested} interested</span>
                     </div>
                     <button class="event-view-button">View interested</button>
                 </div>

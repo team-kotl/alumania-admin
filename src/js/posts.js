@@ -31,8 +31,11 @@ function setActiveTab(index) {
         case 1:
             document.getElementById('searchContainer').innerHTML = `
                 <div class="event-search-bar">
-                <input type="text" class="event-search-input" placeholder="Event Name">
-                <button class="event-search-button">
+                <input type="text" class="event-search-input" placeholder="Event Name" id="event-search-text">
+                <button class="event-search-button" onclick="
+                        currentEvents = searchEvent(currentEvents);
+                        displayEvents(currentEvents);
+                ">
                     <img src="../../res/search.png" alt="Search">
                 </button>
                 </div>
@@ -43,13 +46,28 @@ function setActiveTab(index) {
                         <img src="../../res/arrow.png" alt="Dropdown Arrow" class="event-dropdown-arrow">
                     </button>
                     <div class="event-dropdown-content" id="categoryDropdown">
-                        <button onclick="eventCategory()">Seminar</button>
-                        <button onclick="eventCategory()">Thanksgiving</button>
-                        <button onclick="eventCategory()">Festival</button>
-                        <button onclick="eventCategory()">Reunion</button>
+                        <button onclick="
+                        currentEvents = filterEvent(events, 'Seminar')
+                        displayEvents(currentEvents);
+                        ">Seminar</button>
+                        <button onclick="
+                        currentEvents = filterEvent(events, 'Thanksgiving')
+                        displayEvents(currentEvents);
+                        ">Thanksgiving</button>
+                        <button onclick="
+                        currentEvents = filterEvent(events, 'Festival')
+                        displayEvents(currentEvents);
+                        ">Festival</button>
+                        <button onclick="
+                        currentEvents = filterEvent(events, 'Reunion')
+                        displayEvents(currentEvents);
+                        ">Reunion</button>
                     </div>
                 </div>
-                <button class="event-sort-button">
+                <button class="event-sort-button" onclick="
+                    sortEvent(currentEvents);
+                    displayEvents(currentEvents);
+                ">
                     <img src="../../res/sort.png" alt="Sort">
                 </button>
             `;
@@ -58,66 +76,83 @@ function setActiveTab(index) {
         case 2:
             document.getElementById('searchContainer').innerHTML = `
                 <div class="job-search-bar">
-                <input type="text" class="job-search-input" placeholder="Event Name">
-                <button class="job-search-button">
+                <input type="text" class="job-search-input" placeholder="Event Name" id="job-search-text">
+                <button class="job-search-button" onclick="
+                    currentJobs = searchJobs(jobs);
+                    displayJobs(currentJobs);
+                ">
                     <img src="../../res/search.png" alt="Search">
                 </button>
                 </div>
-                <button class="job-sort-button">
+                <button class="job-sort-button" onclick="
+                sortJobs();
+                displayJobs(currentJobs);
+                ">
                     <img src="../../res/sort.png" alt="Sort">
                 </button>
             `;
             tab.children.item(0).src = '../../res/jlisting-posts-white.png';
             break;
+
     }
 }
 
 function filterEvent(events, category) {
     function checkCategory(event) {
-        return event.category == category;
+        return event.category.toLowerCase() == category.toLowerCase();
     }
-
-    events = events.filter(checkCategory);
+    return events.filter(checkCategory);
 }
 
-function searchEvent(events, query) {
+function searchEvent(events) {
+    query = document.getElementById('event-search-text').value;
     function searchEvent(event) {
         return `${event.title} ${event.description} ${event.eventloc}`.toLowerCase().includes(query.toLowerCase());
     }
 
-    events = events.filter(searchEvent);
+    return events.filter(searchEvent);
 }
 
 function sortEvent(events) {
-    if (sortOrder % 2 != 0) {
-        events.sort(function (a, b) {
-            return Date(a.eventdate) < Date(b.eventdate);
-        });
-    } else {
-        events.sort(function (a, b) {
-            return Date(a.eventdate) > Date(b.eventdate);
-        });
-    }
+    events.sort(function (a, b) {
+        let dateA = new Date(`${a.eventdate}T${a.eventtime}`);
+        let dateB = new Date(`${b.eventdate}T${b.eventtime}`);
+
+        if (sortOrder == 1) {
+            // Ascending order
+            sortOrder++;
+            return dateA - dateB;
+        } else {
+            // Descending order
+            sortOrder--;
+            return dateB - dateA;
+        }
+    });
 }
 
-function searchJob(jobs, query) {
-    function searchEvent(job) {
-        return `${job.title} ${job.description} ${job.location} ${job.companyname}`.toLowerCase().includes(query.toLowerCase());
+function searchJobs(jobs) {
+    query = document.getElementById('job-search-text').value;
+    function searchJob(job) {
+        return `${job.title}${job.description}${job.location}${job.companyname}`.toLowerCase().includes(query.toLowerCase());
     }
-
-    jobs = jobs.filter(jobs);
+    return jobs.filter(searchJob);
 }
 
 function sortJobs(jobs) {
-    if (sortOrder % 2 != 0) {
-        jobs.sort(function (a, b) {
-            return Date(a.publishtimestamp) < Date(b.publishtimestamp);
-        });
-    } else {
-        jobs.sort(function (a, b) {
-            return Date(a.publishtimestamp) > Date(b.publishtimestamp);
-        });
-    }
+    jobs.sort(function (a, b) {
+        let dateA = new Date(`${a.eventdate}T${a.eventtime}`);
+        let dateB = new Date(`${b.eventdate}T${b.eventtime}`);
+
+        if (sortOrder == 1) {
+            // Ascending order
+            sortOrder++;
+            return dateA - dateB;
+        } else {
+            // Descending order
+            sortOrder--;
+            return dateB - dateA;
+        }
+    });
 }
 
 function eventCategory() {
@@ -135,4 +170,4 @@ window.onclick = function (event) {
             }
         }
     }
-} 
+}
