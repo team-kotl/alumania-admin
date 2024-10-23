@@ -110,8 +110,47 @@ function handleSubmit(event) {
     .then(response => response.text())
     .then(data => {
         showNotification(data); 
+        setTimeout(() => {
+            window.location.href = 'create.php'; 
+        }, 3500); 
     })
     .catch(error => {
         showNotification('An error occurred: ' + error.message);
     });
 }
+
+// Job Post Form Submit
+document.getElementById('jobpostForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent normal form submission
+    
+    // Perform input validation
+    const jobTitle = document.querySelector('input[name="jobTitle"]').value;
+    const description = document.querySelector('textarea[name="description"]').value;
+    const location = document.querySelector('input[name="location"]').value;
+    const company = document.querySelector('input[name="category"]').value;
+
+    if (!jobTitle || !description || !location || !company) {
+        showNotification("All fields are required.");
+        return;
+    }
+
+     // Create a FormData object to send the form data via AJAX
+     const formData = new FormData(document.getElementById('jobpostForm'));
+
+     // Send the AJAX request
+     fetch('submit_jobpost.php', {
+         method: 'POST',
+         body: formData
+     })
+     .then(response => response.text())
+     .then(data => {
+         // Handle the response from PHP
+         showNotification(data);
+         setTimeout(() => {
+            window.location.href = 'create.php'; 
+        }, 3000); 
+     })
+     .catch(error => {
+         console.error('Error:', error);
+     });
+});

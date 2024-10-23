@@ -13,7 +13,7 @@
 <div id="notificationContainer"></div>
     <?php include 'navbar.php'; ?>
     <script defer> setActiveNav("createtab", "createicon", 2); </script>
-
+    
     <div class="content-container">
         <div class="header">
             <h1>Create</h1>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="input" id="inputSectionJob" style="display: none;">
-                    <form id ="jobpostForm" method="POST" action="submit_jobpost">
+                    <form id ="jobpostForm" method="POST" action="submit_jobpost.php">
                     <label for="jobTitle" class="text">Job Title</label>
                     <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
 
@@ -92,6 +92,9 @@
 
                     <label for="category" class="text">Company</label>
                     <input type="text" placeholder="Insert company name here" name="category" class="input">
+                    <div class="publishBTN" id="publishBTN" style="display:block;">
+                    <button type="submit">Publish</button>
+                    </div>
                     </form>
                 </div>
                 

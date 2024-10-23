@@ -35,10 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventDate = date('Y-m-d', strtotime($schedule));
     $eventTime = date('H:i:s', strtotime($schedule));
 
-    if (empty($eventTitle) || empty($description) || empty($location) || empty($category) || empty($schedule)) {
-        exit; 
-    }
-
     
     $db = Database::getInstance();
     $conn = $db->getConnection();
@@ -62,13 +58,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             
             if ($stmt->execute()) {
-                
                 echo "Event created successfully!";
             } else {
                 echo "Failed to create event";
             }
 
-            
+        
             $stmt->close();
         }
     } catch (Exception $e) {
