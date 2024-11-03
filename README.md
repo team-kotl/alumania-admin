@@ -1,4 +1,4 @@
-# Alumania Admin
+# Alumania Admin and Manager
 ## Team Kotl
 ### 9473 Web Technologies
 
