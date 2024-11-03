@@ -21,7 +21,6 @@
 
 Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Admin and Manager Application.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -33,7 +32,6 @@ Alumania is a Social Media platform for Saint Louis University Baguio's alumnis 
 * [![JavaScript][JS-logo]][JS-url]
 * [![MySQL][MYSQL-logo]][MYSQL-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -50,7 +48,6 @@ All resources are included in this repository. Please create a Database named `a
   - Collation: utd8_unicode_ci
   - Type: InnoDB
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
