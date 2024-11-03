@@ -1,9 +1,67 @@
-# Alumania Admin and Manager
-## Team Kotl
-### 9473 Web Technologies
+<a id="readme-top"></a>
 
-All resources are included in this repository. Please create a Database named `alumaniadb` before importing the .sql in the repository.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="admin/res/Alumania_logo.png" alt="Logo" width="106" height="98">
+  </a>
 
-### Database Details
+<h3 align="center">Alumania</h3>
+
+  <p align="center">
+    Saint Louis University Alumni Social Media Platform Admin and Manager Interface
+  </p>
+</div>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Admin and Manager Application.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [![PHP][PHP-logo]][PHP-url]
+* [![HTML][HTML-logo]][HTML-url]
+* [![CSS][CSS-logo]][CSS-url]
+* [![JavaScript][JS-logo]][JS-url]
+* [![MySQL][MYSQL-logo]][MYSQL-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+You must have [xampp](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) installed and an instance of its Apache HTTP server and MySQL active.
+
+All resources are included in this repository. Please create a Database named `alumaniadb` before importing the `.sql` file in the repository.
+
+* Database Details
   - Collation: utd8_unicode_ci
   - Type: InnoDB
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[PHP-logo]: https://img.shields.io/badge/php-777BB4?style=for-the-badge&logo=php&logoColor=white
+[PHP-url]: https://www.php.net/
+[HTML-logo]: https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[CSS-logo]: https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]: https://developer.mozilla.org/en-US/docs/Web/CSS
+[JS-logo]: https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white
+[JS-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[MYSQL-logo]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+[MYSQL-url]: https://www.mysql.com/
+
