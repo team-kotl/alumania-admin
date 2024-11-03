@@ -7,7 +7,7 @@
     <img src="admin/res/Alumania_logo.png" alt="Logo" width="106" height="98">
   </a>
 
-<h3 align="center">Alumania</h3>
+<h3 align="center">Alumania Admin</h3>
 
   <p align="center">
     Saint Louis University Alumni Social Media Platform Admin and Manager Interface
