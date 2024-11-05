@@ -68,7 +68,7 @@
                             </div>
                             <div class="input-right">
                                 <label for="schedule" class="text">Schedule</label>
-                                <input type="text" placeholder="YYYY-MM-DD HH:MM:SS" name="schedule" class="input">
+                                <input type="datetime-local" name="schedule" class="input input-datetime">
                             </div>
                         </div>
                         <div class="publishBTN" id="publishBTN" style="display:block;">
@@ -90,7 +90,7 @@
                         <input type="text" placeholder="Insert location here" name="location" class="input">
 
                         <label for="category" class="text">Company</label>
-                        <input type="text" placeholder="Insert company name here" name="category" class="input">
+                        <input type="text" placeholder="Insert company name here" name="category" class="input" required>
                         <div class="publishBTN" id="publishBTN" style="display:block;">
                             <button type="submit">Publish</button>
                         </div>

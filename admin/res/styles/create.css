@@ -259,6 +259,14 @@ body {
     
 }
 
+.input-datetime {
+    padding: 15px 10px;
+    font-size: 0.80rem;
+    max-height: 48px;
+    border-radius: 5px;
+    border: 1px #666666 solid;
+}
+
 #notificationContainer {
     position: absolute; 
     top: 20px; 
