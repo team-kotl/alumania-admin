@@ -1,3 +1,6 @@
+<?php 
+session_start();
+if(isset($_SESSION['username'])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,4 +108,7 @@
 </body>
 
 </html>
-</body>
+<?php } else { ?>
+    <h1 style='margin:auto;'>Access Forbidden</h1>
+    <p>Please log in to your account.</p>
+<?php } ?>

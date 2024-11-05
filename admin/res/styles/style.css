@@ -98,7 +98,7 @@ body {
     margin-bottom:32px;
 }
 
-.nav-links a {
+.nav-links a{
     display: flex;
     align-items: center;
     gap: 15px;
@@ -108,8 +108,20 @@ body {
     border-radius: 8px;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-links button:hover {
     background-color: rgba(255,255,255,0.1);
+}
+
+.nav-links button {
+    display: flex;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    align-items: center;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 100%;
 }
 
 .active-tab {

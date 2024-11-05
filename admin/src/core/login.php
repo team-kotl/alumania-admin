@@ -1,6 +1,8 @@
 <?php
 require_once '..\database\database.php';
 
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -17,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         while ($row = $result->fetch_assoc()) {
             if ($password === $row['password']) {
+                $_SESSION['username'] = $username;
+                $_SESSION['role'] = 'admin';
                 echo 'Login Successful';
                 die();
             }
