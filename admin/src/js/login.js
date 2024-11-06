@@ -25,10 +25,9 @@ function handleSubmit(event) {
         if(data == "Login Successful") {
             window.location.href = 'src/core/create.php'; 
         } else {
-            setTimeout(() => {
-                showNotification(data);
-                window.location.href = 'index.php';
-            }, 1000);
+            showNotification(data);
+            document.querySelector("#username").value = '';
+            document.querySelector("#password").value = '';
         }
     })
     .catch(error => {
@@ -53,5 +52,5 @@ function showNotification(message) {
 
     setTimeout(() => {
         notification.remove();
-    }, 5000);
+    }, 3000);
 }

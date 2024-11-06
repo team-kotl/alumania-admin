@@ -30,7 +30,7 @@ if (!isset($_SESSION["username"])) {
           <form action="src/core/login.php" method="POST" id="login-form" onsubmit="handleSubmit(event)">
 
             <div class="input-field">
-              <input type="text" name="username" required />
+              <input type="text" name="username" required id="username"/>
               <label>Username</label>
             </div>
 
