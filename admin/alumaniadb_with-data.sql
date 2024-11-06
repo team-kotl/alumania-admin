@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumni` (
   `userid` varchar(15) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `firstname` varchar(100) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
-  `lastname` varchar(50) DEFAULT NULL,
-  `course` varchar(100) DEFAULT NULL,
-  `empstatus` enum('Employee','Unemployed','Underemployed') DEFAULT NULL,
-  `location` enum('Domestic','Foreign') DEFAULT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `course` varchar(100) NOT NULL,
+  `empstatus` enum('Employee','Unemployed','Underemployed') NOT NULL,
+  `location` enum('Domestic','Foreign') NOT NULL,
   `company` varchar(50) DEFAULT NULL,
   `displaypic` mediumblob DEFAULT NULL,
   `diploma` mediumblob DEFAULT NULL,
-  `banned` tinyint(1) DEFAULT NULL
+  `banned` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -64,15 +64,15 @@ INSERT INTO `alumni` (`userid`, `email`, `firstname`, `middlename`, `lastname`, 
 
 CREATE TABLE `applicants` (
   `applicantid` varchar(15) NOT NULL,
-  `username` varchar(25) DEFAULT NULL,
-  `password` longtext DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `firstname` varchar(100) DEFAULT NULL,
+  `username` varchar(25) NOT NULL,
+  `password` longtext NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
-  `lastname` varchar(50) DEFAULT NULL,
-  `course` varchar(100) DEFAULT NULL,
-  `empstatus` enum('Employee','Unemployed','Underemployed') DEFAULT NULL,
-  `location` enum('Domestic','Foreign') DEFAULT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `course` varchar(100) NOT NULL,
+  `empstatus` enum('Employee','Unemployed','Underemployed') NOT NULL,
+  `location` enum('Domestic','Foreign') NOT NULL,
   `company` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -84,10 +84,10 @@ CREATE TABLE `applicants` (
 
 CREATE TABLE `comment` (
   `commid` varchar(30) NOT NULL,
-  `content` mediumtext DEFAULT NULL,
+  `content` mediumtext NOT NULL,
   `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `xpid` varchar(20) DEFAULT NULL,
-  `userid` varchar(15) DEFAULT NULL
+  `xpid` varchar(20) NOT NULL,
+  `userid` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -109,15 +109,15 @@ INSERT INTO `comment` (`commid`, `content`, `publishtimestamp`, `xpid`, `userid`
 
 CREATE TABLE `event` (
   `eventid` varchar(20) NOT NULL,
-  `title` text DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `category` enum('Seminar','Thanksgiving','Festival','Reunion') DEFAULT NULL,
-  `eventtime` time DEFAULT NULL,
-  `eventdate` date DEFAULT NULL,
-  `eventloc` varchar(255) DEFAULT NULL,
-  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `eventphoto` blob DEFAULT NULL,
-  `userid` varchar(15) DEFAULT NULL
+  `title` text NOT NULL,
+  `description` mediumtext NOT NULL,
+  `category` enum('Seminar','Thanksgiving','Festival','Reunion') NOT NULL,
+  `eventtime` time NOT NULL,
+  `eventdate` date NOT NULL,
+  `eventloc` varchar(255) NOT NULL,
+  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `eventphoto` blob NOT NULL,
+  `userid` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -141,10 +141,10 @@ INSERT INTO `event` (`eventid`, `title`, `description`, `category`, `eventtime`,
 
 CREATE TABLE `experience` (
   `xpid` varchar(20) NOT NULL,
-  `title` text DEFAULT NULL,
-  `body` mediumtext DEFAULT NULL,
-  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `userid` varchar(15) DEFAULT NULL
+  `title` text NOT NULL,
+  `body` mediumtext NOT NULL,
+  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `userid` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -166,7 +166,7 @@ INSERT INTO `experience` (`xpid`, `title`, `body`, `publishtimestamp`, `userid`)
 
 CREATE TABLE `experienceimage` (
   `xpid` varchar(20) NOT NULL,
-  `xpimage` mediumblob DEFAULT NULL
+  `xpimage` mediumblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -222,12 +222,12 @@ INSERT INTO `interestedinjobpost` (`jobpid`, `userid`) VALUES
 
 CREATE TABLE `jobpost` (
   `jobpid` varchar(20) NOT NULL,
-  `title` text DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `companyname` varchar(255) DEFAULT NULL,
-  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `userid` varchar(15) DEFAULT NULL
+  `title` text NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `companyname` varchar(255) NOT NULL,
+  `publishtimestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `userid` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -251,7 +251,7 @@ INSERT INTO `jobpost` (`jobpid`, `title`, `location`, `description`, `companynam
 CREATE TABLE `reportedexperience` (
   `xpid` varchar(20) NOT NULL,
   `userid` varchar(15) NOT NULL,
-  `reason` enum('Inappropriate Post','Pornographic Material','Troll','Hate Speech') DEFAULT NULL
+  `reason` enum('Inappropriate Post','Pornographic Material','Troll','Hate Speech') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -273,9 +273,9 @@ INSERT INTO `reportedexperience` (`xpid`, `userid`, `reason`) VALUES
 
 CREATE TABLE `user` (
   `userid` varchar(15) NOT NULL,
-  `username` varchar(25) DEFAULT NULL,
-  `password` longtext DEFAULT NULL,
-  `usertype` enum('Alumni','Manager','Admin') DEFAULT NULL
+  `username` varchar(25) NOT NULL,
+  `password` longtext NOT NULL,
+  `usertype` enum('Alumni','Manager','Admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
