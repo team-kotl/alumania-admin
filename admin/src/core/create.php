@@ -41,13 +41,15 @@ if(isset($_SESSION['username'])) { ?>
                         </svg>
                     </div>
                     <div class="text">
-                        <span>Click to upload image or drag files <i>&#40;Currently Disabled&#41;</i></span>
+                        <span>Click to upload image or drag files</span>
                     </div>
-                    <input type="file" id="file" name="file">
+                    <input type="file" id="file" name="eventImage" accept="image/*" style="display: none;">
                 </div>
 
                 <div class="input" id="inputSectionEvent" style="display: none;">
                     <form id="eventForm" method="POST" action="submit_event.php" onsubmit="handleSubmit(event);">
+
+                    
                         <label for="eventTitle" class="text">Event Title</label>
                         <input type="text" placeholder="Insert title here" name="eventTitle" class="input">
 
