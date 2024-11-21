@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()" id="appltab">
+            <a href="applicant.php" id="appltab">
                 <img src="../../res/applications.png" alt="Applications" id="applicon">
                 <span>Applications</span>
             </a>
