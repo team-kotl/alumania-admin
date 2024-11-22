@@ -138,6 +138,7 @@ CREATE TABLE `applicant` (
 
 LOCK TABLES `applicant` WRITE;
 /*!40000 ALTER TABLE `applicant` DISABLE KEYS */;
+INSERT INTO `applicant` (`applicantid`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `course`, `empstatus`, `location`, `company`) VALUES ('app001', 'shaunny', '456', 'shaun@gmail.com', 'Shaun', NULL, 'Aromin', 'BSIT', 'Unemployed', 'Domestic', NULL), ('app002', 'jude', 'dow', 'judedow@gmail.com', 'Jude', NULL, 'Dow', 'BSMMA', 'Employee', 'Foreign', 'Harvard'), ('app003', 'earl', 'mari', 'mariahgmail.com', 'Mariah', NULL, 'Earl', 'BSCS', 'Employee', 'Domestic', 'Converge');
 /*!40000 ALTER TABLE `applicant` ENABLE KEYS */;
 UNLOCK TABLES;
 

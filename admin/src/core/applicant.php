@@ -50,6 +50,62 @@ if(isset($_SESSION['username'])) { ?>
             return $applicants;
         }
         $newapplicants = getApplicants($db);
+
+        function getNextUserID($db) {
+    
+            $query = "SELECT userid FROM alumni ORDER BY CAST(SUBSTRING(userid, 2) AS UNSIGNED) DESC LIMIT 1";
+            
+            $result = $db->query($query);
+            if ($result && $row = $result->fetch_assoc()) {
+                
+                $lastUserID = $row['userid'];
+                $numPart = (int) substr($lastUserID, 1); 
+                $nextNum = $numPart + 1; 
+            } else {
+                $nextNum = 1;
+            }
+        
+            
+            return 'U' . str_pad($nextNum, 3, '0', STR_PAD_LEFT);
+        }
+        $nextUserid = getNextUserID($db);
+        $usertype = "Alumni";
+
+        function handleApplicant($db)
+        {
+            if ($_SERVER['REQUEST_METHOD']==='POST'){
+                $applicantid = $_POST['applicantid'];
+                $email = htmlspecialchars($_POST['email']);
+                $firstname = htmlspecialchars($_POST['firstname']);
+                $middlename = htmlspecialchars($_POST['middlename']);
+                $lastname = htmlspecialchars($_POST['lastname']);
+                $course = htmlspecialchars($_POST['course']);
+                $empstatus = htmlspecialchars($_POST['empstatus']);
+                $location = htmlspecialchars($_POST['location']);
+                $company = htmlspecialchars($_POST['company']);
+                $action =$_POST['action'];
+
+                if ($action === 'accept') {
+                    $query = "INSERT INTO alumni (userid, email, firstname, middlename, 
+                    lastname, course, 
+                    empstatus, location, company, displaypic, banned)
+                    VALUES (?,?,?,?,?,?,?,?,?,NULL,0)";
+
+                    if ($stmt = $db->prepare($query)) { 
+                                
+                        $stmt->bind_param("sssssssss", $nextUserid, $email, $firstname, 
+                        $middlename, $lastname, $course, $empstatus, $location, $company);
+
+                        if ($stmt->execute()) {
+                            echo "Event created successfully!";
+                        } else {
+                            echo "Failed to create event";
+                        }
+                        $stmt->close();
+                    }
+                }
+            }
+        }
     ?>
 
     <div class="content-container">
@@ -60,14 +116,16 @@ if(isset($_SESSION['username'])) { ?>
         <table>
             <thead>
                 <tr>
+                    <th>Applicant ID</th>
                     <th>Applicant Name</th>
                     <th>Course</th>
                     <th>Location</th>
                     <th>Diploma</th>
-                    <th>Decline/Accept</th>
+                    <th>Reject/Accept</th>
                 </tr>
             </thead>
             <tbody id="applicantTable">
+                
             
             </tbody>
         </table>
@@ -85,6 +143,7 @@ if(isset($_SESSION['username'])) { ?>
                 row.setAttribute('data-applicantid', applicant.applicantid);
 
                 row.innerHTML = `
+                    <td>${applicant.applicantid}</td>
                     <td>${applicant.firstname} ${applicant.lastname}</td>
                     <td>${applicant.course}</td>
                     <td>${applicant.location}</td>
