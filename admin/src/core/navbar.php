@@ -12,7 +12,7 @@
 
     <ul class="nav-links">
         <li>
-            <a href="#" onclick="wipAlert()" id="dashtab">
+            <a href="dashboard.php" id="dashtab">
                 <img src="../../res/dashboard.png" alt="Dashboard" id="dashicon">
                 <span>Dashboard</span>
             </a>
