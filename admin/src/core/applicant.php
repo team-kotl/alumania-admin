@@ -51,61 +51,7 @@ if(isset($_SESSION['username'])) { ?>
         }
         $newapplicants = getApplicants($db);
 
-        function getNextUserID($db) {
-    
-            $query = "SELECT userid FROM alumni ORDER BY CAST(SUBSTRING(userid, 2) AS UNSIGNED) DESC LIMIT 1";
-            
-            $result = $db->query($query);
-            if ($result && $row = $result->fetch_assoc()) {
-                
-                $lastUserID = $row['userid'];
-                $numPart = (int) substr($lastUserID, 1); 
-                $nextNum = $numPart + 1; 
-            } else {
-                $nextNum = 1;
-            }
         
-            
-            return 'U' . str_pad($nextNum, 3, '0', STR_PAD_LEFT);
-        }
-        $nextUserid = getNextUserID($db);
-        $usertype = "Alumni";
-
-        function handleApplicant($db)
-        {
-            if ($_SERVER['REQUEST_METHOD']==='POST'){
-                $applicantid = $_POST['applicantid'];
-                $email = htmlspecialchars($_POST['email']);
-                $firstname = htmlspecialchars($_POST['firstname']);
-                $middlename = htmlspecialchars($_POST['middlename']);
-                $lastname = htmlspecialchars($_POST['lastname']);
-                $course = htmlspecialchars($_POST['course']);
-                $empstatus = htmlspecialchars($_POST['empstatus']);
-                $location = htmlspecialchars($_POST['location']);
-                $company = htmlspecialchars($_POST['company']);
-                $action =$_POST['action'];
-
-                if ($action === 'accept') {
-                    $query = "INSERT INTO alumni (userid, email, firstname, middlename, 
-                    lastname, course, 
-                    empstatus, location, company, displaypic, banned)
-                    VALUES (?,?,?,?,?,?,?,?,?,NULL,0)";
-
-                    if ($stmt = $db->prepare($query)) { 
-                                
-                        $stmt->bind_param("sssssssss", $nextUserid, $email, $firstname, 
-                        $middlename, $lastname, $course, $empstatus, $location, $company);
-
-                        if ($stmt->execute()) {
-                            echo "Event created successfully!";
-                        } else {
-                            echo "Failed to create event";
-                        }
-                        $stmt->close();
-                    }
-                }
-            }
-        }
     ?>
 
     <div class="content-container">
@@ -116,59 +62,88 @@ if(isset($_SESSION['username'])) { ?>
         <table>
             <thead>
                 <tr>
-                    <th>Applicant ID</th>
                     <th>Applicant Name</th>
                     <th>Course</th>
                     <th>Location</th>
                     <th>Diploma</th>
-                    <th>Reject/Accept</th>
+                    <th>Accept/Reject</th>
                 </tr>
             </thead>
             <tbody id="applicantTable">
-                
-            
             </tbody>
         </table>
     </div>
+    
     <script>
         let applicants = <?php echo json_encode($newapplicants); ?>;
 
-        function displayApplicants(applicants) {
-            const tableBody = document.getElementById("applicantTable");
-            tableBody.innerHTML = ''; // Clear existing content
+            function displayApplicants(applicants) {
+                const tableBody = document.getElementById("applicantTable");
+                tableBody.innerHTML = ''; // Clear existing content
 
-            for (let i = 0; i < applicants.length; i++) {
-                const applicant = applicants[i];
-                const row = document.createElement('tr');
-                row.setAttribute('data-applicantid', applicant.applicantid);
+                for (let i = 0; i < applicants.length; i++) {
+                    const applicant = applicants[i];
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-applicantid', applicant.applicantid);
 
-                row.innerHTML = `
-                    <td>${applicant.applicantid}</td>
-                    <td>${applicant.firstname} ${applicant.lastname}</td>
-                    <td>${applicant.course}</td>
-                    <td>${applicant.location}</td>
-                    <td><button>View photo</button></td>
-                    <td><button>X</button><button>Y</button></td>
-                `;
+                    row.innerHTML = `
+                        <td>${applicant.firstname} ${applicant.lastname}</td>
+                        <td>${applicant.course}</td>
+                        <td>${applicant.location}</td>
+                        <td><button>View photo</button></td>
+                        <td>
+                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'accept')"><img src="../../res/checkmark.png" alt="Accept" width="75px" height="50px"></button>
+                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'reject')"><img src="../../res/xmark.png" alt="Reject" width="70px" height="50px"></button>
+                        </td>
+                    `;
 
-                tableBody.appendChild(row);
+                    tableBody.appendChild(row);
+                }
             }
-        }
 
-        // Initial display of applicants
-        displayApplicants(applicants);
+            function handleAction(applicantid, action) {
+                // Prepare data to send
+                const requestData = new URLSearchParams({
+                    applicantid: applicantid,
+                    action: action
+                });
 
-        // Periodic check for updates
-        setInterval(() => {
-            
-            let newApplicants = <?php echo json_encode($newapplicants); ?>;
-
-            // Refresh table only if there's new data
-            if (newApplicants.length > applicants.length) {
-                applicants = newApplicants; // Update the local data
-                displayApplicants(applicants);
+                // Send request to the same file (applicant.php)
+                fetch('handleApplicant.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded' // Specify urlencoded content type
+                    },
+                    body: requestData.toString()
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Remove the row from the table on success
+                            const row = document.querySelector(`tr[data-applicantid="${applicantid}"]`);
+                            row.remove();
+                            alert(data.message);
+                        } else {
+                            alert('Failed to perform action: ' + data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             }
-        }, 10000);
+
+            // Initial display of applicants
+            displayApplicants(applicants);
+
+            // Periodic check for updates
+            setInterval(() => {
+                
+                let newApplicants = <?php echo json_encode($newapplicants); ?>;
+
+                // Refresh table only if there's new data
+                if (newApplicants.length > applicants.length) {
+                    applicants = newApplicants; // Update the local data
+                    displayApplicants(applicants);
+                }
+            }, 10000);
     </script>
 
 </body>

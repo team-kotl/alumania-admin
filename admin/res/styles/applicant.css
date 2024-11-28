@@ -52,6 +52,21 @@ table {
 th {
     background-color: rgb(143, 143, 143);
 }
+
+.Transparent-Button {
+    background-color: transparent;
+    border: none;
+    padding: 0; 
+    cursor: pointer; 
+}
+
+.Transparent-Button img {
+    display: block; /* Ensures the image fits the button without extra space */
+}
+
+table td button {
+    background-color:#157bce;
+}
   
 td, th {
     padding: 0.5rem;
