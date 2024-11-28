@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../res/styles/create.css">
+        <link rel="stylesheet" href="../../res/styles/users.css">
         <title>Alumania - User List</title>
     </head>
 
@@ -42,25 +42,26 @@ if (isset($_SESSION['username'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                if ($result && $result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['userid']); ?></td>
-                            <td><?php echo htmlspecialchars($row['email']); ?></td>
-                            <td><?php echo htmlspecialchars($row['firstname']); ?></td>
-                            <td><?php echo htmlspecialchars($row['middlename']); ?></td>
-                            <td><?php echo htmlspecialchars($row['lastname']); ?></td>
-                            <td><?php echo htmlspecialchars($row['empstatus']); ?></td>
-                            <td><?php echo htmlspecialchars($row['location']); ?></td>
-                        </tr>
-                    <?php }
-                } else { ?>
-                    <tr>
-                        <td colspan="7">No users found</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
+    <?php 
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) { ?>
+            <tr>
+                <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
+                <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
+                <td data-label="First Name"><?php echo htmlspecialchars($row['firstname']); ?></td>
+                <td data-label="Middle Name"><?php echo htmlspecialchars($row['middlename']); ?></td>
+                <td data-label="Last Name"><?php echo htmlspecialchars($row['lastname']); ?></td>
+                <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
+                <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
+            </tr>
+        <?php }
+    } else { ?>
+        <tr>
+            <td colspan="7">No users found</td>
+        </tr>
+    <?php } ?>
+</tbody>
+
         </table>
 
         <script defer> setActiveNav("userstab", "usersicon", 2); </script>
