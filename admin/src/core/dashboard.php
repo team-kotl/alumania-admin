@@ -42,7 +42,7 @@ if(isset($_SESSION['username'])) { ?>
     <div class="content-container">
         <div class="header">
             <h1>Dashboard</h1>
-            <h2>date</h2>
+            <h2 class="date"><?php echo date("F d, Y") ?></h2>
         </div>
 
         <div class="total-count-section">
