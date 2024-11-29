@@ -48,7 +48,39 @@ body {
     margin-left: 1%; 
 }
 
+.total-count-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
 
+.card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #55abd3;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-count {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
 
 #notificationContainer {
     position: absolute; 

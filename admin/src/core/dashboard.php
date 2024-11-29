@@ -15,6 +15,29 @@ if(isset($_SESSION['username'])) { ?>
     <div id="notificationContainer"></div>
     <?php include 'navbar.php'; ?>
     
+    <?php
+        require_once '..\database\database.php';
+        $db = \Database::getInstance()->getConnection();
+
+        $counts = [
+            'alumni' => 0,
+            'managers' => 0,
+            'event' => 0,
+            'jobpost' => 0,
+        ];
+
+        foreach (['alumni', 'event', 'jobpost'] as $key) {
+            $result = $db->query("SELECT COUNT(*) AS count FROM $key"); // Replace table names as needed
+            if ($result && $row = $result->fetch_assoc()) {
+                $counts[$key] = $row['count'];
+            }
+        }
+
+        $result = $db->query("SELECT COUNT(*) AS count FROM user WHERE usertype = 'manager'");
+            if ($result && $row = $result->fetch_assoc()) {
+                $counts['managers'] = $row['count'];
+            }
+    ?>
     
     <div class="content-container">
         <div class="header">
@@ -23,9 +46,15 @@ if(isset($_SESSION['username'])) { ?>
         </div>
 
         <div class="total-count-section">
-            <div class="total-alumni">
-
-            </div>
+            <?php
+             foreach ($counts as $key => $count) {
+                echo "
+                <div class='card'>
+                    <div class='card-title'>" . ucfirst($key) . "</div>
+                    <div class='card-count'>{$count}</div>
+                </div>";
+            }
+            ?>
         </div>
         
 
