@@ -47,6 +47,7 @@ table {
     border-collapse: separate;
     border-spacing: 0;
     margin-left: 10vw;
+    padding: 5vw;
 }
 
 th {
@@ -56,7 +57,7 @@ th {
 .Transparent-Button {
     background-color: transparent;
     border: none;
-    padding: 0; 
+    padding: 10vw; 
     cursor: pointer; 
 }
 

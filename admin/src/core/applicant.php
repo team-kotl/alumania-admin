@@ -92,8 +92,8 @@ if(isset($_SESSION['username'])) { ?>
                         <td>${applicant.location}</td>
                         <td><button>View photo</button></td>
                         <td>
-                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'accept')"><img src="../../res/checkmark.png" alt="Accept" width="75px" height="50px"></button>
-                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'reject')"><img src="../../res/xmark.png" alt="Reject" width="70px" height="50px"></button>
+                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'accept')"><img src="../../res/checkmark.png" alt="Accept"></button>
+                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'reject')"><img src="../../res/xmark.png" alt="Reject"></button>
                         </td>
                     `;
 
