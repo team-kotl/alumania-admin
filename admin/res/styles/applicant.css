@@ -64,8 +64,20 @@ th {
     display: block; /* Ensures the image fits the button without extra space */
 }
 
-table td button {
-    background-color:#157bce;
+.Transparent-Button:hover {
+    background-color: #afafaf;
+    border-width: 3px;
+}
+
+table td button  {
+    background-color:#3898e7;
+    border: 3vw;
+    border-radius: 0.3rem;
+    padding: 8px;
+}
+
+table td button:hover {
+    background-color: #2277bd;
 }
   
 td, th {
