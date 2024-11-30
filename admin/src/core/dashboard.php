@@ -14,6 +14,8 @@ if(isset($_SESSION['username'])) { ?>
 <body>
     <div id="notificationContainer"></div>
     <?php include 'navbar.php'; ?>
+    <script defer> setActiveNav("dashtab", "dashicon", 1); </script>
+
     
     <?php
         require_once '..\database\database.php';
