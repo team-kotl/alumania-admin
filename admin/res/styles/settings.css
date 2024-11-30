@@ -1,3 +1,15 @@
+.header {
+    margin: 25px 70px;
+    transition: margin-left 0.3s ease;
+    font-size: 20px;
+    color: #343434;
+}
+
+.header p {
+    font-size: 20px;
+    color: #CCCCCC;
+}
+
 .main-content {
     height: 75vh;
     display: flex;
@@ -179,6 +191,7 @@ hr {
     background: #fff;
     display: flex;
     width: 100%;
+    margin-right: 10px;
 }
 
 .copy-text .input.text {
@@ -186,6 +199,7 @@ hr {
     color: #555;
     border: none;
     outline: none;
+    padding: 0 10px;
 }
 
 .copy-text .copy-btn {
@@ -198,6 +212,7 @@ hr {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
+    margin-left: 10px;
 }
 
 .copy-text .copy-btn:hover {
