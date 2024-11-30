@@ -1,74 +1,207 @@
+body {
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+}
+
+.header {
+  padding: 2rem;
+  background-color: #2563eb;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header p {
+  font-size: 16px;
+  color: #e2e8f0;
+}
+
+.navigation {
+  padding: 16px 80px 0 80px;
+  margin-top: -20px;
+}
+
+#ul-posts {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  list-style: none;
+}
+
+#ul-posts li {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  align-items: center;
+  transition: 150ms;
+}
+
+#ul-posts li:hover {
+  background-color: #0661d931;
+}
+
+#ul-posts li:active {
+  background-color: #0661d9;
+}
+
+#ul-posts li p {
+  display: inline-block;
+  color:rgba(0, 0, 0, 0.4);
+  padding-top: 3px;
+  height: 100%;
+}
+
+#ul-posts li img {
+  height: 30px;
+  width: auto;
+}
+
+.selected-tab {
+  background-color: #0661d9;
+  color: white;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.total-users {
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 300px;
+}
+
+.options-btn {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.section-title h2 {
+  font-size: 20px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
 table {
   width: 100%;
+  background-color: white;
+  border-radius: 8px;
   border-collapse: collapse;
-  margin: 20px 0;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+th {
+  background-color: #f1f5f9;
+  padding: 1rem 2rem;
   text-align: left;
+  font-weight: 600;
+  color: #4a5568;
+  border-bottom: 2px solid #e2e8f0;
 }
 
-thead th {
-  background-color: #0662d9;
-  color: white;
-  padding: 12px 15px;
-  text-transform: uppercase;
-}
-
-tbody td {
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+td {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+  font-size: 16px;
 }
 
 tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f1f5f9;
 }
 
-tbody td[colspan="7"] {
-  text-align: center;
-  font-weight: bold;
-  color: #555;
+td[data-label="Employment Status"] {
+  font-weight: 500;
 }
 
-table {
-  border: 2px solid #4caf50;
-  border-radius: 5px;
-  overflow: hidden;
+td[data-label="Employment Status"]:matches(:contains("Employee")) {
+  color: #059669;
 }
 
-@media (max-width: 768px) {
+td[data-label="Employment Status"]:matches(:contains("Unemployed")) {
+  color: #dc2626;
+}
+
+td[data-label="Employment Status"]:matches(:contains("Underemployed")) {
+  color: #d97706;
+}
+
+td[data-label="Location"]:matches(:contains("Domestic")) {
+  color: #2563eb;
+}
+
+td[data-label="Location"]:matches(:contains("Foreign")) {
+  color: #7c3aed;
+}
+
+@media (max-width: 1024px) {
+  .controls {
+    padding: 1rem;
+  }
+
+  .search-input {
+    width: 200px;
+  }
+
   table {
-    font-size: 14px;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tbody td {
     display: block;
-    text-align: right;
-    position: relative;
-    padding-left: 50%;
+    overflow-x: auto;
   }
 
-  tbody td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 45%;
-    text-align: left;
-    font-weight: bold;
-    color: #333;
+  th, td {
+    padding: 1rem;
   }
+}
 
-  tbody tr {
-    margin-bottom: 15px;
-    display: block;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.error-message h1 {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.error-message p {
+  color: #4b5563;
 }
