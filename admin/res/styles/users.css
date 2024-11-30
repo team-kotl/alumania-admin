@@ -4,58 +4,59 @@ body {
   display: flex;
 }
 
+
 .header {
-  padding: 2rem;
-  background-color: #2563eb;
-  color: white;
-  font-size: 24px;
-  font-weight: 600;
+  margin: 25px 70px;
+  transition: margin-left 0.3s ease;
+  font-size: 20px;
+  color: #343434;
 }
 
 .header p {
-  font-size: 16px;
-  color: #e2e8f0;
+  font-size: 20px;
+  color: #cccccc;
 }
 
 .navigation {
-  padding: 16px 80px 0 80px;
+  padding: 16px 20px 0 70px;
   margin-top: -20px;
 }
 
-#ul-posts {
+#ul-users {
   display: flex;
   flex-direction: row;
   height: 50px;
   list-style: none;
 }
 
-#ul-posts li {
+#ul-users li {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: row;
-  column-gap: 5px;
+  column-gap: 10px;
   align-items: center;
   transition: 150ms;
+  margin-right: 20px;
 }
 
-#ul-posts li:hover {
+#ul-users li:hover {
   background-color: #0661d931;
 }
 
-#ul-posts li:active {
+#ul-users li:active {
   background-color: #0661d9;
 }
 
-#ul-posts li p {
+#ul-users li p {
   display: inline-block;
   color:rgba(0, 0, 0, 0.4);
   padding-top: 3px;
   height: 100%;
 }
 
-#ul-posts li img {
+#ul-users li img {
   height: 30px;
   width: auto;
 }
@@ -65,7 +66,7 @@ body {
   color: white;
 }
 
-.controls {
+.searchfilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,9 +76,10 @@ body {
 }
 
 .total-users {
-  color: #4b5563;
+  color: #1c1d1f;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
+  margin-left: 20px;
 }
 
 .search-box {
@@ -146,30 +148,6 @@ tbody tr:hover {
   background-color: #f1f5f9;
 }
 
-td[data-label="Employment Status"] {
-  font-weight: 500;
-}
-
-td[data-label="Employment Status"]:matches(:contains("Employee")) {
-  color: #059669;
-}
-
-td[data-label="Employment Status"]:matches(:contains("Unemployed")) {
-  color: #dc2626;
-}
-
-td[data-label="Employment Status"]:matches(:contains("Underemployed")) {
-  color: #d97706;
-}
-
-td[data-label="Location"]:matches(:contains("Domestic")) {
-  color: #2563eb;
-}
-
-td[data-label="Location"]:matches(:contains("Foreign")) {
-  color: #7c3aed;
-}
-
 @media (max-width: 1024px) {
   .controls {
     padding: 1rem;
@@ -187,21 +165,4 @@ td[data-label="Location"]:matches(:contains("Foreign")) {
   th, td {
     padding: 1rem;
   }
-}
-
-.error-message {
-  text-align: center;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.error-message h1 {
-  color: #dc2626;
-  margin-bottom: 1rem;
-}
-
-.error-message p {
-  color: #4b5563;
 }

@@ -13,14 +13,13 @@ if (isset($_SESSION['username'])) {
     $sql = "SELECT userid, email, firstname, middlename, lastname, empstatus, location FROM alumni";
     $result = $conn->query($sql);
 
-    ?>
-   <head>
+?>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../res/styles/users.css">
     <title>Alumania</title>
 </head>
-
 
 <body>
     <div id="notificationContainer"></div>
@@ -34,24 +33,21 @@ if (isset($_SESSION['username'])) {
             <p>View and Manage User Accounts</p>
         </div>
 
-
         <div class="navigation">
-                <ul id="ul-posts">
-                    <li>
-                        <img src="../../res/alumni-blue.png" alt="Alumni">
-                        <p>Alumni</p>
-                    </li>
-                    <li>
-                        <img src="../../res/manager.png" alt="Managers">
-                        <p>Managers</p>
-                    </li>
+            <ul id="ul-users">
+                <li>
+                    <img src="../../res/alumni-blue.png" alt="Alumni">
+                    <p>Alumni</p>
+                </li>
+                <li>
+                    <img src="../../res/manager.png" alt="Managers">
+                    <p>Managers</p>
+                </li>
+            </ul>
+        </div>
 
-                </ul>
-            </div>
-
-    
-    <div class="controls">
-      <div class="total-users">Total Users: 534</div>
+    <div class="searchfilter">
+      <div class="total-users">Total Users: </div> 
       <div class="search-box">
         <input type="text" class="search-input" placeholder="Name, ID, Email, Username">
         <button class="options-btn">≡</button>
@@ -59,9 +55,6 @@ if (isset($_SESSION['username'])) {
     </div>
 
     <div class="section-title">
-                <h2>All Users</h2>
-            </div>
-
             <table>
                 <thead>
                     <tr>
@@ -97,10 +90,8 @@ if (isset($_SESSION['username'])) {
             </table>
         </div>
     <?php } else { ?>
-        <div class="error-message">
             <h1>Access Forbidden</h1>
             <p>Please log in to your account.</p>
-        </div>
     <?php } ?>
 </body>
 </html>
