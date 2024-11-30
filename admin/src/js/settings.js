@@ -1,4 +1,5 @@
-   //SA ANIMATED ICONS
+
+  //SA ANIMATED ICONS
    const logoutAnimation = document.getElementById("logout-animation");
    const generateAnimation = document.getElementById("generate-animation");
 
@@ -40,9 +41,3 @@
            copyText.classList.remove("active");
        },2500);
    })
-
-   document.addEventListener('DOMContentLoaded', function () {
-    if (typeof setActiveNav === 'function') {
-        setActiveNav("settingstab", "settingsicon", 5);
-    }
-});

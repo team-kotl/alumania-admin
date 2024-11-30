@@ -21,6 +21,7 @@ if (isset($_POST['logout'])) {
 
 <body>
     <?php include 'navbar.php'; ?>
+    <script defer> setActiveNav("settingstab", "settingsicon", 6); </script>
     
 <div class="content-container">
     <div class="header">

@@ -42,9 +42,9 @@
             </a>
         </li>
         <li>
-            <a href="logout.php" id="settingstab">
-                    <img src="../../res/settings.png" alt="Settings" id="settingsicon">
-                    <span>Settings</span>
+            <a href="settings.php" id="settingstab">
+                <img src="../../res/settings.png" alt="Settings" id="settingsicon">
+                <span>Settings</span>
             </a>
         </li>
     </ul>
