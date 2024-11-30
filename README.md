@@ -1,46 +1,64 @@
-# Module 4 & Module 5, Part 1
-## Client-Side and Server-Side Web Scripting
+<a id="readme-top"></a>
 
-### TASK GUIDE: Team Activity
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="admin/res/Alumania_logo.png" alt="Logo" width="106" height="98">
+  </a>
 
-Objectives: This activity should enable you to:
-● Utilize the core language of JavaScript, the Document Object Model (DOM),
-and other APIs to implement client side logic and generate dynamic Web
-content.
-● Utilize the basic features of PHP in order to provide server-side features on data
-processing
-● To demonstrate how client-side and server-side scripting technologies, together
-with HTML and CSS, can be integrated.
-Guidelines:
-	1. Use vanilla code for all technologies used in the application (no using of
-Bootstrap, JQuery, etc.). Any external fonts and multimedia resources should be
-downloaded locally.
-	2. Use the DOM API as the primary means to generate web content dynamically.
-	3. Please note the minimum requirements for server-side functionality:
-		a. Add data to the database.
-		b. The added data will be used for information display, which should contain
-		basic filter/search and sort options.
+<h3 align="center">Alumania Admin</h3>
 
-4. The above features are expected to be in the same module (that is, for the same
-user role/type). However, some may opt to have data entry in one module, such
-that the saved data will be viewed by the other user role/type) in the other
-module.
+  <p align="center">
+    Saint Louis University Alumni Social Media Platform Admin and Manager Interface
+  </p>
+</div>
 
-### Deliverables:
-1. Document with the following format and content:
-	a. Format
-		● Folio (8.5x13 page size)
-		● Arial font, size 11
-	b. Content
-		● Cover page that contains the team name, class code,
-		alphabetical list of members
-	● Wireframes (with annotations as needed). The implemented
-	features of the system should be traceable to the prototype.
-	● Screenshots of the implemented features of the application.
-	● Peer Accomplishment Report
-2. Physical Database (please include Create Schema to facilitate the import
-process).
-3. Project Folder archived in .zip format. Organize the web resources accordingly
-to prevent broken links and broken code. Provide a readme file, if necessary.
-4. Use the naming conventions: teamname-mid.pdf, teamname-mid.sql and
-teamname-mid.zip for #1, #2 and #3 respectively.
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Admin and Manager Application.
+
+
+
+
+### Built With
+
+* [![PHP][PHP-logo]][PHP-url]
+* [![HTML][HTML-logo]][HTML-url]
+* [![CSS][CSS-logo]][CSS-url]
+* [![JavaScript][JS-logo]][JS-url]
+* [![MySQL][MYSQL-logo]][MYSQL-url]
+
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+You must have [xampp](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) installed and an instance of its Apache HTTP server and MySQL active.
+
+All resources are included in this repository. Please create a Database named `alumaniadb` before importing the `.sql` file in the repository.
+
+* Database Details
+  - Collation: utd8_unicode_ci
+  - Type: InnoDB
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[PHP-logo]: https://img.shields.io/badge/php-777BB4?style=for-the-badge&logo=php&logoColor=white
+[PHP-url]: https://www.php.net/
+[HTML-logo]: https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[CSS-logo]: https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]: https://developer.mozilla.org/en-US/docs/Web/CSS
+[JS-logo]: https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white
+[JS-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[MYSQL-logo]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+[MYSQL-url]: https://www.mysql.com/
+
