@@ -42,12 +42,10 @@
             </a>
         </li>
         <li>
-            <form action="logout.php" method="POST">
-                <button href="../../index.php" id="settingstab" type="submit" name="logout">
+            <a href="logout.php" id="settingstab">
                     <img src="../../res/settings.png" alt="Settings" id="settingsicon">
-                    <span>Logout</span>
-                </button>
-            </form>
+                    <span>Settings</span>
+            </a>
         </li>
     </ul>
 
