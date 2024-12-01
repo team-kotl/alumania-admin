@@ -130,6 +130,18 @@ body {
   display: none;
 }
 
+#imagePreview {
+  margin-top: 20px;
+  text-align: center;
+}
+#imagePreview img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .input {
   display: flex;
   flex-direction: column;

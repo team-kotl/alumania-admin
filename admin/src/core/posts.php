@@ -18,34 +18,34 @@ if (isset($_SESSION['username'])) { ?>
         require_once '..\database\database.php';
         $db = \Database::getInstance()->getConnection();
 
-        function getDefaultEvents($db): array
-        {
-            $events = [];
-            $event_query = "SELECT 
-            e.eventid, e.title, e.description, e.category,
-            e.eventloc, e.eventtime, e.eventdate, e.eventphoto,
-            (SELECT COUNT(*) FROM interestedinevent ie WHERE ie.eventid = e.eventid) AS interested
-            FROM event e ORDER BY e.eventdate DESC, e.eventtime DESC;";
-            $event_result = mysqli_query($db, $event_query);
+        function getDefaultEvents($db): array{
+                $events = [];
+                $event_query = "SELECT 
+                e.eventid, e.title, e.description, e.category,
+                e.eventloc, e.eventtime, e.eventdate, e.eventphoto,
+                (SELECT COUNT(*) FROM interestedinevent ie WHERE ie.eventid = e.eventid) AS interested
+                FROM event e ORDER BY e.eventdate DESC, e.eventtime DESC;";
+                $event_result = mysqli_query($db, $event_query);
 
-            if (mysqli_num_rows($event_result) > 0) {
-                while ($rowevent = mysqli_fetch_assoc($event_result)) {
-                    $events[] = [
-                        "eventid" => $rowevent["eventid"],
-                        "title" => $rowevent["title"],
-                        "description" => $rowevent["description"],
-                        "category" => $rowevent["category"],
-                        "eventtime" => $rowevent["eventtime"],
-                        "eventdate" => $rowevent["eventdate"],
-                        "eventloc" => $rowevent["eventloc"],
-                        "eventphoto" => base64_encode($rowevent["eventphoto"]),
-                        "interested" => $rowevent["interested"]
-                    ];
+                if (mysqli_num_rows($event_result) > 0) {
+                    while ($rowevent = mysqli_fetch_assoc($event_result)) {
+                        $imageData = $rowevent["eventphoto"] ? 'data:image/jpeg;base64,' . base64_encode($rowevent["eventphoto"]) : null;
+                        $events[] = [
+                            "eventid" => $rowevent["eventid"],
+                            "title" => $rowevent["title"],
+                            "description" => $rowevent["description"],
+                            "category" => $rowevent["category"],
+                            "eventtime" => $rowevent["eventtime"],
+                            "eventdate" => $rowevent["eventdate"],
+                            "eventloc" => $rowevent["eventloc"],
+                            "eventphoto" => $imageData,
+                            "interested" => $rowevent["interested"]
+                        ];
+                    }
                 }
-            }
 
-            return $events;
-        }
+                return $events;
+            }
 
         function getDefaultJobs($db)
         {
@@ -149,7 +149,7 @@ if (isset($_SESSION['username'])) { ?>
                 setActiveTab(2);
                 document.getElementById("card-events").innerHTML = '';
                 const container = document.getElementById("card-jobs");
-                container.innerHTML = ''; // Clear existing content
+                container.innerHTML = ''; 
 
                 for (let i = 0; i < jobsData.length; i++) {
                     const cardContainer = document.createElement('div');
@@ -185,22 +185,23 @@ if (isset($_SESSION['username'])) { ?>
                     const cardContainer = document.createElement('div');
                     cardContainer.id = eventsData[i].eventid;
                     cardContainer.classList.add("event-card");
+                    const eventImage = eventsData[i].eventphoto || '../../res/event_placeholder.jpg';
                     cardContainer.innerHTML = `
-                    <div class="event-card-image">
-                        <img src="../../res/event_placeholder.jpg">
-                    </div>
-                    <div class="event-card-content">
-                        <h2 class="event-title">${eventsData[i].title}</h2>
-                        <div class="event-details">
-                            <div class="event-date">${eventsData[i].eventdate}</div>
-                            <div class="event-time">${eventsData[i].eventtime}</div>
+                        <div class="event-card-image">
+                            <img src="${eventImage}" alt="${eventsData[i].title}">
                         </div>
-                        <div class="event-location">${eventsData[i].eventloc}</div>
-                        <div class="event-interest-count">
-                            <img src="../../res/star.png" alt="star">
+                        <div class="event-card-content">
+                            <h2 class="event-title">${eventsData[i].title}</h2>
+                            <div class="event-details">
+                                <div class="event-date">${eventsData[i].eventdate}</div>
+                                <div class="event-time">${eventsData[i].eventtime}</div>
+                            </div>
+                            <div class="event-location">${eventsData[i].eventloc}</div>
+                            <div class="event-interest-count">
+                                <img src="../../res/star.png" alt="star">
                                 <span>${eventsData[i].interested} interested</span>
+                            </div>
                         </div>
-                    </div>
                     `;
                     container.appendChild(cardContainer);
                 }
@@ -210,7 +211,7 @@ if (isset($_SESSION['username'])) { ?>
                 if (typeof setActiveNav === 'function') {
                     setActiveNav("poststab", "postsicon", 5);
                 }
-                displayEvents(events); // Display jobs by default
+                displayEvents(events); 
             });
         </script>
     </body>

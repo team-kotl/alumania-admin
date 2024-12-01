@@ -4,6 +4,7 @@ const fileUploadSection = document.getElementById("fileUploadSection");
 const inputSectionEvent = document.getElementById("inputSectionEvent");
 const inputSectionJob = document.getElementById("inputSectionJob");
 const fileInput = document.getElementById("file");
+const imagePreview = document.getElementById("imagePreview");
 
 document.getElementById("eventImage").addEventListener("click", function () {
   fileUploadSection.style.display = "flex";
@@ -27,16 +28,98 @@ document.getElementById("jobImage").addEventListener("click", function () {
   document.getElementById("eventImage").src = originalEventImageSrc;
 });
 
-// fileUploadSection.addEventListener('click', function () {
-//     fileInput.click();
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  const fileInput = document.getElementById("file");
+  const fileUploadSection = document.getElementById("fileUploadSection");
 
-// fileInput.addEventListener('change', function (event) {
-//     const selectedFile = event.target.files[0];
-//     if (selectedFile) {
-//         console.log("File selected:", selectedFile.name);
-//     }
-// });
+  if (fileInput && fileUploadSection) {
+    fileInput.addEventListener("change", function (event) {
+      const selectedFile = event.target.files[0];
+
+      if (selectedFile) {
+        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+        const maxSizeInBytes = 64 * 1024; // 64 KB (for BLOB)
+
+        // Validate file type
+        if (!allowedTypes.includes(selectedFile.type)) {
+          showNotification(
+            "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+          );
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function () {
+          const img = new Image();
+          img.onload = function () {
+            const canvas = document.createElement("canvas");
+            const maxSize = 300;
+
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+              if (width > maxSize) {
+                height *= maxSize / width;
+                width = maxSize;
+              }
+            } else {
+              if (height > maxSize) {
+                width *= maxSize / height;
+                height = maxSize;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+              (blob) => {
+                if (blob.size > maxSizeInBytes) {
+                  showNotification(
+                    "Image exceeds 64 KB after resizing. Please use a smaller image."
+                  );
+                  return;
+                }
+
+                const previewContainer = document.getElementById("rightPanel");
+
+                const existingPreview =
+                  previewContainer.querySelector(".image-preview");
+                if (existingPreview) {
+                  existingPreview.remove();
+                }
+
+                const previewImage = document.createElement("img");
+                previewImage.src = URL.createObjectURL(blob);
+                previewImage.alt = "Uploaded Image";
+                previewImage.style.maxWidth = "100%";
+                previewImage.style.maxHeight = "200px";
+                previewImage.classList.add("image-preview");
+
+                previewContainer.appendChild(previewImage);
+
+                const formData = new FormData();
+                formData.append("eventPhoto", blob);
+
+                window.eventPhotoBlob = formData;
+              },
+              selectedFile.type,
+              0.7
+            );
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(selectedFile);
+      }
+    });
+  } else {
+    console.error("File input or upload section not found.");
+  }
+});
 
 function showNotification(message) {
   const notification = document.createElement("div");
@@ -59,6 +142,7 @@ function validateForm() {
   const description = document.querySelector('textarea[name="description"]');
   const location = document.querySelector('input[name="location"]');
   const category = document.querySelector('select[name="category"]');
+  const fileInput = document.querySelector('input[name="file"]');
 
   if (!eventTitle.value.trim()) {
     showNotification("Event Title cannot be empty.");
@@ -76,6 +160,19 @@ function validateForm() {
     showNotification("Please select a Category.");
     return false;
   }
+  if (!fileInput.files || fileInput.files.length === 0) {
+    showNotification("Please upload an image.");
+    return false;
+  }
+
+  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+  const file = fileInput.files[0];
+  if (!allowedTypes.includes(file.type)) {
+    showNotification(
+      "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+    );
+    return false;
+  }
 
   return true;
 }
@@ -87,7 +184,16 @@ function handleSubmit(event) {
     return;
   }
 
-  const formData = new FormData(document.getElementById("eventForm"));
+  const form = document.getElementById("eventForm");
+  const formData = new FormData(form);
+
+  const fileInput = document.getElementById("file");
+  if (fileInput.files.length > 0) {
+    formData.append("eventPhoto", fileInput.files[0]);
+  } else {
+    showNotification("Please upload an image for the event.");
+    return;
+  }
 
   fetch("submit_event.php", {
     method: "POST",
@@ -96,6 +202,7 @@ function handleSubmit(event) {
     .then((response) => response.text())
     .then((data) => {
       showNotification(data);
+
       setTimeout(() => {
         window.location.href = "create.php";
       }, 3500);
