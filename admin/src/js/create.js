@@ -120,7 +120,9 @@ function validateForm() {
   const location = document.querySelector('input[name="location"]');
   const category = document.querySelector('select[name="category"]');
   const fileInput = document.querySelector('input[name="file"]');
+  const scheduleInput = document.querySelector('input[name="schedule"]'); // The datetime-local input
 
+  // Validate event title, description, location, and category as before
   if (!eventTitle.value.trim()) {
     showNotification("Event Title cannot be empty.");
     return false;
@@ -139,6 +141,19 @@ function validateForm() {
   }
   if (!fileInput.files || fileInput.files.length === 0) {
     showNotification("Please upload an image.");
+    return false;
+  }
+
+  if (scheduleInput.value) {
+    const selectedDate = new Date(scheduleInput.value);
+    const currentDate = new Date();
+
+    if (selectedDate < currentDate) {
+      showNotification("The event date cannot be in the past.");
+      return false;
+    }
+  } else {
+    showNotification("Please select a valid date.");
     return false;
   }
 
