@@ -33,7 +33,7 @@ if(isset($_SESSION['username'])) { ?>
                 <p>Please select the type of post you want to create</p>
                 <div class="input" id="inputSectionEvent" style="display: none;">
                     <form id="eventForm" method="POST" action="submit_event.php" enctype="multipart/form-data" onsubmit="handleSubmit(event);">
-                        <div class="file-upload" id="fileUploadSection" style="display: none;">
+                        <div class="file-upload" id="fileUploadSection">
                             <label for="file" class="upload-label">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
@@ -45,11 +45,10 @@ if(isset($_SESSION['username'])) { ?>
                                 <div class="text">
                                     <span>Click to upload image or drag files</span>
                                 </div>
+                                <div class="preview" id="imagePreview"></div>
                                 <input type="file" id="file" name="file" accept="image/*">
-                                </div>
-                            <div id="imagePreview" style="display: none;">
-                                <img id="previewImage" src="#" alt="Preview" />
-                            </div>
+                            </label>
+                        </div>
 
                         <label for="eventTitle" class="text">Event Title</label>
                         <input type="text" placeholder="Insert title here" name="eventTitle" class="input">

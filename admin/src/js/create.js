@@ -31,94 +31,71 @@ document.getElementById("jobImage").addEventListener("click", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById("file");
   const fileUploadSection = document.getElementById("fileUploadSection");
+  const previewContainer = document.getElementById("imagePreview");
 
-  if (fileInput && fileUploadSection) {
-    fileInput.addEventListener("change", function (event) {
-      const selectedFile = event.target.files[0];
+  fileInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
 
-      if (selectedFile) {
-        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-        const maxSizeInBytes = 64 * 1024; // 64 KB (for BLOB)
+    if (file) {
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+      const maxSizeInBytes = 64 * 1024; // 64 KB
 
-        // Validate file type
-        if (!allowedTypes.includes(selectedFile.type)) {
-          showNotification(
-            "Invalid file type. Please upload a JPEG, PNG, or GIF image."
-          );
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function () {
-          const img = new Image();
-          img.onload = function () {
-            const canvas = document.createElement("canvas");
-            const maxSize = 300;
-
-            let width = img.width;
-            let height = img.height;
-
-            if (width > height) {
-              if (width > maxSize) {
-                height *= maxSize / width;
-                width = maxSize;
-              }
-            } else {
-              if (height > maxSize) {
-                width *= maxSize / height;
-                height = maxSize;
-              }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-
-            canvas.toBlob(
-              (blob) => {
-                if (blob.size > maxSizeInBytes) {
-                  showNotification(
-                    "Image exceeds 64 KB after resizing. Please use a smaller image."
-                  );
-                  return;
-                }
-
-                const previewContainer = document.getElementById("rightPanel");
-
-                const existingPreview =
-                  previewContainer.querySelector(".image-preview");
-                if (existingPreview) {
-                  existingPreview.remove();
-                }
-
-                const previewImage = document.createElement("img");
-                previewImage.src = URL.createObjectURL(blob);
-                previewImage.alt = "Uploaded Image";
-                previewImage.style.maxWidth = "100%";
-                previewImage.style.maxHeight = "200px";
-                previewImage.classList.add("image-preview");
-
-                previewContainer.appendChild(previewImage);
-
-                const formData = new FormData();
-                formData.append("eventPhoto", blob);
-
-                window.eventPhotoBlob = formData;
-              },
-              selectedFile.type,
-              0.7
-            );
-          };
-          img.src = reader.result;
-        };
-        reader.readAsDataURL(selectedFile);
+      if (!allowedTypes.includes(file.type)) {
+        alert("Invalid file type. Please upload a JPEG, PNG, or GIF image.");
+        return;
       }
-    });
-  } else {
-    console.error("File input or upload section not found.");
-  }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const maxSize = 300;
+
+          let width = img.width;
+          let height = img.height;
+
+          // Resize logic
+          if (width > height) {
+            if (width > maxSize) {
+              height *= maxSize / width;
+              width = maxSize;
+            }
+          } else {
+            if (height > maxSize) {
+              width *= maxSize / height;
+              height = maxSize;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          canvas.toBlob(
+            (blob) => {
+              if (blob.size > maxSizeInBytes) {
+                alert(
+                  "Image size exceeds 64 KB. Please upload a smaller image."
+                );
+                return;
+              }
+
+              previewContainer.style.backgroundImage = `url(${URL.createObjectURL(
+                blob
+              )})`;
+              fileUploadSection.classList.add("has-preview");
+            },
+            file.type,
+            0.7
+          );
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 });
 
 function showNotification(message) {
