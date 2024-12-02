@@ -45,10 +45,6 @@ body {
   background-color: #0661d931;
 }
 
-#ul-users li:active {
-  background-color: #0661d9;
-}
-
 #ul-users li p {
   display: inline-block;
   color:rgba(0, 0, 0, 0.4);
@@ -62,23 +58,23 @@ body {
 }
 
 .selected-tab {
-  background-color: #0661d9;
-  color: white;
+  color: #0661d9;
+  border-bottom: 3px solid #0661d9;
 }
+
 
 .searchfilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 2rem; 
+  margin-top: 20px;
 }
 
 .total-users {
   color: #1c1d1f;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   margin-left: 20px;
 }
 
@@ -89,14 +85,21 @@ body {
 }
 
 .search-input {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem; 
   border: 1px solid #e2e8f0;
   border-radius: 4px;
   font-size: 16px;
   width: 300px;
 }
 
-.options-btn {
+.search-icon {
+  position: absolute; 
+  width: auto; 
+  height: auto;
+  margin-left: 10px
+}
+
+.filter-btn {
   padding: 0.5rem 1rem;
   background-color: white;
   border: 1px solid #e2e8f0;
@@ -104,6 +107,11 @@ body {
   cursor: pointer;
   font-size: 16px;
   color: #4b5563;
+}
+
+.filter-icon {
+  width: auto;
+  height: auto;
 }
 
 .section-title {
@@ -146,23 +154,4 @@ td {
 
 tbody tr:hover {
   background-color: #f1f5f9;
-}
-
-@media (max-width: 1024px) {
-  .controls {
-    padding: 1rem;
-  }
-
-  .search-input {
-    width: 200px;
-  }
-
-  table {
-    display: block;
-    overflow-x: auto;
-  }
-
-  th, td {
-    padding: 1rem;
-  }
 }

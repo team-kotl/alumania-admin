@@ -49,10 +49,13 @@ if (isset($_SESSION['username'])) {
     <div class="searchfilter">
       <div class="total-users">Total Users: </div> 
       <div class="search-box">
-        <input type="text" class="search-input" placeholder="Name, ID, Email, Username">
-        <button class="options-btn">≡</button>
-      </div>
+        <input type="text" class="search-input" placeholder="Name, ID, Email">
+        <img src="../../res/search.png" class="search-icon" alt="Search">
+      <button class="filter-btn">
+        <img src="../../res/sort.png" class="filter-icon" alt="Filter">
+      </button>
     </div>
+</div>
 
     <div class="section-title">
             <table>
@@ -89,6 +92,8 @@ if (isset($_SESSION['username'])) {
                 </tbody>
             </table>
         </div>
+
+    
     <?php } else { ?>
             <h1>Access Forbidden</h1>
             <p>Please log in to your account.</p>
