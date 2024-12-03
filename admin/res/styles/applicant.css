@@ -1,0 +1,151 @@
+@font-face {
+    font-family: "Poppins";
+    src: url('../font/Poppins-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: white;
+    display: flex;
+}
+
+.header {
+    margin: 25px 70px;
+    transition: margin-left 0.3s ease;
+    font-size: 20px;
+    color: #343434;
+}
+
+.header p {
+    font-size: 20px;
+    color: #CCCCCC;
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    margin-top: 10px;
+}
+
+
+.vertical-line {
+    width: 1px; 
+    height: 83vh; 
+    background-color: #CCCCCC; 
+    margin-left: 1%; 
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-left: 10vw;
+    padding: 5vw;
+}
+
+th {
+    background-color: rgb(143, 143, 143);
+}
+
+.Transparent-Button {
+    background-color: transparent;
+    border: none;
+    padding: 10vw; 
+    cursor: pointer; 
+}
+
+.Transparent-Button img {
+    display: block; /* Ensures the image fits the button without extra space */
+}
+
+.Transparent-Button:hover {
+    background-color: #afafaf;
+    border-width: 3px;
+}
+
+table td button  {
+    background-color:#3898e7;
+    border: 3vw;
+    border-radius: 0.3rem;
+    padding: 8px;
+}
+
+table td button:hover {
+    background-color: #2277bd;
+}
+  
+td, th {
+    padding: 0.5rem;
+}
+
+th, td {
+    border-bottom: 1px solid rgb(143, 143, 143); /* Bottom border */
+    border-right: 1px solid rgb(143, 143, 143); /* Right border */
+    padding: 0.5rem; /* Optional: Add padding for content */
+}
+
+table tr td:first-child, 
+table tr th:first-child {
+  border-left: 1px solid rgb(143, 143, 143);
+}
+
+table tr th {
+    border-top: 1px solid rgb(143, 143, 143);
+}
+
+table tr:first-child th:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+table tr:first-child th:last-child {
+    border-top-right-radius: 0.5rem;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem;
+}
+
+
+#notificationContainer {
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+}
+
+.notification {
+    background-color: rgb(3, 152, 197); 
+    color: white;
+    padding: 15px;
+    margin: 10px 0; 
+    border-radius: 5px;
+    position: relative;
+    animation: fadeIn 0.5s; 
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

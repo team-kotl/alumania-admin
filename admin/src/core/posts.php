@@ -18,6 +18,34 @@ if (isset($_SESSION['username'])) { ?>
         require_once '..\database\database.php';
         $db = \Database::getInstance()->getConnection();
 
+        function getDefaultExperience($db): array
+        {
+            $experiences = [];
+            $experience_query = "SELECT 
+                e.xpid, e.title, e.body, e.publishtimestamp, e.userid,
+                CONCAT(a.firstname, ' ', a.lastname) AS fullname
+                FROM experience e 
+                JOIN alumni a ON e.userid = a.userid
+                ORDER BY e.publishtimestamp DESC;";
+        
+            $experience_result = mysqli_query($db, $experience_query);
+        
+            if (mysqli_num_rows($experience_result) > 0) {
+                while ($rowexperience = mysqli_fetch_assoc($experience_result)) {
+                    $experiences[] = [
+                        "xpid" => $rowexperience["xpid"],
+                        "title" => $rowexperience["title"],
+                        "body" => $rowexperience["body"],
+                        "publishtimestamp" => $rowexperience["publishtimestamp"],
+                        "userid" => $rowexperience["userid"],
+                        "fullname" => $rowexperience["fullname"] 
+                    ];
+                }
+            }
+        
+            return $experiences;
+        }
+
         function getDefaultEvents($db): array
         {
             $events = [];
@@ -73,6 +101,7 @@ if (isset($_SESSION['username'])) { ?>
         }
         $jobpostings = getDefaultJobs($db);
         $eventpostings = getDefaultEvents($db);
+        $experiencepostings = getDefaultExperience($db);
         ?>
 
         <main class="content-container">
@@ -111,7 +140,7 @@ if (isset($_SESSION['username'])) { ?>
 
             <div class="navigation">
                 <ul id="ul-posts">
-                    <li onclick="wipAlert()">
+                    <li onclick="displayExperience(experiences)">
                         <img src="../../res/experience-posts.png" alt="User experience">
                         <p>Experience</p>
                     </li>
@@ -126,6 +155,9 @@ if (isset($_SESSION['username'])) { ?>
                 </ul>
             </div>
 
+            <div id="card-experiences">
+            </div>
+
             <div id="card-jobs">
             </div>
 
@@ -138,8 +170,10 @@ if (isset($_SESSION['username'])) { ?>
         <script>
             let jobs = <?php echo json_encode($jobpostings); ?>;
             let events = <?php echo json_encode($eventpostings); ?>;
+            let experiences = <?php echo json_encode($experiencepostings); ?>;
             let currentEvents = JSON.parse(JSON.stringify(events));
             let currentJobs = JSON.parse(JSON.stringify(jobs));
+            let currentExperience = JSON.parse(JSON.stringify(experiences));
 
             function wipAlert() {
                 alert('This section is currently being worked on :)');
@@ -203,6 +237,38 @@ if (isset($_SESSION['username'])) { ?>
                     </div>
                     `;
                     container.appendChild(cardContainer);
+                }
+            }
+
+            function displayExperience(experienceData) {
+                setActiveTab(0); 
+                document.getElementById("card-experiences").innerHTML = ''; // Clear existing content
+                const container = document.getElementById("card-experiences");
+                container.innerHTML = '';
+                
+                // Check if there are experiences to display
+                if (experienceData.length === 0) {
+                    container.innerHTML = '<p>No experiences found.</p>';
+                    return;
+                }
+
+                // Loop through each experience and create HTML elements
+                for (let i = 0; i < experienceData.length; i++) {
+                    const cardContainer = document.createElement('div');
+                    cardContainer.id = experienceData[i].xpid; // Set ID to experience ID
+                    cardContainer.classList.add("experience-card");
+                    
+                    cardContainer.innerHTML = `
+                        <div class="experience-card-content">
+                            <h2 class="experience-title">${experienceData[i].title}</h2>
+                            <div class="experience-details">
+                                <p class="experience-body">${experienceData[i].body}</p>
+                                <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(cardContainer); 
                 }
             }
 

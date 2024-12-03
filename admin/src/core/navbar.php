@@ -12,7 +12,7 @@
 
     <ul class="nav-links">
         <li>
-            <a href="#" onclick="wipAlert()" id="dashtab">
+            <a href="dashboard.php" id="dashtab">
                 <img src="../../res/dashboard.png" alt="Dashboard" id="dashicon">
                 <span>Dashboard</span>
             </a>
@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()" id="appltab">
+            <a href="applicant.php" id="appltab">
                 <img src="../../res/applications.png" alt="Applications" id="applicon">
                 <span>Applications</span>
             </a>
@@ -42,12 +42,10 @@
             </a>
         </li>
         <li>
-            <form action="logout.php" method="POST">
-                <button href="../../index.php" id="settingstab" type="submit" name="logout">
-                    <img src="../../res/settings.png" alt="Settings" id="settingsicon">
-                    <span>Logout</span>
-                </button>
-            </form>
+            <a href="settings.php" id="settingstab">
+                <img src="../../res/settings.png" alt="Settings" id="settingsicon">
+                <span>Settings</span>
+            </a>
         </li>
     </ul>
 
