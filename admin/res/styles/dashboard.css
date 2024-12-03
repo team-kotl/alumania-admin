@@ -51,7 +51,8 @@ body {
 .total-count-section {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 8px;
 }
 
 .card {
@@ -60,7 +61,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     width: 150px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -108,6 +109,22 @@ body {
     right: 10px; 
     top: 50%;
     transform: translateY(-50%);
+}
+
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    width: 360px;
+    height: 320px;
+}
+
+canvas {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 4px;
 }
 
 @keyframes fadeIn {

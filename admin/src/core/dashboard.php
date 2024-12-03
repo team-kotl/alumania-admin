@@ -39,6 +39,34 @@ if(isset($_SESSION['username'])) { ?>
             if ($result && $row = $result->fetch_assoc()) {
                 $counts['managers'] = $row['count'];
             }
+
+        // Employment status query
+        $empstatusCounts = [
+            'Employee' => 0,
+            'Unemployed' => 0,
+            'Underemployed' => 0,
+        ];
+
+        $result = $db->query("SELECT empstatus, COUNT(*) AS count FROM alumni GROUP BY empstatus");
+        while ($row = $result->fetch_assoc()) {
+            if (isset($empstatusCounts[$row['empstatus']])) {
+                $empstatusCounts[$row['empstatus']] = $row['count'];
+            }
+        }
+
+        // Location query
+        $locationCounts = [
+            'Domestic' => 0,
+            'Foreign' => 0,
+        ];
+
+        $result = $db->query("SELECT location, COUNT(*) AS count FROM alumni GROUP BY location");
+        while ($row = $result->fetch_assoc()) {
+            if (isset($locationCounts[$row['location']])) {
+                $locationCounts[$row['location']] = $row['count'];
+            }
+        }    
+        
     ?>
     
     <div class="content-container">
@@ -58,12 +86,66 @@ if(isset($_SESSION['username'])) { ?>
             }
             ?>
         </div>
-        
 
-        
+        <div class="chart-container">
+            <canvas id="employmentChart" ></canvas>
+            <canvas id="locationChart"></canvas>
+        </div>
+
     </div>
 
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            
+            // Data for Employment Status
+            const employmentData = {
+            labels: ['Employee', 'Unemployed', 'Underemployed'],
+            datasets: [{
+                data: [<?php echo $empstatusCounts['Employee']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
+                backgroundColor: ['#4CAF50', '#F44336', '#ecf00c'],
+                borderWidth: 1
+            }]
+        };
+
+        // Employment Status Pie Chart
+        new Chart(document.getElementById('employmentChart'), {
+            type: 'doughnut',
+            data: employmentData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Employment Status' }
+                }
+            }
+        });
+
+            // Data for User Location
+            const locationData = {
+                labels: ['Domestic', 'Foreign'],
+                datasets: [{
+                    data: [<?php echo $locationCounts['Domestic']; ?>, <?php echo $locationCounts['Foreign']; ?>],
+                    backgroundColor: ['#2196F3', '#FFC107'],
+                    borderWidth: 1
+                }]
+            };
+
+            // Location Pie Chart
+            new Chart(document.getElementById('locationChart'), {
+                type: 'doughnut',
+                data: locationData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'User Location' }
+                    }
+                }
+            });
+            
+        </script>
 
 </html>
 <?php } else { ?>
