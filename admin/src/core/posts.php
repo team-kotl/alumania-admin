@@ -244,6 +244,7 @@ if (isset($_SESSION['username'])) { ?>
                 setActiveTab(0); 
                 document.getElementById("card-experiences").innerHTML = ''; // Clear existing content
                 const container = document.getElementById("card-experiences");
+                container.innerHTML = '';
                 
                 // Check if there are experiences to display
                 if (experienceData.length === 0) {
@@ -260,8 +261,10 @@ if (isset($_SESSION['username'])) { ?>
                     cardContainer.innerHTML = `
                         <div class="experience-card-content">
                             <h2 class="experience-title">${experienceData[i].title}</h2>
-                            <p class="experience-body">${experienceData[i].body}</p>
-                            <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
+                            <div class="experience-details">
+                                <p class="experience-body">${experienceData[i].body}</p>
+                                <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
+                            </div>
                         </div>
                     `;
                     
