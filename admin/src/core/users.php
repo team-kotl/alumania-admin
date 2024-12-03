@@ -47,13 +47,33 @@ if (isset($_SESSION['username'])) {
         </div>
 
     <div class="searchfilter">
-      <div class="total-users">Total Users: </div> 
-      <div class="search-box">
+    <div class="total-users">Total Users: </div>
+    <div class="search-box">
         <input type="text" class="search-input" placeholder="Name, ID, Email">
         <img src="../../res/search.png" class="search-icon" alt="Search">
-      <button class="filter-btn">
-        <img src="../../res/sort.png" class="filter-icon" alt="Filter">
-      </button>
+        <button class="filter-btn" onclick="toggleFilterDropdown()">
+            <img src="../../res/sort.png" class="filter-icon" alt="Filter">
+        </button>
+        <div class="filter-dropdown" id="filterDropdown">
+            <h3>Search Filters</h3>
+            <div class="filter-content">
+                <div class="filter-section">
+                    <h4>Status</h4>
+                    <ul>
+                        <li>Employed</li>
+                        <li>Unemployed</li>
+                        <li>Underemployed</li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h4>Location</h4>
+                    <ul>
+                        <li>Domestic</li>
+                        <li>Foreign</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -63,9 +83,7 @@ if (isset($_SESSION['username'])) {
                     <tr>
                         <th>User ID</th>
                         <th>Email</th>
-                        <th>First Name</th>
-                        <th>Middle Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Employment Status</th>
                         <th>Location</th>
                     </tr>
@@ -77,9 +95,7 @@ if (isset($_SESSION['username'])) {
                             <tr>
                                 <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
                                 <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
-                                <td data-label="First Name"><?php echo htmlspecialchars($row['firstname']); ?></td>
-                                <td data-label="Middle Name"><?php echo htmlspecialchars($row['middlename']); ?></td>
-                                <td data-label="Last Name"><?php echo htmlspecialchars($row['lastname']); ?></td>
+                                <td data-label="Name"><?php  echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
                                 <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
                                 <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
                             </tr>
@@ -93,7 +109,13 @@ if (isset($_SESSION['username'])) {
             </table>
         </div>
 
-    
+    <script>
+        function toggleFilterDropdown() {
+            const dropdown = document.getElementById('filterDropdown');
+            dropdown.classList.toggle('show');
+        }
+    </script>
+
     <?php } else { ?>
             <h1>Access Forbidden</h1>
             <p>Please log in to your account.</p>

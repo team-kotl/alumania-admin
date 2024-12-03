@@ -17,6 +17,8 @@ body {
   color: #cccccc;
 }
 
+
+/* Navigation Bar */ 
 .navigation {
   padding: 16px 20px 0 70px;
   margin-top: -20px;
@@ -62,6 +64,21 @@ body {
   border-bottom: 3px solid #0661d9;
 }
 
+/* Search and Filter Section*/ 
+.searchfilter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem; 
+  margin-top: 20px;
+}
+
+.total-users {
+  color: #1c1d1f;
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 20px;
+}
 
 .searchfilter {
   display: flex;
@@ -78,10 +95,12 @@ body {
   margin-left: 20px;
 }
 
+/* Search */ 
 .search-box {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative; 
 }
 
 .search-input {
@@ -99,6 +118,7 @@ body {
   margin-left: 10px
 }
 
+/* Filter */ 
 .filter-btn {
   padding: 0.5rem 1rem;
   background-color: white;
@@ -106,7 +126,10 @@ body {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  color: #4b5563;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filter-icon {
@@ -114,6 +137,64 @@ body {
   height: auto;
 }
 
+/* Filter Dropdown */ 
+.filter-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem); 
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 375px;
+  padding: 2rem;
+  display: none;
+}
+
+.filter-dropdown.show {
+  display: block; 
+}
+
+.filter-dropdown h3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.filter-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-left: 10px;
+}
+
+.filter-section h4 {
+  font-size: 16px;
+  color: #3c4552;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #3182ce;
+  display: inline-block;
+}
+
+.filter-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-section li {
+  font-size: 14px;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.filter-section li:hover {
+  text-decoration: underline;
+}
+
+/* Table  */ 
 .section-title {
   display: flex;
   justify-content: space-between;
