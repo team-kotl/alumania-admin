@@ -225,9 +225,53 @@ body {
   border-radius: 5px;
   font-size: 0.85rem;
 }
+
 .input-container {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-container label.text {
+  font-size: 0.9rem;
+  color: #666666;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.input-container .field-notification {
+  font-size: 0.75rem;
+  color: red;
+  margin-top: 5px;
+}
+
+.input-row {
+  display: flex;
   justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.input-row .input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row .input-group input,
+.input-row .input-group select {
+  padding: 12px 10px;
+  font-size: 0.85rem;
+  border: 1px #666666 solid;
+  border-radius: 5px;
+  background: #ffffff;
+  outline: none;
+}
+
+.input-row .input-group input:focus,
+.input-row .input-group select:focus {
+  border-color: #0066ff;
 }
 
 .input-left,

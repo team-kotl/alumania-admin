@@ -98,19 +98,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function showFieldNotification(field, message) {
-  let notification = field.parentNode.querySelector(".field-notification");
+  // Locate the parent container of the input
+  let parentContainer = field.closest(".input-container");
 
-  // If no notification exists, create it
+  if (!parentContainer) {
+    console.error("No parent container found for:", field);
+    return;
+  }
+
+  let notification = parentContainer.querySelector(".field-notification");
+
   if (!notification) {
     notification = document.createElement("div");
     notification.classList.add("field-notification");
-    notification.style.color = "red"; // Red text for error
+    notification.style.color = "red";
     notification.style.fontSize = "0.9em";
     notification.style.marginTop = "5px";
-    field.parentNode.appendChild(notification);
+    parentContainer.appendChild(notification);
   }
 
-  notification.textContent = message; // Set the error message
+  notification.textContent = message;
 }
 
 function clearFieldNotifications() {
@@ -119,7 +126,7 @@ function clearFieldNotifications() {
 }
 
 function validateForm() {
-  clearFieldNotifications(); // Clear previous error messages
+  clearFieldNotifications();
 
   const eventTitle = document.querySelector('input[name="eventTitle"]');
   const description = document.querySelector('textarea[name="description"]');
@@ -130,31 +137,26 @@ function validateForm() {
 
   let isValid = true;
 
-  // Validate Event Title
   if (!eventTitle.value.trim()) {
     showFieldNotification(eventTitle, "Event Title cannot be empty.");
     isValid = false;
   }
 
-  // Validate Description
   if (!description.value.trim()) {
     showFieldNotification(description, "Description cannot be empty.");
     isValid = false;
   }
 
-  // Validate Location
   if (!location.value.trim()) {
     showFieldNotification(location, "Location cannot be empty.");
     isValid = false;
   }
 
-  // Validate Category
   if (!category.value) {
     showFieldNotification(category, "Please select a Category.");
     isValid = false;
   }
 
-  // Validate File Input
   if (!fileInput.files || fileInput.files.length === 0) {
     showFieldNotification(fileInput, "Please upload an image.");
     isValid = false;
@@ -187,7 +189,7 @@ function validateForm() {
     isValid = false;
   }
 
-  return isValid; // Only return true if all fields are valid
+  return isValid;
 }
 
 function handleSubmit(event) {
