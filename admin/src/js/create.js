@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
           let width = img.width;
           let height = img.height;
 
-          // Resize logic
           if (width > height) {
             if (width > maxSize) {
               height *= maxSize / width;
@@ -98,75 +97,97 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function showNotification(message) {
-  const notification = document.createElement("div");
-  notification.classList.add("notification");
+function showFieldNotification(field, message) {
+  let notification = field.parentNode.querySelector(".field-notification");
 
-  const messageText = document.createElement("span");
-  messageText.textContent = message;
+  // If no notification exists, create it
+  if (!notification) {
+    notification = document.createElement("div");
+    notification.classList.add("field-notification");
+    notification.style.color = "red"; // Red text for error
+    notification.style.fontSize = "0.9em";
+    notification.style.marginTop = "5px";
+    field.parentNode.appendChild(notification);
+  }
 
-  notification.appendChild(messageText);
+  notification.textContent = message; // Set the error message
+}
 
-  document.getElementById("notificationContainer").appendChild(notification);
-
-  setTimeout(() => {
-    notification.remove();
-  }, 5000);
+function clearFieldNotifications() {
+  const notifications = document.querySelectorAll(".field-notification");
+  notifications.forEach((notification) => notification.remove());
 }
 
 function validateForm() {
+  clearFieldNotifications(); // Clear previous error messages
+
   const eventTitle = document.querySelector('input[name="eventTitle"]');
   const description = document.querySelector('textarea[name="description"]');
   const location = document.querySelector('input[name="location"]');
   const category = document.querySelector('select[name="category"]');
   const fileInput = document.querySelector('input[name="file"]');
-  const scheduleInput = document.querySelector('input[name="schedule"]'); // The datetime-local input
+  const scheduleInput = document.querySelector('input[name="schedule"]');
 
-  // Validate event title, description, location, and category as before
+  let isValid = true;
+
+  // Validate Event Title
   if (!eventTitle.value.trim()) {
-    showNotification("Event Title cannot be empty.");
-    return false;
-  }
-  if (!description.value.trim()) {
-    showNotification("Description cannot be empty.");
-    return false;
-  }
-  if (!location.value.trim()) {
-    showNotification("Location cannot be empty.");
-    return false;
-  }
-  if (!category.value) {
-    showNotification("Please select a Category.");
-    return false;
-  }
-  if (!fileInput.files || fileInput.files.length === 0) {
-    showNotification("Please upload an image.");
-    return false;
+    showFieldNotification(eventTitle, "Event Title cannot be empty.");
+    isValid = false;
   }
 
+  // Validate Description
+  if (!description.value.trim()) {
+    showFieldNotification(description, "Description cannot be empty.");
+    isValid = false;
+  }
+
+  // Validate Location
+  if (!location.value.trim()) {
+    showFieldNotification(location, "Location cannot be empty.");
+    isValid = false;
+  }
+
+  // Validate Category
+  if (!category.value) {
+    showFieldNotification(category, "Please select a Category.");
+    isValid = false;
+  }
+
+  // Validate File Input
+  if (!fileInput.files || fileInput.files.length === 0) {
+    showFieldNotification(fileInput, "Please upload an image.");
+    isValid = false;
+  } else {
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    const file = fileInput.files[0];
+    if (!allowedTypes.includes(file.type)) {
+      showFieldNotification(
+        fileInput,
+        "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+      );
+      isValid = false;
+    }
+  }
+
+  // Validate Schedule Input
   if (scheduleInput.value) {
     const selectedDate = new Date(scheduleInput.value);
     const currentDate = new Date();
 
     if (selectedDate < currentDate) {
-      showNotification("The event date cannot be in the past.");
-      return false;
+      showFieldNotification(
+        scheduleInput,
+        "The event date cannot be in the past."
+      );
+      isValid = false;
     }
   } else {
-    showNotification("Please select a valid date.");
-    return false;
+    showFieldNotification(scheduleInput, "Please select a valid date.");
+    isValid = false;
   }
 
-  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-  const file = fileInput.files[0];
-  if (!allowedTypes.includes(file.type)) {
-    showNotification(
-      "Invalid file type. Please upload a JPEG, PNG, or GIF image."
-    );
-    return false;
-  }
-
-  return true;
+  return isValid; // Only return true if all fields are valid
 }
 
 function handleSubmit(event) {
