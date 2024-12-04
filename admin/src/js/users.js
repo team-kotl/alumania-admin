@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".search-input");
-  const tableRows = document.querySelectorAll("tbody tr");
   const totalUsersElement = document.querySelector(".total-users");
   const filterDropdown = document.getElementById("filterDropdown");
   const statusFilters = document.querySelectorAll(
@@ -9,12 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const locationFilters = document.querySelectorAll(
     ".filter-section:nth-child(2) ul li"
   );
+  const tableRows = document.querySelectorAll("tbody tr"); // Will be dynamically updated
 
   let activeFilters = {
     status: null,
     location: null,
   };
+
   function filterRows() {
+    // Get the updated table rows dynamically for the current active tab
+    const tableRows = document.querySelectorAll("tbody tr");
     const searchQuery = searchInput.value.toLowerCase();
     let visibleCount = 0;
 
@@ -27,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const status = cells[3]?.textContent.toLowerCase();
       const location = cells[4]?.textContent.toLowerCase();
 
+      // Check if row matches search query and active filters
       const matchesSearch = rowText.includes(searchQuery);
       const matchesStatus = activeFilters.status
         ? status === activeFilters.status
@@ -35,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ? location === activeFilters.location
         : true;
 
+      // Show or hide row based on matching filters
       if (matchesSearch && matchesStatus && matchesLocation) {
         row.style.display = "";
         visibleCount++;
@@ -43,15 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Update the total count of visible users
     if (totalUsersElement) {
       totalUsersElement.textContent = `Total Users: ${visibleCount}`;
     }
   }
 
   if (searchInput) {
-    searchInput.addEventListener("input", filterRows);
+    searchInput.addEventListener("input", filterRows); // Apply search filter
   }
 
+  // Status filters
   statusFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const selectedStatus = filter.textContent.toLowerCase();
@@ -62,10 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
       statusFilters.forEach((f) => f.classList.remove("active"));
       if (activeFilters.status) filter.classList.add("active");
 
-      filterRows();
+      filterRows(); // Reapply filter after selecting status
     });
   });
 
+  // Location filters
   locationFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const selectedLocation = filter.textContent.toLowerCase();
@@ -76,30 +84,23 @@ document.addEventListener("DOMContentLoaded", () => {
       locationFilters.forEach((f) => f.classList.remove("active"));
       if (activeFilters.location) filter.classList.add("active");
 
-      filterRows();
+      filterRows(); // Reapply filter after selecting location
     });
   });
 
+  // Filter dropdown toggle
   if (filterDropdown) {
-    const toggleFilterDropdown = document.querySelector(".filter-btn");
-    if (toggleFilterDropdown) {
-      toggleFilterDropdown.addEventListener("click", () => {
-        filterDropdown.classList.toggle("show");
-      });
+    const toggleFilterDropdown = () => {
+      filterDropdown.classList.toggle("show");
+    };
+
+    const filterButton = document.querySelector(".filter-btn");
+    if (filterButton) {
+      filterButton.addEventListener("click", toggleFilterDropdown);
     }
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const filterButton = document.querySelector(".filter-btn");
-  if (filterButton) {
-    filterButton.addEventListener("click", toggleFilterDropdown);
-  } else {
-    console.error("Filter button not found in the DOM.");
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
+  // Tab switching logic
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
   const userPanel = document.getElementById("userPanel");
@@ -117,15 +118,19 @@ document.addEventListener("DOMContentLoaded", () => {
     inactiveImg.src = inactiveTab.getAttribute("unselected-icon");
   };
 
+  // Handle alumni tab click
   alumniTab.addEventListener("click", () => {
-    userPanel.innerHTML = alumniContent;
+    userPanel.innerHTML = alumniContent; // Show alumni content
     updateTabUI(alumniTab, managerTab);
     addManagerButtonContainer.classList.add("hidden");
+    filterDropdown.classList.remove("show"); // Hide the filter dropdown
   });
 
+  // Handle manager tab click
   managerTab.addEventListener("click", () => {
-    userPanel.innerHTML = managerContent;
+    userPanel.innerHTML = managerContent; // Show manager content
     updateTabUI(managerTab, alumniTab);
     addManagerButtonContainer.classList.remove("hidden");
+    filterDropdown.classList.remove("show"); // Hide the filter dropdown
   });
 });

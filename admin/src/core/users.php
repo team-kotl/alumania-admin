@@ -60,7 +60,7 @@ if (isset($_SESSION['username'])) {
                     <div class="search-box">
                         <input type="text" class="search-input" placeholder="Name, ID, Email">
                         <img src="../../res/search.png" class="search-icon" alt="Search">
-                        <button class="filter-btn">
+                        <button class="filter-btn" onclick="toggleFilterDropdown()">
                             <img src="../../res/sort.png" class="filter-icon" alt="Filter">
                         </button>
                         <div class="filter-dropdown" id="filterDropdown">
