@@ -71,6 +71,10 @@ if (isset($_SESSION['username'])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="add-manager-button-container hidden">
+                            <button class="add-manager-button">
+                            <img src="../../res/add.png" alt="Add Icon" class="add-manager-icon"/>Add Manager</button>
+                        </div>
                     </div>
             </div>
 
@@ -148,18 +152,21 @@ if (isset($_SESSION['username'])) {
                 const alumniTab = document.getElementById('alumniTab');
                 const managerTab = document.getElementById('managerTab');
                 const userPanel = document.getElementById('userPanel');
+                const addManagerButtonContainer = document.querySelector('.add-manager-button-container');
                 userPanel.innerHTML = alumniContent;
 
                 alumniTab.addEventListener('click', () => {
                     userPanel.innerHTML = alumniContent; 
                     alumniTab.classList.add('active');
                     managerTab.classList.remove('active');
+                    addManagerButtonContainer.classList.add('hidden');
                 });
 
                 managerTab.addEventListener('click', () => {
                     userPanel.innerHTML = managerContent; 
                     managerTab.classList.add('active');
                     alumniTab.classList.remove('active');
+                    addManagerButtonContainer.classList.remove('hidden');
                 });
             });
         </script>

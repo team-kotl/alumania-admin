@@ -116,6 +116,32 @@ body {
   margin-left: 10px;
 }
 
+/* Add Manager Button */
+.add-manager-button {
+  background-color: #3b82f6;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+}
+
+.add-manager-button:hover {
+  background-color: #2563eb;
+}
+
+.add-manager-icon {
+  width: 1rem; 
+  height: 1rem; 
+}
+
+.add-manager-button-container.hidden {
+  display: none; 
+}
+
 /* Filter */
 .filter-btn {
   padding: 0.5rem 1rem;
