@@ -41,6 +41,14 @@ body {
   margin-right: 20px;
 }
 
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
 #ul-users li:hover {
   background-color: #0661d931;
 }
@@ -50,6 +58,10 @@ body {
   color: rgba(0, 0, 0, 0.4);
   padding-top: 3px;
   height: 100%;
+}
+
+#ul-users li.active p {
+  color: #0661d9;
 }
 
 #ul-users li img {
@@ -114,32 +126,6 @@ body {
   width: auto;
   height: auto;
   margin-left: 10px;
-}
-
-/* Add Manager Button */
-.add-manager-button {
-  background-color: #3b82f6;
-  color: #fff;
-  border-radius: 0.25rem;
-  padding: 0.65rem 1rem;
-  border: none;
-  cursor: pointer;
-  display: flex; 
-  align-items: center; 
-  gap: 0.5rem; 
-}
-
-.add-manager-button:hover {
-  background-color: #2563eb;
-}
-
-.add-manager-icon {
-  width: 1rem; 
-  height: 1rem; 
-}
-
-.add-manager-button-container.hidden {
-  display: none; 
 }
 
 /* Filter */
@@ -265,4 +251,30 @@ td {
 
 tbody tr:hover {
   background-color: #f1f5f9;
+}
+
+/* Add Manager Button */
+.add-manager-button {
+  background-color: #3b82f6;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-manager-button:hover {
+  background-color: #2563eb;
+}
+
+.add-manager-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.add-manager-button-container.hidden {
+  display: none;
 }

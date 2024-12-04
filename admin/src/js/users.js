@@ -98,3 +98,34 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Filter button not found in the DOM.");
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const alumniTab = document.getElementById("alumniTab");
+  const managerTab = document.getElementById("managerTab");
+  const userPanel = document.getElementById("userPanel");
+  const addManagerButtonContainer = document.querySelector(
+    ".add-manager-button-container"
+  );
+
+  const updateTabUI = (activeTab, inactiveTab) => {
+    activeTab.classList.add("active");
+    inactiveTab.classList.remove("active");
+
+    const activeImg = activeTab.querySelector("img");
+    const inactiveImg = inactiveTab.querySelector("img");
+    activeImg.src = activeTab.getAttribute("selected-icon");
+    inactiveImg.src = inactiveTab.getAttribute("unselected-icon");
+  };
+
+  alumniTab.addEventListener("click", () => {
+    userPanel.innerHTML = alumniContent;
+    updateTabUI(alumniTab, managerTab);
+    addManagerButtonContainer.classList.add("hidden");
+  });
+
+  managerTab.addEventListener("click", () => {
+    userPanel.innerHTML = managerContent;
+    updateTabUI(managerTab, alumniTab);
+    addManagerButtonContainer.classList.remove("hidden");
+  });
+});

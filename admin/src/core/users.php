@@ -10,7 +10,19 @@ if (isset($_SESSION['username'])) {
     $sqlAlumni = "SELECT userid, email, firstname, middlename, lastname, empstatus, location FROM alumni";
     $resultAlumni = $conn->query($sqlAlumni);
 
-    $sqlManagers = "SELECT userid, username, userType FROM user WHERE userType = 'Manager'";
+    $sqlManagers = "
+        SELECT 
+            a.userid,
+            a.email,
+            a.firstname,
+            a.middlename,
+            a.lastname,
+            a.empstatus AS employment_status,
+            a.location
+        FROM alumni a
+        INNER JOIN user u ON a.userid = u.userid
+        WHERE u.userType = 'Manager';
+    ";
     $resultManagers = $conn->query($sqlManagers);
 ?>
     <head>
@@ -33,11 +45,11 @@ if (isset($_SESSION['username'])) {
 
             <div class="navigation">
                 <ul id="ul-users">
-                    <li id="alumniTab" class="active">
+                    <li id="alumniTab" class="active" selected-icon="../../res/alumni-blue.png" unselected-icon="../../res/alumni.png">
                         <img src="../../res/alumni-blue.png" alt="Alumni">
                         <p>Alumni</p>
                     </li>
-                    <li id="managerTab">
+                    <li id="managerTab" selected-icon="../../res/manager-blue.png" unselected-icon="../../res/manager.png">
                         <img src="../../res/manager.png" alt="Managers">
                         <p>Managers</p>
                     </li>
@@ -48,7 +60,7 @@ if (isset($_SESSION['username'])) {
                     <div class="search-box">
                         <input type="text" class="search-input" placeholder="Name, ID, Email">
                         <img src="../../res/search.png" class="search-icon" alt="Search">
-                        <button class="filter-btn" onclick="toggleFilterDropdown()">
+                        <button class="filter-btn">
                             <img src="../../res/sort.png" class="filter-icon" alt="Filter">
                         </button>
                         <div class="filter-dropdown" id="filterDropdown">
@@ -124,8 +136,10 @@ if (isset($_SESSION['username'])) {
                         <thead>
                             <tr>
                                 <th>User ID</th>
-                                <th>Username</th>
-                                <th>User Type</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Employment Status</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,13 +148,15 @@ if (isset($_SESSION['username'])) {
                                 while ($row = $resultManagers->fetch_assoc()) { ?>
                                     <tr>
                                         <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
-                                        <td data-label="Username"><?php echo htmlspecialchars($row['username']); ?></td>
-                                        <td data-label="User Type"><?php echo htmlspecialchars($row['userType']); ?></td>
+                                        <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
+                                        <td data-label="Name"><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
+                                        <td data-label="Employment Status"><?php echo htmlspecialchars($row['employment_status']); ?></td>
+                                        <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
                                     </tr>
                                 <?php }
                             } else { ?>
                                 <tr>
-                                    <td colspan="3">No managers found</td>
+                                    <td colspan="5">No managers found</td>
                                 </tr>
                             <?php } ?>
                         </tbody>
