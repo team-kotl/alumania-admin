@@ -97,6 +97,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function showNotification(message) {
+  const notification = document.createElement("div");
+  notification.classList.add("notification");
+
+  const messageText = document.createElement("span");
+  messageText.textContent = message;
+
+  notification.appendChild(messageText);
+
+  document.getElementById("notificationContainer").appendChild(notification);
+
+  setTimeout(() => {
+    notification.remove();
+  }, 5000);
+}
+
 function showFieldNotification(field, message) {
   // Locate the parent container of the input
   let parentContainer = field.closest(".input-container");
