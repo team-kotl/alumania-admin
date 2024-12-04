@@ -13,63 +13,112 @@ if (isset($_SESSION['username'])) {
     $sql = "SELECT userid, email, firstname, middlename, lastname, empstatus, location FROM alumni";
     $result = $conn->query($sql);
 
-    ?>
-    <!DOCTYPE html>
-    <html lang="en">
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../res/styles/users.css">
+    <title>Alumania</title>
+</head>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../res/styles/users.css">
-        <title>Alumania - User List</title>
-    </head>
+<body>
+    <div id="notificationContainer"></div>
+    <?php include 'navbar.php'; ?>
+    <script defer> setActiveNav("userstab", "usersicon", 3); </script>
 
-    <body>
-        <div id="notificationContainer"></div>
-        <?php include 'navbar.php'; ?>
 
-        <h1>All Users</h1>
-        <table border="1" cellspacing="0" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Email</th>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Employment Status</th>
-                    <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-    <?php 
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
-                <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
-                <td data-label="First Name"><?php echo htmlspecialchars($row['firstname']); ?></td>
-                <td data-label="Middle Name"><?php echo htmlspecialchars($row['middlename']); ?></td>
-                <td data-label="Last Name"><?php echo htmlspecialchars($row['lastname']); ?></td>
-                <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
-                <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
-            </tr>
-        <?php }
-    } else { ?>
-        <tr>
-            <td colspan="7">No users found</td>
-        </tr>
+    <div class="content-container">
+        <div class="header">
+            <h1>Users</h1>
+            <p>View and Manage User Accounts</p>
+        </div>
+
+        <div class="navigation">
+            <ul id="ul-users">
+                <li>
+                    <img src="../../res/alumni-blue.png" alt="Alumni">
+                    <p>Alumni</p>
+                </li>
+                <li>
+                    <img src="../../res/manager.png" alt="Managers">
+                    <p>Managers</p>
+                </li>
+            </ul>
+        </div>
+
+    <div class="searchfilter">
+    <div class="total-users">Total Users: </div>
+    <div class="search-box">
+        <input type="text" class="search-input" placeholder="Name, ID, Email">
+        <img src="../../res/search.png" class="search-icon" alt="Search">
+        <button class="filter-btn" onclick="toggleFilterDropdown()">
+            <img src="../../res/sort.png" class="filter-icon" alt="Filter">
+        </button>
+        <div class="filter-dropdown" id="filterDropdown">
+            <h3>Search Filters</h3>
+            <div class="filter-content">
+                <div class="filter-section">
+                    <h4>Status</h4>
+                    <ul>
+                        <li>Employed</li>
+                        <li>Unemployed</li>
+                        <li>Underemployed</li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h4>Location</h4>
+                    <ul>
+                        <li>Domestic</li>
+                        <li>Foreign</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section-title">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Employment Status</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    if ($result && $result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) { ?>
+                            <tr>
+                                <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
+                                <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
+                                <td data-label="Name"><?php  echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
+                                <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
+                                <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
+                            </tr>
+                        <?php }
+                    } else { ?>
+                        <tr>
+                            <td colspan="7">No users found</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+
+    <script>
+        function toggleFilterDropdown() {
+            const dropdown = document.getElementById('filterDropdown');
+            dropdown.classList.toggle('show');
+        }
+    </script>
+
+    <?php } else { ?>
+            <h1>Access Forbidden</h1>
+            <p>Please log in to your account.</p>
     <?php } ?>
-</tbody>
-
-        </table>
-
-        <script defer> setActiveNav("userstab", "usersicon", 2); </script>
-    </body>
-
-    </html>
-    <?php 
-} else { ?>
-    <h1 style='margin:auto;'>Access Forbidden</h1>
-    <p>Please log in to your account.</p>
-<?php } ?>
+</body>
+</html>
