@@ -91,10 +91,10 @@ if(isset($_SESSION['username'])) { ?>
                         <td>${applicant.firstname} ${applicant.lastname}</td>
                         <td>${applicant.course}</td>
                         <td>${applicant.location}</td>
-                        <td><button>View photo</button></td>
+                        <td><button class = "view-photo-btn">View photo</button></td>
                         <td>
-                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'accept')"><img src="../../res/checkmark.png" alt="Accept"></button>
-                            <button class="Transparent-Button" onclick="handleAction('${applicant.applicantid}', 'reject')"><img src="../../res/xmark.png" alt="Reject"></button>
+                            <button class="status-icon accept" onclick="handleAction('${applicant.applicantid}', 'accept')"></button>
+                            <button class="status-icon reject" onclick="handleAction('${applicant.applicantid}', 'reject')"></button>
                         </td>
                     `;
 

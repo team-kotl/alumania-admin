@@ -35,7 +35,6 @@ body {
     margin-top: 10px;
 }
 
-
 .vertical-line {
     width: 1px; 
     height: 83vh; 
@@ -44,78 +43,64 @@ body {
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-left: 10vw;
+    border-collapse: collapse;
+    margin-left: 5vw;
     padding: 5vw;
+    width: 90%;
+    margin-top: 2vw;
 }
 
 th {
-    background-color: rgb(143, 143, 143);
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    text-align: center;
 }
 
-.Transparent-Button {
-    background-color: transparent;
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.view-photo-btn {
+    background-color: #3898e7;
+    color: #fff;
     border: none;
-    padding: 10vw; 
-    cursor: pointer; 
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.Transparent-Button img {
-    display: block; /* Ensures the image fits the button without extra space */
-}
-
-.Transparent-Button:hover {
-    background-color: #afafaf;
-    border-width: 3px;
-}
-
-table td button  {
-    background-color:#3898e7;
-    border: 3vw;
-    border-radius: 0.3rem;
-    padding: 8px;
-}
-
-table td button:hover {
+.view-photo-btn:hover {
     background-color: #2277bd;
 }
-  
-td, th {
-    padding: 0.5rem;
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
-th, td {
-    border-bottom: 1px solid rgb(143, 143, 143); /* Bottom border */
-    border-right: 1px solid rgb(143, 143, 143); /* Right border */
-    padding: 0.5rem; /* Optional: Add padding for content */
+.status-icon.accept {
+    background-image: url('../../res/checkmark.png');
 }
 
-table tr td:first-child, 
-table tr th:first-child {
-  border-left: 1px solid rgb(143, 143, 143);
+.status-icon.reject {
+    background-image: url('../../res/xmark.png');
 }
-
-table tr th {
-    border-top: 1px solid rgb(143, 143, 143);
-}
-
-table tr:first-child th:first-child {
-    border-top-left-radius: 0.5rem;
-}
-
-table tr:first-child th:last-child {
-    border-top-right-radius: 0.5rem;
-}
-
-table tr:last-child td:first-child {
-    border-bottom-left-radius: 0.5rem;
-}
-
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 0.5rem;
-}
-
 
 #notificationContainer {
     position: absolute; 
