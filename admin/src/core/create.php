@@ -44,7 +44,7 @@ if(isset($_SESSION['username'])) { ?>
                                         </svg>
                                     </div>
                                     <div class="text">
-                                        <span>Click to upload image or drag files</span>
+                                        <span>Click to upload image</span>
                                     </div>
                                     <div class="preview" id="imagePreview"></div>
                                     <input type="file" id="file" name="file" accept="image/*">
