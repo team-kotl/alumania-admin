@@ -73,6 +73,12 @@ if(isset($_SESSION['username'])) { ?>
             <tbody id="applicantTable">
             </tbody>
         </table>
+        <div id="photoPopup" class="popup-container" style="display: none;">
+            <div class="popup-content">
+                <span class="close-popup" onclick="closePopup()">&times;</span>
+                <img id="photoPreview" src="" alt="Diploma Photo">
+            </div>
+        </div>
     </div>
     
     <script>
@@ -133,6 +139,33 @@ if(isset($_SESSION['username'])) { ?>
 
             // Initial display of applicants
             displayApplicants(applicants);
+
+            document.addEventListener('click', function (event) {
+                if (event.target && event.target.matches('button.view-photo-btn')) {
+                    const applicantId = event.target.closest('tr').dataset.applicantid;
+                    const photoPopup = document.getElementById('photoPopup');
+                    const photoPreview = document.getElementById('photoPreview');
+
+                    // Fetch the photo
+                    photoPreview.src = ''; // Clear existing photo
+                    fetch(`getDiploma.php?applicantid=${applicantId}`)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Photo not found');
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            photoPreview.src = URL.createObjectURL(blob);
+                            photoPopup.style.display = 'flex'; // Show popup
+                        })
+                        .catch(error => {
+                            alert('Error: ' + error.message);
+                        });
+                }
+            });
+
+            function closePopup() {
+                document.getElementById('photoPopup').style.display = 'none';
+            }
 
             // Periodic check for updates
             setInterval(() => {
