@@ -51,37 +51,65 @@ body {
 .total-count-section {
     display: flex;
     gap: 20px;
-    justify-content: left;
+    justify-content: center;
     margin-left: 8px;
+    width: 100%;
 }
 
 .card {
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: 150px;
-    text-align: left;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-left: 5px solid rgb(3, 152, 197);
 }
 
-.card-icon {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #55abd3;
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.icon-container {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    margin-right: 10px;
+}
+
+.icon-container i {
+    font-size: 24px;
+}
+
+.text-container {
+    text-align: center;
+    flex-grow: 1;
 }
 
 .card-title {
-    font-size: 14px;
+    font-size: 15px;
+    color: #555;
+}
+
+.card-count {
+    font-size: 20px;
     font-weight: bold;
     color: #333;
 }
 
-.card-count {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
 
 #notificationContainer {
     position: absolute; 
@@ -111,13 +139,53 @@ body {
     transform: translateY(-50%);
 }
 
+
 .chart-container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-    width: 360px;
-    height: 320px;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 40px;
+   
 }
+
+.chart-card {
+    width: 100%;
+    max-width: 20%;
+}
+
+.chart-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.chart-card canvas {
+    width: 100%;
+    height: 100px;
+}
+
+.chart-legend {
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.chart-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.chart-legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
 
 canvas {
     background: #ffffff;
@@ -127,7 +195,139 @@ canvas {
     margin-left: 4px;
 }
 
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+.recent-alumni {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.recent-alumni h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.alumni-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.alumni-table thead tr {
+    background-color: rgb(3, 152, 197);
+}
+
+.alumni-table th, .alumni-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.alumni-table th {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.alumni-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.alumni-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.alumni-table tr:hover {
+    background-color: #f0f8ff;
+}
+
+.alumni-table td {
+    color: #333;
+}
+
+.no-data {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Recent Managers Section */
+.recent-managers {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.recent-managers h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.managers-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.managers-table thead tr {
+    background-color: rgb(3, 152, 197);
+}
+
+.managers-table th, .managers-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.managers-table th {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.manager-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.manager-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.managers-table tr:hover {
+    background-color: #f0f8ff;
+}
+
+.managers-table td {
+    color: #333;
+}
+
+.no-data {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 20px;
 }
