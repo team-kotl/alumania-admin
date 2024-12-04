@@ -212,7 +212,7 @@ if (isset($_SESSION['username'])) { ?>
             labels: ['Employee', 'Unemployed', 'Underemployed'],
             datasets: [{
                 data: [<?php echo $empstatusCounts['Employee']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
-                backgroundColor: ['#4CAF50', '#F44336', '#ecf00c'],
+                backgroundColor: ['#0059CD', '#41a1e7', '#99D2FF'],
                 borderWidth: 1
             }]
         };
@@ -240,7 +240,7 @@ if (isset($_SESSION['username'])) { ?>
             labels: ['Domestic', 'Foreign'],
             datasets: [{
                 data: [<?php echo $locationCounts['Domestic']; ?>, <?php echo $locationCounts['Foreign']; ?>],
-                backgroundColor: ['#2196F3', '#FFC107'],
+                backgroundColor: ['#2196F3', '#0059CD'],
                 borderWidth: 1
             }]
         };
