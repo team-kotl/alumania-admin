@@ -90,6 +90,35 @@ if (isset($_SESSION['username'])) {
                     </div>
             </div>
 
+            <div id="addManagerModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Add New Manager</h2>
+                    <form id="addManagerForm">
+                        <label for="managerName">Name:</label>
+                        <input type="text" id="managerName" name="managerName" required>
+
+                        <label for="managerEmail">Email:</label>
+                        <input type="email" id="managerEmail" name="managerEmail" required>
+
+                        <label for="managerLocation">Location:</label>
+                        <select id="managerLocation" name="managerLocation" required>
+                            <option value="Domestic">Domestic</option>
+                            <option value="Foreign">Foreign</option>
+                        </select>
+
+                        <label for="managerStatus">Employment Status:</label>
+                        <select id="managerStatus" name="managerStatus" required>
+                            <option value="Employed">Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Underemployed">Underemployed</option>
+                        </select>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="user-panel" id="userPanel">
                 
             </div>

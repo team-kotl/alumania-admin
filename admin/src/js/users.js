@@ -134,3 +134,66 @@ document.addEventListener("DOMContentLoaded", () => {
     filterDropdown.classList.remove("show"); // Hide the filter dropdown
   });
 });
+
+//temp
+document.addEventListener("DOMContentLoaded", () => {
+  const addManagerButton = document.querySelector(".add-manager-button");
+  const modal = document.getElementById("addManagerModal");
+  const closeBtn = document.querySelector(".close-btn");
+
+  // Debugging logs to check if elements are found
+  console.log("Add Manager Button:", addManagerButton);
+  console.log("Modal:", modal);
+  console.log("Close Button:", closeBtn);
+
+  // Ensure elements exist before trying to access them
+  if (addManagerButton && modal && closeBtn) {
+    // Show the modal when the Add Manager button is clicked
+    addManagerButton.addEventListener("click", () => {
+      modal.style.display = "block"; // Show modal
+    });
+
+    // Close the modal when the user clicks on the close button
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none"; // Hide modal
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none"; // Hide modal
+      }
+    });
+
+    // Handle form submission (you can use this to send data to the server)
+    const form = document.getElementById("addManagerForm");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent form from submitting normally
+        const formData = new FormData(form);
+
+        // Send data to the server via AJAX (example)
+        fetch("add_manager.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data); // Log the response from the server
+            if (data.success) {
+              alert("Manager added successfully!");
+              modal.style.display = "none"; // Hide modal after success
+            } else {
+              alert("Failed to add manager.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error adding manager.");
+          });
+      });
+    }
+  } else {
+    console.error("Required modal elements not found.");
+  }
+});
