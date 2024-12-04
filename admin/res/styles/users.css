@@ -4,7 +4,6 @@ body {
   display: flex;
 }
 
-
 .header {
   margin: 25px 70px;
   transition: margin-left 0.3s ease;
@@ -17,8 +16,7 @@ body {
   color: #cccccc;
 }
 
-
-/* Navigation Bar */ 
+/* Navigation Bar */
 .navigation {
   padding: 16px 20px 0 70px;
   margin-top: -20px;
@@ -49,7 +47,7 @@ body {
 
 #ul-users li p {
   display: inline-block;
-  color:rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
   padding-top: 3px;
   height: 100%;
 }
@@ -64,12 +62,12 @@ body {
   border-bottom: 3px solid #0661d9;
 }
 
-/* Search and Filter Section*/ 
+/* Search and Filter Section*/
 .searchfilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem; 
+  padding: 0.5rem 2rem;
   margin-top: 20px;
 }
 
@@ -84,7 +82,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem; 
+  padding: 0.5rem 2rem;
   margin-top: 20px;
 }
 
@@ -95,16 +93,16 @@ body {
   margin-left: 20px;
 }
 
-/* Search */ 
+/* Search */
 .search-box {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  position: relative; 
+  position: relative;
 }
 
 .search-input {
-  padding: 0.5rem 1rem 0.5rem 2.5rem; 
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 4px;
   font-size: 16px;
@@ -112,13 +110,13 @@ body {
 }
 
 .search-icon {
-  position: absolute; 
-  width: auto; 
+  position: absolute;
+  width: auto;
   height: auto;
-  margin-left: 10px
+  margin-left: 10px;
 }
 
-/* Filter */ 
+/* Filter */
 .filter-btn {
   padding: 0.5rem 1rem;
   background-color: white;
@@ -137,10 +135,10 @@ body {
   height: auto;
 }
 
-/* Filter Dropdown */ 
+/* Filter Dropdown */
 .filter-dropdown {
   position: absolute;
-  top: calc(100% + 0.5rem); 
+  top: calc(100% + 0.5rem);
   background-color: white;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -151,7 +149,7 @@ body {
 }
 
 .filter-dropdown.show {
-  display: block; 
+  display: block;
 }
 
 .filter-dropdown h3 {
@@ -194,7 +192,13 @@ body {
   text-decoration: underline;
 }
 
-/* Table  */ 
+.filter-section ul li.active {
+  font-weight: bold;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Table  */
 .section-title {
   display: flex;
   justify-content: space-between;

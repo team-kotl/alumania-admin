@@ -112,7 +112,12 @@ if (isset($_SESSION['username'])) {
     <script>
         function toggleFilterDropdown() {
             const dropdown = document.getElementById('filterDropdown');
-            dropdown.classList.toggle('show');
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+                console.log(`Dropdown class toggled. Current classes: ${dropdown.className}`);
+            } else {
+                console.error('Dropdown element not found.');
+            }
         }
     </script>
 
@@ -120,5 +125,7 @@ if (isset($_SESSION['username'])) {
             <h1>Access Forbidden</h1>
             <p>Please log in to your account.</p>
     <?php } ?>
+
+    <script src="../js/users.js" defer></script>
 </body>
 </html>
