@@ -45,7 +45,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Employment status query
         $empstatusCounts = [
-            'Employee' => 0,
+            'Employed' => 0,
             'Unemployed' => 0,
             'Underemployed' => 0,
         ];
@@ -312,9 +312,9 @@ if (isset($_SESSION['username'])) { ?>
     <script>
         // Data for Employment Status
         const employmentData = {
-            labels: ['Employee', 'Unemployed', 'Underemployed'],
+            labels: ['Employed', 'Unemployed', 'Underemployed'],
             datasets: [{
-                data: [<?php echo $empstatusCounts['Employee']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
+                data: [<?php echo $empstatusCounts['Employed']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
                 backgroundColor: ['#0059CD', '#41a1e7', '#99D2FF'],
                 borderWidth: 1
             }]
