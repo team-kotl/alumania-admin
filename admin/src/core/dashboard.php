@@ -132,12 +132,6 @@ if (isset($_SESSION['username'])) { ?>
 
             <div class="big-container">
                 <div class="row-container">
-                    <div class="chart-container">
-                        <!-- Employment Status Chart -->
-                        <div class="chart-card">
-                            <canvas id="employmentChart"></canvas>
-                        </div>
-                    </div>
                     <div class="recent-alumni">
                         <h2>Recent Alumni</h2>
                         <table class="alumni-table">
@@ -170,15 +164,6 @@ if (isset($_SESSION['username'])) { ?>
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                <div class="bottom-row">
-                    <div class="chart-container">
-                        <!-- User Location Chart -->
-                        <div class="chart-card">
-                            <canvas id="locationChart"></canvas>
-                        </div>
-                    </div>
                     <div class="recent-managers">
                         <h2>Recent Managers</h2>
                         <table class="managers-table">
@@ -208,6 +193,21 @@ if (isset($_SESSION['username'])) { ?>
                                 <?php } ?>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="bottom-row">
+                <div class="chart-container">
+                        <!-- Employment Status Chart -->
+                        <div class="chart-card">
+                            <canvas id="employmentChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <!-- User Location Chart -->
+                        <div class="chart-card">
+                            <canvas id="locationChart"></canvas>
+                        </div>
                     </div>
                     <div class="interested-alumni">
                         <h2>Interested Alumni</h2>
