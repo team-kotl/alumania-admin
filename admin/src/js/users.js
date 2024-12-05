@@ -189,13 +189,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function togglePassword(button) {
-  const passwordField = button.previousElementSibling;
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
-    button.textContent = "Hide";
-  } else {
-    passwordField.type = "password";
-    button.textContent = "Show";
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const togglePassword = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = password.type === "password" ? "text" : "password";
+    password.type = type;
+    togglePassword.textContent =
+      type === "password" ? "Show Password" : "Hide Password";
+  });
+});

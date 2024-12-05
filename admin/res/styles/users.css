@@ -332,3 +332,16 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: white;
 }
+
+#togglePassword {
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+#togglePassword:hover {
+  color: #0056b3;
+}
