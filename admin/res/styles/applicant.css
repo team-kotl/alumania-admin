@@ -84,7 +84,6 @@ td {
 .status-icon {
     width: 20px;
     height: 20px;
-    margin-right: 10px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -96,6 +95,7 @@ td {
 
 .status-icon.accept {
     background-image: url('../../res/checkmark.png');
+    margin-right: 25px;
 }
 
 .status-icon.reject {
