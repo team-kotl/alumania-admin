@@ -70,26 +70,33 @@ if (isset($_SESSION['username'])) { ?>
             }
         }
 
-        // // Fetch recent alumni
-        // $recentAlumniData = [];
-        // $result = $db->query("SELECT name, location, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM alumni ORDER BY joined DESC LIMIT 4");
-    
-        // if ($result) {
-        //     while ($row = $result->fetch_assoc()) {
-        //         $recentAlumniData[] = $row; // Store results in an array
-        //     }
-        // }
-    
-        // // Fetch recent managers
-        // $recentManagersData = [];
-        // $result = $db->query("SELECT name, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
-    
-        // if ($result) {
-        //     while ($row = $result->fetch_assoc()) {
-        //         $recentManagersData[] = $row; // Store results in an array
-        //     }
-        // }
-    
+        //TO BE FIXED 
+        // Fetch recent alumni
+        $recentAlumniData = [];
+        $result = $db->query("SELECT name, location, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM alumni ORDER BY joined DESC LIMIT 4");
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $recentAlumniData[] = $row; // Store results in an array
+            }
+        }
+
+        // Fetch recent managers
+        $recentManagersData = [];
+        $result = $db->query("SELECT name, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
+
+        // Fetching Interested Alumni data
+        $interestedAlumniData = [];
+        $result = $db->query("SELECT name, location, interest_count, DATE_FORMAT(event_date, '%Y-%d-%m | %h:%i %p') AS time FROM interested_alumni_table LIMIT 4");
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $interestedAlumniData[] = $row;
+            }
+        }
+
+        $interestedAlumni = $db->query("SELECT title, description, date, interest_count FROM interested_alumni ORDER BY date DESC LIMIT 4");
+        // hanggang here
         ?>
 
         <div class="content-container">
@@ -124,18 +131,13 @@ if (isset($_SESSION['username'])) { ?>
             </div>
 
             <div class="big-container">
-                <div class="chart-container">
-                    <!-- Employment Status Chart -->
-                    <div class="chart-card">
-                        <canvas id="employmentChart"></canvas>
-                    </div>
-
-                    <!-- User Location Chart -->
-                    <div class="chart-card">
-                        <canvas id="locationChart"></canvas>
-                    </div>
-                </div>
                 <div class="row-container">
+                    <div class="chart-container">
+                        <!-- Employment Status Chart -->
+                        <div class="chart-card">
+                            <canvas id="employmentChart"></canvas>
+                        </div>
+                    </div>
                     <div class="recent-alumni">
                         <h2>Recent Alumni</h2>
                         <table class="alumni-table">
@@ -168,7 +170,15 @@ if (isset($_SESSION['username'])) { ?>
                             </tbody>
                         </table>
                     </div>
+                </div>
 
+                <div class="bottom-row">
+                    <div class="chart-container">
+                        <!-- User Location Chart -->
+                        <div class="chart-card">
+                            <canvas id="locationChart"></canvas>
+                        </div>
+                    </div>
                     <div class="recent-managers">
                         <h2>Recent Managers</h2>
                         <table class="managers-table">
@@ -199,8 +209,40 @@ if (isset($_SESSION['username'])) { ?>
                             </tbody>
                         </table>
                     </div>
+                    <div class="interested-alumni">
+                        <h2>Interested Alumni</h2>
+                        <ul class="interested-alumni-list">
+                            <?php if (!empty($interestedAlumniData)) {
+                                foreach ($interestedAlumniData as $alumni) { ?>
+                                    <li class='interested-alumni-item'>
+                                        <div class='alumni-info'>
+                                            <img src='path/to/avatar.png' alt='Avatar' class='alumni-avatar'>
+                                            <div class='alumni-details'>
+                                                <span class='alumni-name'><?php echo htmlspecialchars($alumni['name']); ?></span>
+                                                <?php if (!empty($alumni['time'])) { ?>
+                                                    <span class='alumni-time'><?php echo htmlspecialchars($alumni['time']); ?></span>
+                                                <?php } ?>
+                                                <?php if (!empty($alumni['location'])) { ?>
+                                                    <span class='alumni-location'><?php echo htmlspecialchars($alumni['location']); ?></span>
+                                                <?php } ?>
+                                            </div>
+                                            <div class='interest-info'>
+                                                <i class='fas fa-star'></i>
+                                                <span class='interest-count'><?php echo htmlspecialchars($alumni['interest_count']); ?></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <?php }
+                            } else { ?>
+                                <li class="no-data">No interested alumni found.</li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
+        </div>
+        </div>
 
         </div>
 
