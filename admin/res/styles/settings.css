@@ -28,7 +28,7 @@
 }
 
 .logout, .generate {
-    margin: 0 5%;
+    margin: 0 4%;
     display: flex; 
     flex-direction: column; 
     align-items: center;
@@ -40,11 +40,11 @@
 }
 
 .logout {
-    padding: 8% 7.7%;
+    padding: 5% 7.7%;
 }
 
 .generate {
-    padding: 8% 2%;
+    padding: 5% 2%;
 }
 
 .logout:hover, .generate:hover {
