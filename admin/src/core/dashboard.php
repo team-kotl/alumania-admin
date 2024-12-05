@@ -197,7 +197,7 @@ if (isset($_SESSION['username'])) { ?>
                 </div>
 
                 <div class="bottom-row">
-                <div class="chart-container">
+                    <div class="chart-container">
                         <!-- Employment Status Chart -->
                         <div class="chart-card">
                             <canvas id="employmentChart"></canvas>
@@ -251,17 +251,21 @@ if (isset($_SESSION['username'])) { ?>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Data for Employment Status
+        // Employment Data
         const employmentData = {
-            labels: ['Employee', 'Unemployed', 'Underemployed'],
+            labels: ['Employed (<?php echo $empstatusCounts["Employee"]; ?>)', 'Unemployed (<?php echo $empstatusCounts["Unemployed"]; ?>)', 'Underemployed (<?php echo $empstatusCounts["Underemployed"]; ?>)'],
             datasets: [{
-                data: [<?php echo $empstatusCounts['Employee']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
+                data: [
+                    <?php echo $empstatusCounts['Employee']; ?>,
+                    <?php echo $empstatusCounts['Unemployed']; ?>,
+                    <?php echo $empstatusCounts['Underemployed']; ?>
+                ],
                 backgroundColor: ['#0059CD', '#41a1e7', '#99D2FF'],
                 borderWidth: 1
             }]
         };
 
-        // Employment Status Pie Chart
+        // Employment Chart
         new Chart(document.getElementById('employmentChart'), {
             type: 'doughnut',
             data: employmentData,
@@ -269,7 +273,12 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top'
+                        display: true,
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
                     },
                     title: {
                         display: true,
@@ -279,17 +288,20 @@ if (isset($_SESSION['username'])) { ?>
             }
         });
 
-        // Data for User Location
+        // Location Data
         const locationData = {
-            labels: ['Domestic', 'Foreign'],
+            labels: ['Domestic (<?php echo $locationCounts["Domestic"]; ?>)', 'Foreign (<?php echo $locationCounts["Foreign"]; ?>)'],
             datasets: [{
-                data: [<?php echo $locationCounts['Domestic']; ?>, <?php echo $locationCounts['Foreign']; ?>],
+                data: [
+                    <?php echo $locationCounts['Domestic']; ?>,
+                    <?php echo $locationCounts['Foreign']; ?>
+                ],
                 backgroundColor: ['#2196F3', '#0059CD'],
                 borderWidth: 1
             }]
         };
 
-        // Location Pie Chart
+        // Location Chart
         new Chart(document.getElementById('locationChart'), {
             type: 'doughnut',
             data: locationData,
@@ -297,7 +309,12 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top'
+                        display: true,
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
                     },
                     title: {
                         display: true,
@@ -307,6 +324,7 @@ if (isset($_SESSION['username'])) { ?>
             }
         });
     </script>
+
 
     </html>
 <?php } else { ?>
