@@ -70,26 +70,26 @@ if (isset($_SESSION['username'])) { ?>
             }
         }
 
-        // Fetch recent alumni
-        $recentAlumniData = [];
-        $result = $db->query("SELECT name, location, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM alumni ORDER BY joined DESC LIMIT 4");
-
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $recentAlumniData[] = $row; // Store results in an array
-            }
-        }
-
-        // Fetch recent managers
-        $recentManagersData = [];
-        $result = $db->query("SELECT name, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
-
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $recentManagersData[] = $row; // Store results in an array
-            }
-        }
-
+        // // Fetch recent alumni
+        // $recentAlumniData = [];
+        // $result = $db->query("SELECT name, location, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM alumni ORDER BY joined DESC LIMIT 4");
+    
+        // if ($result) {
+        //     while ($row = $result->fetch_assoc()) {
+        //         $recentAlumniData[] = $row; // Store results in an array
+        //     }
+        // }
+    
+        // // Fetch recent managers
+        // $recentManagersData = [];
+        // $result = $db->query("SELECT name, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
+    
+        // if ($result) {
+        //     while ($row = $result->fetch_assoc()) {
+        //         $recentManagersData[] = $row; // Store results in an array
+        //     }
+        // }
+    
         ?>
 
         <div class="content-container">
@@ -123,85 +123,87 @@ if (isset($_SESSION['username'])) { ?>
                 ?>
             </div>
 
-            <div class="chart-container">
-                <!-- Employment Status Chart -->
-                <div class="chart-card">
-                    <canvas id="employmentChart"></canvas>
-                </div>
+            <div class="big-container">
+                <div class="chart-container">
+                    <!-- Employment Status Chart -->
+                    <div class="chart-card">
+                        <canvas id="employmentChart"></canvas>
+                    </div>
 
-                <!-- User Location Chart -->
-                <div class="chart-card">
-                    <canvas id="locationChart"></canvas>
+                    <!-- User Location Chart -->
+                    <div class="chart-card">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+                <div class="row-container">
+                    <div class="recent-alumni">
+                        <h2>Recent Alumni</h2>
+                        <table class="alumni-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($recentAlumniData)) {
+                                    foreach ($recentAlumniData as $alumni) { ?>
+                                        <tr>
+                                            <td>
+                                                <div class='alumni-info'>
+                                                    <img src='path/to/avatar.png' alt='Avatar' class='alumni-avatar'>
+                                                    <span><?php echo htmlspecialchars($alumni['name']); ?></span>
+                                                </div>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($alumni['location']); ?></td>
+                                            <td><?php echo htmlspecialchars($alumni['joined']); ?></td>
+                                        </tr>
+                                    <?php }
+                                } else { ?>
+                                    <tr>
+                                        <td colspan="3" class="no-data">No recent alumni found.</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="recent-managers">
+                        <h2>Recent Managers</h2>
+                        <table class="managers-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($recentManagersData)) {
+                                    foreach ($recentManagersData as $manager) { ?>
+                                        <tr>
+                                            <td>
+                                                <div class='manager-info'>
+                                                    <img src='path/to/avatar.png' alt='Avatar' class='manager-avatar'>
+                                                    <span><?php echo htmlspecialchars($manager['name']); ?></span>
+                                                </div>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($manager['joined']); ?></td>
+                                        </tr>
+                                    <?php }
+                                } else { ?>
+                                    <tr>
+                                        <td colspan="2" class="no-data">No recent managers found.</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <div class="row-container">
-    <div class="recent-alumni">
-        <h2>Recent Alumni</h2>
-        <table class="alumni-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Joined</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($recentAlumniData)) {
-                    foreach ($recentAlumniData as $alumni) { ?>
-                        <tr>
-                            <td>
-                                <div class='alumni-info'>
-                                    <img src='path/to/avatar.png' alt='Avatar' class='alumni-avatar'>
-                                    <span><?php echo htmlspecialchars($alumni['name']); ?></span>
-                                </div>
-                            </td>
-                            <td><?php echo htmlspecialchars($alumni['location']); ?></td>
-                            <td><?php echo htmlspecialchars($alumni['joined']); ?></td>
-                        </tr>
-                    <?php }
-                } else { ?>
-                    <tr>
-                        <td colspan="3" class="no-data">No recent alumni found.</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="recent-managers">
-        <h2>Recent Managers</h2>
-        <table class="managers-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Joined</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($recentManagersData)) {
-                    foreach ($recentManagersData as $manager) { ?>
-                        <tr>
-                            <td>
-                                <div class='manager-info'>
-                                    <img src='path/to/avatar.png' alt='Avatar' class='manager-avatar'>
-                                    <span><?php echo htmlspecialchars($manager['name']); ?></span>
-                                </div>
-                            </td>
-                            <td><?php echo htmlspecialchars($manager['joined']); ?></td>
-                        </tr>
-                    <?php }
-                } else { ?>
-                    <tr>
-                        <td colspan="2" class="no-data">No recent managers found.</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
         </div>
 
-        </div>
 
     </body>
 

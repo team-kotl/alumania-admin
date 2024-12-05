@@ -29,7 +29,7 @@ if(isset($_SESSION['username'])) { ?>
             $applicant_result = mysqli_query($db, $applicant_query);
 
             if(mysqli_num_rows($applicant_result) <= 0) {
-                echo "<h1>No data found.</h1>";
+                // echo "<h1>No data found.</h1>";
             } else { 
                 while ($rowapplicant = mysqli_fetch_assoc($applicant_result)) {
                     $applicants[] = [
@@ -70,9 +70,9 @@ if(isset($_SESSION['username'])) { ?>
                     <th>Accept/Reject</th>
                 </tr>
             </thead>
-            <tbody id="applicantTable">
-            </tbody>
+            <tbody id="applicantTable"></tbody>
         </table>
+        <div id="errorContainer" style="display:flex; justify-content: center;"></div>
         <div id="photoPopup" class="popup-container" style="display: none;">
             <div class="popup-content">
                 <span class="close-popup" onclick="closePopup()">&times;</span>
@@ -87,6 +87,14 @@ if(isset($_SESSION['username'])) { ?>
             function displayApplicants(applicants) {
                 const tableBody = document.getElementById("applicantTable");
                 tableBody.innerHTML = ''; // Clear existing content
+
+                if(applicants.length === 0) {
+                    const parent = document.getElementById("errorContainer");
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<h1 style="text-align:center; color:rgb(0,0,0,.2); margin-top:12px; font-weight: 100;">No New Applicants</h1>`;
+                    parent.append(row);
+                    return;
+                }
 
                 for (let i = 0; i < applicants.length; i++) {
                     const applicant = applicants[i];
