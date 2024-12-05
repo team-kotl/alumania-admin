@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="#" onclick="wipAlert()" id="userstab">
+            <a href="users.php" id="userstab">
                 <img src="../../res/users.png" alt="Users" id="usersicon">
                 <span>Users</span>
             </a>

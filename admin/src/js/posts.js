@@ -1,35 +1,35 @@
-const allTabs = document.getElementById('ul-posts').children;
+const allTabs = document.getElementById("ul-posts").children;
 let sortOrder = 1;
 
 function setActiveTab(index) {
-    const tab = allTabs.item(index);
-    document.getElementById('searchContainer').innerHTML = ``;
-    sortOrder = 1;
-    for (let i = 0; i < 3; i++) {
-        const item = allTabs.item(i);
-        item.classList.remove('selected-tab');
-        item.children.item(1).style.color = 'rgba(0, 0, 0, 0.4)';
-        switch (i) {
-            case 0:
-                item.children.item(0).src = '../../res/experience-posts.png';
-                break;
-            case 1:
-                item.children.item(0).src = '../../res/calendar-posts.png';
-                break;
-            case 2:
-                item.children.item(0).src = '../../res/jlisting-posts.png';
-                break;
-        }
+  const tab = allTabs.item(index);
+  document.getElementById("searchContainer").innerHTML = ``;
+  sortOrder = 1;
+  for (let i = 0; i < 3; i++) {
+    const item = allTabs.item(i);
+    item.classList.remove("selected-tab");
+    item.children.item(1).style.color = "rgba(0, 0, 0, 0.4)";
+    switch (i) {
+      case 0:
+        item.children.item(0).src = "../../res/experience-posts.png";
+        break;
+      case 1:
+        item.children.item(0).src = "../../res/calendar-posts.png";
+        break;
+      case 2:
+        item.children.item(0).src = "../../res/jlisting-posts.png";
+        break;
     }
+  }
 
-    tab.classList.add('selected-tab');
-    tab.children.item(1).style.color = 'white';
-    switch (index) {
-        case 0:
-            tab.children.item(0).src = '../../res/experience-posts-white.png';
-            break;
-        case 1:
-            document.getElementById('searchContainer').innerHTML = `
+  tab.classList.add("selected-tab");
+  tab.children.item(1).style.color = "white";
+  switch (index) {
+    case 0:
+      tab.children.item(0).src = "../../res/experience-posts-white.png";
+      break;
+    case 1:
+      document.getElementById("searchContainer").innerHTML = `
                 <div class="event-search-bar">
                 <input type="text" class="event-search-input" placeholder="Search" id="event-search-text">
                 <button class="event-search-button" onclick="
@@ -84,10 +84,10 @@ function setActiveTab(index) {
                     </div>
                 </div>
             `;
-            tab.children.item(0).src = '../../res/calendar-posts-white.png';
-            break;
-        case 2:
-            document.getElementById('searchContainer').innerHTML = `
+      tab.children.item(0).src = "../../res/calendar-posts-white.png";
+      break;
+    case 2:
+      document.getElementById("searchContainer").innerHTML = `
                 <div class="job-search-bar">
                 <input type="text" class="job-search-input" placeholder="Search" id="job-search-text">
                 <button class="job-search-button" onclick="
@@ -117,55 +117,75 @@ function setActiveTab(index) {
                     </div>
                 </div>
             `;
-            tab.children.item(0).src = '../../res/jlisting-posts-white.png';
-            break;
-    }
+      tab.children.item(0).src = "../../res/jlisting-posts-white.png";
+      break;
+  }
 }
 
 function filterEvent(events, category) {
-    function checkCategory(event) {
-        return event.category.toLowerCase() == category.toLowerCase();
-    }
-    return events.filter(checkCategory);
+  function checkCategory(event) {
+    return event.category.toLowerCase() == category.toLowerCase();
+  }
+  return events.filter(checkCategory);
 }
 
 function searchEvent(events) {
-    query = document.getElementById('event-search-text').value;
-    function searchEvent(event) {
-        return `${event.title} ${event.description} ${event.eventloc}`.toLowerCase().includes(query.toLowerCase());
-    }
+  query = document.getElementById("event-search-text").value;
+  function searchEvent(event) {
+    return `${event.title} ${event.description} ${event.eventloc}`
+      .toLowerCase()
+      .includes(query.toLowerCase());
+  }
 
-    return events.filter(searchEvent);
+  return events.filter(searchEvent);
 }
 
 function searchJobs(jobs) {
-    query = document.getElementById('job-search-text').value;
-    function searchJob(job) {
-        return `${job.title}${job.description}${job.location}${job.companyname}`.toLowerCase().includes(query.toLowerCase());
-    }
-    return jobs.filter(searchJob);
+  query = document.getElementById("job-search-text").value;
+  function searchJob(job) {
+    return `${job.title}${job.description}${job.location}${job.companyname}`
+      .toLowerCase()
+      .includes(query.toLowerCase());
+  }
+  return jobs.filter(searchJob);
 }
 
 function sortEventsAsc(events) {
-    events.sort((a, b) => new Date(`${a.eventdate}T${a.eventtime}`) - new Date(`${b.eventdate}T${b.eventtime}`));
+  events.sort(
+    (a, b) =>
+      new Date(`${a.eventdate}T${a.eventtime}`) -
+      new Date(`${b.eventdate}T${b.eventtime}`)
+  );
 }
 
 function sortEventsDesc(events) {
-    events.sort((a, b) => new Date(`${b.eventdate}T${b.eventtime}`) - new Date(`${a.eventdate}T${a.eventtime}`));
+  events.sort(
+    (a, b) =>
+      new Date(`${b.eventdate}T${b.eventtime}`) -
+      new Date(`${a.eventdate}T${a.eventtime}`)
+  );
 }
 
 function sortJobsAsc(jobs) {
-    jobs.sort((a, b) => new Date(a.publishtimestamp.replace(' ', 'T')) - new Date(b.publishtimestamp.replace(' ', 'T')));
+  jobs.sort(
+    (a, b) =>
+      new Date(a.publishtimestamp.replace(" ", "T")) -
+      new Date(b.publishtimestamp.replace(" ", "T"))
+  );
 }
 
 function sortJobsDesc(jobs) {
-    jobs.sort((a, b) => new Date(b.publishtimestamp.replace(' ', 'T')) - new Date(a.publishtimestamp.replace(' ', 'T')));
+  jobs.sort(
+    (a, b) =>
+      new Date(b.publishtimestamp.replace(" ", "T")) -
+      new Date(a.publishtimestamp.replace(" ", "T"))
+  );
 }
 
 function eventCategory() {
-    document.getElementById("categoryDropdown").classList.toggle("show");
+  document.getElementById("categoryDropdown").classList.toggle("show");
 }
 
 function sortCategory() {
-    document.getElementById("sortDropdown").classList.toggle("show");
+  document.getElementById("sortDropdown").classList.toggle("show");
 }
