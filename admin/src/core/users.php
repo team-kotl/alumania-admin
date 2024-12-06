@@ -83,23 +83,22 @@ if (isset($_SESSION['username'])) {
                         </div>
                     </div>
             </div>
-
-            <div id="addManagerModal" class="modal">
+            <div id="addManagerModal" class="modal hidden">
                 <div class="modal-content">
                     <span class="close-btn">&times;</span>
                     <h2>Add New Manager</h2>
                     <form id="addManagerForm">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
 
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-                        <button type="button" id="togglePassword">Show Password</button>
-
-                        <button type="submit">Add Manager</button>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button id="togglePassword" type="button">Show Password</button> 
+                    <button type="submit" class="submit-button">Add Manager</button>
                     </form>
                 </div>
             </div>
+
 
 
             <div class="user-panel" id="userPanel">
