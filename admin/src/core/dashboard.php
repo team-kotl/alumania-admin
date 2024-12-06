@@ -74,7 +74,6 @@ if (isset($_SESSION['username'])) { ?>
         // Fetch recent alumni
         $recentAlumniData = [];
         $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
-        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -84,7 +83,6 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent managers
         $recentManagersData = [];
-        $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
         $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
 
         if ($result) {
