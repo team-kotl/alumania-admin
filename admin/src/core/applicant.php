@@ -179,7 +179,6 @@ if(isset($_SESSION['username'])) { ?>
                 }
             }, 10000);
     </script>
-
 </body>
 
 </html>
