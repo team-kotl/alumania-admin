@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 try {
     function getNextUserID($db) {
-        $query = "SELECT userid FROM alumni ORDER BY CAST(SUBSTRING(userid, 2) AS UNSIGNED) DESC LIMIT 1";
+        $query = "SELECT userid FROM user ORDER BY CAST(SUBSTRING(userid, 2) AS UNSIGNED) DESC LIMIT 1";
         $result = $db->query($query);
         if ($result && $row = $result->fetch_assoc()) {
             $lastUserID = $row['userid'];
@@ -58,8 +58,6 @@ try {
                 $company = $applicant['company'];
                 $diploma = $applicant['diploma'];
 
-                echo "<script>console.log('Diploma size (bytes): " . strlen($diploma) . "');</script>";
-
                 // Generate the next user ID
                 $nextUserid = getNextUserID($db);
 
@@ -72,23 +70,25 @@ try {
 
                 // Insert into the alumni table
                 $alumniquery = "INSERT INTO alumni (userid, email, firstname, middlename, 
-                          lastname, course, empstatus, location, company, displaypic, diploma, banned)
+                          lastname, course, empstatus, location, company, displaypic, diploma, private)
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, 0)";
                 $alumnistmt = $db->prepare($alumniquery);
                 $alumnistmt->bind_param(
-                    "sssssssssb", $nextUserid, $email, $firstname, $middlename, $lastname, $course,
+                    "ssssssssss", $nextUserid, $email, $firstname, $middlename, $lastname, $course,
                     $empstatus, $location, $company, $diploma
                 );
 
                 // Send the binary data for `diploma`
-                $alumnistmt->send_long_data(9, $diploma);
+                if ($diploma !== null) {
+                    $alumnistmt->send_long_data(9, $diploma); // 9 is the zero-based index of the diploma parameter
+                }
 
                 if ($alumnistmt->execute()) {
                     // Remove the applicant from the applicant table
-                    // $deleteQuery = "DELETE FROM applicant WHERE applicantid = ?";
-                    // $deleteStmt = $db->prepare($deleteQuery);
-                    // $deleteStmt->bind_param('s', $applicantid);
-                    // $deleteStmt->execute();
+                    $deleteQuery = "DELETE FROM applicant WHERE applicantid = ?";
+                    $deleteStmt = $db->prepare($deleteQuery);
+                    $deleteStmt->bind_param('s', $applicantid);
+                    $deleteStmt->execute();
 
                     echo json_encode(['status' => 'success', 'message' => 'The applicant was approved']);
                 } else {

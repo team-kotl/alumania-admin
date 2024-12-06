@@ -127,8 +127,8 @@ if(isset($_SESSION['username'])) { ?>
                     .then(data => {
                         if (data.status === 'success') {
                             // Remove the row from the table on success
-                            // const row = document.querySelector(`tr[data-applicantid="${applicantid}"]`);
-                            // row.remove();
+                            const row = document.querySelector(`tr[data-applicantid="${applicantid}"]`);
+                            row.remove();
                             alert(data.message);
                         } else {
                             alert('Failed to perform action: ' + data.message);
