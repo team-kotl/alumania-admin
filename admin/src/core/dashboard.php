@@ -45,7 +45,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Employment status query
         $empstatusCounts = [
-            'Employee' => 0,
+            'Employed' => 0,
             'Unemployed' => 0,
             'Underemployed' => 0,
         ];
@@ -74,6 +74,7 @@ if (isset($_SESSION['username'])) { ?>
         // Fetch recent alumni
         $recentAlumniData = [];
         $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
+        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -83,6 +84,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent managers
         $recentManagersData = [];
+        $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
         $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
 
         if ($result) {
@@ -220,10 +222,16 @@ if (isset($_SESSION['username'])) { ?>
                                             <td>
                                                 <div class='alumni-info'>
                                                     <img src='' alt='Avatar' class='alumni-avatar'>
+                                                    <img src='' alt='Avatar' class='alumni-avatar'>
                                                     <span><?php echo htmlspecialchars($alumni['name']); ?></span>
                                                 </div>
                                             </td>
                                             <td><?php echo htmlspecialchars($alumni['location']); ?></td>
+                                            <td>
+                                                <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($alumni['joined']); ?>">
+                                                    <!-- Placeholder for formatted date -->
+                                                </span>
+                                            </td>
                                             <td>
                                                 <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($alumni['joined']); ?>">
                                                     <!-- Placeholder for formatted date -->
@@ -313,19 +321,17 @@ if (isset($_SESSION['username'])) { ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Data for Employment Status
+        // Data for Employment Status
         const employmentData = {
-            labels: ['Employed (<?php echo $empstatusCounts["Employee"]; ?>)', 'Unemployed (<?php echo $empstatusCounts["Unemployed"]; ?>)', 'Underemployed (<?php echo $empstatusCounts["Underemployed"]; ?>)'],
+            labels: ['Employed', 'Unemployed', 'Underemployed'],
             datasets: [{
-                data: [
-                    <?php echo $empstatusCounts['Employee']; ?>,
-                    <?php echo $empstatusCounts['Unemployed']; ?>,
-                    <?php echo $empstatusCounts['Underemployed']; ?>
-                ],
+                data: [<?php echo $empstatusCounts['Employed']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
                 backgroundColor: ['#0059CD', '#41a1e7', '#99D2FF'],
                 borderWidth: 1
             }]
         };
 
+        // Employment Status Pie Chart
         // Employment Status Pie Chart
         new Chart(document.getElementById('employmentChart'), {
             type: 'doughnut',
@@ -334,12 +340,7 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14
-                            }
-                        }
+                        position: 'top'
                     },
                     title: {
                         display: true,
@@ -350,18 +351,17 @@ if (isset($_SESSION['username'])) { ?>
         });
 
         // Data for User Location
+        // Data for User Location
         const locationData = {
-            labels: ['Domestic (<?php echo $locationCounts["Domestic"]; ?>)', 'Foreign (<?php echo $locationCounts["Foreign"]; ?>)'],
+            labels: ['Domestic', 'Foreign'],
             datasets: [{
-                data: [
-                    <?php echo $locationCounts['Domestic']; ?>,
-                    <?php echo $locationCounts['Foreign']; ?>
-                ],
+                data: [<?php echo $locationCounts['Domestic']; ?>, <?php echo $locationCounts['Foreign']; ?>],
                 backgroundColor: ['#2196F3', '#0059CD'],
                 borderWidth: 1
             }]
         };
 
+        // Location Pie Chart
         // Location Pie Chart
         new Chart(document.getElementById('locationChart'), {
             type: 'doughnut',
@@ -370,12 +370,7 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14
-                            }
-                        }
+                        position: 'top'
                     },
                     title: {
                         display: true,
@@ -384,6 +379,32 @@ if (isset($_SESSION['username'])) { ?>
                 }
             }
         });
+
+    
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            
+            const options = {
+                year: 'numeric',
+                month: 'long', // Full month name (e.g., December)
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true, // 12-hour clock
+            };
+
+            return date.toLocaleString('en-US', options); 
+        }
+
+        // Find all elements with the "data-timestamp" attribute
+        document.querySelectorAll('.timestamp').forEach(element => {
+            const rawTimestamp = element.getAttribute('data-timestamp'); // Get raw timestamp
+            if (rawTimestamp) {
+                const formattedTimestamp = formatTimestamp(rawTimestamp); // Format it
+                element.textContent = formattedTimestamp; // Update the content
+            }
+        });
+
 
 
         function formatTimestamp(timestamp) {

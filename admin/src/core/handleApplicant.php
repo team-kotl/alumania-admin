@@ -35,7 +35,7 @@ try {
         if ($action === 'accept') {
             // Query to fetch applicant details
             $fetchQuery = "SELECT username, password, email, firstname, 
-                           middlename, lastname, course, empstatus, location, company 
+                           middlename, lastname, course, empstatus, location, company, diploma  
                            FROM applicant WHERE applicantid = ?";
             $fetchStmt = $db->prepare($fetchQuery);
             $fetchStmt->bind_param('s', $applicantid);
@@ -56,6 +56,9 @@ try {
                 $empstatus = $applicant['empstatus'];
                 $location = $applicant['location'];
                 $company = $applicant['company'];
+                $diploma = $applicant['diploma'];
+
+                echo "<script>console.log('Diploma size (bytes): " . strlen($diploma) . "');</script>";
 
                 // Generate the next user ID
                 $nextUserid = getNextUserID($db);
@@ -69,20 +72,23 @@ try {
 
                 // Insert into the alumni table
                 $alumniquery = "INSERT INTO alumni (userid, email, firstname, middlename, 
-                          lastname, course, empstatus, location, company, displaypic, banned)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, 0)";
+                          lastname, course, empstatus, location, company, displaypic, diploma, banned)
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, 0)";
                 $alumnistmt = $db->prepare($alumniquery);
                 $alumnistmt->bind_param(
-                    "sssssssss", $nextUserid, $email, $firstname, $middlename, $lastname, $course,
-                    $empstatus, $location, $company
+                    "sssssssssb", $nextUserid, $email, $firstname, $middlename, $lastname, $course,
+                    $empstatus, $location, $company, $diploma
                 );
+
+                // Send the binary data for `diploma`
+                $alumnistmt->send_long_data(9, $diploma);
 
                 if ($alumnistmt->execute()) {
                     // Remove the applicant from the applicant table
-                    $deleteQuery = "DELETE FROM applicant WHERE applicantid = ?";
-                    $deleteStmt = $db->prepare($deleteQuery);
-                    $deleteStmt->bind_param('s', $applicantid);
-                    $deleteStmt->execute();
+                    // $deleteQuery = "DELETE FROM applicant WHERE applicantid = ?";
+                    // $deleteStmt = $db->prepare($deleteQuery);
+                    // $deleteStmt->bind_param('s', $applicantid);
+                    // $deleteStmt->execute();
 
                     echo json_encode(['status' => 'success', 'message' => 'The applicant was approved']);
                 } else {

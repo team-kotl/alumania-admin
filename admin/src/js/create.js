@@ -188,7 +188,6 @@ function validateForm() {
     }
   }
 
-  // Validate Schedule Input
   if (scheduleInput.value) {
     const selectedDate = new Date(scheduleInput.value);
     const currentDate = new Date();

@@ -91,6 +91,7 @@ if(isset($_SESSION['username'])) { ?>
                     </form>
                 </div>
 
+                
                 <div class="input" id="inputSectionJob" style="display: none;">
                     <form id="jobpostForm" method="POST" action="submit_jobpost.php">
                         <label for="jobTitle" class="text">Job Title</label>

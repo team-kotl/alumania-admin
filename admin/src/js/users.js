@@ -141,19 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("addManagerModal");
   const closeBtn = document.querySelector(".close-btn");
 
-  // Debugging logs to check if elements are found
-  console.log("Add Manager Button:", addManagerButton);
-  console.log("Modal:", modal);
-  console.log("Close Button:", closeBtn);
-
-  // Ensure elements exist before trying to access them
+  // Show the modal when the Add Manager button is clicked
   if (addManagerButton && modal && closeBtn) {
-    // Show the modal when the Add Manager button is clicked
     addManagerButton.addEventListener("click", () => {
       modal.style.display = "block"; // Show modal
     });
 
-    // Close the modal when the user clicks on the close button
+    // Close the modal when the user clicks the close button
     closeBtn.addEventListener("click", () => {
       modal.style.display = "none"; // Hide modal
     });
@@ -165,35 +159,43 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Handle form submission (you can use this to send data to the server)
+    // Handle form submission
     const form = document.getElementById("addManagerForm");
-    if (form) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent form from submitting normally
-        const formData = new FormData(form);
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent default form submission
+      const formData = new FormData(form);
 
-        // Send data to the server via AJAX (example)
-        fetch("add_manager.php", {
-          method: "POST",
-          body: formData,
+      fetch("add_manager.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Manager added successfully!");
+            modal.style.display = "none"; // Hide modal on success
+            form.reset(); // Reset the form
+          } else {
+            alert(data.message || "Failed to add manager.");
+          }
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data); // Log the response from the server
-            if (data.success) {
-              alert("Manager added successfully!");
-              modal.style.display = "none"; // Hide modal after success
-            } else {
-              alert("Failed to add manager.");
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("Error adding manager.");
-          });
-      });
-    }
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while adding the manager.");
+        });
+    });
   } else {
     console.error("Required modal elements not found.");
   }
 });
+
+function togglePassword(button) {
+  const passwordField = button.previousElementSibling;
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    button.textContent = "Hide";
+  } else {
+    passwordField.type = "password";
+    button.textContent = "Show";
+  }
+}

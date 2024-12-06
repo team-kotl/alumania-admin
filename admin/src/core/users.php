@@ -11,17 +11,11 @@ if (isset($_SESSION['username'])) {
     $resultAlumni = $conn->query($sqlAlumni);
 
     $sqlManagers = "
-        SELECT 
-            a.userid,
-            a.email,
-            a.firstname,
-            a.middlename,
-            a.lastname,
-            a.empstatus AS employment_status,
-            a.location
-        FROM alumni a
-        INNER JOIN user u ON a.userid = u.userid
-        WHERE u.userType = 'Manager';
+    SELECT 
+        username,
+        password
+    FROM user
+    WHERE userType = 'Manager';
     ";
     $resultManagers = $conn->query($sqlManagers);
 ?>
@@ -95,26 +89,13 @@ if (isset($_SESSION['username'])) {
                     <span class="close-btn">&times;</span>
                     <h2>Add New Manager</h2>
                     <form id="addManagerForm">
-                        <label for="managerName">Name:</label>
-                        <input type="text" id="managerName" name="managerName" required>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
 
-                        <label for="managerEmail">Email:</label>
-                        <input type="email" id="managerEmail" name="managerEmail" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
 
-                        <label for="managerLocation">Location:</label>
-                        <select id="managerLocation" name="managerLocation" required>
-                            <option value="Domestic">Domestic</option>
-                            <option value="Foreign">Foreign</option>
-                        </select>
-
-                        <label for="managerStatus">Employment Status:</label>
-                        <select id="managerStatus" name="managerStatus" required>
-                            <option value="Employed">Employed</option>
-                            <option value="Unemployed">Unemployed</option>
-                            <option value="Underemployed">Underemployed</option>
-                        </select>
-
-                        <button type="submit">Submit</button>
+                        <button type="submit">Add Manager</button>
                     </form>
                 </div>
             </div>
@@ -164,11 +145,9 @@ if (isset($_SESSION['username'])) {
                     <table>
                         <thead>
                             <tr>
-                                <th>User ID</th>
-                                <th>Email</th>
-                                <th>Name</th>
-                                <th>Employment Status</th>
-                                <th>Location</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,16 +155,24 @@ if (isset($_SESSION['username'])) {
                             if ($resultManagers && $resultManagers->num_rows > 0) {
                                 while ($row = $resultManagers->fetch_assoc()) { ?>
                                     <tr>
-                                        <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
-                                        <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
-                                        <td data-label="Name"><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
-                                        <td data-label="Employment Status"><?php echo htmlspecialchars($row['employment_status']); ?></td>
-                                        <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
+                                        <td data-label="Username"><?php echo htmlspecialchars($row['username']); ?></td>
+                                        <td data-label="Password">
+                                            <input 
+                                                type="password" 
+                                                value="<?php echo htmlspecialchars($row['password']); ?>" 
+                                                class="password-field" 
+                                                readonly
+                                            />
+                                            <button class="toggle-password" onclick="togglePassword(this)">Show</button>
+                                        </td>
+                                        <td data-label="Actions">
+                                            <!-- Add any action buttons if needed -->
+                                        </td>
                                     </tr>
                                 <?php }
                             } else { ?>
                                 <tr>
-                                    <td colspan="5">No managers found</td>
+                                    <td colspan="3">No managers found</td>
                                 </tr>
                             <?php } ?>
                         </tbody>
