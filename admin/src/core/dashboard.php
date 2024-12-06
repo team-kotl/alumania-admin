@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent alumni
         $recentAlumniData = [];
-        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
+        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 2");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent managers
         $recentManagersData = [];
-        $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
+        $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 2");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -126,14 +126,6 @@ if (isset($_SESSION['username'])) { ?>
                                 LIMIT 4;"
         );
         $topEntries = $result->fetch_all(MYSQLI_ASSOC);
-        // if ($result) {
-        //     while ($row = $result->fetch_assoc()) {
-        //         $interestedAlumniData[] = $row;
-        //     }
-        // }
-
-
-        // hanggang here
         ?>
 
         <div class="content-container">
@@ -146,7 +138,7 @@ if (isset($_SESSION['username'])) { ?>
                 $cards = [
                     'alumni' => ['Alumni', $counts['alumni'], 'fa-graduation-cap', '#0b1975'],
                     'managers' => ['Managers', $counts['managers'], 'fa-user', '#0077c8'],
-                    'event' => ['Events', $counts['event'], 'fa-calendar', '#00d4ff'],
+                    'event' => ['Events', $counts['event'], 'fa-calendar', '#0498b6'],
                     'jobpost' => ['Job Posting', $counts['jobpost'], 'fa-briefcase', '#00d4ff'],
                 ];
 
@@ -169,7 +161,68 @@ if (isset($_SESSION['username'])) { ?>
 
             <div class="big-container">
                 <div class="row-container">
-                <div class="recent-managers">
+                    <div class="chart-container">
+                        <!-- Employment Status Chart -->
+                        <div class="chart-card">
+                            <canvas id="employmentChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <!-- User Location Chart -->
+                        <div class="chart-card">
+                            <canvas id="locationChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="interested-alumni">
+                        <h2>Interested Alumni</h2>
+                        <?php if (!empty($topEntries)) {
+                            foreach ($topEntries as $entry) { ?>
+                                <div class="alumni-card">
+                                    <div class="alumni-card-header">
+                                        <?php if ($entry['type'] === 'Event') { ?>
+                                            <img src="" alt="Event Image" class="alumni-card-header-img">
+                                        <?php } else { ?>
+                                            <img src="" alt="Job Icon" class="alumni-card-header-img">
+                                        <?php } ?>
+                                        <div class="alumni-card-info">
+                                            <h3><?php echo htmlspecialchars($entry['title']); ?></h3>
+                                            <?php if ($entry['type'] === 'Event') { ?>
+                                                <p>
+                                                    <span class="event-date">
+                                                        <img src="../../res/Calendar.png" alt="calendar img">
+                                                        <?php echo htmlspecialchars($entry['date']); ?> |
+                                                        <?php echo htmlspecialchars($entry['time']); ?>
+                                                    </span>
+                                                </p>
+                                            <?php } else { ?>
+                                                <p>
+                                                    <span class="job-location">
+                                                        <img src="../../res/mingcute_location-fill.png" alt="location img">
+                                                        <?php echo htmlspecialchars($entry['location']); ?>
+                                                    </span>
+                                                </p>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                    <div class="alumni-card-footer">
+                                        <span class="interested-count">
+                                            <img src="../../res/material-symbols_star.png" alt="star img">
+                                            <span><?php echo htmlspecialchars($entry['interested_count']); ?></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            <?php }
+                        } else { ?>
+                            <h2 class="no-data">No interested alumni found.</h2>
+                        <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="bottom-row">
+                    <div class="recent-managers">
                         <h2>Recent Managers</h2>
                         <table class="managers-table">
                             <thead>
@@ -220,16 +273,10 @@ if (isset($_SESSION['username'])) { ?>
                                             <td>
                                                 <div class='alumni-info'>
                                                     <img src='' alt='Avatar' class='alumni-avatar'>
-                                                    <img src='' alt='Avatar' class='alumni-avatar'>
                                                     <span><?php echo htmlspecialchars($alumni['name']); ?></span>
                                                 </div>
                                             </td>
                                             <td><?php echo htmlspecialchars($alumni['location']); ?></td>
-                                            <td>
-                                                <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($alumni['joined']); ?>">
-                                                    <!-- Placeholder for formatted date -->
-                                                </span>
-                                            </td>
                                             <td>
                                                 <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($alumni['joined']); ?>">
                                                     <!-- Placeholder for formatted date -->
@@ -246,68 +293,9 @@ if (isset($_SESSION['username'])) { ?>
                         </table>
                     </div>
                 </div>
-
-                <div class="bottom-row">
-                <div class="chart-container">
-                        <!-- Employment Status Chart -->
-                        <div class="chart-card">
-                            <canvas id="employmentChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <!-- User Location Chart -->
-                        <div class="chart-card">
-                            <canvas id="locationChart"></canvas>
-                        </div>
-                    </div>
-            
-                    <div class="interested-alumni">
-                        <h2>Interested Alumni</h2>
-                        <?php if (!empty($topEntries)) {
-                            foreach ($topEntries as $entry) { ?>
-                                <div class="alumni-card">
-                                    <div class="alumni-card-header">
-                                        <?php if ($entry['type'] === 'Event') { ?>
-                                            <img src="" alt="Event Image" class="alumni-card-header-img">
-                                        <?php } else { ?>
-                                            <img src="" alt="Job Icon" class="alumni-card-header-img">
-                                        <?php } ?>
-                                        <div class="alumni-card-info">
-                                            <h3><?php echo htmlspecialchars($entry['title']); ?></h3>
-                                            <?php if ($entry['type'] === 'Event') { ?>
-                                                <p>
-                                                    <span class="event-date">
-                                                        <img src="../../res/Calendar.png" alt="calendar img">
-                                                        <?php echo htmlspecialchars($entry['date']); ?> |
-                                                        <?php echo htmlspecialchars($entry['time']); ?>
-                                                    </span>
-                                                </p>
-                                            <?php } else { ?>
-                                                <p>
-                                                    <span class="job-location">
-                                                        <img src="../../res/mingcute_location-fill.png" alt="location img">
-                                                        <?php echo htmlspecialchars($entry['location']); ?>
-                                                    </span>
-                                                </p>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                    <div class="alumni-card-footer">
-                                        <span class="interested-count">
-                                            <img src="../../res/material-symbols_star.png" alt="star img">
-                                            <span><?php echo htmlspecialchars($entry['interested_count']); ?></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            <?php }
-                        } else { ?>
-                            <h2 class="no-data">No interested alumni found.</h2>
-                        <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
+
+        </div>
         </div>
         </div>
 
@@ -319,17 +307,19 @@ if (isset($_SESSION['username'])) { ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Data for Employment Status
-        // Data for Employment Status
         const employmentData = {
             labels: ['Employed', 'Unemployed', 'Underemployed'],
             datasets: [{
-                data: [<?php echo $empstatusCounts['Employed']; ?>, <?php echo $empstatusCounts['Unemployed']; ?>, <?php echo $empstatusCounts['Underemployed']; ?>],
+                data: [
+                    <?php echo $empstatusCounts['Employed']; ?>,
+                    <?php echo $empstatusCounts['Unemployed']; ?>,
+                    <?php echo $empstatusCounts['Underemployed']; ?>
+                ],
                 backgroundColor: ['#0059CD', '#41a1e7', '#99D2FF'],
                 borderWidth: 1
             }]
         };
 
-        // Employment Status Pie Chart
         // Employment Status Pie Chart
         new Chart(document.getElementById('employmentChart'), {
             type: 'doughnut',
@@ -338,28 +328,63 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'top',
+                        labels: {
+                            generateLabels: function(chart) {
+                                const dataset = chart.data.datasets[0];
+                                return chart.data.labels.map((label, index) => {
+                                    const meta = chart.getDatasetMeta(0).data[index];
+                                    return {
+                                        text: `${label} (${dataset.data[index]})`,
+                                        fillStyle: dataset.backgroundColor[index],
+                                        hidden: meta.hidden, // Check if hidden
+                                        textDecoration: meta.hidden ? 'line-through' : 'none', // Apply strikethrough if hidden
+                                        index: index,
+                                    };
+                                });
+                            },
+                            usePointStyle: true, // Optional: For circle icons
+                            font: {
+                                size: 12,
+                            },
+                            color: '#333',
+                            padding: 10, // Adjust padding between legend items
+                        },
+                        onClick: function(e, legendItem, legend) {
+                            // Toggle visibility of dataset slice on click
+                            const index = legendItem.index;
+                            const chart = legend.chart;
+                            chart.toggleDataVisibility(index);
+                            chart.update();
+                        },
                     },
                     title: {
                         display: true,
-                        text: 'Employment Status'
-                    }
-                }
-            }
+                        text: 'Employment Status',
+                        font: {
+                            size: 18,
+                            weight: 'bold',
+                        },
+                        color: '#333333',
+                    },
+                },
+            },
         });
 
-        // Data for User Location
+
         // Data for User Location
         const locationData = {
             labels: ['Domestic', 'Foreign'],
             datasets: [{
-                data: [<?php echo $locationCounts['Domestic']; ?>, <?php echo $locationCounts['Foreign']; ?>],
+                data: [
+                    <?php echo $locationCounts['Domestic']; ?>,
+                    <?php echo $locationCounts['Foreign']; ?>
+                ],
                 backgroundColor: ['#2196F3', '#0059CD'],
                 borderWidth: 1
             }]
         };
 
-        // Location Pie Chart
         // Location Pie Chart
         new Chart(document.getElementById('locationChart'), {
             type: 'doughnut',
@@ -368,40 +393,49 @@ if (isset($_SESSION['username'])) { ?>
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'top',
+                        labels: {
+                            generateLabels: function(chart) {
+                                const dataset = chart.data.datasets[0];
+                                return chart.data.labels.map((label, index) => {
+                                    const meta = chart.getDatasetMeta(0).data[index];
+                                    return {
+                                        text: `${label} (${dataset.data[index]})`,
+                                        fillStyle: dataset.backgroundColor[index],
+                                        hidden: meta.hidden,
+                                        textDecoration: meta.hidden ? 'line-through' : 'none',
+                                        index: index,
+                                    };
+                                });
+                            },
+                            usePointStyle: true,
+                            font: {
+                                size: 12,
+                            },
+                            color: '#333',
+                            padding: 10,
+                        },
+                        onClick: function(e, legendItem, legend) {
+                            // Toggle visibility of dataset slice on click
+                            const index = legendItem.index;
+                            const chart = legend.chart;
+                            chart.toggleDataVisibility(index);
+                            chart.update();
+                        },
                     },
                     title: {
                         display: true,
-                        text: 'User Location'
-                    }
-                }
-            }
+                        text: 'User Location',
+                        font: {
+                            size: 18,
+                            weight: 'bold',
+                        },
+                        color: '#333333',
+                    },
+                },
+            },
         });
 
-    
-        function formatTimestamp(timestamp) {
-            const date = new Date(timestamp);
-            
-            const options = {
-                year: 'numeric',
-                month: 'long', // Full month name (e.g., December)
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true, // 12-hour clock
-            };
-
-            return date.toLocaleString('en-US', options); 
-        }
-
-        // Find all elements with the "data-timestamp" attribute
-        document.querySelectorAll('.timestamp').forEach(element => {
-            const rawTimestamp = element.getAttribute('data-timestamp'); // Get raw timestamp
-            if (rawTimestamp) {
-                const formattedTimestamp = formatTimestamp(rawTimestamp); // Format it
-                element.textContent = formattedTimestamp; // Update the content
-            }
-        });
 
 
 

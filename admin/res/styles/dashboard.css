@@ -54,8 +54,8 @@ body {
     justify-content: space-between;
     margin-left: 8px;
     width: 100%;
-    padding: 20px;
-    max-width: 1200px;
+    padding-top: 20px;
+    max-width: 1300px;
     margin: auto;
 }
 
@@ -69,7 +69,22 @@ body {
     align-items: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    border-left: 5px solid rgb(3, 152, 197);
+}
+
+.card:nth-child(1){
+    border-left: 5px solid #0b1975;
+}
+
+.card:nth-child(2){
+    border-left: 5px solid #0077c8;
+}
+
+.card:nth-child(3){
+    border-left: 5px solid #0498b6;
+}
+
+.card:nth-child(4){
+    border-left: 5px solid #00d4ff;
 }
 
 .card:hover {
@@ -78,7 +93,7 @@ body {
 
 .card-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
     width: 100%;
 }
 
@@ -91,6 +106,7 @@ body {
     border-radius: 50%;
     color: white;
     margin-right: 10px;
+    margin-left: 20px; /* Add left margin to push the icon slightly to the right */
 }
 
 .icon-container i {
@@ -98,19 +114,22 @@ body {
 }
 
 .text-container {
-    text-align: center;
+    text-align: left; /* Align text to the left */
     flex-grow: 1;
+    padding-left: 10px; /* Add some padding for better spacing */
 }
 
 .card-title {
-    font-size: 15px;
+    font-size: 18;
     color: #555;
+    margin-left: 20px;
 }
 
 .card-count {
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    margin-left: 20px;
 }
 
 
@@ -144,9 +163,9 @@ body {
 
 /* General container styling */
 .big-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
-    padding: 20px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -193,10 +212,16 @@ body {
 }
 
 .alumni-table th,
-.managers-table th,
+.managers-table th{
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
 .alumni-table td,
 .managers-table td {
-    text-align: center;
+    text-align: left;
     padding: 12px;
     font-size: 14px;
     border-bottom: 1px solid #ddd;
@@ -214,72 +239,6 @@ body {
     font-style: italic;
     color: #888;
     list-style: none;
-}
-
-.interested-alumni {
-    background: #f9f9f9;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    font-family: Arial, sans-serif;
-}
-
-.interested-alumni h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.alumni-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    
-}
-
-.alumni-card-header {
-    display: flex;
-    align-items: center;
-}
-
-.alumni-card-header-img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.alumni-card-info h3 {
-    display: flex;
-    font-size: 1rem;
-    margin: 0;
-    font-weight: bold;
-}
-
-.alumni-card-info p {
-    display: flex;
-    margin: 0;
-    font-size: 0.6rem;
-    color: #555;
-}
-
-.alumni-card-footer {
-    display: flex;
-    align-items:center;
-}
-
-.interested-count {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000000;
 }
 
 
@@ -300,17 +259,18 @@ body {
 }
 
 .interested-alumni {
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 12px;
-    padding: 20px;
+    padding: 24px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     margin: auto;
     font-family: Arial, sans-serif;
 }
+
 .interested-alumni h2 {
-    font-size: 1.5rem;
+    font-size: 20px;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -318,7 +278,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f9f9f9;
+    background: #ffffff;
     padding: 10px 15px;
     margin-bottom: 15px;
     border-radius: 8px;
@@ -339,7 +299,6 @@ body {
     display: flex;
     font-size: 1rem;
     margin: 0;
-    font-weight: bold;
 }
 .alumni-card-info p {
     display: flex;
