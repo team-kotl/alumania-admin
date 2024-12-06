@@ -32,17 +32,15 @@ function togglePopup(popupId) {
 
 
 // COPY GENERATED ADMIN KEY
-let copyText = document.querySelector(".copy-text");
-copyText.querySelector("button").addEventListener("click",function(){
-    let input = copyText.querySelector("input.text");
+function copyToClipboard() {
+    const input = document.querySelector('.text');
     input.select();
-    document.execCommand("copy");
-    copyText.classList.add("active");
-    window.getSelection().removeAllRanges();
-    setTimeout(function(){
-        copyText.classList.remove("active");
-    },2500);
-})
+    navigator.clipboard.writeText(input.value).then(() => {
+        alert('Admin key copied to clipboard!');
+    }).catch(err => {
+        console.error('Error copying text: ', err);
+    });
+}
 
 // Cancel button
 cancelBtn.addEventListener('click', () => {
