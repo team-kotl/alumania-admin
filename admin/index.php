@@ -55,6 +55,6 @@ if (!isset($_SESSION["username"])) {
 
   </html>
 <?php } else {
-  header("Location: src/core/create.php");
+  header("Location: src/core/dashboard.php");
 }
 ?>

@@ -70,10 +70,10 @@ if (isset($_SESSION['username'])) { ?>
             }
         }
 
-        //TO BE FIXED 
+
         // Fetch recent alumni
         $recentAlumniData = [];
-        $result = $db->query("SELECT name, location, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM alumni ORDER BY joined DESC LIMIT 4");
+        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 8;");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -83,19 +83,56 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent managers
         $recentManagersData = [];
-        $result = $db->query("SELECT name, DATE_FORMAT(joined, '%Y-%m-%d') AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
-
-        // Fetching Interested Alumni data
-        $interestedAlumniData = [];
-        $result = $db->query("SELECT name, location, interest_count, DATE_FORMAT(event_date, '%Y-%d-%m | %h:%i %p') AS time FROM interested_alumni_table LIMIT 4");
+        $result = $db->query("SELECT username, jointimestamp AS joined FROM user WHERE usertype = 'manager' ORDER BY joined DESC LIMIT 4");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $interestedAlumniData[] = $row;
+                $recentManagersData[] = $row;
             }
         }
 
-        $interestedAlumni = $db->query("SELECT title, description, date, interest_count FROM interested_alumni ORDER BY date DESC LIMIT 4");
+        // Fetching Interested Alumni data
+        $interestedAlumniData = [];
+        $result = $db->query(
+            "SELECT 
+                                    'Event' AS type, 
+                                    e.title AS title, 
+                                    e.eventtime AS time, 
+                                    e.eventdate AS date, 
+                                    e.eventloc AS location, 
+                                    COUNT(ie.userid) AS interested_count
+                                FROM 
+                                    event e
+                                LEFT JOIN 
+                                    interestedinevent ie ON e.eventid = ie.eventid
+                                GROUP BY 
+                                    e.eventid
+                                UNION ALL
+                                SELECT 
+                                    'Job' AS type, 
+                                    jp.title AS title, 
+                                    NULL AS time, 
+                                    NULL AS date, 
+                                    jp.location AS location, 
+                                    COUNT(ij.userid) AS interested_count
+                                FROM 
+                                    jobpost jp
+                                LEFT JOIN 
+                                    interestedinjobpost ij ON jp.jobpid = ij.jobpid
+                                GROUP BY 
+                                    jp.jobpid
+                                ORDER BY 
+                                    interested_count DESC
+                                LIMIT 4;"
+        );
+        $topEntries = $result->fetch_all(MYSQLI_ASSOC);
+        // if ($result) {
+        //     while ($row = $result->fetch_assoc()) {
+        //         $interestedAlumniData[] = $row;
+        //     }
+        // }
+
+
         // hanggang here
         ?>
 
@@ -132,6 +169,40 @@ if (isset($_SESSION['username'])) { ?>
 
             <div class="big-container">
                 <div class="row-container">
+                <div class="recent-managers">
+                        <h2>Recent Managers</h2>
+                        <table class="managers-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($recentManagersData)) {
+                                    foreach ($recentManagersData as $manager) { ?>
+                                        <tr>
+                                            <td>
+                                                <div class='manager-info'>
+                                                    <img src='' alt='Avatar' class='manager-avatar'>
+                                                    <span><?php echo htmlspecialchars($manager['username']); ?></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($manager['joined']); ?>">
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                } else { ?>
+                                    <tr>
+                                        <td colspan="2" class="no-data">No recent managers found.</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="recent-alumni">
                         <h2>Recent Alumni</h2>
                         <table class="alumni-table">
@@ -148,12 +219,16 @@ if (isset($_SESSION['username'])) { ?>
                                         <tr>
                                             <td>
                                                 <div class='alumni-info'>
-                                                    <img src='path/to/avatar.png' alt='Avatar' class='alumni-avatar'>
+                                                    <img src='' alt='Avatar' class='alumni-avatar'>
                                                     <span><?php echo htmlspecialchars($alumni['name']); ?></span>
                                                 </div>
                                             </td>
                                             <td><?php echo htmlspecialchars($alumni['location']); ?></td>
-                                            <td><?php echo htmlspecialchars($alumni['joined']); ?></td>
+                                            <td>
+                                                <span class="timestamp" data-timestamp="<?php echo htmlspecialchars($alumni['joined']); ?>">
+                                                    <!-- Placeholder for formatted date -->
+                                                </span>
+                                            </td>
                                         </tr>
                                     <?php }
                                 } else { ?>
@@ -164,40 +239,10 @@ if (isset($_SESSION['username'])) { ?>
                             </tbody>
                         </table>
                     </div>
-                    <div class="recent-managers">
-                        <h2>Recent Managers</h2>
-                        <table class="managers-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Joined</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($recentManagersData)) {
-                                    foreach ($recentManagersData as $manager) { ?>
-                                        <tr>
-                                            <td>
-                                                <div class='manager-info'>
-                                                    <img src='path/to/avatar.png' alt='Avatar' class='manager-avatar'>
-                                                    <span><?php echo htmlspecialchars($manager['name']); ?></span>
-                                                </div>
-                                            </td>
-                                            <td><?php echo htmlspecialchars($manager['joined']); ?></td>
-                                        </tr>
-                                    <?php }
-                                } else { ?>
-                                    <tr>
-                                        <td colspan="2" class="no-data">No recent managers found.</td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
                 <div class="bottom-row">
-                    <div class="chart-container">
+                <div class="chart-container">
                         <!-- Employment Status Chart -->
                         <div class="chart-card">
                             <canvas id="employmentChart"></canvas>
@@ -209,33 +254,49 @@ if (isset($_SESSION['username'])) { ?>
                             <canvas id="locationChart"></canvas>
                         </div>
                     </div>
+            
                     <div class="interested-alumni">
                         <h2>Interested Alumni</h2>
-                        <ul class="interested-alumni-list">
-                            <?php if (!empty($interestedAlumniData)) {
-                                foreach ($interestedAlumniData as $alumni) { ?>
-                                    <li class='interested-alumni-item'>
-                                        <div class='alumni-info'>
-                                            <img src='path/to/avatar.png' alt='Avatar' class='alumni-avatar'>
-                                            <div class='alumni-details'>
-                                                <span class='alumni-name'><?php echo htmlspecialchars($alumni['name']); ?></span>
-                                                <?php if (!empty($alumni['time'])) { ?>
-                                                    <span class='alumni-time'><?php echo htmlspecialchars($alumni['time']); ?></span>
-                                                <?php } ?>
-                                                <?php if (!empty($alumni['location'])) { ?>
-                                                    <span class='alumni-location'><?php echo htmlspecialchars($alumni['location']); ?></span>
-                                                <?php } ?>
-                                            </div>
-                                            <div class='interest-info'>
-                                                <i class='fas fa-star'></i>
-                                                <span class='interest-count'><?php echo htmlspecialchars($alumni['interest_count']); ?></span>
-                                            </div>
+                        <?php if (!empty($topEntries)) {
+                            foreach ($topEntries as $entry) { ?>
+                                <div class="alumni-card">
+                                    <div class="alumni-card-header">
+                                        <?php if ($entry['type'] === 'Event') { ?>
+                                            <img src="" alt="Event Image" class="alumni-card-header-img">
+                                        <?php } else { ?>
+                                            <img src="" alt="Job Icon" class="alumni-card-header-img">
+                                        <?php } ?>
+                                        <div class="alumni-card-info">
+                                            <h3><?php echo htmlspecialchars($entry['title']); ?></h3>
+                                            <?php if ($entry['type'] === 'Event') { ?>
+                                                <p>
+                                                    <span class="event-date">
+                                                        <img src="../../res/Calendar.png" alt="calendar img">
+                                                        <?php echo htmlspecialchars($entry['date']); ?> |
+                                                        <?php echo htmlspecialchars($entry['time']); ?>
+                                                    </span>
+                                                </p>
+                                            <?php } else { ?>
+                                                <p>
+                                                    <span class="job-location">
+                                                        <img src="../../res/mingcute_location-fill.png" alt="location img">
+                                                        <?php echo htmlspecialchars($entry['location']); ?>
+                                                    </span>
+                                                </p>
+                                            <?php } ?>
                                         </div>
-                                    </li>
-                                <?php }
-                            } else { ?>
-                                <li class="no-data">No interested alumni found.</li>
-                            <?php } ?>
+                                    </div>
+                                    <div class="alumni-card-footer">
+                                        <span class="interested-count">
+                                            <img src="../../res/material-symbols_star.png" alt="star img">
+                                            <span><?php echo htmlspecialchars($entry['interested_count']); ?></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            <?php }
+                        } else { ?>
+                            <h2 class="no-data">No interested alumni found.</h2>
+                        <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -251,7 +312,7 @@ if (isset($_SESSION['username'])) { ?>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Employment Data
+        // Data for Employment Status
         const employmentData = {
             labels: ['Employed (<?php echo $empstatusCounts["Employee"]; ?>)', 'Unemployed (<?php echo $empstatusCounts["Unemployed"]; ?>)', 'Underemployed (<?php echo $empstatusCounts["Underemployed"]; ?>)'],
             datasets: [{
@@ -265,7 +326,7 @@ if (isset($_SESSION['username'])) { ?>
             }]
         };
 
-        // Employment Chart
+        // Employment Status Pie Chart
         new Chart(document.getElementById('employmentChart'), {
             type: 'doughnut',
             data: employmentData,
@@ -288,7 +349,7 @@ if (isset($_SESSION['username'])) { ?>
             }
         });
 
-        // Location Data
+        // Data for User Location
         const locationData = {
             labels: ['Domestic (<?php echo $locationCounts["Domestic"]; ?>)', 'Foreign (<?php echo $locationCounts["Foreign"]; ?>)'],
             datasets: [{
@@ -301,7 +362,7 @@ if (isset($_SESSION['username'])) { ?>
             }]
         };
 
-        // Location Chart
+        // Location Pie Chart
         new Chart(document.getElementById('locationChart'), {
             type: 'doughnut',
             data: locationData,
@@ -323,8 +384,32 @@ if (isset($_SESSION['username'])) { ?>
                 }
             }
         });
-    </script>
 
+
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+
+            const options = {
+                year: 'numeric',
+                month: 'long', // Full month name (e.g., December)
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true, // 12-hour clock
+            };
+
+            return date.toLocaleString('en-US', options);
+        }
+
+        // Find all elements with the "data-timestamp" attribute
+        document.querySelectorAll('.timestamp').forEach(element => {
+            const rawTimestamp = element.getAttribute('data-timestamp'); // Get raw timestamp
+            if (rawTimestamp) {
+                const formattedTimestamp = formatTimestamp(rawTimestamp); // Format it
+                element.textContent = formattedTimestamp; // Update the content
+            }
+        });
+    </script>
 
     </html>
 <?php } else { ?>

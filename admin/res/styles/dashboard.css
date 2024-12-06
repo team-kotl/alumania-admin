@@ -231,3 +231,61 @@ body {
         max-width: 100%;
     }
 }
+
+.interested-alumni {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+.interested-alumni h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.alumni-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    
+}
+.alumni-card-header {
+    display: flex;
+    align-items: center;
+}
+.alumni-card-header-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.alumni-card-info h3 {
+    display: flex;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+}
+.alumni-card-info p {
+    display: flex;
+    margin: 0;
+    font-size: 0.6rem;
+    color: #555;
+}
+.alumni-card-footer {
+    display: flex;
+    align-items:center;
+}
+.interested-count {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000000;
+}
