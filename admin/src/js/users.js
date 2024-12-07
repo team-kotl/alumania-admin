@@ -122,16 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
   alumniTab.addEventListener("click", () => {
     userPanel.innerHTML = alumniContent; // Show alumni content
     updateTabUI(alumniTab, managerTab);
-    addManagerButtonContainer.classList.add("hidden");
-    filterDropdown.classList.remove("show"); // Hide the filter dropdown
   });
 
   // Handle manager tab click
   managerTab.addEventListener("click", () => {
     userPanel.innerHTML = managerContent; // Show manager content
     updateTabUI(managerTab, alumniTab);
-    addManagerButtonContainer.classList.remove("hidden");
-    filterDropdown.classList.remove("show"); // Hide the filter dropdown
   });
 });
 

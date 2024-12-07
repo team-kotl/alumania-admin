@@ -52,11 +52,13 @@ if (isset($_SESSION['username'])) {
             <div class="searchfilter">
                 <div class="total-users">Total Users: </div>
                     <div class="search-box">
-                        <input type="text" class="search-input" placeholder="Name, ID, Email">
+                        <input type="text" class="search-input">
                         <img src="../../res/search.png" class="search-icon" alt="Search">
+                        <div id="filterButtonContainer">
                         <button class="filter-btn" onclick="toggleFilterDropdown()">
                             <img src="../../res/sort.png" class="filter-icon" alt="Filter">
                         </button>
+                        </div>
                         <div class="filter-dropdown" id="filterDropdown">
                             <h3>Search Filters</h3>
                             <div class="filter-content">
@@ -181,26 +183,35 @@ if (isset($_SESSION['username'])) {
             `;
 
             document.addEventListener('DOMContentLoaded', () => {
-                const alumniTab = document.getElementById('alumniTab');
-                const managerTab = document.getElementById('managerTab');
-                const userPanel = document.getElementById('userPanel');
-                const addManagerButtonContainer = document.querySelector('.add-manager-button-container');
-                userPanel.innerHTML = alumniContent;
+            const alumniTab = document.getElementById('alumniTab');
+            const managerTab = document.getElementById('managerTab');
+            const userPanel = document.getElementById('userPanel');
+            const addManagerButtonContainer = document.querySelector('.add-manager-button-container');
+            const filterButtonContainer = document.getElementById('filterButtonContainer');
+            const searchInput = document.querySelector('.search-input');
 
-                alumniTab.addEventListener('click', () => {
-                    userPanel.innerHTML = alumniContent; 
-                    alumniTab.classList.add('active');
-                    managerTab.classList.remove('active');
-                    addManagerButtonContainer.classList.add('hidden');
-                });
+            // Function to update tab states and content
+            function updateTabState(activeTab, inactiveTab, content, showFilter, placeholder) {
+                userPanel.innerHTML = content; 
+                activeTab.classList.add('active'); 
+                inactiveTab.classList.remove('active'); 
+                addManagerButtonContainer.classList.toggle('hidden', showFilter); 
+                filterButtonContainer.style.display = showFilter ? "block" : "none"; 
+                if (searchInput) {
+                    searchInput.placeholder = placeholder; 
+                }
+            }
 
-                managerTab.addEventListener('click', () => {
-                    userPanel.innerHTML = managerContent; 
-                    managerTab.classList.add('active');
-                    alumniTab.classList.remove('active');
-                    addManagerButtonContainer.classList.remove('hidden');
-                });
+            updateTabState(alumniTab, managerTab, alumniContent, true, "Name, ID, Email");
+
+            alumniTab.addEventListener('click', () => {
+                updateTabState(alumniTab, managerTab, alumniContent, true, "Name, ID, Email");
             });
+
+            managerTab.addEventListener('click', () => {
+                updateTabState(managerTab, alumniTab, managerContent, false, "Username");
+            });
+        });
         </script>
 
         <script src="../js/users.js" defer></script>
