@@ -8,15 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const locationFilters = document.querySelectorAll(
     ".filter-section:nth-child(2) ul li"
   );
-  const tableRows = document.querySelectorAll("tbody tr"); // Will be dynamically updated
-
+  const tableRows = document.querySelectorAll("tbody tr");
   let activeFilters = {
     status: null,
     location: null,
   };
 
   function filterRows() {
-    // Get the updated table rows dynamically for the current active tab
     const tableRows = document.querySelectorAll("tbody tr");
     const searchQuery = searchInput.value.toLowerCase();
     let visibleCount = 0;
@@ -29,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const status = cells[3]?.textContent.toLowerCase();
       const location = cells[4]?.textContent.toLowerCase();
-
-      // Check if row matches search query and active filters
       const matchesSearch = rowText.includes(searchQuery);
       const matchesStatus = activeFilters.status
         ? status === activeFilters.status
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ? location === activeFilters.location
         : true;
 
-      // Show or hide row based on matching filters
       if (matchesSearch && matchesStatus && matchesLocation) {
         row.style.display = "";
         visibleCount++;
@@ -48,17 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Update the total count of visible users
     if (totalUsersElement) {
       totalUsersElement.textContent = `Total Users: ${visibleCount}`;
     }
   }
 
   if (searchInput) {
-    searchInput.addEventListener("input", filterRows); // Apply search filter
+    searchInput.addEventListener("input", filterRows);
   }
 
-  // Status filters
   statusFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const selectedStatus = filter.textContent.toLowerCase();
@@ -69,11 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
       statusFilters.forEach((f) => f.classList.remove("active"));
       if (activeFilters.status) filter.classList.add("active");
 
-      filterRows(); // Reapply filter after selecting status
+      filterRows();
     });
   });
 
-  // Location filters
   locationFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const selectedLocation = filter.textContent.toLowerCase();
@@ -84,11 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
       locationFilters.forEach((f) => f.classList.remove("active"));
       if (activeFilters.location) filter.classList.add("active");
 
-      filterRows(); // Reapply filter after selecting location
+      filterRows();
     });
   });
 
-  // Filter dropdown toggle
   if (filterDropdown) {
     const toggleFilterDropdown = () => {
       filterDropdown.classList.toggle("show");
@@ -100,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Tab switching logic
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
   const userPanel = document.getElementById("userPanel");
@@ -118,47 +108,44 @@ document.addEventListener("DOMContentLoaded", () => {
     inactiveImg.src = inactiveTab.getAttribute("unselected-icon");
   };
 
-  // Handle alumni tab click
   alumniTab.addEventListener("click", () => {
-    userPanel.innerHTML = alumniContent; // Show alumni content
+    userPanel.innerHTML = alumniContent;
     updateTabUI(alumniTab, managerTab);
+    addManagerButtonContainer.classList.add("hidden");
+    filterDropdown.classList.remove("show");
   });
 
-  // Handle manager tab click
   managerTab.addEventListener("click", () => {
-    userPanel.innerHTML = managerContent; // Show manager content
+    userPanel.innerHTML = managerContent;
     updateTabUI(managerTab, alumniTab);
+    addManagerButtonContainer.classList.remove("hidden");
+    filterDropdown.classList.remove("show");
   });
 });
 
-//temp
 document.addEventListener("DOMContentLoaded", () => {
   const addManagerButton = document.querySelector(".add-manager-button");
   const modal = document.getElementById("addManagerModal");
   const closeBtn = document.querySelector(".close-btn");
 
-  // Show the modal when the Add Manager button is clicked
   if (addManagerButton && modal && closeBtn) {
     addManagerButton.addEventListener("click", () => {
       modal.style.display = "block"; // Show modal
     });
 
-    // Close the modal when the user clicks the close button
     closeBtn.addEventListener("click", () => {
       modal.style.display = "none"; // Hide modal
     });
 
-    // Close the modal if the user clicks outside of the modal content
     window.addEventListener("click", (event) => {
       if (event.target === modal) {
-        modal.style.display = "none"; // Hide modal
+        modal.style.display = "none";
       }
     });
 
-    // Handle form submission
     const form = document.getElementById("addManagerForm");
     form.addEventListener("submit", (e) => {
-      e.preventDefault(); // Prevent default form submission
+      e.preventDefault();
       const formData = new FormData(form);
 
       fetch("add_manager.php", {
@@ -169,8 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((data) => {
           if (data.success) {
             alert("Manager added successfully!");
-            modal.style.display = "none"; // Hide modal on success
-            form.reset(); // Reset the form
+            modal.style.display = "none";
+            form.reset();
           } else {
             alert(data.message || "Failed to add manager.");
           }
@@ -185,13 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function togglePassword(button) {
-  const passwordField = button.previousElementSibling;
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
-    button.textContent = "Hide";
-  } else {
-    passwordField.type = "password";
-    button.textContent = "Show";
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const togglePassword = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = password.type === "password" ? "text" : "password";
+    password.type = type;
+    togglePassword.textContent =
+      type === "password" ? "Show Password" : "Hide Password";
+  });
+});
