@@ -183,3 +183,62 @@ document.addEventListener("DOMContentLoaded", function () {
       type === "password" ? "Show Password" : "Hide Password";
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const alumniTab = document.getElementById("alumniTab");
+  const managerTab = document.getElementById("managerTab");
+  const userPanel = document.getElementById("userPanel");
+  const userDetails = document.getElementById("userDetails");
+  const userInfo = document.getElementById("userInfo");
+  const goBackButton = document.getElementById("goBackButton");
+  const addManagerButtonContainer = document.querySelector(
+    ".add-manager-button-container"
+  );
+  const filterButtonContainer = document.getElementById(
+    "filterButtonContainer"
+  );
+  const searchInput = document.querySelector(".search-input");
+
+  const updateTabState = (
+    activeTab,
+    inactiveTab,
+    content,
+    showFilter,
+    placeholder
+  ) => {
+    userPanel.innerHTML = content;
+    activeTab.classList.add("active");
+    inactiveTab.classList.remove("active");
+    addManagerButtonContainer.classList.toggle("hidden", showFilter);
+    filterButtonContainer.style.display = showFilter ? "block" : "none";
+    if (searchInput) {
+      searchInput.placeholder = placeholder;
+    }
+    userPanel.classList.remove("hidden");
+    userDetails.classList.add("hidden");
+  };
+
+  const showUserDetails = (userData) => {
+    userInfo.innerHTML = `
+      <h2>${userData.name}</h2>
+      <p><strong>Email:</strong> ${userData.email}</p>
+      <p><strong>Employment Status:</strong> ${userData.empstatus}</p>
+      <p><strong>Location:</strong> ${userData.location}</p>
+    `;
+    userPanel.classList.add("hidden");
+    userDetails.classList.remove("hidden");
+  };
+
+  goBackButton.addEventListener("click", () => {
+    userDetails.classList.add("hidden");
+    userPanel.classList.remove("hidden");
+  });
+
+  userPanel.addEventListener("click", (event) => {
+    const row = event.target.closest("tr");
+    if (row && row.dataset.userData) {
+      const userData = JSON.parse(row.dataset.userData);
+      showUserDetails(userData);
+    }
+  });
+});
