@@ -244,16 +244,38 @@ function handleSubmit(event) {
 
 document.getElementById("jobpostForm").addEventListener("submit", function (e) {
   e.preventDefault();
+  clearFieldNotifications();
 
-  const jobTitle = document.querySelector('input[name="jobTitle"]').value;
-  const description = document.querySelector(
+  const jobTitleField = document.querySelector('input[name="jobTitle"]');
+  const descriptionField = document.querySelector(
     'textarea[name="description"]'
-  ).value;
-  const location = document.querySelector('input[name="location"]').value;
-  const company = document.querySelector('input[name="category"]').value;
+  );
+  const locationField = document.querySelector('input[name="location"]');
+  const companyField = document.querySelector('input[name="category"]');
 
-  if (!jobTitle || !description || !location || !company) {
-    showNotification("All fields are required.");
+  let isValid = true;
+
+  if (!jobTitleField.value.trim()) {
+    showFieldNotification(jobTitleField, "Job Title cannot be empty.");
+    isValid = false;
+  }
+
+  if (!descriptionField.value.trim()) {
+    showFieldNotification(descriptionField, "Description cannot be empty.");
+    isValid = false;
+  }
+
+  if (!locationField.value.trim()) {
+    showFieldNotification(locationField, "Location cannot be empty.");
+    isValid = false;
+  }
+
+  if (!companyField.value.trim()) {
+    showFieldNotification(companyField, "Company name cannot be empty.");
+    isValid = false;
+  }
+
+  if (!isValid) {
     return;
   }
 
@@ -272,5 +294,6 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
     })
     .catch((error) => {
       console.error("Error:", error);
+      showNotification("An error occurred: " + error.message);
     });
 });
