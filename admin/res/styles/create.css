@@ -76,7 +76,7 @@ body {
 }
 
 .file-upload {
-  height: 30%;
+  height: 20%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -249,6 +249,7 @@ body {
 .input-row {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 20px;
   width: 100%;
 }
@@ -272,20 +273,6 @@ body {
 .input-row .input-group input:focus,
 .input-row .input-group select:focus {
   border-color: #0066ff;
-}
-
-.input-left,
-.input-right {
-  width: 48%;
-}
-
-.input-left input,
-.input-right input {
-  width: 100%;
-}
-
-.input-right {
-  margin-top: 0px;
 }
 
 .category-input {
