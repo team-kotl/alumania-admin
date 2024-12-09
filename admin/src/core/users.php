@@ -101,7 +101,31 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
 
+            <div id="editManagerModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Edit Manager</h2>
+                    <form id="editManagerForm">
+                        <input type="hidden" id="editManagerId" name="manager_id">
+                        <label for="editUsername">Username:</label>
+                        <input type="text" id="editUsername" name="username" required>
 
+                        <label for="editPassword">Password:</label>
+                        <input type="password" id="editPassword" name="password" required>
+                        <button type="submit" class="submit-button">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="deleteManagerModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Confirm Delete</h2>
+                    <p>Are you sure you want to delete the manager <strong id="deleteManagerName"></strong>?</p>
+                    <button id="confirmDeleteManager" class="submit-button">Yes, Delete</button>
+                    <button class="close-btn">Cancel</button>
+                </div>
+            </div>
 
             <div class="user-panel" id="userPanel">
                 
@@ -169,14 +193,20 @@ if (isset($_SESSION['username'])) {
                         <tbody>
                             <?php 
                             if ($resultManagers && $resultManagers->num_rows > 0) {
-                                while ($row = $resultManagers->fetch_assoc()) { ?>
-                                    <tr>
-                                        <td data-label="Username"><?php echo htmlspecialchars($row['username']); ?></td>
-                                        <td data-label="Actions">
-                                            <!-- Add any action buttons if needed -->
-                                        </td>
-                                    </tr>
-                                <?php }
+                                while ($row = $resultManagers->fetch_assoc()) { 
+                                    $managerData = json_encode([
+                                        "username" => $row['username'],
+                                        "password" => $row['password']
+                                    ]);
+                            ?>
+                                <tr data-manager-data='<?php echo htmlspecialchars($managerData); ?>'>
+                                    <td data-label="Username"><?php echo htmlspecialchars($row['username']); ?></td>
+                                    <td data-label="Actions">
+                                        <button class="edit-manager-btn" onclick='openEditModal(<?php echo htmlspecialchars($managerData); ?>)'>Edit</button>
+                                        <button class="delete-manager-btn" onclick='openDeleteModal("<?php echo htmlspecialchars($row['username']); ?>")'>Delete</button>
+                                    </td>
+                                </tr>
+                            <?php }
                             } else { ?>
                                 <tr>
                                     <td colspan="3">No managers found</td>
@@ -186,6 +216,94 @@ if (isset($_SESSION['username'])) {
                     </table>
                 </div>
             `;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                // Variables for modals
+                const editManagerModal = document.getElementById("editManagerModal");
+                const deleteManagerModal = document.getElementById("deleteManagerModal");
+                const editManagerForm = document.getElementById("editManagerForm");
+                const deleteManagerConfirmBtn = document.getElementById("confirmDeleteManager");
+
+                let currentManagerUsername = null;
+
+                window.openEditModal = function (managerData) {
+                    document.getElementById("editUsername").value = managerData.username;
+                    document.getElementById("editPassword").value = managerData.password;
+                    currentManagerUsername = managerData.username; 
+                    editManagerModal.style.display = "block";
+                };
+
+                editManagerForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(editManagerForm);
+                    formData.append("currentUsername", currentManagerUsername);
+
+                    fetch("edit_manager.php", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.success) {
+                                alert("Manager updated successfully!");
+                                location.reload();
+                            } else {
+                                alert(data.message || "Failed to update manager.");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                            alert("An error occurred while updating the manager.");
+                        });
+
+                    editManagerModal.style.display = "none";
+                });
+
+                window.openDeleteModal = function (username) {
+                    currentManagerUsername = username;
+                    document.getElementById("deleteManagerName").textContent = username;
+                    deleteManagerModal.style.display = "block";
+                };
+
+                deleteManagerConfirmBtn.addEventListener("click", () => {
+                    fetch("delete_manager.php", {
+                        method: "POST",
+                        body: JSON.stringify({ username: currentManagerUsername }),
+                        headers: { "Content-Type": "application/json" },
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.success) {
+                                alert("Manager deleted successfully!");
+                                location.reload();
+                            } else {
+                                alert(data.message || "Failed to delete manager.");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                            alert("An error occurred while deleting the manager.");
+                        });
+
+                    deleteManagerModal.style.display = "none";
+                });
+
+                // Close modals
+                document.querySelectorAll(".close-btn").forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        editManagerModal.style.display = "none";
+                        deleteManagerModal.style.display = "none";
+                    });
+                });
+
+                window.addEventListener("click", (event) => {
+                    if (event.target === editManagerModal || event.target === deleteManagerModal) {
+                        editManagerModal.style.display = "none";
+                        deleteManagerModal.style.display = "none";
+                    }
+                });
+            });
+
 
 
             document.addEventListener('DOMContentLoaded', () => {

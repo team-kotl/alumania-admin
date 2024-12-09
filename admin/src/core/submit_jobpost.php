@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $jobId = getNextJobID($db);
 
-    $userId = '7777';
+    $userId = $_SESSION['userid'];
 
     try {
         $query = "INSERT INTO jobpost (jobpid, title, location, description, companyname, publishtimestamp, userid)
