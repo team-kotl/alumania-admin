@@ -91,7 +91,7 @@ if (isset($_POST['logout'])) {
                     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
                         type="module"></script>
                     <dotlottie-player id="generate-animation"
-                        src="https://lottie.host/1c7b457d-d7a7-4aac-98f9-d8f5c0ab90e7/cK1MYzB7Cw.json"
+                        src="https://lottie.host/44f9a0d9-be76-443d-bb62-e48d1679fd88/NqxXPwvE46.lottie"
                         background="transparent" speed="1"></dotlottie-player>
                     <p>Change Password</p>
                     <div class="popup" id="popup-generate">
