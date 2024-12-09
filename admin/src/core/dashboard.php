@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) { ?>
 
         // Fetch recent alumni
         $recentAlumniData = [];
-        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 2");
+        $result = $db->query("SELECT alumni.firstname AS name, alumni.location, user.jointimestamp AS joined, alumni.displaypic as profpic FROM alumni JOIN user ON alumni.userid = user.userid ORDER BY user.jointimestamp DESC LIMIT 2");
 
         if ($result) {
             while ($row = $result->fetch_assoc()) {
@@ -177,13 +177,15 @@ if (isset($_SESSION['username'])) { ?>
                     <div class="interested-alumni">
                         <h2>Interested Alumni</h2>
                         <?php if (!empty($topEntries)) {
-                            foreach ($topEntries as $entry) { ?>
+                            foreach ($topEntries as $entry) { 
+                                $eventPhotoData = !empty($entry['eventphoto']) ? 'data:image/jpeg;base64,' . base64_encode($entry['eventphoto']) : '../../res/Calendar.png';
+                                ?>
                                 <div class="alumni-card">
                                     <div class="alumni-card-header">
                                         <?php if ($entry['type'] === 'Event') { ?>
-                                            <img src="" alt="Event Image" class="alumni-card-header-img">
+                                            <img src="<?php ?>" alt="Event Image" class="alumni-card-header-img">
                                         <?php } else { ?>
-                                            <img src="" alt="Job Icon" class="alumni-card-header-img">
+                                            <img src="../../res/Briefcase.png" alt="Job Icon" class="alumni-card-header-img-job">
                                         <?php } ?>
                                         <div class="alumni-card-info">
                                             <h3><?php echo htmlspecialchars($entry['title']); ?></h3>
@@ -268,11 +270,13 @@ if (isset($_SESSION['username'])) { ?>
                             </thead>
                             <tbody>
                                 <?php if (!empty($recentAlumniData)) {
-                                    foreach ($recentAlumniData as $alumni) { ?>
+                                    foreach ($recentAlumniData as $alumni) { 
+                                        $profpicData = !empty($alumni['profpic']) ? 'data:image/jpeg;base64,' . base64_encode($alumni['profpic']) : '../../res/manager.png'; 
+                                        ?>
                                         <tr>
                                             <td>
                                                 <div class='alumni-info'>
-                                                    <img src='' alt='Avatar' class='alumni-avatar'>
+                                                    <img src='<?php echo $profpicData; ?>' alt='Avatar' class='alumni-avatar'>
                                                     <span><?php echo htmlspecialchars($alumni['name']); ?></span>
                                                 </div>
                                             </td>

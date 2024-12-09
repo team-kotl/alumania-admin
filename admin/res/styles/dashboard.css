@@ -274,6 +274,7 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .alumni-card {
     display: flex;
     justify-content: space-between;
@@ -284,10 +285,20 @@ body {
     border-radius: 8px;
     
 }
+
 .alumni-card-header {
     display: flex;
     align-items: center;
 }
+
+
+.alumni-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .alumni-card-header-img {
     width: 50px;
     height: 50px;
@@ -295,21 +306,32 @@ body {
     border-radius: 50%;
     margin-right: 15px;
 }
+
+.alumni-card-header-img-job {
+    height: 38px;
+    width: 38px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
 .alumni-card-info h3 {
     display: flex;
     font-size: 1rem;
     margin: 0;
 }
+
 .alumni-card-info p {
     display: flex;
     margin: 0;
     font-size: 0.6rem;
     color: #555;
 }
+
 .alumni-card-footer {
     display: flex;
     align-items:center;
 }
+
 .interested-count {
     font-size: 1rem;
     font-weight: bold;
