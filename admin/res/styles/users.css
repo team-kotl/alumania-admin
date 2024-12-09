@@ -16,7 +16,6 @@ body {
   color: #cccccc;
 }
 
-/* Navigation Bar */
 .navigation {
   padding: 16px 20px 0 70px;
   margin-top: -20px;
@@ -74,7 +73,6 @@ body {
   border-bottom: 3px solid #0661d9;
 }
 
-/* Search and Filter Section*/
 .searchfilter {
   display: flex;
   justify-content: space-between;
@@ -105,7 +103,6 @@ body {
   margin-left: 20px;
 }
 
-/* Search */
 .search-box {
   display: flex;
   align-items: center;
@@ -147,7 +144,6 @@ body {
   height: auto;
 }
 
-/* Filter Dropdown */
 .filter-dropdown {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -210,7 +206,6 @@ body {
   cursor: pointer;
 }
 
-/* Table  */
 .section-title {
   display: flex;
   justify-content: space-between;
@@ -253,7 +248,6 @@ tbody tr:hover {
   background-color: #f1f5f9;
 }
 
-/* Add Manager Button */
 .add-manager-button {
   background-color: #3b82f6;
   color: #fff;
@@ -279,56 +273,114 @@ tbody tr:hover {
   display: none;
 }
 
-/* temp */
+.modal.hidden {
+  display: none;
+}
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: white;
-  margin: 15% auto;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* Close Button */
+.modal-content {
+  width: 100%;
+}
+
 .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
   color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
   cursor: pointer;
 }
 
-.add-manager-button:hover {
-  background-color: white;
+.close-btn:hover {
+  color: #000;
 }
 
-button[type="submit"] {
-  background-color: #3b82f6;
+#addManagerForm label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+#addManagerForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#togglePassword {
+  margin: 10px 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+#togglePassword:hover {
+  color: #0056b3;
+}
+
+#addManagerModal .submit-button {
+  background-color: #007bff;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#addManagerModal .submit-button:hover {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.hidden {
+  display: none;
+}
+
+#userDetails {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+#goBackButton {
+  display: block;
+  margin-bottom: 20px;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-button[type="submit"]:hover {
-  background-color: white;
+#goBackButton:hover {
+  background-color: #0056b3;
 }

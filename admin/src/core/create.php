@@ -69,20 +69,25 @@ if(isset($_SESSION['username'])) { ?>
                             <input type="text" placeholder="Insert location here" name="location" class="input">
                         </div>
                         
-                        <div class="input-container">
-                            <div class="input-left">
-                                <label for="category" class="text">Category</label>
-                                <select name="category" class="input category-input" id="category">
-                                    <option value="" selected>Select Category</option>
-                                    <option value="reunion">Reunion</option>
-                                    <option value="Thanksgiving">Thanksgiving</option>
-                                    <option value="seminar">Seminar</option>
-                                    <option value="festival">Festival</option>
-                                </select>
+                        <div class="input-row">
+                            <div class="input-container">
+                                <div class="input-left">
+                                    <label for="category" class="text">Category</label>
+                                    <select name="category" class="input category-input" id="category">
+                                        <option value="" selected>Select Category</option>
+                                        <option value="reunion">Reunion</option>
+                                        <option value="Thanksgiving">Thanksgiving</option>
+                                        <option value="seminar">Seminar</option>
+                                        <option value="festival">Festival</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-right">
-                                <label for="schedule" class="text">Schedule</label>
-                                <input type="datetime-local" name="schedule" class="input input-datetime">
+                            
+                            <div class="input-container">
+                                <div class="input-right">
+                                    <label for="schedule" class="text">Schedule</label>
+                                    <input type="datetime-local" name="schedule" class="input input-datetime">
+                                </div>
                             </div>
                         </div>
                         <div class="publishBTN" id="publishBTN" style="display:block;">
@@ -94,18 +99,27 @@ if(isset($_SESSION['username'])) { ?>
                 
                 <div class="input" id="inputSectionJob" style="display: none;">
                     <form id="jobpostForm" method="POST" action="submit_jobpost.php">
-                        <label for="jobTitle" class="text">Job Title</label>
-                        <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                        <div class="input-container">
+                            <label for="jobTitle" class="text">Job Title</label>
+                            <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                        </div>
 
-                        <label for="description" class="text">Description</label>
-                        <textarea placeholder="Insert description here" name="description"
+                        <div class="input-container">
+                            <label for="description" class="text">Description</label>
+                            <textarea placeholder="Insert description here" name="description"
                             class="input description-input" rows="4"></textarea>
+                        </div>
 
-                        <label for="location" class="text">Location</label>
-                        <input type="text" placeholder="Insert location here" name="location" class="input">
+                        <div class="input-container">
+                            <label for="location" class="text">Location</label>
+                            <input type="text" placeholder="Insert location here" name="location" class="input">
+                        </div>
 
-                        <label for="category" class="text">Company</label>
-                        <input type="text" placeholder="Insert company name here" name="category" class="input" required>
+                        <div class="input-container">
+                            <label for="category" class="text">Company</label>
+                            <input type="text" placeholder="Insert company name here" name="category" class="input">
+                        </div>
+
                         <div class="publishBTN" id="publishBTN" style="display:block;">
                             <button type="submit">Publish</button>
                         </div>
