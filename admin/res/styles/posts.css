@@ -1,5 +1,7 @@
 @import url('job-cards.css');
 @import url('event-cards.css');
+@import url('experience-cards.css');
+
 @font-face {
     font-family: "Poppins";
     src: url('../font/Poppins-Regular.ttf');

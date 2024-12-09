@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "Poppins";
+    src: url('../font/Poppins-Regular.ttf');
+}
+
+#card-experiences {
+    padding: 16px 80px 16px 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-card {
+    background-color: white;
+    padding: 40px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.experience-header {
+    display: flex;
+}
+
+.experience-header img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.experience-header small {
+    color: #7e7575;
+}
+
+.experience-details .delete {
+    background-color: rgb(194, 24, 24);
+}
+
+.experience-details .comment {
+    background-color: rgb(33, 93, 206);
+}

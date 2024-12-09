@@ -156,6 +156,7 @@ if (isset($_SESSION['username'])) { ?>
             </div>
 
             <div id="card-experiences">
+                
             </div>
 
             <div id="card-jobs">
@@ -182,6 +183,7 @@ if (isset($_SESSION['username'])) { ?>
             function displayJobs(jobsData) {
                 setActiveTab(2);
                 document.getElementById("card-events").innerHTML = '';
+                document.getElementById("card-experiences").innerHTML = '';
                 const container = document.getElementById("card-jobs");
                 container.innerHTML = ''; 
 
@@ -212,6 +214,7 @@ if (isset($_SESSION['username'])) { ?>
             function displayEvents(eventsData) {
                 setActiveTab(1);
                 document.getElementById("card-jobs").innerHTML = '';
+                document.getElementById("card-experiences").innerHTML = '';
                 const container = document.getElementById("card-events");
                 container.innerHTML = ''; // Clear existing content
 
@@ -243,9 +246,10 @@ if (isset($_SESSION['username'])) { ?>
 
             function displayExperience(experienceData) {
                 setActiveTab(0); 
-                document.getElementById("card-experiences").innerHTML = ''; // Clear existing content
+                document.getElementById("card-events").innerHTML = '';
+                document.getElementById("card-jobs").innerHTML = '';
                 const container = document.getElementById("card-experiences");
-                container.innerHTML = '';
+                container.innerHTML = '';// Clear existing content
                 
                 // Check if there are experiences to display
                 if (experienceData.length === 0) {
@@ -261,10 +265,15 @@ if (isset($_SESSION['username'])) { ?>
                     
                     cardContainer.innerHTML = `
                         <div class="experience-card-content">
-                            <h2 class="experience-title">${experienceData[i].title}</h2>
+                            <div class="experience-header">
+                                <img src="" alt="User pic">
+                                <h3 class="username">name</h3>
+                                <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
+                            </div>
                             <div class="experience-details">
                                 <p class="experience-body">${experienceData[i].body}</p>
-                                <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
+                                <button class="delete">Delete</button>
+                                <button class="comment">Comments</button>
                             </div>
                         </div>
                     `;
