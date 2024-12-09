@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) { ?>
         {
             $experiences = [];
             $experience_query = "SELECT 
-                e.xpid, e.title, e.body, e.publishtimestamp, e.userid,
+                e.xpid, e.body, e.publishtimestamp, e.userid,
                 CONCAT(a.firstname, ' ', a.lastname) AS fullname
                 FROM experience e 
                 JOIN alumni a ON e.userid = a.userid
@@ -34,7 +34,6 @@ if (isset($_SESSION['username'])) { ?>
                 while ($rowexperience = mysqli_fetch_assoc($experience_result)) {
                     $experiences[] = [
                         "xpid" => $rowexperience["xpid"],
-                        "title" => $rowexperience["title"],
                         "body" => $rowexperience["body"],
                         "publishtimestamp" => $rowexperience["publishtimestamp"],
                         "userid" => $rowexperience["userid"],
