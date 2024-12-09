@@ -23,12 +23,15 @@
                 <span>Create</span>
             </a>
         </li>
-        <li>
-            <a href="users.php" id="userstab">
-                <img src="../../res/users.png" alt="Users" id="usersicon">
-                <span>Users</span>
-            </a>
-        </li>
+
+        <?php if ($_SESSION['role'] == 'Admin') { ?>
+            <li>
+                <a href="users.php" id="userstab">
+                    <img src="../../res/users.png" alt="Users" id="usersicon">
+                    <span>Users</span>
+                </a>
+            </li>
+        <?php } else {} ?>
         <li>
             <a href="applicant.php" id="appltab">
                 <img src="../../res/applications.png" alt="Applications" id="applicon">
