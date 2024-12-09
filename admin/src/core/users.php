@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
     require_once '..\database\database.php';
 
     $db = Database::getInstance();
@@ -373,4 +373,7 @@ if (isset($_SESSION['username'])) {
         <script src="../js/users.js" defer></script>
     </body>
 </html>
+<?php } else { ?>
+    <h1 style='margin:auto;'>Access Forbidden</h1>
+    <p>Please log in to your proper account.</p>
 <?php } ?>
