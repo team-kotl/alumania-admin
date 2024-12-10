@@ -299,12 +299,35 @@ if (isset($_SESSION['username'])) { ?>
                                 <small class="experience-timestamp">${formattedDate}</small>
                             </div>
                         </div>
-                        <p class="experience-body">${exp.body}</p>
+                        <div class="experience-body">
+                            <p>${exp.body}</p>
+                            <div class="experience-image"></div>
+                        </div>
                         <div class="experience-details">
+                            <img src="../../res/star.png" alt="star">
+                            <span class="like-count">0</span><span> Likes</span>
                             <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
                         </div>
                     `;
                     container.appendChild(cardContainer);
+                    const imageDiv = cardContainer.querySelector('.experience-image');
+                    fetch(`fetchImages.php?xpid=${exp.xpid}`)
+                        .then(response => response.json())
+                        .then(images => {
+                            images.forEach(img => {
+                                const imgElement = document.createElement('img');
+                                imgElement.src = `data:image/jpeg;base64,${img.base64Image}`;
+                                imageDiv.appendChild(imgElement);
+                            });
+                        });
+
+                    // Fetch and display like count for the experience
+                    fetch(`fetchLikes.php?xpid=${exp.xpid}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const likeSpan = cardContainer.querySelector('.like-count');
+                            likeSpan.textContent = data.likes || 0;
+                        });
                 });
             }
 

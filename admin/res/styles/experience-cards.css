@@ -52,9 +52,16 @@ body {
 
 .experience-body {
     margin: 15px 0;
+    margin-left: 65px;
     font-size: 14px;
     color: #333;
     text-align: left;
+}
+
+.experience-image img {
+    border-radius: 10px;
+    max-width: 650px;
+    max-height: 625px;
 }
 
 .delete,
@@ -85,6 +92,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.experience-details span {
+    justify-content:left;
+    margin-right: 10px;
 }
 
 /* Popup styles */
