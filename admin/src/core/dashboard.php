@@ -100,6 +100,7 @@ if (isset($_SESSION['username'])) { ?>
                                     e.eventtime AS time, 
                                     e.eventdate AS date, 
                                     e.eventloc AS location, 
+                                    e.eventphoto AS eventphoto,
                                     COUNT(ie.userid) AS interested_count
                                 FROM 
                                     event e
@@ -113,7 +114,8 @@ if (isset($_SESSION['username'])) { ?>
                                     jp.title AS title, 
                                     NULL AS time, 
                                     NULL AS date, 
-                                    jp.location AS location, 
+                                    jp.location AS location,
+                                    NULL AS eventphoto, 
                                     COUNT(ij.userid) AS interested_count
                                 FROM 
                                     jobpost jp
@@ -178,12 +180,12 @@ if (isset($_SESSION['username'])) { ?>
                         <h2>Interested Alumni</h2>
                         <?php if (!empty($topEntries)) {
                             foreach ($topEntries as $entry) { 
-                                $eventPhotoData = !empty($entry['eventphoto']) ? 'data:image/jpeg;base64,' . base64_encode($entry['eventphoto']) : '../../res/Calendar.png';
+                                $eventPhotoData = !empty($entry['eventphoto']) ? 'data:image/jpeg;base64,' . base64_encode($entry['eventphoto']) : null;
                                 ?>
                                 <div class="alumni-card">
                                     <div class="alumni-card-header">
                                         <?php if ($entry['type'] === 'Event') { ?>
-                                            <img src="<?php ?>" alt="Event Image" class="alumni-card-header-img">
+                                            <img src="<?php echo $eventPhotoData; ?>" alt="Event Image" class="alumni-card-header-img">
                                         <?php } else { ?>
                                             <img src="../../res/Briefcase.png" alt="Job Icon" class="alumni-card-header-img-job">
                                         <?php } ?>
