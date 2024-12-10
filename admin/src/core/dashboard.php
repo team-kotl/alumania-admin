@@ -239,7 +239,7 @@ if (isset($_SESSION['username'])) { ?>
                                         <tr>
                                             <td>
                                                 <div class='manager-info'>
-                                                    <img src='' alt='Avatar' class='manager-avatar'>
+                                                    <img src='../../res/manager_pfp.png' alt='Avatar' class='alumni-avatar'>
                                                     <span><?php echo htmlspecialchars($manager['username']); ?></span>
                                                 </div>
                                             </td>
