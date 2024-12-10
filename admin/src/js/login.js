@@ -23,7 +23,7 @@ function handleSubmit(event) {
     .then(response => response.text())
     .then(data => {
         if(data == "Login Successful") {
-            window.location.href = 'src/core/create.php'; 
+            window.location.href = 'src/core/dashboard.php'; 
         } else {
             showNotification(data);
             document.querySelector("#username").value = '';
