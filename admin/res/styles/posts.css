@@ -241,6 +241,7 @@
   cursor: pointer;
   border-radius: 8px;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .delete-button:hover {
@@ -259,6 +260,7 @@
   padding: 10px 30px;
   border-radius: 8px;
   font-size: 14px;
+  margin-top: 20px;
 }
 
 .view-interested-button:hover {
@@ -273,6 +275,7 @@
   cursor: pointer;
   border-radius: 8px;
   font-size: 14px;
+  margin-top: 20px;
 }
 
 .sponsors-button:hover {
