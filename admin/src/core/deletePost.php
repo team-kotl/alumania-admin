@@ -3,55 +3,47 @@ require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: DELETE');
 
-// Parse the incoming request
-$type = $_GET['type'] ?? null;
-$id = $_GET['id'] ?? null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
 
-if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
-    echo json_encode(['error' => 'Invalid request method.']);
-    exit;
-}
+    $id = $input['id'] ?? null;
+    $type = $input['type'] ?? null;
 
-if (!$type || !$id) {
-    echo json_encode(['error' => 'Missing type or id parameter.']);
-    exit;
-}
-
-try {
-    if ($type === 'job') {
-        $query = "DELETE FROM jobpost WHERE jobpid = ?";
-        $relatedQuery = "DELETE FROM interestedinjobpost WHERE jobpid = ?";
-    } elseif ($type === 'event') {
-        $query = "DELETE FROM event WHERE eventid = ?";
-        $relatedQuery = "DELETE FROM interestedinevent WHERE eventid = ?";
-    } else {
-        echo json_encode(['error' => 'Invalid type parameter.']);
+    if (!$id || !$type) {
+        echo json_encode(['success' => false, 'error' => 'Invalid input.']);
         exit;
     }
 
-    // Delete related records first
-    $stmt = $db->prepare($relatedQuery);
-    if (!$stmt) {
-        echo json_encode(['error' => 'Failed to prepare related delete query: ' . $db->error]);
+    // Map post types to table names
+    $tableMap = [
+        'job' => 'jobpost',
+        'event' => 'event',
+        'experience' => 'experience',
+    ];
+
+    $table = $tableMap[$type] ?? null;
+
+    if (!$table) {
+        echo json_encode(['success' => false, 'error' => 'Invalid post type.']);
         exit;
     }
-    $stmt->bind_param("s", $id);
-    $stmt->execute();
 
-    // Delete the main record
+    // Delete query
+    $query = "DELETE FROM $table WHERE " . ($type === 'experience' ? 'xpid' : ($type === 'job' ? 'jobpid' : 'eventid')) . " = ?";
     $stmt = $db->prepare($query);
-    if (!$stmt) {
-        echo json_encode(['error' => 'Failed to prepare delete query: ' . $db->error]);
-        exit;
-    }
-    $stmt->bind_param("s", $id);
-    $stmt->execute();
+    $stmt->bind_param('s', $id);
 
-    echo json_encode(['success' => true]);
-} catch (Exception $e) {
-    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => $stmt->error]);
+    }
+
+    $stmt->close();
+    $db->close();
+} else {
+    echo json_encode(['success' => false, 'error' => 'Invalid request method.']);
 }
 
 ?>
