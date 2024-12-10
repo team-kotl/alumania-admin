@@ -27,9 +27,9 @@ if (isset($_SESSION['username'])) { ?>
                 FROM experience e 
                 JOIN alumni a ON e.userid = a.userid
                 ORDER BY e.publishtimestamp DESC;";
-        
+
             $experience_result = mysqli_query($db, $experience_query);
-        
+
             if (mysqli_num_rows($experience_result) > 0) {
                 while ($rowexperience = mysqli_fetch_assoc($experience_result)) {
                     $experiences[] = [
@@ -37,11 +37,11 @@ if (isset($_SESSION['username'])) { ?>
                         "body" => $rowexperience["body"],
                         "publishtimestamp" => $rowexperience["publishtimestamp"],
                         "userid" => $rowexperience["userid"],
-                        "fullname" => $rowexperience["fullname"] 
+                        "fullname" => $rowexperience["fullname"]
                     ];
                 }
             }
-        
+
             return $experiences;
         }
 
@@ -55,25 +55,25 @@ if (isset($_SESSION['username'])) { ?>
             FROM event e ORDER BY e.eventdate DESC, e.eventtime DESC;";
             $event_result = mysqli_query($db, $event_query);
 
-                if (mysqli_num_rows($event_result) > 0) {
-                    while ($rowevent = mysqli_fetch_assoc($event_result)) {
-                        $imageData = $rowevent["eventphoto"] ? 'data:image/jpeg;base64,' . base64_encode($rowevent["eventphoto"]) : null;
-                        $events[] = [
-                            "eventid" => $rowevent["eventid"],
-                            "title" => $rowevent["title"],
-                            "description" => $rowevent["description"],
-                            "category" => $rowevent["category"],
-                            "eventtime" => $rowevent["eventtime"],
-                            "eventdate" => $rowevent["eventdate"],
-                            "eventloc" => $rowevent["eventloc"],
-                            "eventphoto" => $imageData,
-                            "interested" => $rowevent["interested"]
-                        ];
-                    }
+            if (mysqli_num_rows($event_result) > 0) {
+                while ($rowevent = mysqli_fetch_assoc($event_result)) {
+                    $imageData = $rowevent["eventphoto"] ? 'data:image/jpeg;base64,' . base64_encode($rowevent["eventphoto"]) : null;
+                    $events[] = [
+                        "eventid" => $rowevent["eventid"],
+                        "title" => $rowevent["title"],
+                        "description" => $rowevent["description"],
+                        "category" => $rowevent["category"],
+                        "eventtime" => $rowevent["eventtime"],
+                        "eventdate" => $rowevent["eventdate"],
+                        "eventloc" => $rowevent["eventloc"],
+                        "eventphoto" => $imageData,
+                        "interested" => $rowevent["interested"]
+                    ];
                 }
-
-                return $events;
             }
+
+            return $events;
+        }
 
         function getDefaultJobs($db)
         {
@@ -156,7 +156,7 @@ if (isset($_SESSION['username'])) { ?>
             </div>
 
             <div id="card-experiences">
-                
+
             </div>
 
             <div id="card-jobs">
@@ -185,7 +185,7 @@ if (isset($_SESSION['username'])) { ?>
                 document.getElementById("card-events").innerHTML = '';
                 document.getElementById("card-experiences").innerHTML = '';
                 const container = document.getElementById("card-jobs");
-                container.innerHTML = ''; 
+                container.innerHTML = '';
 
                 for (let i = 0; i < jobsData.length; i++) {
                     const cardContainer = document.createElement('div');
@@ -222,13 +222,13 @@ if (isset($_SESSION['username'])) { ?>
 
                     const eventDate = new Date(eventsData[i].eventdate + "T" + eventsData[i].eventtime);
                     const formattedDate = eventDate.toLocaleDateString('en-US', {
-                        month: 'long', 
-                        day: 'numeric', 
+                        month: 'long',
+                        day: 'numeric',
                         year: 'numeric'
                     });
                     const formattedTime = eventDate.toLocaleTimeString('en-US', {
-                        hour: 'numeric', 
-                        minute: '2-digit', 
+                        hour: 'numeric',
+                        minute: '2-digit',
                         hour12: true
                     });
 
@@ -258,48 +258,44 @@ if (isset($_SESSION['username'])) { ?>
             }
 
             function displayExperience(experienceData) {
-                setActiveTab(0); 
+                setActiveTab(0);
                 document.getElementById("card-events").innerHTML = '';
                 document.getElementById("card-jobs").innerHTML = '';
                 const container = document.getElementById("card-experiences");
-                container.innerHTML = '';// Clear existing content
-                
-                // Check if there are experiences to display
+                container.innerHTML = ''; // Clear existing content
+
                 if (experienceData.length === 0) {
                     container.innerHTML = '<p>No experiences found.</p>';
                     return;
                 }
 
-                // Loop through each experience and create HTML elements
-                for (let i = 0; i < experienceData.length; i++) {
+                experienceData.forEach((exp) => {
                     const cardContainer = document.createElement('div');
-                    cardContainer.id = experienceData[i].xpid; // Set ID to experience ID
+                    cardContainer.id = exp.xpid; // Set ID to experience ID
                     cardContainer.classList.add("experience-card");
-                    
+
                     cardContainer.innerHTML = `
-                        <div class="experience-card-content">
-                            <div class="experience-header">
-                                <img src="" alt="User pic">
-                                <h3 class="username">name</h3>
-                                <small class="experience-timestamp">${new Date(experienceData[i].publishtimestamp).toLocaleString()}</small>
-                            </div>
-                            <div class="experience-details">
-                                <p class="experience-body">${experienceData[i].body}</p>
-                                <button class="delete">Delete</button>
-                                <button class="comment">Comments</button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    container.appendChild(cardContainer); 
-                }
+            <div class="experience-header">
+                <img src="${exp.userImage || '../../res/user_placeholder.jpg'}" alt="User pic">
+                <div>
+                    <h3 class="username">${exp.username}</h3>
+                    <small class="experience-timestamp">${new Date(exp.publishtimestamp).toLocaleString()}</small>
+                </div>
+            </div>
+            <p class="experience-body">${exp.body}</p>
+            <div class="experience-details">
+                <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
+            </div>
+        `;
+                    container.appendChild(cardContainer);
+                });
             }
 
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 if (typeof setActiveNav === 'function') {
                     setActiveNav("poststab", "postsicon", 5);
                 }
-                displayExperience(experiences); 
+                displayExperience(experiences);
             });
 
             function getInterestedUser(id, type) {
@@ -310,7 +306,7 @@ if (isset($_SESSION['username'])) { ?>
                             alert("No users are interested yet.");
                             return;
                         }
-                        
+
 
                         // Create popup content
                         let popupContent = `<div class="popup">
@@ -320,7 +316,7 @@ if (isset($_SESSION['username'])) { ?>
                             </div>
                             <div class="popup-body">
                                 <ul>`;
-                        
+
                         data.forEach(user => {
                             popupContent += `<li>
                                 <img src="${user.profilePic}" alt="User Image">
@@ -337,37 +333,38 @@ if (isset($_SESSION['username'])) { ?>
                         popup.innerHTML = popupContent;
                         document.body.appendChild(popup);
                     })
-                .catch(error => {
-                    console.error("Error fetching interested users:", error);
-                    alert("Failed to fetch interested users.");
-                });
-        }
+                    .catch(error => {
+                        console.error("Error fetching interested users:", error);
+                        alert("Failed to fetch interested users.");
+                    });
+            }
 
-        // Function to close the popup
-        function closePopup() {
-            const popup = document.getElementById("interestedPopup");
-            if (popup) popup.remove();
-        }
+            // Function to close the popup
+            function closePopup() {
+                const popup = document.getElementById("interestedPopup");
+                if (popup) popup.remove();
+            }
 
-        function deletePost(id, type) {
-            if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
+            function deletePost(id, type) {
+                if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
 
-            fetch(`deletePost.php?type=${type}&id=${id}`, { method: 'DELETE' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully.`);
-                        location.reload(); // Reload the page to update the list
-                    } else {
-                        alert(`Failed to delete ${type}: ${data.error || 'Unknown error'}`);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error deleting item:", error);
-                    alert("An error occurred while deleting the item.");
-                });
-        }
-
+                fetch(`deletePost.php?type=${type}&id=${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully.`);
+                            location.reload(); // Reload the page to update the list
+                        } else {
+                            alert(`Failed to delete ${type}: ${data.error || 'Unknown error'}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error deleting item:", error);
+                        alert("An error occurred while deleting the item.");
+                    });
+            }
         </script>
     </body>
 

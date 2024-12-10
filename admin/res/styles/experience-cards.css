@@ -3,22 +3,31 @@
     src: url('../font/Poppins-Regular.ttf');
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+}
+
 #card-experiences {
-    padding: 16px 80px 16px 80px;
+    padding: 16px 80px;
     display: flex;
     flex-direction: column;
+    margin-top: 35px;
 }
 
 .experience-card {
     background-color: white;
-    padding: 40px;
-    margin-bottom: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    position: relative;
 }
 
 .experience-header {
     display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .experience-header img {
@@ -29,14 +38,117 @@
     margin-right: 15px;
 }
 
-.experience-header small {
+.username {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.experience-timestamp {
+    margin-left: auto;
+    font-size: 12px;
     color: #7e7575;
 }
 
-.experience-details .delete {
-    background-color: rgb(194, 24, 24);
+.experience-body {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
 }
 
-.experience-details .comment {
+.delete,
+.comment {
+    background-color: rgb(194, 24, 24);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.comment {
     background-color: rgb(33, 93, 206);
+}
+
+.experience-card .delete:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.experience-card .comment:hover {
+    background-color: rgb(51, 105, 255);
+}
+
+.experience-details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Popup styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    width: 300px;
+    z-index: 1000;
+}
+
+.popup-header {
+    padding: 15px;
+    background-color: #2196F3;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.popup-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup-body {
+    padding: 15px;
+}
+
+.popup-body ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup-body li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.popup-body img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.popup-body span {
+    font-size: 14px;
+    color: #333;
+}
+
+.popup-body hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #ddd;
 }
