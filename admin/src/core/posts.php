@@ -203,8 +203,8 @@ if (isset($_SESSION['username'])) { ?>
                             <p>${jobsData[i].description}</p>
                         </div>
                         <div class="job-interest-count">
-                            <img src="../../res/star.png" alt="star">
-                                <span>${jobsData[i].interested} interested</span>
+                            <button class="delete-button" onclick="deletePost('${jobsData[i].jobpid}', 'job')">Delete</button>
+                            <button class="view-interested-button" onclick="getInterestedUser('${jobsData[i].jobpid}', 'job')">View Interested</button>
                         </div>
                     `;
                     container.appendChild(cardContainer);
@@ -219,6 +219,19 @@ if (isset($_SESSION['username'])) { ?>
                 container.innerHTML = ''; // Clear existing content
 
                 for (let i = 0; i < eventsData.length; i++) {
+
+                    const eventDate = new Date(eventsData[i].eventdate + "T" + eventsData[i].eventtime);
+                    const formattedDate = eventDate.toLocaleDateString('en-US', {
+                        month: 'long', 
+                        day: 'numeric', 
+                        year: 'numeric'
+                    });
+                    const formattedTime = eventDate.toLocaleTimeString('en-US', {
+                        hour: 'numeric', 
+                        minute: '2-digit', 
+                        hour12: true
+                    });
+
                     const cardContainer = document.createElement('div');
                     cardContainer.id = eventsData[i].eventid;
                     cardContainer.classList.add("event-card");
@@ -230,13 +243,13 @@ if (isset($_SESSION['username'])) { ?>
                         <div class="event-card-content">
                             <h2 class="event-title">${eventsData[i].title}</h2>
                             <div class="event-details">
-                                <div class="event-date">${eventsData[i].eventdate}</div>
-                                <div class="event-time">${eventsData[i].eventtime}</div>
+                                <div class="event-date">${formattedDate}</div>
+                                <div class="event-time">${formattedTime}</div>
                             </div>
                             <div class="event-location">${eventsData[i].eventloc}</div>
                             <div class="event-interest-count">
-                                <img src="../../res/star.png" alt="star">
-                                <span>${eventsData[i].interested} interested</span>
+                                <button class="delete-button" onclick="deletePost('${eventsData[i].eventid}', 'event')">Delete</button>
+                                <button class="view-interested-button" onclick="getInterestedUser('${eventsData[i].eventid}', 'event')">View Interested</button>
                             </div>
                         </div>
                     `;
@@ -288,6 +301,73 @@ if (isset($_SESSION['username'])) { ?>
                 }
                 displayEvents(events); 
             });
+
+            function getInterestedUser(id, type) {
+                fetch(`getInterestedUsers.php?type=${type}&id=${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            alert("No users are interested yet.");
+                            return;
+                        }
+                        
+
+                        // Create popup content
+                        let popupContent = `<div class="popup">
+                            <div class="popup-header">
+                                <h3>No. of Interested: ${data.length} users</h3>
+                                <button class="closePopup" onclick="closePopup()">X</button>
+                            </div>
+                            <div class="popup-body">
+                                <ul>`;
+                        
+                        data.forEach(user => {
+                            popupContent += `<li>
+                                <img src="${user.profilePic}" alt="User Image">
+                                <span>${user.name}</span>
+                                <span>${user.course}</span>
+                            </li><hr>`;
+                        });
+
+                        popupContent += `</ul></div></div>`;
+
+                        // Append popup to the body
+                        const popup = document.createElement('div');
+                        popup.id = "interestedPopup";
+                        popup.innerHTML = popupContent;
+                        document.body.appendChild(popup);
+                    })
+                .catch(error => {
+                    console.error("Error fetching interested users:", error);
+                    alert("Failed to fetch interested users.");
+                });
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            const popup = document.getElementById("interestedPopup");
+            if (popup) popup.remove();
+        }
+
+        function deletePost(id, type) {
+            if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
+
+            fetch(`deletePost.php?type=${type}&id=${id}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully.`);
+                        location.reload(); // Reload the page to update the list
+                    } else {
+                        alert(`Failed to delete ${type}: ${data.error || 'Unknown error'}`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting item:", error);
+                    alert("An error occurred while deleting the item.");
+                });
+        }
+
         </script>
     </body>
 

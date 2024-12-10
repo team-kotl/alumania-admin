@@ -218,3 +218,88 @@
     font-size: 20px;
     color: #CCCCCC;
 }
+
+.closePopup {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.closePopup:hover {
+    background-color: #e60000;
+}
+
+.delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #e60000;
+}
+
+.view-interested-button {
+    color: white;
+    background-color: #0662D9;
+    border: 2px solid #0662D9;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.view-interested-button:hover {
+    background-color: #5E87BA;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 500px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.popup-body {
+    padding: 10px;
+}
+
+.popup-body ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.popup-body li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.popup-body img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
