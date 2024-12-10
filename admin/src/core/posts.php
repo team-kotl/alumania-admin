@@ -299,7 +299,7 @@ if (isset($_SESSION['username'])) { ?>
                 if (typeof setActiveNav === 'function') {
                     setActiveNav("poststab", "postsicon", 5);
                 }
-                displayEvents(events); 
+                displayExperience(experiences); 
             });
 
             function getInterestedUser(id, type) {
