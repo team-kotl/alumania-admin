@@ -23,7 +23,8 @@ if (isset($_SESSION['username'])) { ?>
             $experiences = [];
             $experience_query = "SELECT 
                 e.xpid, e.body, e.publishtimestamp, e.userid,
-                CONCAT(a.firstname, ' ', a.lastname) AS fullname
+                CONCAT(a.firstname, ' ', a.lastname) AS fullname,
+                a.displaypic
                 FROM experience e 
                 JOIN alumni a ON e.userid = a.userid
                 ORDER BY e.publishtimestamp DESC;";
@@ -32,12 +33,16 @@ if (isset($_SESSION['username'])) { ?>
 
             if (mysqli_num_rows($experience_result) > 0) {
                 while ($rowexperience = mysqli_fetch_assoc($experience_result)) {
+                    
+                    $userImage = $rowexperience["displaypic"] ? 'data:image/jpeg;base64,' . base64_encode($rowexperience["displaypic"]): null;
+
                     $experiences[] = [
                         "xpid" => $rowexperience["xpid"],
                         "body" => $rowexperience["body"],
                         "publishtimestamp" => $rowexperience["publishtimestamp"],
                         "userid" => $rowexperience["userid"],
-                        "fullname" => $rowexperience["fullname"]
+                        "fullname" => $rowexperience["fullname"],
+                        "userImage" => $userImage
                     ];
                 }
             }
@@ -274,19 +279,28 @@ if (isset($_SESSION['username'])) { ?>
                     cardContainer.id = exp.xpid; // Set ID to experience ID
                     cardContainer.classList.add("experience-card");
 
+                    const formattedDate = new Date(exp.publishtimestamp).toLocaleString('en-US', {
+                        month: 'long',  // Full month name
+                        day: 'numeric', // Day of the month
+                        year: 'numeric', // Full year
+                        hour: 'numeric', // Hour
+                        minute: '2-digit', // Minutes
+                        hour12: true     // 12-hour clock
+                    });
+
                     cardContainer.innerHTML = `
-            <div class="experience-header">
-                <img src="${exp.userImage || '../../res/user_placeholder.jpg'}" alt="User pic">
-                <div>
-                    <h3 class="username">${exp.username}</h3>
-                    <small class="experience-timestamp">${new Date(exp.publishtimestamp).toLocaleString()}</small>
-                </div>
-            </div>
-            <p class="experience-body">${exp.body}</p>
-            <div class="experience-details">
-                <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
-            </div>
-        `;
+                        <div class="experience-header">
+                            <img src="${exp.userImage || '../../res/account_circle.jpg'}" alt="User pic">
+                            <div>
+                                <h3 class="username">${exp.fullname}</h3>
+                                <small class="experience-timestamp">${formattedDate}</small>
+                            </div>
+                        </div>
+                        <p class="experience-body">${exp.body}</p>
+                        <div class="experience-details">
+                            <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
+                        </div>
+                    `;
                     container.appendChild(cardContainer);
                 });
             }
