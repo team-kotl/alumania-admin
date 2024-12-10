@@ -253,8 +253,11 @@ if (isset($_SESSION['username'])) { ?>
                             </div>
                             <div class="event-location">${eventsData[i].eventloc}</div>
                             <div class="event-interest-count">
-                                <button class="delete-button" onclick="deletePost('${eventsData[i].eventid}', 'event')">Delete</button>
-                                <button class="view-interested-button" onclick="getInterestedUser('${eventsData[i].eventid}', 'event')">View Interested</button>
+                                <button class="view-interested-button" onclick="getInterestedUser('${eventsData[i].eventid}', 'event')">Interested</button>
+                                <button class="sponsors-button" onclick=" " , 'event')">Sponsors</button>
+                                <button class="delete-button" onclick="deletePost('${eventsData[i].eventid}', 'event')">
+                                    <img src="../../res/delete.png" alt="Delete Icon" class="delete-button-icon">
+                                </button>
                             </div>
                         </div>
                     `;

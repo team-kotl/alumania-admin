@@ -234,29 +234,52 @@
 }
 
 .delete-button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .delete-button:hover {
-    background-color: #e60000;
+  background-color: #e60000;
 }
 
+.delete-button-icon {
+    width: auto;
+    height: auto;
+  }
+
 .view-interested-button {
-    color: white;
-    background-color: #0662D9;
-    border: 2px solid #0662D9;
-    padding: 10px 15px;
-    border-radius: 8px;
+  color: white;
+  background-color: #0662D9;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 .view-interested-button:hover {
-    background-color: #5E87BA;
+  background-color: #5E87BA;
+}
+
+.sponsors-button {
+  background-color: #2DA0F3;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.sponsors-button:hover {
+  background-color: #4eaff5;
 }
 
 .popup {
