@@ -169,10 +169,10 @@ body {
 .big-container {
     max-width: 1300px;
     margin: auto;
-    padding-top: 20px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 /* Row containers for alignment */
