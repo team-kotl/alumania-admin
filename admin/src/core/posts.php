@@ -365,9 +365,13 @@ if (isset($_SESSION['username'])) { ?>
             function deletePost(id, type) {
                 if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
 
-                fetch(`deletePost.php?type=${type}&id=${id}`, {
-                        method: 'DELETE'
-                    })
+                fetch(`deletePost.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id, type }),
+                })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
