@@ -46,6 +46,10 @@ function setActiveTab(index) {
                         <img src="../../res/arrow.png" alt="Dropdown Arrow" class="event-dropdown-arrow">
                     </button>
                     <div class="event-dropdown-content" id="categoryDropdown">
+                      <button onclick="
+                        currentEvents = filterEvent(events, 'All')
+                        displayEvents(currentEvents);
+                        ">All</button>
                         <button onclick="
                         currentEvents = filterEvent(events, 'Seminar')
                         displayEvents(currentEvents);
@@ -123,8 +127,12 @@ function setActiveTab(index) {
 }
 
 function filterEvent(events, category) {
+  if (category.toLowerCase() === "all") {
+    return events;
+  }
+
   function checkCategory(event) {
-    return event.category.toLowerCase() == category.toLowerCase();
+    return event.category.toLowerCase() === category.toLowerCase();
   }
   return events.filter(checkCategory);
 }
