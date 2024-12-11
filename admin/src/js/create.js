@@ -252,6 +252,9 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
   );
   const locationField = document.querySelector('input[name="location"]');
   const companyField = document.querySelector('input[name="company"]');
+  const contactNameField = document.querySelector('input[name="contactName"]');
+  const contactEmailField = document.querySelector('input[name="contactEmail"]');
+  const contactNumberField = document.querySelector('input[name="contactNumber"]');
 
   let isValid = true;
 
@@ -272,6 +275,28 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
 
   if (!companyField.value.trim()) {
     showFieldNotification(companyField, "Company name cannot be empty.");
+    isValid = false;
+  }
+
+  if (!contactNameField.value.trim()) {
+    showFieldNotification(contactNameField, "Contact name cannot be empty.");
+    isValid = false;
+  }
+
+  if (!contactEmailField.value.trim()) {
+    showFieldNotification(contactEmailField, "Email address cannot be empty.");
+    isValid = false;
+  } else {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(contactEmailField.value.trim())) {
+      showFieldNotification(contactEmailField, "Invalid email address.");
+      isValid = false;
+    }
+  }
+
+  const contactNumberPattern = /^[0-9]{11}$/;
+  if (!contactNumberPattern.test(contactNumberField.value.trim())) {
+    showFieldNotification(contactNumberField, "Contact number must be exactly 11 digits and numeric.");
     isValid = false;
   }
 
