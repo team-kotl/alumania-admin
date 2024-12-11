@@ -27,7 +27,11 @@ if (isset($_POST['logout'])) {
     <div class="content-container">
         <div class="header">
             <h1>Settings</h1>
-            <p>Logout or generate a new admin key</p>
+            <?php if ($_SESSION['role'] == 'Admin') { ?>
+                <p>Logout or generate a new admin key</p>
+            <?php } else { ?>
+                <p>Logout or change password</p>
+            <?php } ?>
         </div>
 
         <main class="main-content">
