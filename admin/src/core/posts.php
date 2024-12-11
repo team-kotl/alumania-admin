@@ -404,17 +404,26 @@ if (isset($_SESSION['username'])) { ?>
                                 <button class="closePopupBtn" onclick="closeEventPopup()">X</button>
                             </div>
                             <div class="popup-body">
-                                <ul>`;
-                        
+                                <table class="sponsor-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+
+                        // Loop through each sponsor and add rows to the table
                         data.forEach(sponsor => {
-                            popupContent += `<li>
-                                <span><strong>Name:</strong> ${sponsor.name}</span><br>
-                                <span><strong>Type:</strong> ${sponsor.type}</span><br>
-                                <span><strong>Amount:</strong> ${sponsor.amount}</span>
-                            </li><hr>`;
+                            popupContent += `<tr>
+                                <td>${sponsor.name}</td>
+                                <td>${sponsor.type}</td>
+                                <td>${sponsor.amount}</td>
+                            </tr>`;
                         });
 
-                        popupContent += `</ul></div></div>`;
+                        popupContent += `</tbody></table></div></div>`;
 
                         // Append popup to the body and display the overlay
                         const popupContainer = document.createElement('div');
