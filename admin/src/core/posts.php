@@ -304,7 +304,7 @@ if (isset($_SESSION['username'])) { ?>
                             <div class="experience-image"></div>
                         </div>
                         <div class="experience-details">
-                            <img src="../../res/star.png" alt="star">
+                            <img src="../../res/heartlike.png" alt="like button" style="margin-right:10px;">
                             <span class="like-count">0</span><span> Likes</span>
                             <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
                         </div>

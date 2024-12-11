@@ -251,7 +251,7 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
     'textarea[name="description"]'
   );
   const locationField = document.querySelector('input[name="location"]');
-  const companyField = document.querySelector('input[name="category"]');
+  const companyField = document.querySelector('input[name="company"]');
 
   let isValid = true;
 

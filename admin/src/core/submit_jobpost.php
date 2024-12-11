@@ -26,8 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jobTitle = htmlspecialchars($_POST['jobTitle']);
     $description = htmlspecialchars($_POST['description']);
     $location = htmlspecialchars($_POST['location']);
-    $company = htmlspecialchars($_POST['category']); 
-
+    $company = htmlspecialchars($_POST['company']); 
+    $contactName = htmlspecialchars($_POST['contactName']);
+    $contactEmail = htmlspecialchars($_POST['contactEmail']);
+    $contactNumber = htmlspecialchars($_POST['contactNumber']);
+    $jobCategory = htmlspecialchars($_POST['jobCategory']); 
+  
     $db = Database::getInstance()->getConnection();
 
     $jobId = getNextJobID($db);
@@ -35,12 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userId = '7777';
 
     try {
-        $query = "INSERT INTO jobpost (jobpid, title, location, description, companyname, publishtimestamp, userid)
-                VALUES (?, ?, ?, ?, ?, NOW(), ?)";
+        $query = "INSERT INTO jobpost (jobpid, title, type, location, description, companyname, contactname, contactemail, contactnumber, publishtimestamp, userid) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
         if ($stmt = $db->prepare($query)) {
             
-            $stmt->bind_param("ssssss", $jobId, $jobTitle, $location, $description, $company, $userId);
+            $stmt->bind_param("sssssssssss", $jobId, $jobTitle, $jobCategory, $location, $description, $company, $contactName, $contactEmail, $contactNumber, $userId);
 
             if ($stmt->execute()) {
                 
@@ -56,3 +60,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $db->close();
 }
+?>
