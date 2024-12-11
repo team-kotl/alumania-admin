@@ -229,35 +229,32 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 window.openEditModal = function (managerData) {
                     document.getElementById("editUsername").value = managerData.username;
                     document.getElementById("editPassword").value = managerData.password;
-                    currentManagerUsername = managerData.username; 
+                    currentManagerUsername = managerData.username; // Displayed for confirmation
                     editManagerModal.style.display = "block";
                 };
 
                 editManagerForm.addEventListener("submit", (e) => {
                     e.preventDefault();
                     const formData = new FormData(editManagerForm);
-                    formData.append("currentUsername", currentManagerUsername);
+                    formData.append("currentUsername", currentManagerUsername); // Add current username
 
                     fetch("edit_manager.php", {
                         method: "POST",
                         body: formData,
                     })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            if (data.success) {
-                                alert("Manager updated successfully!");
-                                location.reload();
-                            } else {
-                                alert(data.message || "Failed to update manager.");
-                            }
-                        })
-                        .catch((error) => {
-                            console.error("Error:", error);
-                            alert("An error occurred while updating the manager.");
-                        });
+                    .then((response) => response.text())
+                    .then((data) => {
+                        alert(data);  // Assuming the server returns a success message
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        alert("An error occurred while updating the manager.");
+                    });
 
                     editManagerModal.style.display = "none";
                 });
+
 
                 window.openDeleteModal = function (username) {
                     currentManagerUsername = username;
@@ -268,17 +265,14 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 deleteManagerConfirmBtn.addEventListener("click", () => {
                     fetch("delete_manager.php", {
                         method: "POST",
-                        body: JSON.stringify({ username: currentManagerUsername }),
-                        headers: { "Content-Type": "application/json" },
+                        body: new URLSearchParams({
+                            username: currentManagerUsername
+                        }),
                     })
-                        .then((response) => response.json())
+                        .then((response) => response.text())
                         .then((data) => {
-                            if (data.success) {
-                                alert("Manager deleted successfully!");
-                                location.reload();
-                            } else {
-                                alert(data.message || "Failed to delete manager.");
-                            }
+                            alert(data);  // Assuming the server returns a success message
+                            location.reload();
                         })
                         .catch((error) => {
                             console.error("Error:", error);
@@ -287,6 +281,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
 
                     deleteManagerModal.style.display = "none";
                 });
+
 
                 // Close modals
                 document.querySelectorAll(".close-btn").forEach((btn) => {

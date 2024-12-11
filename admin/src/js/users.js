@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function filterRows() {
-    const tableRows = document.querySelectorAll("tbody tr");
     const searchQuery = searchInput.value.toLowerCase();
     let visibleCount = 0;
 
@@ -81,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Filter dropdown logic
   const toggleFilterDropdown = () => {
     filterDropdown.classList.toggle("show");
   };
@@ -154,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const form = document.getElementById("addManagerForm");
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const formData = new FormData(form);
@@ -169,7 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.style.display = "none";
             form.reset();
           } else {
-            alert(data.message || "Failed to add manager.");
+            if (data.message === "User already exists") {
+              alert("A user with this username already exists.");
+            } else {
+              alert(data.message || "Failed to add manager.");
+            }
           }
         })
         .catch((error) => {
