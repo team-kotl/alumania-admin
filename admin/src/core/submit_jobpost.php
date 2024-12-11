@@ -5,14 +5,13 @@ require_once '..\database\database.php';
 
 #to get last id
 function getNextJobID($db) {
-    
-    $query = "SELECT jobpid FROM jobpost ORDER BY CAST(SUBSTRING(jobpid, 2) AS UNSIGNED) DESC LIMIT 1";
+    $query = "SELECT jobpid FROM jobpost ORDER BY CAST(SUBSTRING(jobpid, 3) AS UNSIGNED) DESC LIMIT 1";
     
     $result = $db->query($query);
+
     if ($result && $row = $result->fetch_assoc()) {
-        
         $lastJobID = $row['jobpid'];
-        $numPart = (int) substr($lastJobID, 2); 
+        $numPart = (int) substr($lastJobID, 2);
         $nextNum = $numPart + 1; 
     } else {
         $nextNum = 1;
@@ -36,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $jobId = getNextJobID($db);
 
-    $userId = '7777';
+    $userId = 'U010';
 
     try {
         $query = "INSERT INTO jobpost (jobpid, title, type, location, description, companyname, contactname, contactemail, contactnumber, publishtimestamp, userid) 
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt = $db->prepare($query)) {
             
-            $stmt->bind_param("sssssssssss", $jobId, $jobTitle, $jobCategory, $location, $description, $company, $contactName, $contactEmail, $contactNumber, $userId);
+            $stmt->bind_param("ssssssssss", $jobId, $jobTitle, $jobCategory, $location, $description, $company, $contactName, $contactEmail, $contactNumber, $userId);
 
             if ($stmt->execute()) {
                 
