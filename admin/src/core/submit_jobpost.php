@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt = $db->prepare($query)) {
             
-            $stmt->bind_param("ssssss", $jobId, $jobTitle, $jobCategory, $location, $description, $company, $contactName,  $contactNumber, $userId);
+            $stmt->bind_param("sssssssssss", $jobId, $jobTitle, $jobCategory, $location, $description, $company, $contactName, $contactEmail, $contactNumber, $userId);
 
             if ($stmt->execute()) {
                 
