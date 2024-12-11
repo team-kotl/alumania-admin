@@ -253,6 +253,7 @@ if (isset($_SESSION['username'])) {
         </script>
 
         <script src="../js/users.js" defer></script>
+        <script src="../js/contentmove.js"></script>
     </body>
 </html>
 <?php } ?>

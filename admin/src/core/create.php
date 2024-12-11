@@ -170,7 +170,7 @@ if(isset($_SESSION['username'])) { ?>
                 </div>
 
         <script src="../js/create.js"></script>
-
+        <script src="../js/contentmove.js"></script>
 </body>
 
 </html>

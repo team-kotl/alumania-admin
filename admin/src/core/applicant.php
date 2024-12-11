@@ -179,6 +179,7 @@ if(isset($_SESSION['username'])) { ?>
                 }
             }, 10000);
     </script>
+    <script src="../js/contentmove.js"></script>
 </body>
 
 </html>

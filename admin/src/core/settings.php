@@ -135,6 +135,7 @@ function updatePasswordInDatabase(newPassword) {
 }
 
 </script>
+<script src="../js/contentmove.js"></script>
 
 </body>
 
