@@ -53,7 +53,7 @@
     </ul>
 
     <div class="user-profile">
-        <img src="../../res/admin.png" alt="User profile">
+        <img src="../../res/manager_pfp.png" alt="User profile">
         <div class="user-info">
             <div class="user-name"><?php echo $_SESSION['username'] ?></div>
             <div class="user-role"><?php echo $_SESSION['role'] ?></div>

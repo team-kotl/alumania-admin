@@ -22,7 +22,9 @@ if (isset($_POST['logout'])) {
 
 <body>
     <?php include 'navbar.php'; ?>
-    <script defer> setActiveNav("settingstab", "settingsicon", 6); </script>
+    <script defer>
+        setActiveNav("settingstab", "settingsicon", 6);
+    </script>
 
     <div class="content-container">
         <div class="header">
@@ -91,18 +93,18 @@ if (isset($_POST['logout'])) {
                     </div>
                 </div>
             <?php } else { ?>
-                <div class="generate">
+                <div class="generate" style="padding: 1% 4.5%;">
                     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
                         type="module"></script>
                     <dotlottie-player id="generate-animation"
                         src="https://lottie.host/44f9a0d9-be76-443d-bb62-e48d1679fd88/NqxXPwvE46.lottie"
                         background="transparent" speed="1"></dotlottie-player>
-                    <p>Change Password</p>
+                    <p style="margin-bottom: 80px; font-size: clamp(15px, 3vh, 50px);">Change Password</p>
                     <div class="popup" id="popup-generate">
                         <div class="overlay" onclick="togglePopup('popup-generate')"></div>
                         <div class="content-generate" onclick="event.stopPropagation()">
                             <div class="close-btn" onclick="togglePopup('popup-generate')">&times;</div>
-                            <h1>Change Password</h1>
+                            <h1 style="text-align: left;">Change Password</h1>
                             <hr>
                             <div class="input-container">
                                 <p style="margin-top: 0;">Please enter your new password</p>

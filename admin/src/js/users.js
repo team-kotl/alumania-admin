@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".search-input");
   const totalUsersElement = document.querySelector(".total-users");
   const filterDropdown = document.getElementById("filterDropdown");
+  const filterButton = document.querySelector(".filter-btn");
   const statusFilters = document.querySelectorAll(
     ".filter-section:nth-child(1) ul li"
   );
@@ -80,16 +81,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (filterDropdown) {
-    const toggleFilterDropdown = () => {
-      filterDropdown.classList.toggle("show");
-    };
+  // Filter dropdown logic
+  const toggleFilterDropdown = () => {
+    filterDropdown.classList.toggle("show");
+  };
 
-    const filterButton = document.querySelector(".filter-btn");
-    if (filterButton) {
-      filterButton.addEventListener("click", toggleFilterDropdown);
-    }
+  if (filterButton) {
+    filterButton.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default action
+      toggleFilterDropdown();
+    });
   }
+
+  document.addEventListener("click", (event) => {
+    if (
+      filterDropdown &&
+      !filterDropdown.contains(event.target) &&
+      !filterButton.contains(event.target)
+    ) {
+      filterDropdown.classList.remove("show");
+    }
+  });
 
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
@@ -121,9 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addManagerButtonContainer.classList.remove("hidden");
     filterDropdown.classList.remove("show");
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   const addManagerButton = document.querySelector(".add-manager-button");
   const modal = document.getElementById("addManagerModal");
   const closeBtn = document.querySelector(".close-btn");
@@ -170,9 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Required modal elements not found.");
   }
-});
 
-document.addEventListener("DOMContentLoaded", function () {
   const togglePassword = document.getElementById("togglePassword");
   const password = document.getElementById("password");
 
@@ -182,22 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
     togglePassword.textContent =
       type === "password" ? "Show Password" : "Hide Password";
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const alumniTab = document.getElementById("alumniTab");
-  const managerTab = document.getElementById("managerTab");
-  const userPanel = document.getElementById("userPanel");
   const userDetails = document.getElementById("userDetails");
   const userInfo = document.getElementById("userInfo");
   const goBackButton = document.getElementById("goBackButton");
-  const addManagerButtonContainer = document.querySelector(
-    ".add-manager-button-container"
-  );
-  const filterButtonContainer = document.getElementById(
-    "filterButtonContainer"
-  );
-  const searchInput = document.querySelector(".search-input");
 
   const updateTabState = (
     activeTab,
@@ -210,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
     activeTab.classList.add("active");
     inactiveTab.classList.remove("active");
     addManagerButtonContainer.classList.toggle("hidden", showFilter);
-    filterButtonContainer.style.display = showFilter ? "block" : "none";
     if (searchInput) {
       searchInput.placeholder = placeholder;
     }
@@ -219,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const showUserDetails = (userData) => {
-    userInfo.innerHTML = `
+    userInfo.innerHTML = ` 
       <h2>${userData.name}</h2>
       <p><strong>Email:</strong> ${userData.email}</p>
       <p><strong>Employment Status:</strong> ${userData.empstatus}</p>
