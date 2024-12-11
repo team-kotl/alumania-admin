@@ -278,45 +278,56 @@ tbody tr:hover {
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 300 200px;
 }
 
 .modal-content {
-  width: 100%;
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Full width */
+  max-width: 400px; /* Max width for smaller screens */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px; /* Rounded corners */
+  box-sizing: border-box;
 }
 
 .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
   color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.close-btn:hover {
-  color: #000;
-}
-
-#addManagerForm label {
+/* Form Styling */
+.modal form label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   text-align: left;
 }
 
-#addManagerForm input {
+.modal form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -339,7 +350,7 @@ tbody tr:hover {
   color: #0056b3;
 }
 
-#addManagerModal .submit-button {
+.submit-button {
   background-color: #007bff;
   color: #fff;
   width: 100%;
@@ -350,10 +361,55 @@ tbody tr:hover {
   transition: all 0.3s ease;
 }
 
-#addManagerModal .submit-button:hover {
+.submit-button:hover {
   background-color: #fff;
   color: #000;
   border: 2px solid #000;
+}
+
+/* Specific Modals for Add and Edit */
+#addManagerModal .submit-button {
+  background-color: #007bff;
+}
+
+#editManagerModal .submit-button {
+  background-color: #007bff;
+}
+
+#deleteManagerModal .button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#deleteManagerModal .delete-button {
+  background-color: #f44336;
+  color: #fff;
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#deleteManagerModal .delete-button:hover {
+  background-color: #d32f2f;
+}
+
+#deleteManagerModal .cancel-button {
+  background-color: #e0e0e0;
+  color: #000;
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#deleteManagerModal .cancel-button:hover {
+  background-color: #cfcfcf;
 }
 
 .hidden {
@@ -402,18 +458,18 @@ button {
 }
 
 .edit-manager-btn:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
 
 .delete-manager-btn {
-  background-color: #f44336; 
+  background-color: #f44336;
   color: white;
 }
 
 .delete-manager-btn:hover {
-  background-color: #e53935; 
+  background-color: #e53935;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
