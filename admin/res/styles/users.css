@@ -376,13 +376,46 @@ tbody tr:hover {
   background-color: #007bff;
 }
 
+#deleteManagerModal .button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#deleteManagerModal .delete-button {
+  background-color: #f44336;
+  color: #fff;
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#deleteManagerModal .delete-button:hover {
+  background-color: #d32f2f;
+}
+
+#deleteManagerModal .cancel-button {
+  background-color: #e0e0e0;
+  color: #000;
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#deleteManagerModal .cancel-button:hover {
+  background-color: #cfcfcf;
+}
 .hidden {
   display: none;
 }
 
 #userDetails {
-  justify-content: center;
-  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -394,14 +427,13 @@ tbody tr:hover {
 }
 
 #goBackButton {
-  display: block;
-  margin-bottom: 20px;
+  display: block; /* Ensures the button is block-level */
+  margin-left: auto; /* Moves the button to the right */
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  padding-left: 100;
 }
 
 #goBackButton:hover {
@@ -454,19 +486,4 @@ button {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-#buttonId {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#buttonId:hover {
-  background-color: #0056b3;
 }
