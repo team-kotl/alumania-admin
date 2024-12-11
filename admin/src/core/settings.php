@@ -22,7 +22,9 @@ if (isset($_POST['logout'])) {
 
 <body>
     <?php include 'navbar.php'; ?>
-    <script defer> setActiveNav("settingstab", "settingsicon", 6); </script>
+    <script defer>
+        setActiveNav("settingstab", "settingsicon", 6);
+    </script>
 
     <div class="content-container">
         <div class="header">
@@ -87,7 +89,7 @@ if (isset($_POST['logout'])) {
                     </div>
                 </div>
             <?php } else { ?>
-                <div class="generate">
+                <div class="generate-changepw">
                     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
                         type="module"></script>
                     <dotlottie-player id="generate-animation"
