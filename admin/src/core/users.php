@@ -7,7 +7,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
     $db = Database::getInstance();
     $conn = $db->getConnection();
 
-    $sqlAlumni = "SELECT userid, email, firstname, middlename, lastname, empstatus, location FROM alumni";
+    $sqlAlumni = "SELECT * FROM alumni";
     $resultAlumni = $conn->query($sqlAlumni);
 
     $sqlManagers = "
