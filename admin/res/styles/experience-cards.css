@@ -9,7 +9,7 @@ body {
 }
 
 #card-experiences {
-    padding: 16px 80px;
+    padding: 32px 80px;
     display: flex;
     flex-direction: column;
     margin-top: 35px;

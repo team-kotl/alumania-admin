@@ -33,8 +33,8 @@ if (isset($_SESSION['username'])) { ?>
 
             if (mysqli_num_rows($experience_result) > 0) {
                 while ($rowexperience = mysqli_fetch_assoc($experience_result)) {
-                    
-                    $userImage = $rowexperience["displaypic"] ? 'data:image/jpeg;base64,' . base64_encode($rowexperience["displaypic"]): null;
+
+                    $userImage = $rowexperience["displaypic"] ? 'data:image/jpeg;base64,' . base64_encode($rowexperience["displaypic"]) : null;
 
                     $experiences[] = [
                         "xpid" => $rowexperience["xpid"],
@@ -283,12 +283,12 @@ if (isset($_SESSION['username'])) { ?>
                     cardContainer.classList.add("experience-card");
 
                     const formattedDate = new Date(exp.publishtimestamp).toLocaleString('en-US', {
-                        month: 'long',  // Full month name
+                        month: 'long', // Full month name
                         day: 'numeric', // Day of the month
                         year: 'numeric', // Full year
                         hour: 'numeric', // Hour
                         minute: '2-digit', // Minutes
-                        hour12: true     // 12-hour clock
+                        hour12: true // 12-hour clock
                     });
 
                     cardContainer.innerHTML = `
@@ -304,7 +304,7 @@ if (isset($_SESSION['username'])) { ?>
                             <div class="experience-image"></div>
                         </div>
                         <div class="experience-details">
-                            <img src="../../res/star.png" alt="star">
+                            <img src="../../res/heartlike.png" alt="like button" style="margin-right:10px;">
                             <span class="like-count">0</span><span> Likes</span>
                             <button class="delete" onclick="deletePost('${exp.xpid}', 'experience')">Delete</button>
                         </div>
@@ -347,31 +347,31 @@ if (isset($_SESSION['username'])) { ?>
                             return;
                         }
 
-
                         // Create popup content
                         let popupContent = `<div class="popup">
-                            <div class="popup-header">
-                                <h3>No. of Interested: ${data.length} users</h3>
-                                <button class="closePopup" onclick="closePopup()">X</button>
-                            </div>
-                            <div class="popup-body">
-                                <ul>`;
+                <div class="popup-header">
+                    <h3>No. of Interested: ${data.length} users</h3>
+                    <button class="closePopup" onclick="closePopup()">X</button>
+                </div>
+                <div class="popup-body">
+                    <ul>`;
 
                         data.forEach(user => {
                             popupContent += `<li>
-                                <img src="${user.profilePic}" alt="User Image">
-                                <span>${user.name}</span>
-                                <span>${user.course}</span>
-                            </li><hr>`;
+                    <img src="${user.profilePic}" alt="User Image">
+                    <span>${user.name}</span>
+                    <span>${user.course}</span>
+                </li><hr>`;
                         });
 
                         popupContent += `</ul></div></div>`;
 
-                        // Append popup to the body
-                        const popup = document.createElement('div');
-                        popup.id = "interestedPopup";
-                        popup.innerHTML = popupContent;
-                        document.body.appendChild(popup);
+                        // Append popup to the body and display the overlay
+                        const popupContainer = document.createElement('div');
+                        popupContainer.id = "interestedPopup";
+                        popupContainer.classList.add("active"); 
+                        popupContainer.innerHTML = popupContent;
+                        document.body.appendChild(popupContainer);
                     })
                     .catch(error => {
                         console.error("Error fetching interested users:", error);
@@ -382,19 +382,27 @@ if (isset($_SESSION['username'])) { ?>
             // Function to close the popup
             function closePopup() {
                 const popup = document.getElementById("interestedPopup");
-                if (popup) popup.remove();
+                if (popup) {
+                    popup.classList.remove("active"); 
+                    setTimeout(() => popup.remove(), 300); 
+                }
             }
+
+
 
             function deletePost(id, type) {
                 if (!confirm(`Are you sure you want to delete this ${type}?`)) return;
 
                 fetch(`deletePost.php`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ id, type }),
-                })
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id,
+                            type
+                        }),
+                    })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {

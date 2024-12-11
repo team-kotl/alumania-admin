@@ -4,6 +4,11 @@ const contentContainer = document.querySelector('.content-container');
 
 navToggle.addEventListener('click', () => {
     navbar.classList.toggle('collapsed');
+    if (navbar.classList.contains('collapsed')) {
+        contentContainer.style.marginLeft = '110px';
+    } else {
+        contentContainer.style.marginLeft = '250px';
+    }
 });
 
 function wipAlert() {

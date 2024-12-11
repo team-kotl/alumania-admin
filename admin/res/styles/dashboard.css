@@ -17,19 +17,20 @@ body {
 }
 
 .header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
     margin: 25px 70px;
     transition: margin-left 0.3s ease;
     font-size: 20px;
-    color: #343434;
-    display: flex;
-    justify-content: space-between;
+    color: #343434
 }
 
 .header.date {
-    align-items: center;
-    text-align: right;
-    float: right;
-    color: #343434;
+    font-size: 20px;
+    color: #CCCCCC;
+    margin: 0; 
+    text-align: right; 
 }
 
 
