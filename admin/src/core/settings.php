@@ -100,7 +100,7 @@ if (isset($_POST['logout'])) {
                         <div class="overlay" onclick="togglePopup('popup-generate')"></div>
                         <div class="content-generate" onclick="event.stopPropagation()">
                             <div class="close-btn" onclick="togglePopup('popup-generate')">&times;</div>
-                            <h1>Change Password</h1>
+                            <h1 style="text-align: left;">Change Password</h1>
                             <hr>
                             <div class="input-container">
                                 <p style="margin-top: 0;">Please enter your new password</p>
