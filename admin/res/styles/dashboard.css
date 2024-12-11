@@ -173,7 +173,7 @@ body {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 /* Row containers for alignment */
@@ -227,7 +227,7 @@ body {
 
 .alumni-table td,
 .managers-table td {
-    text-align: left;
+    text-align: center;
     padding: 12px;
     font-size: 14px;
     border-bottom: 1px solid #ddd;
@@ -296,6 +296,7 @@ body {
 .manager-info {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
 .alumni-card-header {
@@ -305,12 +306,21 @@ body {
 
 
 .alumni-avatar {
-    width: 20%;
-    height: 20%;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 15px;
+    width: 40px; /* Fixed size for the avatar */
+    height: 40px; /* Fixed size for the avatar */
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+    border-radius: 50%; /* Makes the image circular */
+    overflow: hidden; /* Prevents any overflow of the image outside the circle */
 }
+
+.alumni-avatar-wrapper {
+    width: 40px; /* Constrain the wrapper to the same size */
+    height: 40px; /* Constrain the wrapper to the same size */
+    display: flex; /* Ensures the image is aligned properly */
+    justify-content: center; /* Centers the image */
+    align-items: center; /* Centers the image */
+}
+
 
 .alumni-card-header-img {
     width: 38px;
