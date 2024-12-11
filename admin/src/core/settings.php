@@ -89,13 +89,13 @@ if (isset($_POST['logout'])) {
                     </div>
                 </div>
             <?php } else { ?>
-                <div class="generate">
+                <div class="generate" style="padding: 1% 4.5%;">
                     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
                         type="module"></script>
                     <dotlottie-player id="generate-animation"
                         src="https://lottie.host/44f9a0d9-be76-443d-bb62-e48d1679fd88/NqxXPwvE46.lottie"
                         background="transparent" speed="1"></dotlottie-player>
-                    <p>Change Password</p>
+                    <p style="margin-bottom: 80px; font-size: clamp(15px, 3vh, 50px);">Change Password</p>
                     <div class="popup" id="popup-generate">
                         <div class="overlay" onclick="togglePopup('popup-generate')"></div>
                         <div class="content-generate" onclick="event.stopPropagation()">
