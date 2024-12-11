@@ -101,33 +101,73 @@ if(isset($_SESSION['username'])) { ?>
                     <form id="jobpostForm" method="POST" action="submit_jobpost.php">
                         <div class="input-container">
                             <label for="jobTitle" class="text">Job Title</label>
-                            <input type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                            <input id="jobTitle" type="text" placeholder="Insert title here" name="jobTitle" class="input">
                         </div>
 
                         <div class="input-container">
                             <label for="description" class="text">Description</label>
-                            <textarea placeholder="Insert description here" name="description"
-                            class="input description-input" rows="4"></textarea>
+                            <textarea id="description" placeholder="Insert description here" name="description"
+                                class="input description-input" rows="4"></textarea>
                         </div>
 
-                        <div class="input-container">
-                            <label for="location" class="text">Location</label>
-                            <input type="text" placeholder="Insert location here" name="location" class="input">
+                        <div class="input-row">
+                            <div class="input-container">
+                                <div class="input-left">
+                                    <label for="company" class="text">Company</label>
+                                    <input id="company" type="text" placeholder="Insert company name here" name="company" class="input">
+                                </div>
+                            </div>
+
+                            <div class="input-container">
+                                <div class="input-right">
+                                    <label for="location" class="text">Location</label>
+                                    <input id="location" type="text" placeholder="Insert location here" name="location" class="input">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="input-container">
-                            <label for="category" class="text">Company</label>
-                            <input type="text" placeholder="Insert company name here" name="category" class="input">
+                        <div class="input-row">
+                            <div class="input-container">
+                                <div class="input-left">
+                                    <label for="contactName" class="text">Contact Name</label>
+                                    <input id="contactName" type="text" placeholder="Insert contact name here" name="contactName" class="input">
+                                </div>
+                            </div>
+
+                            <div class="input-container">
+                                <div class="input-right">
+                                    <label for="contactEmail" class="text">Contact Email</label>
+                                    <input id="contactEmail" type="text" placeholder="Insert contact email here" name="contactEmail" class="input">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="publishBTN" id="publishBTN" style="display:block;">
+                        <div class="input-row">
+                            <div class="input-container">
+                                <div class="input-left">
+                                    <label for="contactNumber" class="text">Contact Number</label>
+                                    <input id="contactNumber" type="text" placeholder="Insert contact number here" name="contactNumber" class="input">
+                                </div>
+                            </div>
+
+                            <div class="input-container">
+                                <div class="input-right">
+                                    <label for="jobCategory" class="text">Category</label>
+                                    <select id="jobCategory" name="jobCategory" class="input category-input">
+                                        <option value="" selected>Select Category</option>
+                                        <option value="onsite">Onsite</option>
+                                        <option value="hybrid">Hybrid</option>
+                                        <option value="remote">Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="publishBTN" id="publishBTN" style="display: block;">
                             <button type="submit">Publish</button>
                         </div>
                     </form>
                 </div>
-
-            </div>
-        </div>
 
         <script src="../js/create.js"></script>
 
