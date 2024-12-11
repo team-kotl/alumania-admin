@@ -253,8 +253,13 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
   const locationField = document.querySelector('input[name="location"]');
   const companyField = document.querySelector('input[name="company"]');
   const contactNameField = document.querySelector('input[name="contactName"]');
-  const contactEmailField = document.querySelector('input[name="contactEmail"]');
-  const contactNumberField = document.querySelector('input[name="contactNumber"]');
+  const contactEmailField = document.querySelector(
+    'input[name="contactEmail"]'
+  );
+  const contactNumberField = document.querySelector(
+    'input[name="contactNumber"]'
+  );
+  const JobCategoryField = document.querySelector('select[name="jobCategory"]');
 
   let isValid = true;
 
@@ -296,7 +301,15 @@ document.getElementById("jobpostForm").addEventListener("submit", function (e) {
 
   const contactNumberPattern = /^[0-9]{11}$/;
   if (!contactNumberPattern.test(contactNumberField.value.trim())) {
-    showFieldNotification(contactNumberField, "Contact number must be exactly 11 digits and numeric.");
+    showFieldNotification(
+      contactNumberField,
+      "Contact number must be exactly 11 digits and numeric."
+    );
+    isValid = false;
+  }
+
+  if (!JobCategoryField.value.trim()) {
+    showFieldNotification(JobCategoryField, "Job category cannot be empty.");
     isValid = false;
   }
 
