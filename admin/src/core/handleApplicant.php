@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 try {
     function getNextUserID($db) {
-        $query = "SELECT userid FROM user ORDER BY CAST(SUBSTRING(userid, 2) AS UNSIGNED) DESC LIMIT 1";
+        $query = "SELECT CAST(SUBSTRING(userid, 3) AS UNSIGNED) AS count FROM user ORDER BY count DESC LIMIT 1";
         $result = $db->query($query);
         if ($result && $row = $result->fetch_assoc()) {
             $lastUserID = $row['userid'];

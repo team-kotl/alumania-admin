@@ -15,33 +15,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Map post types to table names
-    $tableMap = [
-        'job' => 'jobpost',
-        'event' => 'event',
-        'experience' => 'experience',
-    ];
+    try {
+        // Map post types to table names and their dependencies
+        $dependencyMap = [
+            'experience' => [
+                'table' => 'experience',
+                'idColumn' => 'xpid',
+                'dependencies' => [
+                    ['table' => 'experienceimage', 'idColumn' => 'xpid'],
+                    ['table' => 'experiencelike', 'idColumn' => 'xpid'],
+                ]
+            ],
+            'job' => [
+                'table' => 'jobpost',
+                'idColumn' => 'jobpid',
+                'dependencies' => [
+                    ['table' => 'interestedinjobpost', 'idColumn' => 'jobpid'],
+                ]
+            ],
+            'event' => [
+                'table' => 'event',
+                'idColumn' => 'eventid',
+                'dependencies' => [
+                    ['table' => 'interestedinevent', 'idColumn' => 'eventid'],
+                ]
+            ],
+        ];
 
-    $table = $tableMap[$type] ?? null;
+        $config = $dependencyMap[$type] ?? null;
 
-    if (!$table) {
-        echo json_encode(['success' => false, 'error' => 'Invalid post type.']);
-        exit;
-    }
+        if (!$config) {
+            throw new Exception('Invalid post type.');
+        }
 
-    // Delete query
-    $query = "DELETE FROM $table WHERE " . ($type === 'experience' ? 'xpid' : ($type === 'job' ? 'jobpid' : 'eventid')) . " = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('s', $id);
+        // Delete from dependent tables
+        foreach ($config['dependencies'] as $dependency) {
+            $query = "DELETE FROM {$dependency['table']} WHERE {$dependency['idColumn']} = ?";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+        }
 
-    if ($stmt->execute()) {
+        // Delete from the main table
+        $mainQuery = "DELETE FROM {$config['table']} WHERE {$config['idColumn']} = ?";
+        $stmt = $db->prepare($mainQuery);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+
+
         echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'error' => $stmt->error]);
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
 
-    $stmt->close();
-    $db->close();
 } else {
     echo json_encode(['success' => false, 'error' => 'Invalid request method.']);
 }
