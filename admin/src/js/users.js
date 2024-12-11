@@ -216,21 +216,45 @@ document.addEventListener("DOMContentLoaded", () => {
     userDetails.classList.add("hidden");
   };
 
-  const showUserDetails = (userData) => {
+  // Function to display user details
+  function showUserDetails(userData) {
+    if (userData.displaypic) {
+      displayPicHtml = `<img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" />`;
+    }
+
     userInfo.innerHTML = ` 
-      <h2>${userData.name}</h2>
-      <p><strong>Email:</strong> ${userData.email}</p>
-      <p><strong>Employment Status:</strong> ${userData.empstatus}</p>
-      <p><strong>Location:</strong> ${userData.location}</p>
-    `;
+      <div class="profile-section">
+        <div class="profile-picture">
+          <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
+        </div>
+        <div class="profile-details">
+          <h2>${userData.name}</h2>
+          <p><strong>User ID:</strong> ${userData.userid}</p>
+        </div>
+      </div>
+
+      <div class="details-section">
+        
+        <div class="header-split">
+          <div class="header-image">
+        <img src="../../res/info.png" alt="Alumni Info" />
+        </div>
+        <div class="header-text">
+          <h3>Alumni Information</h3>
+        </div>
+        </div>
+    
+        <p><strong>Email:</strong> ${userData.email}</p>
+        <p><strong>Course:</strong> ${userData.course}</p>
+        <p><strong>Status:</strong> ${userData.empstatus}</p>
+        <p><strong>Location:</strong> ${userData.location}</p>
+        <p><strong>Company:</strong> ${userData.company}</p>
+      </div>
+  `;
+
     userPanel.classList.add("hidden");
     userDetails.classList.remove("hidden");
-  };
-
-  goBackButton.addEventListener("click", () => {
-    userDetails.classList.add("hidden");
-    userPanel.classList.remove("hidden");
-  });
+  }
 
   userPanel.addEventListener("click", (event) => {
     const row = event.target.closest("tr");
@@ -239,13 +263,18 @@ document.addEventListener("DOMContentLoaded", () => {
       showUserDetails(userData);
     }
   });
-});
 
-window.addEventListener("click", (event) => {
-  const modals = document.querySelectorAll(".modal");
-  modals.forEach((modal) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
+  goBackButton.addEventListener("click", () => {
+    userDetails.classList.add("hidden");
+    userPanel.classList.remove("hidden");
+  });
+
+  window.addEventListener("click", (event) => {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
   });
 });

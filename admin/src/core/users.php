@@ -153,26 +153,30 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                        <?php 
                             if ($resultAlumni && $resultAlumni->num_rows > 0) {
                                 while ($row = $resultAlumni->fetch_assoc()) { 
                                     $userData = json_encode([
-                                        "name" => $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'],
+                                        "userid" => $row['userid'],
                                         "email" => $row['email'],
+                                        "name" => $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'],
                                         "empstatus" => $row['empstatus'],
-                                        "location" => $row['location']
+                                        "location" => $row['location'],
+                                        "displaypic" => base64_encode($row['displaypic']),
+                                        "course" => $row['course'],    // Ensure course field exists
+                                        "company" => $row['company']   // Ensure company field exists
                                     ]);
                             ?>
-                                <tr data-user-data='<?php echo htmlspecialchars($userData); ?>'>
-                                    <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
-                                    <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
-                                    <td data-label="Name"><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
-                                    <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
-                                    <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
-                                </tr>
-                                <?php }
+                                    <tr data-user-data='<?php echo htmlspecialchars($userData); ?>'>
+                                        <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
+                                        <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
+                                        <td data-label="Name"><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>
+                                        <td data-label="Employment Status"><?php echo htmlspecialchars($row['empstatus']); ?></td>
+                                        <td data-label="Location"><?php echo htmlspecialchars($row['location']); ?></td>
+                                    </tr>
+                            <?php }
                             } else { ?>
-                                <tr>
+                                <tr> 
                                     <td colspan="5">No alumni found</td>
                                 </tr>
                             <?php } ?>
@@ -330,39 +334,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             });
         });
 
-        function showUserDetails(userData) {
-        userInfo.innerHTML = `
-            <h2>User Details</h2>
-            <p><strong>ID:</strong> ${userData.id}</p>
-            <p><strong>Name:</strong> ${userData.name}</p>
-            <p><strong>Email:</strong> ${userData.email}</p>
-            <p><strong>Status:</strong> ${userData.status}</p>
-            <p><strong>Location:</strong> ${userData.location}</p>
-        `;
-
-        userPanel.classList.add("hidden");
-        userDetails.classList.remove("hidden");
-        }
-
-        goBackButton.addEventListener("click", () => {
-            userDetails.classList.add("hidden");
-            userPanel.classList.remove("hidden");
-        });
-
-        document.querySelector("tbody").addEventListener("click", (event) => {
-            const row = event.target.closest("tr");
-            if (row) {
-                const userData = {
-                    id: row.cells[0].textContent,
-                    email: row.cells[1].textContent,
-                    name: row.cells[2].textContent,
-                    status: row.cells[3].textContent,
-                    location: row.cells[4].textContent,
-                };
-
-                showUserDetails(userData);
-            }
-        });
+       
         </script>
 
         <script src="../js/users.js" defer></script>

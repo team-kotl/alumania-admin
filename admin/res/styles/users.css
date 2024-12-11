@@ -428,14 +428,15 @@ tbody tr:hover {
 
 #goBackButton {
   display: block; /* Ensures the button is block-level */
-  margin-left: auto; /* Moves the button to the right */
+  position: absolute; /* Absolute positioning */
+  bottom: 25vh; /* Adjust the bottom distance as needed */
+  right: 25vw; /* Adjust the right distance as needed */
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
 }
-
 #goBackButton:hover {
   background-color: #0056b3;
 }
@@ -482,8 +483,74 @@ button {
   width: 50%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: justify;
+}
+
+.circle-pic {
+  width: 250px; /* Adjust size as needed */
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  padding-top: 10%;
+  margin-bottom: 80px; /* Space between sections */
+}
+
+.profile-picture {
+  margin-right: 20px; /* Space between picture and details */
+}
+
+.profile-details h2 {
+  margin: 0;
+}
+
+.details-section h3 {
+  margin-bottom: 10px;
+}
+
+.details-section {
+  padding: 20px;
+  margin-bottom: 20px; /* Space between sections */
+}
+
+.details-section h3 {
+  margin-bottom: 15px; /* Space between heading and content */
+  color: #333;
+}
+
+.details-section p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.details-section p strong {
+  color: #000000; /* Accent color for labels */
+}
+
+.details-section img {
+  width: 40px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.header-split {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.header-image img {
+  width: 50px;
+  height: auto;
+}
+
+.header-text h3 {
+  margin: 0;
+  color: #333;
+  font-size: 30px;
 }
