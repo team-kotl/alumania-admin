@@ -1,4 +1,5 @@
-<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion */ -->
+<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion 
+    Description: Admin and Manager can manage their account options, such as logging out or changing their password (MANAGER), and to generate a new admin key for admin*/ -->
 <?php
 session_start();
 
@@ -78,7 +79,7 @@ if (isset($_POST['logout'])) {
                             <div class="input-container">
                                 <p>Please save your new admin key in a secure location</p>
                                 <div class="copy-text">
-                                    <input type="text" class="text" value="" style="width: 100%;" readonly>
+                                    <input type="text" id="generatedKey" class="text" value="" style="width: 100%;" readonly>
                                     <button class="copy-btn" onclick="copyToClipboard()">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20">
@@ -124,6 +125,7 @@ if (isset($_POST['logout'])) {
     </div>
 
 <script src="../js/settings.js"></script>
+
 <script>
 // COPY GENERATED ADMIN KEY
 function copyToClipboard() {
@@ -137,7 +139,7 @@ function copyToClipboard() {
 }
 
 function generateKey() {
-    const length = 16;
+    const length = 10;
 
     fetch(`generateKey.php?length=${length}`)
         .then(response => {
@@ -147,8 +149,13 @@ function generateKey() {
             return response.text();
         })
         .then(generatedKey => {
-            document.getElementById("generatedKey").value = generatedKey;
-            updatePasswordInDatabase(generatedKey);
+            const keyElement = document.getElementById("generatedKey");
+            if (keyElement) {
+                keyElement.value = generatedKey;
+                updatePasswordInDatabase(generatedKey);
+            } else {
+                console.error("Element with id 'generatedKey' not found.");
+            }
         })
         .catch(error => {
             console.error('Error:', error);

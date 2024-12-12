@@ -1,3 +1,5 @@
+<!-- Description: Processes user login by validating the username and password in the "user" table.
+     Upon a successful match, the user's ID, role, and username are stored in the session. -->
 <?php
 require_once '..\database\database.php';
 

@@ -1,3 +1,6 @@
+<!-- Author: Nikko Choy
+     Description: This retrieves and returns a list of sponsors for a specific event, including their name, sponsorship type, and amount.
+    It requires an eventid parameter; if not provided, it returns an error message. -->
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
@@ -26,7 +29,7 @@ if (isset($_GET['eventid'])) {
             'title' => $row['title'],
             'userid' => $row['userid'],
             'type' => $row['type'],
-            'amount' => "₱" . number_format($row['amount'], 2), // Format the amount with peso sign
+            'amount' => "₱" . number_format($row['amount'], 2), 
             'name' => $row['firstname'] . ' ' . $row['lastname']
         ];
     }

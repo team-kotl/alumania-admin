@@ -129,7 +129,7 @@ if (isset($_SESSION['username'])) { ?>
                         body: requestData.toString()
                     })
                     .then(response => response.json())
-                    .then(data => {
+                     .then(data => {
                         if (data.status === 'success') {
                             // Remove the row from the table on success
                             const row = document.querySelector(`tr[data-applicantid="${applicantid}"]`);
