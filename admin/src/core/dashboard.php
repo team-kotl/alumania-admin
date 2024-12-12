@@ -9,6 +9,7 @@ if (isset($_SESSION['username'])) { ?>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../../res/Alumania_logo.png" type="image/x-icon">
         <link rel="stylesheet" href="../../res/styles/dashboard.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
         <title>Alumania</title>
