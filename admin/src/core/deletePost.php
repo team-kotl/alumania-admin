@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This handles the deletion of a post whether it is in the experience, events, or joblistings tab
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 

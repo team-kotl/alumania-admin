@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy, Cazandra Jae Lapig
+// This page would display the number of users, events, jobposts and other statistics of the data inside Alumania
 session_start();
 if (isset($_SESSION['username'])) { ?>
     <!DOCTYPE html>

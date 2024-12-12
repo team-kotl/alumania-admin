@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This would control the feature of accepting and rejecting the applicants
 session_start();
 if (isset($_SESSION['username'])) { ?>
     <!DOCTYPE html>

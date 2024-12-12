@@ -1,3 +1,5 @@
+<!-- Author: Cariel Joyce Maga
+ This would display the components and buttons that are present in the navbar -->
 <link rel="shortcut icon" href="../../res/Alumania_logo.png" type="image/x-icon">
 <link rel="stylesheet" href="../../res/styles/style.css">
 <nav class="navbar">

@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This handles the the images to be displayed in the experience tab of the posts page
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 

@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This would get the users that are interested with a job post or an event to be displayed to their corresponding tab
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 

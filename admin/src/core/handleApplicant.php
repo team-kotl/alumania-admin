@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This would handle the process of accepting or rejecting an applicant and would display a corresponding alert message
 session_start();
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

@@ -1,4 +1,6 @@
 <?php
+//Author: Nikko Andrei T. Choy
+// This would generate a random string to be given as a new admin key 
 function generateRandomString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
