@@ -1,5 +1,5 @@
 <?php
-// Author: Cazandra Jae Lapig
+// Author: Cazandra Jae Lapig, Nikko Andrei Choy
 // This page would display all the posts of the users
 session_start();
 if (isset($_SESSION['username'])) { ?>
