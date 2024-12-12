@@ -341,9 +341,11 @@ body {
 }
 
 .alumni-card-info h3 {
+    width: 210px;
     display: flex;
     font-size: 1rem;
     margin: 0;
+    overflow: hidden;
 }
 
 .alumni-card-info p {
