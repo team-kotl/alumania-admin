@@ -1,5 +1,3 @@
-<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion 
-    Description: Admin and Manager can manage their account options, such as logging out or changing their password (MANAGER), and to generate a new admin key for admin*/ -->
 <?php
 session_start();
 

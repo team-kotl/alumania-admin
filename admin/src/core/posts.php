@@ -1,6 +1,3 @@
-<!-- Author: Cazandra Jae Lapig 
-Description: Implements functionality for managing tab selection in the nav bar, search, filtering, 
-and sorting of events and jobs, along with dropdown for event category and sort for both events and job -->
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>
@@ -292,7 +289,7 @@ if (isset($_SESSION['username'])) { ?>
                         day: 'numeric', 
                         year: 'numeric', 
                         hour: 'numeric', 
-                        minute: '2-digit', /
+                        minute: '2-digit',
                         hour12: true 
                     });
 

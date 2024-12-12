@@ -1,6 +1,3 @@
-<!-- /** Author:
-* This PHP script is designed generate a random string for the new key of the admin.
-**/ -->
 <?php
 function generateRandomString($length = 10)
 {

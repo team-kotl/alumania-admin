@@ -1,6 +1,3 @@
-/** Author:
-* This PHP script retrieves an applicant's diploma image from a database then send it to the admin.
-**/
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

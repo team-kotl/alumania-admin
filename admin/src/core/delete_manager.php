@@ -1,6 +1,3 @@
-/** Author:
-* The purpose of this script is to delete a manager from the system based on their username.
-**/
 <?php
 session_start();
 

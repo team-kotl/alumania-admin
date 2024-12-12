@@ -1,6 +1,3 @@
-<!-- /* Author: Cariel Joyce Maga and Sean Aromin */ 
-    Description: Facilitates the creation of a job listing, storing its details in a database. 
-    It generates a unique job ID and validates the data-->
 <?php
 
 session_start();

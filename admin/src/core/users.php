@@ -1,5 +1,3 @@
-<!-- /* Author: Cariel Joyce Maga and Sean Aromin 
-    Description: user management system to allow administrators to manage accounts for alumni and managers. */ -->
 <?php
 session_start();
 

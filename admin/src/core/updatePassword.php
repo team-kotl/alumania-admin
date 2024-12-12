@@ -1,4 +1,3 @@
-<!-- Description: Update the password for users with the "Admin" user type in a database. -->
 <?php
 require_once '..\database\database.php';
 

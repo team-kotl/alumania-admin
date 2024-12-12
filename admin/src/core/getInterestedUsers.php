@@ -1,8 +1,3 @@
-<!-- Author: Nikko Choy
-     Description: Retrieves and returns a list of alumni who are interested in a specific job post or event,
-     based on the provided type ('job' or 'event') and id (jobpid or eventid).
-     It returns their user ID, name, course, and profile picture in JSON format.
-     If an error occurs, it returns a failure message -->
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

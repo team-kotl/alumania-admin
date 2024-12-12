@@ -1,6 +1,3 @@
-<!-- Author: Nikko Choy
-     Description: This retrieves and returns a list of sponsors for a specific event, including their name, sponsorship type, and amount.
-    It requires an eventid parameter; if not provided, it returns an error message. -->
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

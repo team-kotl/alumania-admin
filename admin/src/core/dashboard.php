@@ -1,6 +1,3 @@
-<!-- /** Author: Cazandra Jae Lapig, Nikko Andrei Choy
-* This dashboard is designed to display various statistics and information related to alumni, managers, job postings, and events.
-**/ -->
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>

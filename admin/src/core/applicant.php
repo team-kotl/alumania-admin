@@ -1,6 +1,3 @@
-<!-- /**
-* This PHP file implements the applicant management functionality for logged-in users.
-**/ -->
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>

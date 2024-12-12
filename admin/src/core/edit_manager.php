@@ -1,6 +1,3 @@
-/** Author:
-* This PHP script is designed to handle updating a manager's details (specifically the username and password) in a database.
-**/
 <?php
 session_start();
 

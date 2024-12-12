@@ -1,6 +1,3 @@
-/** Author:
-* The script is used to delete records from the database that are related to a specific post type (experience, job, or event).
-**/
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

@@ -1,6 +1,3 @@
-/**
-* This PHP script handles adding a new user (specifically, a manager) to the system. It includes validation, secure database operations, and JSON-based feedback.
-**/
 <?php
 require_once '../database/database.php';
 
