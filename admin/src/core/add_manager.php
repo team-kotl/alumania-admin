@@ -1,3 +1,6 @@
+/**
+* This PHP script handles adding a new user (specifically, a manager) to the system. It includes validation, secure database operations, and JSON-based feedback.
+**/
 <?php
 require_once '../database/database.php';
 
@@ -30,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $lastUserId = $row['userId'];
-            $newUserId = sprintf("U%03d", substr($lastUserId, 1) + 1); 
+            $newUserId = sprintf("U%03d", substr($lastUserId, 1) + 1);
         } else {
-            $newUserId = 'U001'; 
+            $newUserId = 'U001';
         }
 
         $userType = 'Manager';

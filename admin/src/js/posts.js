@@ -1,4 +1,8 @@
-const allTabs = document.getElementById("ul-posts").children;
+/* Author: 
+  Description: Implements functionality for managing tab selection in the nav bar, search, 
+  filtering, and sorting of events and jobs, along with dropdown for event category 
+  and sort for both events and job  */
+allTabs = document.getElementById("ul-posts").children;
 let sortOrder = 1;
 
 function setActiveTab(index) {

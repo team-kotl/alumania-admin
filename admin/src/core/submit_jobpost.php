@@ -1,3 +1,4 @@
+/* Author: Cariel Joyce Maga */
 <?php
 
 session_start();

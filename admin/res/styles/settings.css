@@ -1,3 +1,5 @@
+/* Author: Cariel Joyce Maga and Freskie Encarnacion
+  Description: Defines the styles and layout for the settings section of the website. This includes the pop up and its content. */
 .header {
     margin: 25px 70px;
     transition: margin-left 0.3s ease;

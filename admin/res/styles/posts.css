@@ -1,3 +1,6 @@
+/* Author: Cariel Joyce Maga, Cazandra Jae Lapig, and Nikko Choy 
+ Description: Defines the styles and layout for the posts section of the website. This includes navigation bar 
+ in this section, dropdown, buttons, overlay and more. */
 @import url('job-cards.css');
 @import url('event-cards.css');
 @import url('experience-cards.css');
@@ -383,13 +386,12 @@
     transition: background-color 0.3s ease;
 }
 
-/* Right-aligned course name */
 .popup-body li span:last-child {
     margin-left: auto;
     color: #4eaff5;
 }
 
-/* Profile image styling */
+
 .popup-body img {
     width: 50px;
     height: 50px;
@@ -397,7 +399,6 @@
     object-fit: cover;
 }
 
-/* Text styling */
 .popup-body span {
     font-size: 14px;
     color: #333;
@@ -426,7 +427,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display: block; /* Hide overlay initially */
+    display: block; 
     opacity: 1; 
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }

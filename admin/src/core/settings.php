@@ -1,3 +1,4 @@
+<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion */ -->
 <?php
 session_start();
 
@@ -123,17 +124,18 @@ if (isset($_POST['logout'])) {
     </div>
 
 <script src="../js/settings.js"></script>
+
 <script>
-// COPY GENERATED ADMIN KEY
-function copyToClipboard() {
-    const input = document.querySelector('.text');
-    input.select();
-    navigator.clipboard.writeText(input.value).then(() => {
-        alert('Admin key copied to clipboard!');
-    }).catch(err => {
-        console.error('Error copying text: ', err);
-    });
-}
+// // COPY GENERATED ADMIN KEY
+// function copyToClipboard() {
+//     const input = document.querySelector('.text');
+//     input.select();
+//     navigator.clipboard.writeText(input.value).then(() => {
+//         alert('Admin key copied to clipboard!');
+//     }).catch(err => {
+//         console.error('Error copying text: ', err);
+//     });
+// }
 
 function generateKey() {
     const length = 16;

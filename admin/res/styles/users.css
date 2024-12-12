@@ -1,3 +1,6 @@
+/* Author: Cariel Joyce Maga, Sean Aromin and Cazandra Jae Lapig 
+  Description: Defines the styles and layout for the users section of the website. This includes all such as 
+  the tables, nav bar, search, filter, buttons and pop ups. */
 body {
   height: 100vh;
   background-color: #f8f9fa;
@@ -277,20 +280,18 @@ tbody tr:hover {
   display: none;
 }
 
+/* here */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed;
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding: 300 200px;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .modal-content {
@@ -298,53 +299,69 @@ tbody tr:hover {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 400px; /* Max width for smaller screens */
+  max-width: 400px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px; 
   box-sizing: border-box;
   width: auto;
   max-width: 600px;
   max-height: calc(90vh);
+  max-height: 80%; 
   overflow-y: auto;
+  position: relative; 
 }
 
-#userModal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+.profile-section {
+  display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
-#userModal .modal-content {
-  position: absolute;
-  background-color: #fff;
-  margin: auto;
-  padding: 10px;
-  width: 80vw;
-  height: 60vh;
-  overflow-y: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+.profile-picture img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.details-section {
+  margin-top: 10px;
+}
+
+.header-split {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header-image img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.header-text h3 {
+  margin: 0;
 }
 
 .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
   color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  cursor: pointer;
 }
 
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.close-btn:hover {
+  color: #333;
 }
 
 /* Form Styling */
@@ -503,61 +520,107 @@ button {
   transform: scale(1.05);
 }
 
+/* here */
 #userInfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between; /* Centers both vertically and horizontally */
-  height: 350px; /* Adjust height as needed */
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: justify;
+  align-items: flex-start; 
+  justify-content: flex-start; 
+  height: auto; 
+  width: 80%;
+  padding: 10px;
+  text-align: left; 
+  gap: 10px; 
+  box-sizing: border-box; 
 }
 
 .circle-pic {
-  width: 150px; /* Adjust size as needed */
-  height: 150px;
+  width: 120px; 
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .profile-section {
   display: flex;
-  align-items: center;
+  align-items: flex-start; 
   padding-top: 20px;
-  margin-bottom: 40px; /* Space between sections */
+  gap: 5px;
+  flex-wrap: wrap; 
 }
 
 .profile-picture {
-  margin-right: 20px; /* Space between picture and details */
+  margin-right: 20px; 
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
 }
 
 .profile-details h2 {
   margin: 0;
+  font-size: 1.8em; 
+  font-weight: bold;
+  color: #333; 
 }
+
+.profile-details p {
+  margin: 5px 0; 
+  font-size: 1em;
+  color: #555; 
+}
+
 
 .details-section h3 {
   margin-bottom: 10px;
 }
 
 .details-section {
-  padding: 20px;
-  margin-bottom: 20px; /* Space between sections */
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 130%; 
+  overflow: hidden; 
+}
+
+.details-table {
+  width: 100%; 
+  border-collapse: collapse; 
+  table-layout: fixed; 
+}
+
+.details-table th,
+.details-table td {
+  padding: 10px; 
+  text-align: left;
+  border-bottom: 1px solid #ddd; 
+}
+
+.details-table th {
+  background-color: #f4f4f4; 
+  font-weight: 600;
+  font-size: 0.9rem; 
+}
+
+.details-table td {
+  color: #555; 
+  font-size: 0.9rem;
+}
+
+.details-table tr:last-child td {
+  border-bottom: none; 
 }
 
 .details-section h3 {
-  margin-bottom: 15px; /* Space between heading and content */
+  margin-bottom: 15px; 
   color: #333;
 }
 
-.details-section p {
-  margin: 5px 0;
-  color: #555;
-}
-
 .details-section p strong {
-  color: #000000; /* Accent color for labels */
+  color: #000000; 
 }
 
 .details-section img {
@@ -569,19 +632,36 @@ button {
 .header-split {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .header-image img {
-  width: 30px;
-  height: auto;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
 .header-text h3 {
   margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #333;
-  font-size: 20px;
 }
 
-/** Comment **/
+.details-section p {
+  margin: 5px 0; 
+  line-height: 1.5; 
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .details-table th,
+  .details-table td {
+    font-size: 0.8rem; 
+    padding: 8px; 
+  }
+
+  .header-text h3 {
+    font-size: 1rem; 
+  }
+}

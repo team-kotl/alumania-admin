@@ -1,3 +1,4 @@
+<!-- /* Author: Cariel Joyce Maga and Sean Aromin */ -->
 <?php
 session_start();
 
@@ -132,12 +133,13 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             </div>
         </div>
 
-        <div class="modal hidden" id="userModal">
-            <div class="modal-content">
-                <span class="close-btn" id="closeModal">&times;</span>
-                <div id="userInfo"></div>
-            </div>
-        </div>
+        <div id="userModal" class="modal">
+  <div class="modal-content">
+    <button id="closeModal" class="close-btn">&times;</button>
+    <div id="userInfo"></div>
+  </div>
+</div>
+
 
         <script>
             const alumniContent = `
@@ -235,7 +237,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     document.getElementById("editUsername").value = managerData.username;
                     document.getElementById("editPassword").value = managerData.password;
                     currentManagerUsername = managerData.username; // Displayed for confirmation
-                    editManagerModal.style.display = "block";
+                    editManagerModal.style.display = "flex";
                 };
 
                 editManagerForm.addEventListener("submit", (e) => {
@@ -278,7 +280,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 window.openDeleteModal = function (username) {
                     currentManagerUsername = username;
                     document.getElementById("deleteManagerName").textContent = username;
-                    deleteManagerModal.style.display = "block";
+                    deleteManagerModal.style.display = "flex";
                 };
 
                 deleteManagerConfirmBtn.addEventListener("click", () => {
