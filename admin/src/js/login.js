@@ -1,3 +1,7 @@
+/**
+ *  This JavaScript file manages the functionality for user login, including password visibility toggle, 
+ *  form submission handling, and notifications for user feedback.
+ */
 let showicon = document.getElementById("showicon");
 let password = document.getElementById("password");
 
