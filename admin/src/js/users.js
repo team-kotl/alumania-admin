@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+  /* Author: Sean Aromin and Cariel Joyce Maga */
+  document.addEventListener("DOMContentLoaded", () => {
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
   const userPanel = document.getElementById("userPanel");

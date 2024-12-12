@@ -1,3 +1,4 @@
+/* Author: Cariel Joyce Maga and Sean Aromin */
 const originalEventImageSrc = "../../res/event.png";
 const originalJobImageSrc = "../../res/job-listing.png";
 const fileUploadSection = document.getElementById("fileUploadSection");

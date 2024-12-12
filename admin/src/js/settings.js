@@ -1,3 +1,4 @@
+/* Author: Cariel Joyce Maga and Freskie Encarnacion */
 const logoutAnimation = document.getElementById("logout-animation");
 const generateAnimation = document.getElementById("generate-animation");
 const overlay = document.querySelector('.overlay');

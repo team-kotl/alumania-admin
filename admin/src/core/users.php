@@ -1,3 +1,4 @@
+/* Author: Cariel Joyce Maga and Sean Aromin */
 <?php
 session_start();
 
