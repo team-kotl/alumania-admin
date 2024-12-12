@@ -81,6 +81,12 @@
 
 .event-location {
     color: #666;
+    margin-bottom: 10px;
+}
+
+.event-category {
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .event-interest-count {

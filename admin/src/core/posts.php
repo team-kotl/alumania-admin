@@ -253,6 +253,7 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="event-time">${formattedTime}</div>
                             </div>
                             <div class="event-location">${eventsData[i].eventloc}</div>
+                            <div class="event-category">${eventsData[i].category}</div>
                             <div class="event-interest-count">
                                 <button class="view-interested-button" onclick="getInterestedUser('${eventsData[i].eventid}', 'event')">Interested</button>
                                 <button class="sponsors-button" onclick="showEventSponsors('${eventsData[i].eventid}')" , 'event')">Sponsors</button>
