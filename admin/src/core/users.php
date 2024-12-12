@@ -132,12 +132,13 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             </div>
         </div>
 
-        <div class="modal hidden" id="userModal">
-            <div class="modal-content">
-                <span class="close-btn" id="closeModal">&times;</span>
-                <div id="userInfo"></div>
-            </div>
-        </div>
+        <div id="userModal" class="modal">
+  <div class="modal-content">
+    <button id="closeModal" class="close-btn">&times;</button>
+    <div id="userInfo"></div>
+  </div>
+</div>
+
 
         <script>
             const alumniContent = `
@@ -313,6 +314,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
         </script>
 
         <script src="../js/users.js" defer></script>
+        <script src="../js/contentmove.js"></script>
     </body>
 </html>
 <?php } else { ?>
