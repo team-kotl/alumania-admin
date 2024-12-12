@@ -1,4 +1,7 @@
-/* Author: Cariel Joyce Maga and Sean Aromin */
+/** Author: Cariel Joyce Maga and Sean Aromin
+ *          This file is for the javascript of the create event and joblisting
+ *          It handles form validation for event and job postings.
+ * */ 
 const originalEventImageSrc = "../../res/event.png";
 const originalJobImageSrc = "../../res/job-listing.png";
 const fileUploadSection = document.getElementById("fileUploadSection");

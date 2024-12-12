@@ -1,3 +1,6 @@
+/** Author: Nikko Andrei Choy
+ *          This file is for the responsiveness of the navigation bar
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const contentContainer = document.querySelector('.content-container');
