@@ -1,4 +1,6 @@
 <?php
+// Author: Sean Aromin
+// This page updates the password of the admin
 require_once '..\database\database.php';
 
 $db = \Database::getInstance()->getConnection();
