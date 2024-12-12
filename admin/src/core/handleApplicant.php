@@ -3,20 +3,19 @@ session_start();
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
 try {
     function getNextUserID($db) {
-        $query = "SELECT CAST(SUBSTRING(userid, 3) AS UNSIGNED) AS count FROM user ORDER BY count DESC LIMIT 1";
+        $query = "SELECT CAST(SUBSTRING(userid, 2) AS UNSIGNED) AS count FROM user ORDER BY count DESC LIMIT 1";
         $result = $db->query($query);
         if ($result && $row = $result->fetch_assoc()) {
-            $lastUserID = $row['userid'];
-            $numPart = (int) substr($lastUserID, 1); 
-            $nextNum = $numPart + 1; 
+            $lastCount = $row['count'];
+            $nextNum = $lastCount + 1; 
         } else {
             $nextNum = 1;
         }
@@ -26,7 +25,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $applicantid = $_POST['applicantid'] ?? null;
         $action = $_POST['action'] ?? null;
-
+        
         if (!$applicantid || !$action) {
             echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
             exit;
@@ -47,7 +46,7 @@ try {
                 $applicant = $result->fetch_assoc();
                 $username = $applicant['username'];
                 $password = $applicant['password'];
-                $usertype = 'alumni';
+                $usertype = 'Alumni';
                 $email = $applicant['email'];
                 $firstname = $applicant['firstname'];
                 $middlename = $applicant['middlename'];
