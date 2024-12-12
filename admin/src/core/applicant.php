@@ -1,22 +1,27 @@
-<?php 
+<!-- /**
+* This PHP file implements the applicant management functionality for logged-in users.
+**/ -->
+<?php
 session_start();
-if(isset($_SESSION['username'])) { ?>
-<!DOCTYPE html>
-<html lang="en">
+if (isset($_SESSION['username'])) { ?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../res/styles/applicant.css">
-    <title>Alumania</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../res/styles/applicant.css">
+        <title>Alumania</title>
+    </head>
 
-<body>
-    <div id="notificationContainer"></div>
-    <?php include 'navbar.php'; ?>
-    <script defer> setActiveNav("appltab", "applicon", 4); </script>
+    <body>
+        <div id="notificationContainer"></div>
+        <?php include 'navbar.php'; ?>
+        <script defer>
+            setActiveNav("appltab", "applicon", 4);
+        </script>
 
-    <?php
+        <?php
         require_once '..\database\database.php';
         $db = \Database::getInstance()->getConnection();
 
@@ -28,9 +33,9 @@ if(isset($_SESSION['username'])) { ?>
             a.course, a.empstatus, a.location, a.company From applicant a;";
             $applicant_result = mysqli_query($db, $applicant_query);
 
-            if(mysqli_num_rows($applicant_result) <= 0) {
+            if (mysqli_num_rows($applicant_result) <= 0) {
                 echo "<h1>No data found.</h1>";
-            } else { 
+            } else {
                 while ($rowapplicant = mysqli_fetch_assoc($applicant_result)) {
                     $applicants[] = [
                         "applicantid" => $rowapplicant["applicantid"],
@@ -52,37 +57,37 @@ if(isset($_SESSION['username'])) { ?>
         }
         $newapplicants = getApplicants($db);
 
-        
-    ?>
 
-    <div class="content-container">
-        <div class="header">
-            <h1>Applications</h1>
-            <p>Validate Applications</p>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Applicant Name</th>
-                    <th>Course</th>
-                    <th>Location</th>
-                    <th>Diploma</th>
-                    <th>Accept/Reject</th>
-                </tr>
-            </thead>
-            <tbody id="applicantTable">
-            </tbody>
-        </table>
-        <div id="photoPopup" class="popup-container" style="display: none;">
-            <div class="popup-content">
-                <span class="close-popup" onclick="closePopup()">&times;</span>
-                <img id="photoPreview" src="" alt="Diploma Photo">
+        ?>
+
+        <div class="content-container">
+            <div class="header">
+                <h1>Applications</h1>
+                <p>Validate Applications</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Course</th>
+                        <th>Location</th>
+                        <th>Diploma</th>
+                        <th>Accept/Reject</th>
+                    </tr>
+                </thead>
+                <tbody id="applicantTable">
+                </tbody>
+            </table>
+            <div id="photoPopup" class="popup-container" style="display: none;">
+                <div class="popup-content">
+                    <span class="close-popup" onclick="closePopup()">&times;</span>
+                    <img id="photoPreview" src="" alt="Diploma Photo">
+                </div>
             </div>
         </div>
-    </div>
-    
-    <script>
-        let applicants = <?php echo json_encode($newapplicants); ?>;
+
+        <script>
+            let applicants = <?php echo json_encode($newapplicants); ?>;
 
             function displayApplicants(applicants) {
                 const tableBody = document.getElementById("applicantTable");
@@ -117,12 +122,12 @@ if(isset($_SESSION['username'])) { ?>
 
                 // Send request to the same file (applicant.php)
                 fetch('handleApplicant.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded' // Specify urlencoded content type
-                    },
-                    body: requestData.toString()
-                })
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded' // Specify urlencoded content type
+                        },
+                        body: requestData.toString()
+                    })
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
@@ -140,7 +145,7 @@ if(isset($_SESSION['username'])) { ?>
             // Initial display of applicants
             displayApplicants(applicants);
 
-            document.addEventListener('click', function (event) {
+            document.addEventListener('click', function(event) {
                 if (event.target && event.target.matches('button.view-photo-btn')) {
                     const applicantId = event.target.closest('tr').dataset.applicantid;
                     const photoPopup = document.getElementById('photoPopup');
@@ -169,7 +174,7 @@ if(isset($_SESSION['username'])) { ?>
 
             // Periodic check for updates
             setInterval(() => {
-                
+
                 let newApplicants = <?php echo json_encode($newapplicants); ?>;
 
                 // Refresh table only if there's new data
@@ -178,11 +183,11 @@ if(isset($_SESSION['username'])) { ?>
                     displayApplicants(applicants);
                 }
             }, 10000);
-    </script>
-    <script src="../js/contentmove.js"></script>
-</body>
+        </script>
+        <script src="../js/contentmove.js"></script>
+    </body>
 
-</html>
+    </html>
 <?php } else { ?>
     <h1 style='margin:auto;'>Access Forbidden</h1>
     <p>Please log in to your account.</p>

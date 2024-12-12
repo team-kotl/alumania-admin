@@ -1,3 +1,6 @@
+/** Author:
+* The script is used to delete records from the database that are related to a specific post type (experience, job, or event).
+**/
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
@@ -68,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
-
 } else {
     echo json_encode(['success' => false, 'error' => 'Invalid request method.']);
 }
