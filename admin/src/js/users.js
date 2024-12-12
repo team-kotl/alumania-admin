@@ -170,7 +170,7 @@ const closeBtn = document.querySelector(".close-btn");
 
 if (addManagerButton && modal && closeBtn) {
   addManagerButton.addEventListener("click", () => {
-    modal.style.display = "block"; // Show modal
+    modal.style.display = "flex"; // Show modal
   });
 
   closeBtn.addEventListener("click", () => {
@@ -268,6 +268,7 @@ const updateTabState = (
 
 // Function to show user details in the modal
 function showUserDetails(userData) {
+  const userInfo = document.getElementById("userInfo");
   userInfo.innerHTML = `
     <div class="profile-section">
       <div class="profile-picture">
@@ -280,33 +281,54 @@ function showUserDetails(userData) {
     </div>
 
     <div class="details-section">
-      <div class="header-split">
-        <div class="header-image">
-          <img src="../../res/info.png" alt="Alumni Info" />
-        </div>
-        <div class="header-text">
-          <h3>Alumni Information</h3>
-        </div>
-      </div>
-
-      <p><strong>Email:</strong> ${userData.email}</p>
-      <p><strong>Course:</strong> ${userData.course}</p>
-      <p><strong>Status:</strong> ${userData.empstatus}</p>
-      <p><strong>Location:</strong> ${userData.location}</p>
-      <p><strong>Company:</strong> ${userData.company}</p>
+  <div class="header-split">
+    <div class="header-image">
+      <img src="../../res/info.png" alt="Alumni Info" />
     </div>
+    <div class="header-text">
+      <h3>Alumni Information</h3>
+    </div>
+  </div>
+
+  <table class="details-table">
+    <tr>
+      <th>Email</th>
+      <td>${userData.email}</td>
+    </tr>
+    <tr>
+      <th>Course</th>
+      <td>${userData.course}</td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td>${userData.empstatus}</td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td>${userData.location}</td>
+    </tr>
+    <tr>
+      <th>Company</th>
+      <td>${userData.company}</td>
+    </tr>
+  </table>
+</div>
+
   `;
 
   // Show the modal
   const modal = document.getElementById("userModal");
-  modal.classList.remove("hidden");
+  modal.style.display = "flex";
 }
 
 // Close button functionality
 document.getElementById("closeModal").addEventListener("click", () => {
-  document.getElementById("userModal").classList.add("hidden");
+  const modal = document.getElementById("userModal");
+  modal.style.display = "none";
 });
 
+// Event listener for user panel
+const userPanel = document.getElementById("userPanel");
 userPanel.addEventListener("click", (event) => {
   const row = event.target.closest("tr");
   if (row && row.dataset.userData) {
@@ -314,4 +336,3 @@ userPanel.addEventListener("click", (event) => {
     showUserDetails(userData);
   }
 });
-/** Comment **/

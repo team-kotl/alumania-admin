@@ -277,21 +277,20 @@ tbody tr:hover {
   display: none;
 }
 
+/* here */
 .modal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position: fixed;
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  display: flex; /* Use flexbox */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  padding: 300 200px;
 }
+
 
 .modal-content {
   background-color: #fff;
@@ -305,47 +304,66 @@ tbody tr:hover {
   width: auto;
   max-width: 600px;
   max-height: calc(90vh);
+  max-height: 80%; /* here */
   overflow-y: auto;
+  position: relative; /* here */
 }
 
-#userModal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+/* here */
+.profile-section {
+  display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
-#userModal .modal-content {
-  position: absolute;
-  background-color: #fff;
-  margin: auto;
-  padding: 10px;
-  width: 80vw;
-  height: 60vh;
-  overflow-y: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+/* here */
+.profile-picture img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
 
+/* here */
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+/* here */
+.details-section {
+  margin-top: 10px;
+}
+/* here */
+.header-split {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+/* here */
+.header-image img {
+  width: 40px;
+  margin-right: 10px;
+}
+/* here */
+.header-text h3 {
+  margin: 0;
+}
+/* here */
 .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
   color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
   cursor: pointer;
 }
+/* here */
+.close-btn:hover {
+  color: #333;
+}
+
 
 /* Form Styling */
 .modal form label {
@@ -503,85 +521,149 @@ button {
   transform: scale(1.05);
 }
 
+/* here */
 #userInfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between; /* Centers both vertically and horizontally */
-  height: 350px; /* Adjust height as needed */
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: justify;
+  align-items: flex-start; 
+  justify-content: flex-start; 
+  height: auto; 
+  width: 80%;
+  padding: 10px;
+  text-align: left; 
+  gap: 10px; 
+  box-sizing: border-box; 
 }
-
+/* here */
 .circle-pic {
-  width: 150px; /* Adjust size as needed */
-  height: 150px;
+  width: 120px; /* Adjusted size for better fit */
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
-
+/* here */
 .profile-section {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align items to the top-left */
   padding-top: 20px;
-  margin-bottom: 40px; /* Space between sections */
+  gap: 5px;
+  flex-wrap: wrap; 
 }
-
+/* here */
 .profile-picture {
   margin-right: 20px; /* Space between picture and details */
 }
-
+/* here */
+.profile-details {
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  justify-content: center; /* Center-align text within the container */
+}
+/* here */
 .profile-details h2 {
   margin: 0;
+  font-size: 1.8em; /* Larger font for emphasis */
+  font-weight: bold;
+  color: #333; /* Darker color for better visibility */
+}
+/* here */
+.profile-details p {
+  margin: 5px 0; /* Consistent spacing between paragraphs */
+  font-size: 1em;
+  color: #555; /* Subtle contrast for supporting text */
 }
 
+/* here */
 .details-section h3 {
   margin-bottom: 10px;
 }
-
+/* here */
 .details-section {
-  padding: 20px;
-  margin-bottom: 20px; /* Space between sections */
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 130%; /* Ensure it doesn't exceed the container width */
+  overflow: hidden; /* Hide anything overflowing */
 }
-
+/* here */
+.details-table {
+  width: 100%; /* Full width to fit the container */
+  border-collapse: collapse; /* Collapsed borders for better design */
+  table-layout: fixed; /* Ensures columns stay within the width of the container */
+}
+/* here */
+.details-table th,
+.details-table td {
+  padding: 10px; /* Adequate padding inside cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Soft separator between rows */
+}
+/* here */
+.details-table th {
+  background-color: #f4f4f4; /* Slightly lighter background for headers */
+  font-weight: 600;
+  font-size: 0.9rem; /* Adjust font size */
+}
+/* here */
+.details-table td {
+  color: #555; /* Color for text */
+  font-size: 0.9rem;
+}
+/* here */
+.details-table tr:last-child td {
+  border-bottom: none; /* Remove border for the last row */
+}
+/* here */
 .details-section h3 {
   margin-bottom: 15px; /* Space between heading and content */
   color: #333;
 }
 
-.details-section p {
-  margin: 5px 0;
-  color: #555;
-}
-
+/* here */
 .details-section p strong {
   color: #000000; /* Accent color for labels */
 }
-
+/* here */
 .details-section img {
   width: 40px;
   height: auto;
   margin-right: 15px;
 }
-
+/* here */
 .header-split {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
-
+/* here */
 .header-image img {
-  width: 30px;
-  height: auto;
+  width: 24px; /* Icon size */
+  height: 24px;
+  margin-right: 10px;
 }
-
+/* here */
 .header-text h3 {
   margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #333;
-  font-size: 20px;
 }
+/* here */
+.details-section p {
+  margin: 5px 0; /* Reduce margin for consistent spacing */
+  line-height: 1.5; /* Improve text readability */
+}
+/* here */
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .details-table th,
+  .details-table td {
+    font-size: 0.8rem; /* Slightly smaller font size */
+    padding: 8px; /* Reduce padding on smaller screens */
+  }
 
-/** Comment **/
+  .header-text h3 {
+    font-size: 1rem; /* Smaller heading size */
+  }
+}
