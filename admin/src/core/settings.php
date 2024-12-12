@@ -116,7 +116,7 @@ if (isset($_POST['logout'])) {
                                 <input type="password" id="confirmPassword" class="text" placeholder="Confirm Password"
                                     style="width: 100%; height: 2rem; border-radius: .4rem; padding-left: .5rem; border-style: none; border-style: solid;">
                             </div>
-                            <button class="gen-btn" onclick="/* TODO: Change Password */">Confirm</button>
+                            <button class="gen-btn" onclick="changePassword()">Confirm</button>
                         </div>
                     </div>
                 </div>
