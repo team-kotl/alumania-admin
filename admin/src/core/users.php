@@ -185,6 +185,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 </div>
             `;
 
+            /** Comment **/
             const managerContent = `
                 <div class="section-title">
                     <table>
