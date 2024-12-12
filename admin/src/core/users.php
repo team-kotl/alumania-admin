@@ -1,4 +1,5 @@
-<!-- /* Author: Cariel Joyce Maga and Sean Aromin */ -->
+<!-- /* Author: Cariel Joyce Maga and Sean Aromin 
+    Description: user management system to allow administrators to manage accounts for alumni and managers. */ -->
 <?php
 session_start();
 
@@ -165,8 +166,8 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                                         "empstatus" => $row['empstatus'],
                                         "location" => $row['location'],
                                         "displaypic" => base64_encode($row['displaypic']),
-                                        "course" => $row['course'],    // Ensure course field exists
-                                        "company" => $row['company']   // Ensure company field exists
+                                        "course" => $row['course'],   
+                                        "company" => $row['company']   
                                     ]);
                             ?>
                                     <tr data-user-data='<?php echo htmlspecialchars($userData); ?>'>
@@ -225,7 +226,6 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             `;
 
             document.addEventListener('DOMContentLoaded', () => {
-                // Variables for modals
                 const editManagerModal = document.getElementById("editManagerModal");
                 const deleteManagerModal = document.getElementById("deleteManagerModal");
                 const editManagerForm = document.getElementById("editManagerForm");
@@ -236,14 +236,13 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 window.openEditModal = function (managerData) {
                     document.getElementById("editUsername").value = managerData.username;
                     document.getElementById("editPassword").value = managerData.password;
-                    currentManagerUsername = managerData.username; // Displayed for confirmation
+                    currentManagerUsername = managerData.username;
                     editManagerModal.style.display = "flex";
                 };
 
                 editManagerForm.addEventListener("submit", (e) => {
                     e.preventDefault();
 
-                    // Validate form fields
                     const username = editManagerForm.elements["username"].value.trim();
                     const password = editManagerForm.elements["password"].value.trim();
 
@@ -292,7 +291,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     })
                         .then((response) => response.text())
                         .then((data) => {
-                            alert(data);  // Assuming the server returns a success message
+                            alert(data);  
                             location.reload();
                         })
                         .catch((error) => {

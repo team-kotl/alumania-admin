@@ -1,5 +1,6 @@
+<!-- Description: Facilitates the creation of an event, storing its details in a database. 
+ It generates a unique event ID and validates the data -->
 <?php
-
 session_start();
 require_once '..\database\database.php';
 #to get last id

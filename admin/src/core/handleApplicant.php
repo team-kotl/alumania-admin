@@ -1,3 +1,7 @@
+<!-- Author: Nikko Choy
+     Description:  handles the approval or rejection of applicants. When an applicant is accepted, their details are transferred
+      from the "applicant" table to the "user" and "alumni" tables, and the applicant is deleted from the "applicant" table.
+      If rejected, the applicant is simply removed from the "applicant" table. -->
 <?php
 session_start();
 require_once '..\database\database.php';
