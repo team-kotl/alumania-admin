@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'idColumn' => 'eventid',
                 'dependencies' => [
                     ['table' => 'interestedinevent', 'idColumn' => 'eventid'],
+                    ['table' => 'eventsponsor', 'idColumn' => 'eventid'],
                 ]
             ],
         ];
