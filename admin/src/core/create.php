@@ -1,4 +1,6 @@
 <?php
+//Authors: Cariel Joyce Maga, Jude Angelo Ilumin, Freskkie Encarnacion, Sean Justin Aromin
+// Create panel that handles the creation logic and UI of Jobposts and Events 
 session_start();
 if (isset($_SESSION['username'])) { ?>
     <!DOCTYPE html>

@@ -1,4 +1,6 @@
 <?php
+//Author: Sean Justin Aromin
+// This is the PHP logic that handles the editing of the Username and Password of a Manager
 session_start();
 
 if (!isset($_SESSION['username'])) {

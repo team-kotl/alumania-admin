@@ -271,6 +271,7 @@
 
 .view-interested-button {
   color: white;
+  cursor: pointer;
   background-color: #0662D9;
   border: none;
   padding: 10px 30px;

@@ -1,6 +1,6 @@
 <?php
-//Author: Nikko Andrei T. Choy
-// This would handle the process of accepting or rejecting an applicant and would display a corresponding alert message
+// Author: Nikko Andrei Choy
+// Handles applicant actions by either accepting or rejecting them. 
 session_start();
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

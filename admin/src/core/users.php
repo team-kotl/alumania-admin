@@ -1,4 +1,6 @@
 <?php
+// Author: Sean Aromin, Cariel Joyce Maga, Cazandra Jae lapig
+// This page would display all the users
 session_start();
 
 if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {

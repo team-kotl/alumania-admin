@@ -1,4 +1,6 @@
 <?php
+// Author: Sean Justin B. Aromin
+// This is the PHP logic for the change password for managers
 session_start();
 
 if (!isset($_SESSION['username'])) {

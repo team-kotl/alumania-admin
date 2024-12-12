@@ -1,6 +1,6 @@
 <?php
-//Author: Nikko Andrei T. Choy
-// This would get the sponsors of an event to be displayed in the events tab in the posts page
+// Author: Nikko Andrei Choy
+// This retrieve and return information about sponsors for a specific event
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 

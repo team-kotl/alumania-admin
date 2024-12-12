@@ -1,6 +1,6 @@
 <?php
-//Author: Nikko Andrei T. Choy
-// This would get the users that are interested with a job post or an event to be displayed to their corresponding tab
+// Author: Nikko Andrei Choy
+// This retrieve and return information about interested for a specific event or job post
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 
