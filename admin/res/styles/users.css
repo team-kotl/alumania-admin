@@ -676,7 +676,10 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 5%;
 }
 
 .confirm-btn {
@@ -702,4 +705,8 @@ button {
   display: flex;
   padding-top: 20px;
   justify-content: center;
+}
+
+#userModal .modal-actions {
+  position: relative;
 }
