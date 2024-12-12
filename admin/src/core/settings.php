@@ -1,4 +1,5 @@
-<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion */ -->
+<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion 
+    Description: Admin and Manager can manage their account options, such as logging out or changing their password (MANAGER), and to generate a new admin key for admin*/ -->
 <?php
 session_start();
 
@@ -126,16 +127,16 @@ if (isset($_POST['logout'])) {
 <script src="../js/settings.js"></script>
 
 <script>
-// // COPY GENERATED ADMIN KEY
-// function copyToClipboard() {
-//     const input = document.querySelector('.text');
-//     input.select();
-//     navigator.clipboard.writeText(input.value).then(() => {
-//         alert('Admin key copied to clipboard!');
-//     }).catch(err => {
-//         console.error('Error copying text: ', err);
-//     });
-// }
+// COPY GENERATED ADMIN KEY
+function copyToClipboard() {
+    const input = document.querySelector('.text');
+    input.select();
+    navigator.clipboard.writeText(input.value).then(() => {
+        alert('Admin key copied to clipboard!');
+    }).catch(err => {
+        console.error('Error copying text: ', err);
+    });
+}
 
 function generateKey() {
     const length = 10;

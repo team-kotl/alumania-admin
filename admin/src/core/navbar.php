@@ -1,3 +1,4 @@
+<!-- Description: Creates a responsive navigation bar. It adapts based on the user's role (Admin or Manager). -->
 <link rel="shortcut icon" href="../../res/Alumania_logo.png" type="image/x-icon">
 <link rel="stylesheet" href="../../res/styles/style.css">
 <nav class="navbar">
