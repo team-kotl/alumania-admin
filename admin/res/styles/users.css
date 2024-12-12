@@ -1,4 +1,6 @@
-/* Author: Cariel Joyce Maga, Sean Aromin and Cazandra Jae Lapig */
+/* Author: Cariel Joyce Maga, Sean Aromin and Cazandra Jae Lapig 
+  Description: Defines the styles and layout for the users section of the website. This includes all such as 
+  the tables, nav bar, search, filter, buttons and pop ups. */
 body {
   height: 100vh;
   background-color: #f8f9fa;
@@ -280,44 +282,41 @@ tbody tr:hover {
 
 /* here */
 .modal {
-  display: none; /* Hidden by default */
+  display: none; 
   position: fixed;
-  z-index: 1; /* Sit on top */
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center; 
+  align-items: center; 
 }
-
 
 .modal-content {
   background-color: #fff;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 400px; /* Max width for smaller screens */
+  max-width: 400px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px; 
   box-sizing: border-box;
   width: auto;
   max-width: 600px;
   max-height: calc(90vh);
-  max-height: 80%; /* here */
+  max-height: 80%; 
   overflow-y: auto;
-  position: relative; /* here */
+  position: relative; 
 }
 
-/* here */
 .profile-section {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-/* here */
 .profile-picture img {
   width: 80px;
   height: 80px;
@@ -325,31 +324,31 @@ tbody tr:hover {
   margin-right: 20px;
 }
 
-/* here */
+
 .profile-details h2 {
   margin: 0;
   font-size: 1.5em;
 }
-/* here */
+
 .details-section {
   margin-top: 10px;
 }
-/* here */
+
 .header-split {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
-/* here */
+
 .header-image img {
   width: 40px;
   margin-right: 10px;
 }
-/* here */
+
 .header-text h3 {
   margin: 0;
 }
-/* here */
+
 .close-btn {
   position: absolute;
   top: 10px;
@@ -360,11 +359,10 @@ tbody tr:hover {
   color: #aaa;
   cursor: pointer;
 }
-/* here */
+
 .close-btn:hover {
   color: #333;
 }
-
 
 /* Form Styling */
 .modal form label {
@@ -535,136 +533,135 @@ button {
   gap: 10px; 
   box-sizing: border-box; 
 }
-/* here */
+
 .circle-pic {
-  width: 120px; /* Adjusted size for better fit */
+  width: 120px; 
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
-/* here */
+
 .profile-section {
   display: flex;
-  align-items: flex-start; /* Align items to the top-left */
+  align-items: flex-start; 
   padding-top: 20px;
   gap: 5px;
   flex-wrap: wrap; 
 }
-/* here */
+
 .profile-picture {
-  margin-right: 20px; /* Space between picture and details */
-}
-/* here */
-.profile-details {
-  display: flex;
-  flex-direction: column; /* Stack text vertically */
-  justify-content: center; /* Center-align text within the container */
-}
-/* here */
-.profile-details h2 {
-  margin: 0;
-  font-size: 1.8em; /* Larger font for emphasis */
-  font-weight: bold;
-  color: #333; /* Darker color for better visibility */
-}
-/* here */
-.profile-details p {
-  margin: 5px 0; /* Consistent spacing between paragraphs */
-  font-size: 1em;
-  color: #555; /* Subtle contrast for supporting text */
+  margin-right: 20px; 
 }
 
-/* here */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.8em; 
+  font-weight: bold;
+  color: #333; 
+}
+
+.profile-details p {
+  margin: 5px 0; 
+  font-size: 1em;
+  color: #555; 
+}
+
+
 .details-section h3 {
   margin-bottom: 10px;
 }
-/* here */
+
 .details-section {
   margin: 20px 0;
   padding: 15px;
   background-color: #ffffff;
   border-radius: 8px;
-  width: 130%; /* Ensure it doesn't exceed the container width */
-  overflow: hidden; /* Hide anything overflowing */
+  width: 130%; 
+  overflow: hidden; 
 }
-/* here */
+
 .details-table {
-  width: 100%; /* Full width to fit the container */
-  border-collapse: collapse; /* Collapsed borders for better design */
-  table-layout: fixed; /* Ensures columns stay within the width of the container */
+  width: 100%; 
+  border-collapse: collapse; 
+  table-layout: fixed; 
 }
-/* here */
+
 .details-table th,
 .details-table td {
-  padding: 10px; /* Adequate padding inside cells */
-  text-align: left; /* Align text to the left */
-  border-bottom: 1px solid #ddd; /* Soft separator between rows */
+  padding: 10px; 
+  text-align: left;
+  border-bottom: 1px solid #ddd; 
 }
-/* here */
+
 .details-table th {
-  background-color: #f4f4f4; /* Slightly lighter background for headers */
+  background-color: #f4f4f4; 
   font-weight: 600;
-  font-size: 0.9rem; /* Adjust font size */
+  font-size: 0.9rem; 
 }
-/* here */
+
 .details-table td {
-  color: #555; /* Color for text */
+  color: #555; 
   font-size: 0.9rem;
 }
-/* here */
+
 .details-table tr:last-child td {
-  border-bottom: none; /* Remove border for the last row */
+  border-bottom: none; 
 }
-/* here */
+
 .details-section h3 {
-  margin-bottom: 15px; /* Space between heading and content */
+  margin-bottom: 15px; 
   color: #333;
 }
 
-/* here */
 .details-section p strong {
-  color: #000000; /* Accent color for labels */
+  color: #000000; 
 }
-/* here */
+
 .details-section img {
   width: 40px;
   height: auto;
   margin-right: 15px;
 }
-/* here */
+
 .header-split {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
-/* here */
+
 .header-image img {
-  width: 24px; /* Icon size */
+  width: 24px;
   height: 24px;
   margin-right: 10px;
 }
-/* here */
+
 .header-text h3 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
 }
-/* here */
+
 .details-section p {
-  margin: 5px 0; /* Reduce margin for consistent spacing */
-  line-height: 1.5; /* Improve text readability */
+  margin: 5px 0; 
+  line-height: 1.5; 
 }
-/* here */
+
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
   .details-table th,
   .details-table td {
-    font-size: 0.8rem; /* Slightly smaller font size */
-    padding: 8px; /* Reduce padding on smaller screens */
+    font-size: 0.8rem; 
+    padding: 8px; 
   }
 
   .header-text h3 {
-    font-size: 1rem; /* Smaller heading size */
+    font-size: 1rem; 
   }
 }
