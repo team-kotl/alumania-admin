@@ -91,10 +91,10 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     <h2>Add New Manager</h2>
                     <form id="addManagerForm">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username">
 
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password">
                     <button id="togglePassword" type="button">Show Password</button> 
                     <button type="submit" class="submit-button">Add Manager</button>
                     </form>
@@ -108,10 +108,11 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     <form id="editManagerForm">
                         <input type="hidden" id="editManagerId" name="manager_id">
                         <label for="editUsername">Username:</label>
-                        <input type="text" id="editUsername" name="username" required>
+                        <input type="text" id="editUsername" name="username">
 
                         <label for="editPassword">Password:</label>
-                        <input type="password" id="editPassword" name="password" required>
+                        <input type="password" id="editPassword" name="password">
+                        <button id="togglePassword1" type="button">Show Password</button>
                         <button type="submit" class="submit-button">Save Changes</button>
                     </form>
                 </div>
@@ -238,8 +239,22 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
 
                 editManagerForm.addEventListener("submit", (e) => {
                     e.preventDefault();
+
+                    // Validate form fields
+                    const username = editManagerForm.elements["username"].value.trim();
+                    const password = editManagerForm.elements["password"].value.trim();
+
+                    if (!username || !password) {
+                        alert("All fields are required.");
+                    }
+
+                    if (password.length < 4) {
+                        alert("Password must be at least 4 characters long.");
+                        return;
+                    }
+
                     const formData = new FormData(editManagerForm);
-                    formData.append("currentUsername", currentManagerUsername); // Add current username
+                    formData.append("currentUsername", currentManagerUsername); 
 
                     fetch("edit_manager.php", {
                         method: "POST",
@@ -247,7 +262,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     })
                     .then((response) => response.text())
                     .then((data) => {
-                        alert(data);  // Assuming the server returns a success message
+                        alert(data);  
                         location.reload();
                     })
                     .catch((error) => {
@@ -255,7 +270,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                         alert("An error occurred while updating the manager.");
                     });
 
-                    editManagerModal.style.display = "none";
+                    editManagerModal.style.display = "none"; 
                 });
 
 

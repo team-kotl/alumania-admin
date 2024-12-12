@@ -149,6 +149,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      // Validate form fields
+      const username = form.elements["username"].value.trim();
+      const password = form.elements["password"].value.trim();
+
+      if (!username || !password) {
+        alert("All fields are required.");
+        return; // Stop the submission if fields are empty
+      }
+
+      if (password.length < 4) {
+        alert("Password must be at least 4 characters long.");
+        return; // Stop the submission if password is too short
+      }
+
       const formData = new FormData(form);
 
       fetch("add_manager.php", {
@@ -185,6 +200,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = password.type === "password" ? "text" : "password";
     password.type = type;
     togglePassword.textContent =
+      type === "password" ? "Show Password" : "Hide Password";
+  });
+
+  const togglePassword1 = document.getElementById("togglePassword1");
+  const password1 = document.getElementById("editPassword");
+
+  togglePassword1.addEventListener("click", function () {
+    const type = password1.type === "password" ? "text" : "password";
+    password1.type = type;
+    togglePassword1.textContent =
       type === "password" ? "Show Password" : "Hide Password";
   });
 

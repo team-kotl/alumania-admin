@@ -378,6 +378,20 @@ tbody tr:hover {
   color: #0056b3;
 }
 
+#togglePassword1 {
+  margin: 10px 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+#togglePassword1:hover {
+  color: #0056b3;
+}
+
 .submit-button {
   background-color: #007bff;
   color: #fff;
