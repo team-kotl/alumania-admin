@@ -278,37 +278,41 @@ document.addEventListener("DOMContentLoaded", () => {
   function showUserDetails(userData) {
     const userInfo = document.getElementById("userInfo");
     userInfo.dataset.userid = userData.userid; // Attach user ID
+    const getSafeValue = (value) =>
+      value !== null && value !== "" ? value : "N/A";
 
     userInfo.innerHTML = `
-              <div class="profile-section">
-                  <div class="profile-picture">
-                      <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
-                  </div>
-                  <div class="profile-details">
-                      <h2>${userData.name}</h2>
-                      <p><strong>User ID:</strong> ${userData.userid}</p>
-                  </div>
-              </div>
-    
-              <div class="details-section">
-                  <div class="header-split">
-                      <div class="header-image">
-                          <img src="../../res/info.png" alt="Alumni Info" />
-                      </div>
-                      <div class="header-text">
-                          <h3>Alumni Information</h3>
-                      </div>
-                  </div>
-    
-                  <table class="details-table">
-                      <tr><th>Email</th><td>${userData.email}</td></tr>
-                      <tr><th>Course</th><td>${userData.course}</td></tr>
-                      <tr><th>Status</th><td>${userData.empstatus}</td></tr>
-                      <tr><th>Location</th><td>${userData.location}</td></tr>
-                      <tr><th>Company</th><td>${userData.company}</td></tr>
-                  </table>
-              </div>
-          `;
+      <div class="profile-section">
+        <div class="profile-picture">
+          <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${
+      userData.name
+    }'s Display Picture" class="circle-pic" />
+        </div>
+        <div class="profile-details">
+          <h2>${userData.name}</h2>
+          <p><strong>User ID:</strong> ${userData.userid}</p>
+        </div>
+      </div>
+  
+      <div class="details-section">
+        <div class="header-split">
+          <div class="header-image">
+            <img src="../../res/info.png" alt="Alumni Info" />
+          </div>
+          <div class="header-text">
+            <h3>Alumni Information</h3>
+          </div>
+        </div>
+  
+        <table class="details-table">
+          <tr><th>Email</th><td>${getSafeValue(userData.email)}</td></tr>
+          <tr><th>Course</th><td>${getSafeValue(userData.course)}</td></tr>
+          <tr><th>Status</th><td>${getSafeValue(userData.empstatus)}</td></tr>
+          <tr><th>Location</th><td>${getSafeValue(userData.location)}</td></tr>
+          <tr><th>Company</th><td>${getSafeValue(userData.company)}</td></tr>
+        </table>
+      </div>
+    `;
 
     const modal = document.getElementById("userModal");
     modal.style.display = "flex";
