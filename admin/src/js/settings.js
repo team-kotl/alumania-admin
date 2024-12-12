@@ -1,4 +1,7 @@
-/* Author: Cariel Joyce Maga and Freskie Encarnacion */
+/* Author: Cariel Joyce Maga and Freskie Encarnacion 
+   Description: Handles logout and generate animations, manages popups 
+   for logout and key generation, and includes functionality for copying 
+   the admin key to the clipboard and clearing input fields*/
 const logoutAnimation = document.getElementById("logout-animation");
 const generateAnimation = document.getElementById("generate-animation");
 const overlay = document.querySelector('.overlay');
@@ -24,7 +27,7 @@ document.querySelector(".generate").addEventListener("mouseleave", () => {
 });
 
 
-//POPUP
+// POPUP
 document.querySelector(".logout").addEventListener("click", () => togglePopup("popup-logout"));
 document.querySelector(".generate").addEventListener("click", () => togglePopup("popup-generate"));
 function togglePopup(popupId) {
@@ -32,9 +35,7 @@ function togglePopup(popupId) {
 }
 
 function closeAndClearInput() {
-    // Clear the input field
     document.getElementById('generatedKey').value = '';
-    // Close the popup
     togglePopup('popup-generate');
 }
 
