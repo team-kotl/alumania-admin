@@ -1,4 +1,6 @@
 <?php
+//Author: Sean Justin Aromin
+// This is the PHP logic for deleting an alumni
 session_start();
 
 if (!isset($_SESSION['username'])) {

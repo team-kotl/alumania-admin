@@ -1,4 +1,6 @@
 <?php
+// Author: Sean Justin Aromin
+// This is the PHP logic that handles the adding of Managers 
 require_once '../database/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
