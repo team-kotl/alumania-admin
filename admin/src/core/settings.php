@@ -1,4 +1,4 @@
-/* Author: Cariel Joyce Maga and Freskie Encarnacion */
+<!-- /* Author: Cariel Joyce Maga and Freskie Encarnacion */ -->
 <?php
 session_start();
 

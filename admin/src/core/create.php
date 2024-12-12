@@ -1,6 +1,6 @@
-/**
+<!-- /**
 * This PHP file allows logged-in users to create either an event or a job posting
-**/
+**/ -->
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>
