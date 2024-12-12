@@ -1,6 +1,9 @@
+/** Author:
+* This PHP script is designed generate a random string for the new key of the admin.
+**/
 <?php
-
-function generateRandomString($length = 10) {
+function generateRandomString($length = 10)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';

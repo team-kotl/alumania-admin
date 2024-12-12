@@ -1,3 +1,6 @@
+/** Author:
+* This PHP script is designed to get the likes of an experience from the database.
+**/
 <?php
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();

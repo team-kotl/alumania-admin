@@ -1,4 +1,7 @@
-/* Author: Cazandra Jae Lapig */
+/** Author: Cazandra Jae Lapig, Nikko Andrei Choy
+* This dashboard is designed to display various statistics and information related to alumni, managers, job postings, and events.
+**/
+
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>
@@ -180,9 +183,9 @@ if (isset($_SESSION['username'])) { ?>
                     <div class="interested-alumni">
                         <h2>Interested Alumni</h2>
                         <?php if (!empty($topEntries)) {
-                            foreach ($topEntries as $entry) { 
+                            foreach ($topEntries as $entry) {
                                 $eventPhotoData = !empty($entry['eventphoto']) ? 'data:image/jpeg;base64,' . base64_encode($entry['eventphoto']) : null;
-                                ?>
+                        ?>
                                 <div class="alumni-card">
                                     <div class="alumni-card-header">
                                         <?php if ($entry['type'] === 'Event') { ?>
@@ -273,9 +276,9 @@ if (isset($_SESSION['username'])) { ?>
                             </thead>
                             <tbody>
                                 <?php if (!empty($recentAlumniData)) {
-                                    foreach ($recentAlumniData as $alumni) { 
-                                        $profpicData = !empty($alumni['profpic']) ? 'data:image/jpeg;base64,' . base64_encode($alumni['profpic']) : '../../res/manager.png'; 
-                                        ?>
+                                    foreach ($recentAlumniData as $alumni) {
+                                        $profpicData = !empty($alumni['profpic']) ? 'data:image/jpeg;base64,' . base64_encode($alumni['profpic']) : '../../res/manager.png';
+                                ?>
                                         <tr>
                                             <td>
                                                 <div class='alumni-info'>
