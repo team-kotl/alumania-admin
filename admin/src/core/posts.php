@@ -1,4 +1,3 @@
-/* Author: Cazandra Jae Lapig */
 <?php
 session_start();
 if (isset($_SESSION['username'])) { ?>
@@ -223,7 +222,7 @@ if (isset($_SESSION['username'])) { ?>
                 document.getElementById("card-jobs").innerHTML = '';
                 document.getElementById("card-experiences").innerHTML = '';
                 const container = document.getElementById("card-events");
-                container.innerHTML = ''; // Clear existing content
+                container.innerHTML = ''; 
 
                 for (let i = 0; i < eventsData.length; i++) {
 
@@ -273,7 +272,7 @@ if (isset($_SESSION['username'])) { ?>
                 document.getElementById("card-events").innerHTML = '';
                 document.getElementById("card-jobs").innerHTML = '';
                 const container = document.getElementById("card-experiences");
-                container.innerHTML = ''; // Clear existing content
+                container.innerHTML = ''; 
 
                 if (experienceData.length === 0) {
                     container.innerHTML = '<p>No experiences found.</p>';
@@ -282,16 +281,16 @@ if (isset($_SESSION['username'])) { ?>
 
                 experienceData.forEach((exp) => {
                     const cardContainer = document.createElement('div');
-                    cardContainer.id = exp.xpid; // Set ID to experience ID
+                    cardContainer.id = exp.xpid; 
                     cardContainer.classList.add("experience-card");
 
                     const formattedDate = new Date(exp.publishtimestamp).toLocaleString('en-US', {
-                        month: 'long', // Full month name
-                        day: 'numeric', // Day of the month
-                        year: 'numeric', // Full year
-                        hour: 'numeric', // Hour
-                        minute: '2-digit', // Minutes
-                        hour12: true // 12-hour clock
+                        month: 'long', 
+                        day: 'numeric', 
+                        year: 'numeric', 
+                        hour: 'numeric', 
+                        minute: '2-digit', /
+                        hour12: true 
                     });
 
                     cardContainer.innerHTML = `
@@ -478,7 +477,7 @@ if (isset($_SESSION['username'])) { ?>
                     .then(data => {
                         if (data.success) {
                             alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully.`);
-                            location.reload(); // Reload the page to update the list
+                            location.reload(); 
                         } else {
                             alert(`Failed to delete ${type}: ${data.error || 'Unknown error'}`);
                         }

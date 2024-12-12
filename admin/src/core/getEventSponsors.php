@@ -26,7 +26,7 @@ if (isset($_GET['eventid'])) {
             'title' => $row['title'],
             'userid' => $row['userid'],
             'type' => $row['type'],
-            'amount' => "₱" . number_format($row['amount'], 2), // Format the amount with peso sign
+            'amount' => "₱" . number_format($row['amount'], 2), 
             'name' => $row['firstname'] . ' ' . $row['lastname']
         ];
     }

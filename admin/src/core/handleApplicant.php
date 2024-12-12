@@ -80,7 +80,7 @@ try {
 
                 // Send the binary data for `diploma`
                 if ($diploma !== null) {
-                    $alumnistmt->send_long_data(9, $diploma); // 9 is the zero-based index of the diploma parameter
+                    $alumnistmt->send_long_data(9, $diploma); 
                 }
 
                 if ($alumnistmt->execute()) {
