@@ -39,7 +39,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 <p>View and Manage User Accounts</p>
             </div>
 
-            <div class="navigation">
+            <div class="navigation" style="cursor: pointer;">
                 <ul id="ul-users">
                     <li id="alumniTab" class="active" selected-icon="../../res/alumni-blue.png" unselected-icon="../../res/alumni.png">
                         <img src="../../res/alumni-blue.png" alt="Alumni">
@@ -184,7 +184,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                                         "company" => $row['company']   // Ensure company field exists
                                     ]);
                             ?>
-                                    <tr data-user-data='<?php echo htmlspecialchars($userData); ?>'>
+                                    <tr style="cursor: pointer;" data-user-data='<?php echo htmlspecialchars($userData); ?>'>
                                         <td data-label="User ID"><?php echo htmlspecialchars($row['userid']); ?></td>
                                         <td data-label="Email"><?php echo htmlspecialchars($row['email']); ?></td>
                                         <td data-label="Name"><?php echo htmlspecialchars($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']); ?></td>

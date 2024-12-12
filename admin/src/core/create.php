@@ -77,7 +77,7 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="input-container">
                                     <div class="input-left">
                                         <label for="category" class="text">Category</label>
-                                        <select name="category" class="input category-input" id="category">
+                                        <select name="category" class="input category-input" id="category" style="cursor: pointer;">
                                             <option value="" selected>Select Category</option>
                                             <option value="reunion">Reunion</option>
                                             <option value="Thanksgiving">Thanksgiving</option>
@@ -157,7 +157,7 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="input-container">
                                     <div class="input-right">
                                         <label for="jobCategory" class="text">Category</label>
-                                        <select id="jobCategory" name="jobCategory" class="input category-input">
+                                        <select id="jobCategory" name="jobCategory" class="input category-input" style="cursor: pointer;">
                                             <option value="" selected>Select Category</option>
                                             <option value="onsite">Onsite</option>
                                             <option value="hybrid">Hybrid</option>
