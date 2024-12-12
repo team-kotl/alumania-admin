@@ -1,3 +1,6 @@
+
+/* Author: Harry Dominguez
+  Description: Manages the navigation bar's functionality, including toggling its visibility and setting active tabs with corresponding styles and icons  */
 const navbar = document.querySelector('.navbar');
 const navToggle = document.querySelector('.nav-toggle');
 const contentContainer = document.querySelector('.content-container');
@@ -5,10 +8,6 @@ const contentContainer = document.querySelector('.content-container');
 navToggle.addEventListener('click', () => {
     navbar.classList.toggle('collapsed');
 });
-
-function wipAlert() {
-    alert('This section is currently being worked on :)');
-}
 
 function setActiveNav(tabId, iconId, tabNo) {
     const navBarItem = document.getElementById(tabId);

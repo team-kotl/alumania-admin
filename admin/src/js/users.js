@@ -1,4 +1,8 @@
-  /* Author: Sean Aromin and Cariel Joyce Maga */
+  /* Author: Sean Aromin and Cariel Joyce Maga
+    Description: This code manages  functionalities for switching between "Alumni" and "Manager" tabs, 
+    filtering user data by status and location, and searching through the table rows. 
+    It includes modal pop-ups for adding managers, edit manager and delete manager. Password visibility toggles are also provided.
+    it also has a user details modal that displays detailed information when a user row is clicked. */
   document.addEventListener("DOMContentLoaded", () => {
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
@@ -21,7 +25,7 @@
   const locationFilters = document.querySelectorAll(
     ".filter-section:nth-child(2) ul li"
   );
-  let tableRows; // This will be set dynamically based on the active tab
+  let tableRows; 
   let activeFilters = {
     status: null,
     location: null,
@@ -35,17 +39,17 @@
     placeholder
   ) {
     userPanel.innerHTML = content;
-    tableRows = userPanel.querySelectorAll("tbody tr"); // Update table rows based on new content
+    tableRows = userPanel.querySelectorAll("tbody tr"); 
     activeTab.classList.add("active");
     inactiveTab.classList.remove("active");
     addManagerButtonContainer.classList.toggle("hidden", showFilter);
     filterButtonContainer.style.display = showFilter ? "block" : "none";
     if (searchInput) {
       searchInput.placeholder = placeholder;
-      searchInput.value = ""; // Clear search input on tab switch
+      searchInput.value = ""; 
     }
-    resetFilters(); // Reset filters when switching tabs
-    filterRows(); // Reapply filters after switching tabs
+    resetFilters(); 
+    filterRows(); 
 
     // Update icons based on active/inactive state
     updateIcons(activeTab, inactiveTab);
@@ -68,7 +72,7 @@
   }
 
   function filterRows() {
-    if (!tableRows) return; // Ensure tableRows is set
+    if (!tableRows) return; 
 
     const searchQuery = searchInput.value.toLowerCase();
     let visibleCount = 0;
@@ -131,7 +135,7 @@
   // Toggle filter dropdown
   if (filterButton) {
     filterButton.addEventListener("click", (event) => {
-      event.preventDefault(); // Prevent default action
+      event.preventDefault(); 
       filterDropdown.classList.toggle("show");
     });
   }
@@ -189,12 +193,12 @@ if (addManagerButton && modal && closeBtn) {
 
     if (!username || !password) {
       alert("All fields are required.");
-      return; // Stop the submission if fields are empty
+      return; 
     }
 
     if (password.length < 4) {
       alert("Password must be at least 4 characters long.");
-      return; // Stop the submission if password is too short
+      return; 
     }
 
     const formData = new FormData(form);
