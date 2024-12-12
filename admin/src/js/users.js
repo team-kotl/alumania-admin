@@ -145,12 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none"; // Hide modal
     });
 
-    window.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-
     const form = document.getElementById("addManagerForm");
 
     form.addEventListener("submit", (e) => {
@@ -196,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const userDetails = document.getElementById("userDetails");
   const userInfo = document.getElementById("userInfo");
-  const goBackButton = document.getElementById("goBackButton");
 
   const updateTabState = (
     activeTab,
@@ -216,45 +209,46 @@ document.addEventListener("DOMContentLoaded", () => {
     userDetails.classList.add("hidden");
   };
 
-  // Function to display user details
+  // Function to show user details in the modal
   function showUserDetails(userData) {
-    if (userData.displaypic) {
-      displayPicHtml = `<img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" />`;
-    }
-
-    userInfo.innerHTML = ` 
-      <div class="profile-section">
-        <div class="profile-picture">
-          <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
-        </div>
-        <div class="profile-details">
-          <h2>${userData.name}</h2>
-          <p><strong>User ID:</strong> ${userData.userid}</p>
-        </div>
+    userInfo.innerHTML = `
+    <div class="profile-section">
+      <div class="profile-picture">
+        <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
       </div>
+      <div class="profile-details">
+        <h2>${userData.name}</h2>
+        <p><strong>User ID:</strong> ${userData.userid}</p>
+      </div>
+    </div>
 
-      <div class="details-section">
-        
-        <div class="header-split">
-          <div class="header-image">
-        <img src="../../res/info.png" alt="Alumni Info" />
+    <div class="details-section">
+      <div class="header-split">
+        <div class="header-image">
+          <img src="../../res/info.png" alt="Alumni Info" />
         </div>
         <div class="header-text">
           <h3>Alumni Information</h3>
         </div>
-        </div>
-    
-        <p><strong>Email:</strong> ${userData.email}</p>
-        <p><strong>Course:</strong> ${userData.course}</p>
-        <p><strong>Status:</strong> ${userData.empstatus}</p>
-        <p><strong>Location:</strong> ${userData.location}</p>
-        <p><strong>Company:</strong> ${userData.company}</p>
       </div>
+
+      <p><strong>Email:</strong> ${userData.email}</p>
+      <p><strong>Course:</strong> ${userData.course}</p>
+      <p><strong>Status:</strong> ${userData.empstatus}</p>
+      <p><strong>Location:</strong> ${userData.location}</p>
+      <p><strong>Company:</strong> ${userData.company}</p>
+    </div>
   `;
 
-    userPanel.classList.add("hidden");
-    userDetails.classList.remove("hidden");
+    // Show the modal
+    const modal = document.getElementById("userModal");
+    modal.classList.remove("hidden");
   }
+
+  // Close button functionality
+  document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("userModal").classList.add("hidden");
+  });
 
   userPanel.addEventListener("click", (event) => {
     const row = event.target.closest("tr");
@@ -262,19 +256,5 @@ document.addEventListener("DOMContentLoaded", () => {
       const userData = JSON.parse(row.dataset.userData);
       showUserDetails(userData);
     }
-  });
-
-  goBackButton.addEventListener("click", () => {
-    userDetails.classList.add("hidden");
-    userPanel.classList.remove("hidden");
-  });
-
-  window.addEventListener("click", (event) => {
-    const modals = document.querySelectorAll(".modal");
-    modals.forEach((modal) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
   });
 });

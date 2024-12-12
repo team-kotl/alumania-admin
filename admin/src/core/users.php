@@ -123,7 +123,6 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     <h2>Confirm Delete</h2>
                     <p>Are you sure you want to delete the manager <strong id="deleteManagerName"></strong>?</p>
                     <button id="confirmDeleteManager" class="submit-button">Yes, Delete</button>
-                    <button class="close-btn">Cancel</button>
                 </div>
             </div>
 
@@ -132,9 +131,9 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             </div>
         </div>
 
-        <div class="user-panel" id="userPanel">
-            <div id="userDetails" class="hidden">
-                <button id="goBackButton">Go Back</button>
+        <div class="modal hidden" id="userModal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
                 <div id="userInfo"></div>
             </div>
         </div>
@@ -293,13 +292,6 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                         editManagerModal.style.display = "none";
                         deleteManagerModal.style.display = "none";
                     });
-                });
-
-                window.addEventListener("click", (event) => {
-                    if (event.target === editManagerModal || event.target === deleteManagerModal) {
-                        editManagerModal.style.display = "none";
-                        deleteManagerModal.style.display = "none";
-                    }
                 });
             });
 
