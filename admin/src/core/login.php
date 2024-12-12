@@ -1,4 +1,6 @@
 <?php
+// Author: Nikko Andrei Choy
+// Handles login process (retrieves the username and password)
 require_once '..\database\database.php';
 
 session_start();

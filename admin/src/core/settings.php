@@ -1,4 +1,6 @@
 <?php
+// Author: Cariel Joyce Maga, Freskkie Encarancaion
+// This page would display the settings (logout and generate key)
 session_start();
 
 // Handle logout request

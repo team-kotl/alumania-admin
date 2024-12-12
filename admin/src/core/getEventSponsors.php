@@ -1,4 +1,6 @@
 <?php
+// Author: Nikko Andrei Choy
+// This retrieve and return information about sponsors for a specific event
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 

@@ -1,4 +1,6 @@
 <?php
+// Author: Nikko Andrei Choy
+// This retrieve and return information about interested for a specific event or job post
 require_once '..\database\database.php';
 $db = \Database::getInstance()->getConnection();
 
