@@ -236,7 +236,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     document.getElementById("editUsername").value = managerData.username;
                     document.getElementById("editPassword").value = managerData.password;
                     currentManagerUsername = managerData.username; // Displayed for confirmation
-                    editManagerModal.style.display = "block";
+                    editManagerModal.style.display = "flex";
                 };
 
                 editManagerForm.addEventListener("submit", (e) => {
@@ -279,7 +279,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 window.openDeleteModal = function (username) {
                     currentManagerUsername = username;
                     document.getElementById("deleteManagerName").textContent = username;
-                    deleteManagerModal.style.display = "block";
+                    deleteManagerModal.style.display = "flex";
                 };
 
                 deleteManagerConfirmBtn.addEventListener("click", () => {

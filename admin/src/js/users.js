@@ -170,7 +170,7 @@ const closeBtn = document.querySelector(".close-btn");
 
 if (addManagerButton && modal && closeBtn) {
   addManagerButton.addEventListener("click", () => {
-    modal.style.display = "block"; // Show modal
+    modal.style.display = "flex"; // Show modal
   });
 
   closeBtn.addEventListener("click", () => {
