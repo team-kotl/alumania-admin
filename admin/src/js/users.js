@@ -1,9 +1,9 @@
-  /* Author: Sean Aromin and Cariel Joyce Maga
+/* Author: Sean Aromin and Cariel Joyce Maga
     Description: This code manages  functionalities for switching between "Alumni" and "Manager" tabs, 
     filtering user data by status and location, and searching through the table rows. 
     It includes modal pop-ups for adding managers, edit manager and delete manager. Password visibility toggles are also provided.
     it also has a user details modal that displays detailed information when a user row is clicked. */
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const alumniTab = document.getElementById("alumniTab");
   const managerTab = document.getElementById("managerTab");
   const userPanel = document.getElementById("userPanel");
@@ -25,7 +25,7 @@
   const locationFilters = document.querySelectorAll(
     ".filter-section:nth-child(2) ul li"
   );
-  let tableRows; 
+  let tableRows; // This will be set dynamically based on the active tab
   let activeFilters = {
     status: null,
     location: null,
@@ -39,17 +39,17 @@
     placeholder
   ) {
     userPanel.innerHTML = content;
-    tableRows = userPanel.querySelectorAll("tbody tr"); 
+    tableRows = userPanel.querySelectorAll("tbody tr"); // Update table rows based on new content
     activeTab.classList.add("active");
     inactiveTab.classList.remove("active");
     addManagerButtonContainer.classList.toggle("hidden", showFilter);
     filterButtonContainer.style.display = showFilter ? "block" : "none";
     if (searchInput) {
       searchInput.placeholder = placeholder;
-      searchInput.value = ""; 
+      searchInput.value = ""; // Clear search input on tab switch
     }
-    resetFilters(); 
-    filterRows(); 
+    resetFilters(); // Reset filters when switching tabs
+    filterRows(); // Reapply filters after switching tabs
 
     // Update icons based on active/inactive state
     updateIcons(activeTab, inactiveTab);
@@ -72,7 +72,7 @@
   }
 
   function filterRows() {
-    if (!tableRows) return; 
+    if (!tableRows) return; // Ensure tableRows is set
 
     const searchQuery = searchInput.value.toLowerCase();
     let visibleCount = 0;
@@ -135,7 +135,7 @@
   // Toggle filter dropdown
   if (filterButton) {
     filterButton.addEventListener("click", (event) => {
-      event.preventDefault(); 
+      event.preventDefault(); // Prevent default action
       filterDropdown.classList.toggle("show");
     });
   }
@@ -193,12 +193,12 @@ if (addManagerButton && modal && closeBtn) {
 
     if (!username || !password) {
       alert("All fields are required.");
-      return; 
+      return; // Stop the submission if fields are empty
     }
 
     if (password.length < 4) {
       alert("Password must be at least 4 characters long.");
-      return; 
+      return; // Stop the submission if password is too short
     }
 
     const formData = new FormData(form);
@@ -272,72 +272,126 @@ const updateTabState = (
 };
 
 // Function to show user details in the modal
-function showUserDetails(userData) {
-  const userInfo = document.getElementById("userInfo");
-  userInfo.innerHTML = `
-    <div class="profile-section">
-      <div class="profile-picture">
-        <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
-      </div>
-      <div class="profile-details">
-        <h2>${userData.name}</h2>
-        <p><strong>User ID:</strong> ${userData.userid}</p>
-      </div>
-    </div>
+document.addEventListener("DOMContentLoaded", () => {
+  let pendingUserId = null; // Store the user ID temporarily
 
-    <div class="details-section">
-  <div class="header-split">
-    <div class="header-image">
-      <img src="../../res/info.png" alt="Alumni Info" />
-    </div>
-    <div class="header-text">
-      <h3>Alumni Information</h3>
-    </div>
-  </div>
+  function showUserDetails(userData) {
+    const userInfo = document.getElementById("userInfo");
+    userInfo.dataset.userid = userData.userid; // Attach user ID
 
-  <table class="details-table">
-    <tr>
-      <th>Email</th>
-      <td>${userData.email}</td>
-    </tr>
-    <tr>
-      <th>Course</th>
-      <td>${userData.course}</td>
-    </tr>
-    <tr>
-      <th>Status</th>
-      <td>${userData.empstatus}</td>
-    </tr>
-    <tr>
-      <th>Location</th>
-      <td>${userData.location}</td>
-    </tr>
-    <tr>
-      <th>Company</th>
-      <td>${userData.company}</td>
-    </tr>
-  </table>
-</div>
+    userInfo.innerHTML = `
+              <div class="profile-section">
+                  <div class="profile-picture">
+                      <img src="data:image/jpeg;base64,${userData.displaypic}" alt="${userData.name}'s Display Picture" class="circle-pic" />
+                  </div>
+                  <div class="profile-details">
+                      <h2>${userData.name}</h2>
+                      <p><strong>User ID:</strong> ${userData.userid}</p>
+                  </div>
+              </div>
+    
+              <div class="details-section">
+                  <div class="header-split">
+                      <div class="header-image">
+                          <img src="../../res/info.png" alt="Alumni Info" />
+                      </div>
+                      <div class="header-text">
+                          <h3>Alumni Information</h3>
+                      </div>
+                  </div>
+    
+                  <table class="details-table">
+                      <tr><th>Email</th><td>${userData.email}</td></tr>
+                      <tr><th>Course</th><td>${userData.course}</td></tr>
+                      <tr><th>Status</th><td>${userData.empstatus}</td></tr>
+                      <tr><th>Location</th><td>${userData.location}</td></tr>
+                      <tr><th>Company</th><td>${userData.company}</td></tr>
+                  </table>
+              </div>
+          `;
 
-  `;
-
-  // Show the modal
-  const modal = document.getElementById("userModal");
-  modal.style.display = "flex";
-}
-
-// Close button functionality
-document.getElementById("closeModal").addEventListener("click", () => {
-  const modal = document.getElementById("userModal");
-  modal.style.display = "none";
-});
-
-// Event listener for user panel
-const userPanel = document.getElementById("userPanel");
-userPanel.addEventListener("click", (event) => {
-  const row = event.target.closest("tr");
-  if (row && row.dataset.userData) {
-    const userData = JSON.parse(row.dataset.userData);
-    showUserDetails(userData);
+    const modal = document.getElementById("userModal");
+    modal.style.display = "flex";
   }
+
+  function closeModal() {
+    document.getElementById("userModal").style.display = "none";
+    document.getElementById("confirmationModal").style.display = "none";
+  }
+
+  function showConfirmationModal(userId) {
+    pendingUserId = userId;
+    const confirmationModal = document.getElementById("confirmationModal");
+    confirmationModal.style.display = "flex";
+  }
+
+  function deleteUser(userId) {
+    fetch("delete_user.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        userId: userId,
+      }).toString(),
+    })
+      .then((response) => response.text()) // Read response as text
+      .then((data) => {
+        console.log(data);
+        if (data.trim() === "Alumni deleted successfully") {
+          // Use trim() to remove whitespace
+          closeModal();
+          removeUserFromTable(userId);
+          location.reload();
+        } else {
+          alert(`Failed to delete alumni: ${data}`);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while deleting the alumni.");
+      });
+  }
+
+  function removeUserFromTable(userId) {
+    const rows = document.querySelectorAll("#userPanel tr");
+    rows.forEach((row) => {
+      const rowData = row.dataset.userData;
+      if (rowData) {
+        const parsedData = JSON.parse(rowData);
+        if (parsedData.userid === userId) {
+          row.remove();
+        }
+      }
+    });
+  }
+
+  // Event Listeners
+  document.getElementById("closeModal").addEventListener("click", closeModal);
+
+  document.getElementById("deleteUserBtn").addEventListener("click", () => {
+    const userInfo = document.getElementById("userInfo");
+    const userId = userInfo.dataset.userid;
+    showConfirmationModal(userId);
+  });
+
+  document.getElementById("confirmDelete").addEventListener("click", () => {
+    if (pendingUserId) {
+      deleteUser(pendingUserId);
+      pendingUserId = null;
+    }
+  });
+
+  document.getElementById("cancelDelete").addEventListener("click", () => {
+    pendingUserId = null;
+    closeModal();
+  });
+
+  document.getElementById("userPanel").addEventListener("click", (event) => {
+    const row = event.target.closest("tr");
+    if (row && row.dataset.userData) {
+      const userData = JSON.parse(row.dataset.userData);
+      showUserDetails(userData);
+    }
+  });
 });

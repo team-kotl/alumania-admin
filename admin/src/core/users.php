@@ -133,11 +133,25 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
         </div>
 
         <div id="userModal" class="modal">
-  <div class="modal-content">
-    <button id="closeModal" class="close-btn">&times;</button>
-    <div id="userInfo"></div>
-  </div>
-</div>
+            <div class="modal-content">
+                <button id="closeModal" class="close-btn">&times;</button>
+                <div id="userInfo"></div>
+                <div class="modal-actions">
+                <button id="deleteUserBtn" class="delete-btn">Delete User</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <p>Are you sure you want to delete this user?</p>
+                <div class="modal-actions">
+                <button id="confirmDelete" class="confirm-btn">Yes</button>
+                <button id="cancelDelete" class="cancel-btn">No</button>
+                </div>
+            </div>
+        </div>
+
 
 
         <script>
@@ -164,8 +178,8 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                                         "empstatus" => $row['empstatus'],
                                         "location" => $row['location'],
                                         "displaypic" => base64_encode($row['displaypic']),
-                                        "course" => $row['course'],   
-                                        "company" => $row['company']   
+                                        "course" => $row['course'],    // Ensure course field exists
+                                        "company" => $row['company']   // Ensure company field exists
                                     ]);
                             ?>
                                     <tr data-user-data='<?php echo htmlspecialchars($userData); ?>'>
@@ -224,6 +238,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             `;
 
             document.addEventListener('DOMContentLoaded', () => {
+                // Variables for modals
                 const editManagerModal = document.getElementById("editManagerModal");
                 const deleteManagerModal = document.getElementById("deleteManagerModal");
                 const editManagerForm = document.getElementById("editManagerForm");
@@ -234,13 +249,14 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                 window.openEditModal = function (managerData) {
                     document.getElementById("editUsername").value = managerData.username;
                     document.getElementById("editPassword").value = managerData.password;
-                    currentManagerUsername = managerData.username;
+                    currentManagerUsername = managerData.username; // Displayed for confirmation
                     editManagerModal.style.display = "flex";
                 };
 
                 editManagerForm.addEventListener("submit", (e) => {
                     e.preventDefault();
 
+                    // Validate form fields
                     const username = editManagerForm.elements["username"].value.trim();
                     const password = editManagerForm.elements["password"].value.trim();
 
@@ -289,7 +305,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     })
                         .then((response) => response.text())
                         .then((data) => {
-                            alert(data);  
+                            alert(data);  // Assuming the server returns a success message
                             location.reload();
                         })
                         .catch((error) => {
