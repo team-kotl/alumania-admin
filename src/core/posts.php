@@ -208,7 +208,7 @@ if (isset($_SESSION['username'])) { ?>
                             <p>${jobsData[i].companyname}</p>
                             <p>${jobsData[i].location}</p>
                         </div>
-                        <div class="listing-summary">
+                        <div class="listing-summary" style="white-space: pre-line;">
                             <p>${jobsData[i].description}</p>
                         </div>
                         <div class="job-interest-count">
