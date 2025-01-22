@@ -281,7 +281,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     })
                     .then((response) => response.text())
                     .then((data) => {
-                        alert(data);  
+                        alert("Successfully updated!");  
                         location.reload();
                     })
                     .catch((error) => {
@@ -308,7 +308,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                     })
                         .then((response) => response.text())
                         .then((data) => {
-                            alert(data);  // Assuming the server returns a success message
+                            alert("Successfully Deleted!");  // Assuming the server returns a success message
                             location.reload();
                         })
                         .catch((error) => {

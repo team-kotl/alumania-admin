@@ -482,7 +482,7 @@ if (isset($_SESSION['username'])) { ?>
                             alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully.`);
                             location.reload(); 
                         } else {
-                            alert(`Failed to delete ${type}: ${data.error || 'Unknown error'}`);
+                            alert(`Failed to delete Post`);
                         }
                     })
                     .catch(error => {

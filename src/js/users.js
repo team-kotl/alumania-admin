@@ -232,7 +232,7 @@ if (addManagerButton && modal && closeBtn) {
                     if (data.message === "User already exists") {
                         alert("A user with this username already exists.");
                     } else {
-                        alert(data.message || "Failed to add manager.");
+                        alert("Failed to add manager.");
                     }
                 }
             })
@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     removeUserFromTable(userId);
                     location.reload();
                 } else {
-                    alert(`Failed to delete alumni: ${data}`);
+                    alert(`Failed to delete alumni`);
                 }
             })
             .catch((error) => {
