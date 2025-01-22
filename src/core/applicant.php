@@ -33,9 +33,7 @@ if (isset($_SESSION['username'])) { ?>
             a.course, a.empstatus, a.location, a.company From applicant a;";
             $applicant_result = mysqli_query($db, $applicant_query);
 
-            if (mysqli_num_rows($applicant_result) <= 0) {
-                echo "<h1>No data found.</h1>";
-            } else {
+            if (mysqli_num_rows($applicant_result) >= 0) {
                 while ($rowapplicant = mysqli_fetch_assoc($applicant_result)) {
                     $applicants[] = [
                         "applicantid" => $rowapplicant["applicantid"],
@@ -65,6 +63,7 @@ if (isset($_SESSION['username'])) { ?>
                 <h1>Applications</h1>
                 <p>Validate Applications</p>
             </div>
+            <?php if(count($newapplicants) > 0) { ?>
             <table>
                 <thead>
                     <tr>
@@ -78,6 +77,9 @@ if (isset($_SESSION['username'])) { ?>
                 <tbody id="applicantTable">
                 </tbody>
             </table>
+            <?php } else { ?>
+                <h1 style="margin-left: 70px; color: #CCCCCC; font-size: 24px;">No applicants found.</h1>
+            <?php } ?>
             <div id="photoPopup" class="popup-container" style="display: none;">
                 <div class="popup-content">
                     <span class="close-popup" onclick="closePopup()">&times;</span>

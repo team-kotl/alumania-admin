@@ -122,7 +122,7 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             </div>
 
             <div id="deleteManagerModal" class="modal hidden">
-                <div class="modal-content">
+                <div class="modal-content" style="overflow-x: hidden;">
                     <span class="close-btn">&times;</span>
                     <h2>Confirm Delete</h2>
                     <p>Are you sure you want to delete the manager <strong id="deleteManagerName"></strong>?</p>
