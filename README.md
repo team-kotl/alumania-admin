@@ -15,20 +15,14 @@
 </div>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Admin and Manager Application.
 
-
-
-
 ### Built With
 
 [![PHP][PHP-logo]][PHP-url] [![HTML][HTML-logo]][HTML-url] [![CSS][CSS-logo]][CSS-url] [![JavaScript][JS-logo]][JS-url] [![MySQL][MYSQL-logo]][MYSQL-url]
-
-
 
 
 <!-- GETTING STARTED -->
@@ -36,14 +30,15 @@ Alumania is a Social Media platform for Saint Louis University Baguio's alumnis 
 
 ### Prerequisites
 
-You must have [xampp](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) installed and an instance of its Apache HTTP server and MySQL active.
+You must have [xampp](https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe) installed and an instance of its Apache HTTP server and MySQL active.
 
-All resources are included in this repository. Please create a Database named `alumaniadb` before importing the `.sql` file in the repository.
+For the database, please follow the instructions in the README.md file located in the alumni module
+
+This module should be placed inside the `htdocs` directory in your XAMPP
 
 * Database Details
-  - Collation: utd8_unicode_ci
+  - Collation: utf8mb4_unicode_ci
   - Type: InnoDB
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
