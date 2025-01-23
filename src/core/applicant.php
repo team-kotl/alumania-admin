@@ -30,7 +30,7 @@ if (isset($_SESSION['username'])) { ?>
             $applicants = [];
             $applicant_query = "SELECT a.applicantid, a.username, 
             a.password, a.email, a.firstname, a.middlename, a.lastname, 
-            a.course, a.empstatus, a.location, a.company From applicant a;";
+            a.course, a.empstatus, a.location, a.company , a.batch, a.school From applicant a;";
             $applicant_result = mysqli_query($db, $applicant_query);
 
             if (mysqli_num_rows($applicant_result) >= 0) {
@@ -43,6 +43,8 @@ if (isset($_SESSION['username'])) { ?>
                         "firstname" => $rowapplicant["firstname"],
                         "middlename" => $rowapplicant["middlename"],
                         "lastname" => $rowapplicant["lastname"],
+                        "batch" => $rowapplicant["batch"],
+                        "school" => $rowapplicant["school"],
                         "course" => $rowapplicant["course"],
                         "empstatus" => $rowapplicant["empstatus"],
                         "location" => $rowapplicant["location"],
@@ -68,9 +70,10 @@ if (isset($_SESSION['username'])) { ?>
                 <thead>
                     <tr>
                         <th>Applicant Name</th>
+                        <th>Batch</th>
+                        <th>School</th>
                         <th>Course</th>
-                        <th>Location</th>
-                        <th>Diploma</th>
+                        <th>Email</th>
                         <th>Accept/Reject</th>
                     </tr>
                 </thead>
@@ -102,9 +105,10 @@ if (isset($_SESSION['username'])) { ?>
 
                     row.innerHTML = `
                         <td>${applicant.firstname} ${applicant.lastname}</td>
+                        <td>${applicant.batch}</td>
+                        <td>${applicant.school}</td>
                         <td>${applicant.course}</td>
-                        <td>${applicant.location}</td>
-                        <td><button class = "view-photo-btn">View photo</button></td>
+                        <td>${applicant.email}</td>
                         <td>
                             <button class="status-icon accept" onclick="handleAction('${applicant.applicantid}', 'accept')"></button>
                             <button class="status-icon reject" onclick="handleAction('${applicant.applicantid}', 'reject')"></button>
