@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = htmlspecialchars($_POST['location']);
     $category = $_POST['category'];
     $schedule = $_POST['schedule'];
+    $batchfilter = $_POST['batchfilter'];
 
     $eventDate = date('Y-m-d', strtotime($schedule));
     $eventTime = date('H:i:s', strtotime($schedule));
@@ -48,12 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $eventId = getNextEventID($db);
 
         try {
-            $query = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, eventphoto, publishtimestamp, userid)
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+            $query = "INSERT INTO event (eventid, title, description, category, eventtime, eventdate, eventloc, eventphoto, publishtimestamp, userid, batchfilter)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
 
             if ($stmt = $db->prepare($query)) {
                 $stmt->bind_param(
-                    "sssssssss",
+                    "ssssssssss",
                     $eventId,
                     $eventTitle,
                     $description,
@@ -62,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $eventDate,
                     $location,
                     $imageData,
-                    $userId
+                    $userId,
+                    $batchfilter
                 );
 
                 if ($stmt->execute()) {

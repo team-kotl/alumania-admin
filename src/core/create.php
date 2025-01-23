@@ -37,7 +37,8 @@ if (isset($_SESSION['username'])) { ?>
                 <div class="right-panel" id="rightPanel">
                     <p>Please select the type of post you want to create</p>
                     <div class="input" id="inputSectionEvent" style="display: none;">
-                        <form id="eventForm" method="POST" action="submit_event.php" enctype="multipart/form-data" onsubmit="handleSubmit(event);">
+                        <form id="eventForm" method="POST" action="submit_event.php" enctype="multipart/form-data"
+                            onsubmit="handleSubmit(event);">
                             <div class="file-upload" id="fileUploadSection">
                                 <div class="input-container">
                                     <label for="file" class="upload-label">
@@ -58,27 +59,44 @@ if (isset($_SESSION['username'])) { ?>
                             </div>
 
                             <div class="input-container">
-                                <label for="eventTitle" class="text">Event Title</label>
-                                <input type="text" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" placeholder="Insert title here" name="eventTitle" class="input">
+                                <label for="eventTitle" class="text">Event Title *</label>
+                                <input type="text" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')"
+                                    placeholder="Insert title here" name="eventTitle" class="input">
                             </div>
 
                             <div class="input-container">
-                                <label for="description" class="text">Description</label>
+                                <label for="description" class="text">Description *</label>
                                 <textarea placeholder="Insert description here" name="description"
                                     class="input description-input" rows="4"></textarea>
-                            </div>
-
-
-                            <div class="input-container">
-                                <label for="location" class="text">Location</label>
-                                <input type="text" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" placeholder="Insert location here" name="location" class="input">
                             </div>
 
                             <div class="input-row">
                                 <div class="input-container">
                                     <div class="input-left">
-                                        <label for="category" class="text">Category</label>
-                                        <select name="category" class="input category-input" id="category" style="cursor: pointer;">
+                                        <label for="location" class="text">Batch Filter</label>
+                                        <input type="text"
+                                            placeholder="Enter a batch filter (2020, 1992, etc.). Leave empty if none."
+                                            name="batchfilter" class="input" maxlength="4"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="input-container">
+                                    <div class="input-right">
+                                        <label for="location" class="text">Location *</label>
+                                        <input type="text" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')"
+                                            placeholder="Insert location here" name="location" class="input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <div class="input-left">
+                                        <label for="category" class="text">Category *</label>
+                                        <select name="category" class="input category-input" id="category"
+                                            style="cursor: pointer;">
                                             <option value="" selected>Select Category</option>
                                             <option value="reunion">Reunion</option>
                                             <option value="Thanksgiving">Thanksgiving</option>
@@ -90,7 +108,7 @@ if (isset($_SESSION['username'])) { ?>
 
                                 <div class="input-container">
                                     <div class="input-right">
-                                        <label for="schedule" class="text">Schedule</label>
+                                        <label for="schedule" class="text">Schedule *</label>
                                         <input type="datetime-local" name="schedule" class="input input-datetime">
                                     </div>
                                 </div>
@@ -106,7 +124,8 @@ if (isset($_SESSION['username'])) { ?>
                         <form id="jobpostForm" method="POST" action="submit_jobpost.php">
                             <div class="input-container">
                                 <label for="jobTitle" class="text">Job Title</label>
-                                <input id="jobTitle" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" type="text" placeholder="Insert title here" name="jobTitle" class="input">
+                                <input id="jobTitle" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')"
+                                    type="text" placeholder="Insert title here" name="jobTitle" class="input">
                             </div>
 
                             <div class="input-container">
@@ -119,14 +138,16 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="input-container">
                                     <div class="input-left">
                                         <label for="company" class="text">Company</label>
-                                        <input id="company" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" type="text" placeholder="Insert company name here" name="company" class="input">
+                                        <input id="company" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')"
+                                            type="text" placeholder="Insert company name here" name="company" class="input">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
                                     <div class="input-right">
                                         <label for="location" class="text">Location</label>
-                                        <input id="location" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" type="text" placeholder="Insert location here" name="location" class="input">
+                                        <input id="location" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')"
+                                            type="text" placeholder="Insert location here" name="location" class="input">
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +156,18 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="input-container">
                                     <div class="input-left">
                                         <label for="contactName" class="text">Contact Name</label>
-                                        <input id="contactName" onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" type="text" placeholder="Insert contact name here" name="contactName" class="input">
+                                        <input id="contactName"
+                                            onchange="this.value = this.value.trim().replace(/\s+/g, ' ')" type="text"
+                                            placeholder="Insert contact name here" name="contactName" class="input">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
                                     <div class="input-right">
                                         <label for="contactEmail" class="text">Contact Email</label>
-                                        <input id="contactEmail" onchange="this.value = this.value.trim().replace(/\s+/g, '')" type="text" placeholder="Insert contact email here" name="contactEmail" class="input">
+                                        <input id="contactEmail"
+                                            onchange="this.value = this.value.trim().replace(/\s+/g, '')" type="text"
+                                            placeholder="Insert contact email here" name="contactEmail" class="input">
                                     </div>
                                 </div>
                             </div>
@@ -151,14 +176,16 @@ if (isset($_SESSION['username'])) { ?>
                                 <div class="input-container">
                                     <div class="input-left">
                                         <label for="contactNumber" class="text">Contact Number</label>
-                                        <input id="contactNumber" type="text" placeholder="Insert contact number here" name="contactNumber" class="input">
+                                        <input id="contactNumber" type="text" placeholder="Insert contact number here"
+                                            name="contactNumber" class="input">
                                     </div>
                                 </div>
 
                                 <div class="input-container">
                                     <div class="input-right">
                                         <label for="jobCategory" class="text">Category</label>
-                                        <select id="jobCategory" name="jobCategory" class="input category-input" style="cursor: pointer;">
+                                        <select id="jobCategory" name="jobCategory" class="input category-input"
+                                            style="cursor: pointer;">
                                             <option value="" selected>Select Category</option>
                                             <option value="onsite">Onsite</option>
                                             <option value="hybrid">Hybrid</option>
