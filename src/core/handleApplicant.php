@@ -2,7 +2,7 @@
 // Author: Nikko Andrei Choy
 // Handles applicant actions by either accepting or rejecting them. 
 session_start();
-require_once '..\database\database.php';
+require_once '../database/database.php';
 $db = \Database::getInstance()->getConnection();
 
 ini_set('display_errors', 1);

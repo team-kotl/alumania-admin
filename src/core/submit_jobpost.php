@@ -2,7 +2,7 @@
 // Author: Nikko Andrei Choy, Sean Aromin
 // This page would display a form to post a jobpost
 session_start();
-require_once '..\database\database.php';
+require_once '../database/database.php';
 
 #to get last id
 function getNextJobID($db) {

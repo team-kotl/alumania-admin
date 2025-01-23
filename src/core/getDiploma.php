@@ -1,7 +1,7 @@
 <?php
 //Author: Nikko Andrei T. Choy
 // This handles the function of displaying the diploma in the applicantions page
-require_once '..\database\database.php';
+require_once '../database/database.php';
 $db = \Database::getInstance()->getConnection();
 
 if (isset($_GET['applicantid'])) {

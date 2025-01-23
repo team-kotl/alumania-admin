@@ -1,7 +1,7 @@
 <?php
 //Author: Nikko Andrei T. Choy
 // This handles the number of likes to be displayed in the experience tab of the posts page
-require_once '..\database\database.php';
+require_once '../database/database.php';
 $db = \Database::getInstance()->getConnection();
 
 header('Content-Type: application/json');

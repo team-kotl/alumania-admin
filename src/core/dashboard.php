@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) { ?>
 
 
         <?php
-        require_once '..\database\database.php';
+        require_once '../database/database.php';
         $db = \Database::getInstance()->getConnection();
 
         $counts = [

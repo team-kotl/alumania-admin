@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) { ?>
         </script>
 
         <?php
-        require_once '..\database\database.php';
+        require_once '../database/database.php';
         $db = \Database::getInstance()->getConnection();
 
         function getApplicants($db): array

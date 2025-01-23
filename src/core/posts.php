@@ -18,7 +18,7 @@ if (isset($_SESSION['username'])) { ?>
         <?php include 'navbar.php'; ?>
 
         <?php
-        require_once '..\database\database.php';
+        require_once '../database/database.php';
         $db = \Database::getInstance()->getConnection();
 
         function getDefaultExperience($db): array
@@ -57,7 +57,7 @@ if (isset($_SESSION['username'])) { ?>
         {
             $events = [];
             $event_query = "SELECT 
-            e.eventid, e.title, e.description, e.category,
+            e.eventid, e.title, e.description, e.category, e.batchfilter,
             e.eventloc, e.eventtime, e.eventdate, e.eventphoto,
             (SELECT COUNT(*) FROM interestedinevent ie WHERE ie.eventid = e.eventid) AS interested
             FROM event e ORDER BY e.eventdate DESC, e.eventtime DESC;";
@@ -71,6 +71,7 @@ if (isset($_SESSION['username'])) { ?>
                         "title" => $rowevent["title"],
                         "description" => $rowevent["description"],
                         "category" => $rowevent["category"],
+                        "batchfilter" => $rowevent["batchfilter"],
                         "eventtime" => $rowevent["eventtime"],
                         "eventdate" => $rowevent["eventdate"],
                         "eventloc" => $rowevent["eventloc"],
@@ -257,6 +258,7 @@ if (isset($_SESSION['username'])) { ?>
                             </div>
                             <div class="event-location">${eventsData[i].eventloc}</div>
                             <div class="event-category">${eventsData[i].category}</div>
+                            <div class="event-category">Batch: ${eventsData[i].batchfilter || "All"}</div>
                             <div class="event-interest-count">
                                 <button class="view-interested-button" onclick="getInterestedUser('${eventsData[i].eventid}', 'event')">Interested</button>
                                 <button class="sponsors-button" onclick="showEventSponsors('${eventsData[i].eventid}')" , 'event')">Sponsors</button>
