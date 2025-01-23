@@ -321,6 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
         <table class="details-table">
           <tr><th>Email</th><td>${getSafeValue(userData.email)}</td></tr>
+          <tr><th>Batch</th><td>${getSafeValue(userData.batch)}</td></tr>
+          <tr><th>School</th><td>${getSafeValue(userData.school)}</td></tr>
           <tr><th>Course</th><td>${getSafeValue(userData.course)}</td></tr>
           <tr><th>Status</th><td>${getSafeValue(userData.empstatus)}</td></tr>
           <tr><th>Location</th><td>${getSafeValue(userData.location)}</td></tr>

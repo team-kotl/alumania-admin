@@ -155,8 +155,6 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
             </div>
         </div>
 
-
-
         <script>
             const alumniContent = `
                 <div class="section-title">
@@ -181,6 +179,8 @@ if (isset($_SESSION['username']) && $_SESSION['role'] == 'Admin') {
                                         "empstatus" => $row['empstatus'],
                                         "location" => $row['location'],
                                         "displaypic" => base64_encode($row['displaypic']),
+                                        "batch" => $row['batch'],    // Ensure batch field exists
+                                        "school" => $row['school'],    // Ensure school field exists
                                         "course" => $row['course'],    // Ensure course field exists
                                         "company" => $row['company']   // Ensure company field exists
                                     ]);
