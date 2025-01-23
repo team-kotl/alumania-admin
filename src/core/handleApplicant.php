@@ -36,7 +36,7 @@ try {
         if ($action === 'accept') {
             // Query to fetch applicant details
             $fetchQuery = "SELECT username, password, email, firstname, 
-                           middlename, lastname, course, empstatus, location, company, diploma  
+                           middlename, lastname, school, batch, course, empstatus, location, company, displaypic  
                            FROM applicant WHERE applicantid = ?";
             $fetchStmt = $db->prepare($fetchQuery);
             $fetchStmt->bind_param('s', $applicantid);
@@ -53,11 +53,13 @@ try {
                 $firstname = $applicant['firstname'];
                 $middlename = $applicant['middlename'];
                 $lastname = $applicant['lastname'];
+                $school = $applicant['school'];
+                $batch = $applicant['batch'];
                 $course = $applicant['course'];
                 $empstatus = $applicant['empstatus'];
                 $location = $applicant['location'];
                 $company = $applicant['company'];
-                $diploma = $applicant['diploma'];
+                $displaypic = $applicant['displaypic'];
 
                 // Generate the next user ID
                 $nextUserid = getNextUserID($db);
@@ -71,17 +73,17 @@ try {
 
                 // Insert into the alumni table
                 $alumniquery = "INSERT INTO alumni (userid, email, firstname, middlename, 
-                          lastname, course, empstatus, location, company, displaypic, diploma, private)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, 0)";
+                          lastname, school, batch, course, empstatus, location, company, displaypic)
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $alumnistmt = $db->prepare($alumniquery);
                 $alumnistmt->bind_param(
-                    "ssssssssss", $nextUserid, $email, $firstname, $middlename, $lastname, $course,
-                    $empstatus, $location, $company, $diploma
+                    "ssssssssssss", $nextUserid, $email, $firstname, $middlename, $lastname,
+                    $school, $batch, $course, $empstatus, $location, $company, $displaypic
                 );
 
-                // Send the binary data for `diploma`
-                if ($diploma !== null) {
-                    $alumnistmt->send_long_data(9, $diploma); 
+                // Send the binary data for `displaypic`
+                if ($displaypic !== null) {
+                    $alumnistmt->send_long_data(11, $displaypic); 
                 }
 
                 if ($alumnistmt->execute()) {

@@ -2,7 +2,7 @@
 return [
     'HOST' => 'localhost',
     'USERNAME' => 'root',
-    'PASSWORD' => '',
+    'PASSWORD' => 'root',
     'PORT' => '3306',
     'DB_NAME' => 'alumaniadb'
 ];
