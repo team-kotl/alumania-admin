@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (file) {
             const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-            const maxSizeInBytes = 64 * 1024; // 64 KB
+            const maxSizeInBytes = 512 * 1024; // 512 MB
 
             if (!allowedTypes.includes(file.type)) {
                 alert(
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         (blob) => {
                             if (blob.size > maxSizeInBytes) {
                                 alert(
-                                    "Image size exceeds 64 KB. Please upload a smaller image."
+                                    "Image size exceeds 512 MB. Please upload a smaller image."
                                 );
                                 return;
                             }
