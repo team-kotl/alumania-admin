@@ -32,6 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $schedule = $_POST['schedule'];
     $batchfilter = $_POST['batchfilter'];
 
+    if($batchfilter == "") {
+        $batchfilter = null;
+    }
+
     $eventDate = date('Y-m-d', strtotime($schedule));
     $eventTime = date('H:i:s', strtotime($schedule));
     $userId = $_SESSION['userid']; 

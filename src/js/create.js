@@ -174,10 +174,14 @@ function validateForm() {
         showFieldNotification(batchfilter, "Batch filter should be a valid year.");
         isValid = false;
     }
-
-    if (batchfilter.value > new Date().getFullYear() || batchfilter.value < 1964) {
-        showFieldNotification(batchfilter, "Batch filter should be a valid year.");
+    
+    if (batchfilter.value && (batchfilter.value > new Date().getFullYear() || batchfilter.value < 1964)) {
+        showFieldNotification(batchfilter, `Please enter values between 1964 and ${new Date().getFullYear()}`);
         isValid = false;
+    }
+
+    if (!batchfilter.value) {
+        batchfilter.value = null;
     }
 
     if (!location.value.trim()) {
