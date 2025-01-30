@@ -59,7 +59,7 @@ router.post("/refresh-token", (req, res) => {
 });
 
 // Validate JSON web token of user
-router.get("/protected", (req, res) => {
+router.get("/validate-token", (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) return res.status(401).json({ error: "No token provided" });
 
