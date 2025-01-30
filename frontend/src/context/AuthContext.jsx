@@ -29,8 +29,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const startTimers = useCallback((expirationTime) => {
-        // const warningTime = expirationTime - 5 * 60 * 1000;
-        const warningTime = expirationTime - 30 * 1000; // 30 seconds before
+        const warningTime = expirationTime - 5 * 60 * 1000; // 5 minutes before
         const now = Date.now();
 
         if (warningTime > now) {
