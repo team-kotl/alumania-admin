@@ -45,6 +45,12 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
+        if (user) {
+            localStorage.setItem("user", user);
+        }
+        if (type) {
+            localStorage.setItem("type", type);
+        }
         if (token) {
             localStorage.setItem("token", token);
             const decoded = JSON.parse(atob(token.split(".")[1]));
