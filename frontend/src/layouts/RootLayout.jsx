@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import RootSidebar from "../components/RootSidebar";
+import RootSidebar from "../components/navs/RootSidebar.jsx";
 
 const RootLayout = () => {
     return (

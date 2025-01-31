@@ -1,4 +1,4 @@
-import AddSelector from "../components/AddSelector";
+import AddSelector from "../components/navs/AddSelector.jsx";
 import { Outlet } from "react-router";
 
 const AddPage = () => {

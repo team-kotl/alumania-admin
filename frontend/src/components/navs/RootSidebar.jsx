@@ -1,12 +1,12 @@
-import Banner from "./NavBrandBanner";
+import Banner from "../core/NavBrandBanner.jsx";
 import {
     PiHouse,
     PiCirclesThreePlus,
     PiUserCircle,
     PiFoldersLight,
 } from "react-icons/pi";
-import AdminIcon from "../assets/admin.png";
-import ManagerIcon from "../assets/manager.png";
+import AdminIcon from "../../assets/admin.png";
+import ManagerIcon from "../../assets/manager.png";
 import { NavLink } from "react-router";
 const RootSidebar = () => {
     const defaultStyle = `text-primary-content hover:text-primary hover:bg-primary-content transition-all`;

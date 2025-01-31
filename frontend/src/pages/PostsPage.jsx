@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import PostsNavbar from "../components/PostsNavbar";
+import PostsNavbar from "../components/navs/PostsNavbar.jsx";
 import { useNavigate, useLocation } from "react-router";
 import { useEffect } from "react";
 

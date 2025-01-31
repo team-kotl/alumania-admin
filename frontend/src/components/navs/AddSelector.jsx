@@ -10,7 +10,7 @@ const AddSelector = () => {
                 <NavLink to="/add/event">
                     {({ isActive }) => (
                         <div
-                            className={`flex flex-col justify-center items-center w-70 h-70 border-2 rounded-xl ${
+                            className={`flex flex-col justify-center items-center w-70 h-70 border-2 rounded-xl select-none ${
                                 isActive ? styleActive : styleDefault
                             }`}
                         >
@@ -22,7 +22,7 @@ const AddSelector = () => {
                 <NavLink to="/add/job">
                     {({ isActive }) => (
                         <div
-                            className={`flex flex-col justify-center items-center w-70 h-70 border-2 rounded-xl ${
+                            className={`flex flex-col justify-center items-center w-70 h-70 border-2 rounded-xl select-none ${
                                 isActive ? styleActive : styleDefault
                             }`}
                         >

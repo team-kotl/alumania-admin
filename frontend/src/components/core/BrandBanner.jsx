@@ -1,6 +1,6 @@
-import Logo from "../assets/logo.svg";
-import BannerText from "../assets/banner-text.svg";
-import Subtitle from "../assets/subtitle.svg";
+import Logo from "../../assets/logo.svg";
+import BannerText from "../../assets/banner-text.svg";
+import Subtitle from "../../assets/subtitle.svg";
 
 export default function Banner() {
     return (

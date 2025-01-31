@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Banner from "../components/BrandBanner";
+import Banner from "../components/core/BrandBanner.jsx";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 

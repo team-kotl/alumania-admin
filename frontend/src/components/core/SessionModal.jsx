@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const SessionModal = () => {
     const { setShowWarning, showWarning, refreshToken } = useAuth();

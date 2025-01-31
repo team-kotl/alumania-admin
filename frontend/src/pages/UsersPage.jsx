@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import UsersNavbar from "../components/UsersNavbar";
+import UsersNavbar from "../components/navs/UsersNavbar.jsx";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 
