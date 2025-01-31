@@ -7,8 +7,8 @@ const PostsPage = () => {
     const nav = useNavigate();
     const location = useLocation();
     useEffect(() => {
-        if (location.pathname === "/users") {
-            nav("/users/alumni", { replace: true }); // Use `replace: true` to avoid adding to history
+        if (location.pathname === "/posts") {
+            nav("/posts/experiences", { replace: true }); // Use `replace: true` to avoid adding to history
         }
     }, [location.pathname, nav]);
     return (
