@@ -33,7 +33,7 @@ const AlumniTab = () => {
                             <td>{user.userid}</td>
                             <td>{user.email}</td>
                             <td>{user.fullname}</td>
-                            <td>{user.employment_status}</td>
+                            <td>{user.empstatus}</td>
                             <td>{user.location}</td>
                         </tr>
                     ))}
