@@ -25,4 +25,23 @@ router.get("/", (req, res) => {
     });
 });
 
+// Get manager users
+router.get("/managers", (req, res) => {
+    const query = `
+        SELECT 
+            userid, 
+            username
+        FROM user
+        WHERE usertype = 'manager'
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Database Error:", err.sqlMessage || err);
+            return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
+        }
+        res.json(results);
+    });
+});
+
 module.exports = router;
