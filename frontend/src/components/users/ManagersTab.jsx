@@ -77,20 +77,19 @@ const ManagersTab = () => {
     };
 
     return (
-        <div className="p-6">
-            <h2 className="text-xl font-bold mb-4">Managers List</h2>
-            <table className="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100">
-                        <th className="border p-2">Username</th>
-                        <th className="border p-2">Actions</th>
+        <div className="overflow-x-auto ml-17 mt-22"> 
+         <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-md">
+            <thead className="bg-gray-100">
+                    <tr>
+                        <th className="w-1/2 px-15 py-3.5">Username</th>
+                        <th className="w-1/2 px-20 py-3.5">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {managers.map(manager => (
-                        <tr key={manager.userid} className="border">
-                            <td className="border p-2">{manager.username}</td>
-                            <td className="border p-2">
+                        <tr key={manager.userid}>
+                            <td className="w-1/2 px-15 py-5">{manager.username}</td>
+                            <td>
                                 <button 
                                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
                                     onClick={() => openModal(manager)}

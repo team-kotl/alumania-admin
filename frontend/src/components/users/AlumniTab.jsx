@@ -19,13 +19,13 @@ const AlumniTab = () => {
             <table className="table w-full border-collapse border border-gray-100 shadow-md">
                 <thead className="bg-gray-100">
                     <tr>
-                        <th className="px-15 py-5 text-gray-600">UserID</th>
-                        <th className="px-15 py-5 text-gray-600">Email</th>
-                        <th className="px-15 py-5 text-gray-600">Full Name</th>
-                        <th className="px-15 py-5 text-gray-600">School</th>
-                        <th className="px-13 py-5 text-gray-600">Batch</th>
-                        <th className="px-15 py-5 text-gray-600">Employment Status</th>
-                        <th className="px-15 py-5 text-gray-600">Location</th>
+                        <th className="px-15 py-3.5 text-gray-600">UserID</th>
+                        <th className="px-15 py-3.5 text-gray-600">Email</th>
+                        <th className="px-15 py-3.5 text-gray-600">Full Name</th>
+                        <th className="px-15 py-3.5 text-gray-600">School</th>
+                        <th className="px-13 py-3.5 text-gray-600">Batch</th>
+                        <th className="px-15 py-3.5 text-gray-600">Employment Status</th>
+                        <th className="px-15 py-3.5 text-gray-600">Location</th>
                     </tr>
                 </thead>
                 <tbody>
