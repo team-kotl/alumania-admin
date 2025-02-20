@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
         }
 
         return () => clearTimers();
-    }, [token, clearTimers, startTimers]);
+    }, [token, clearTimers, startTimers, user, type]);
 
     const login = async (credentials) => {
         try {
