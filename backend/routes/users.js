@@ -2,12 +2,24 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db").db;
 
-// Get all users (alumni)
+// Get alumni users
 router.get("/", (req, res) => {
-    db.query("SELECT * FROM user", (err, results) => {
+    const query = `
+        SELECT 
+            u.userid, 
+            a.email, 
+            CONCAT(a.firstname, ' ', a.middlename, ' ', a.lastname) AS fullname, 
+            a.empstatus, 
+            a.location 
+        FROM user u
+        JOIN alumni a ON u.userid = a.userid
+        WHERE u.usertype = 'alumni'
+    `;
+
+    db.query(query, (err, results) => {
         if (err) {
-            console.error("Database error:", err);
-            return res.status(500).json({ error: "Database query failed" });
+            console.error("Database Error:", err.sqlMessage || err);
+            return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
         }
         res.json(results);
     });

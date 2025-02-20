@@ -2,15 +2,15 @@ import React, { useEffect, useState  } from "react";
 import axios from "axios";
 // TODO: Joyce at si Badang
 const AlumniTab = () => {
-    const [users, setUsers] = useState([]);
+    const [alumni, setAlumni] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/users") // Fetch users
+        axios.get("http://localhost:5000/users") 
             .then(response => {
-                setUsers(response.data);
+                setAlumni(response.data);
             })
             .catch(error => {
-                console.error("Error fetching users:", error);
+                console.error("Error fetching alumni:", error);
             });
     }, []);
 
@@ -21,18 +21,20 @@ const AlumniTab = () => {
                 <thead>
                     <tr>
                         <th>UserID</th>
-                        <th>Username</th>
-                        <th>User Type</th>
-                        <th>Joined</th>
+                        <th>Email</th>
+                        <th>Full Name</th>
+                        <th>Employment Status</th>
+                        <th>Location</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user => (
+                    {alumni.map(user => (
                         <tr key={user.userid}>
                             <td>{user.userid}</td>
-                            <td>{user.username}</td>
-                            <td>{user.usertype}</td>
-                            <td>{new Date(user.jointimestamp).toLocaleDateString()}</td>
+                            <td>{user.email}</td>
+                            <td>{user.fullname}</td>
+                            <td>{user.employment_status}</td>
+                            <td>{user.location}</td>
                         </tr>
                     ))}
                 </tbody>
