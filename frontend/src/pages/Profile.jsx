@@ -1,5 +1,6 @@
 import { PiAddressBookLight } from "react-icons/pi";
 import { useEffect, useState } from "react";
+import { PiCopySimple } from "react-icons/pi";
 import axios from "axios";
 
 const Profile = () => {
@@ -67,6 +68,22 @@ const Profile = () => {
         return `${formattedDate} - ${formattedTime}`;
     }
 
+    const handleGenerateKey = () => {
+        const postNewKey = async () => {
+            await axios
+                .post("http://localhost:5000/auth/new-key", { username: profile.username })
+                .then((res) => {
+                    const { message } = res.data;
+
+                    navigator.clipboard.writeText(message);
+
+                    document.getElementById("key_modal").showModal();
+                });
+        };
+
+        postNewKey();
+    };
+
     if (loading) {
         return (
             <>
@@ -79,6 +96,8 @@ const Profile = () => {
 
     return (
         <>
+            <LogoutModal handleGenerateKey={handleGenerateKey} />
+            <KeyModal />
             <div className="flex flex-row h-[calc(100vh-2.5rem)] my-5 text-gray-700">
                 <div className="flex flex-col w-[50%] pt-15 pl-15 border-r">
                     <div className="flex flex-row items-center gap-5">
@@ -132,16 +151,23 @@ const Profile = () => {
                     </div>
 
                     <div className="flex flex-row gap-2 justify-end pr-25 pt-12">
-                        <input
+                        <button
                             type="button"
-                            value="Generate Key"
                             className="btn btn-outline btn-primary"
-                        />
-                        <input
+                            onClick={() =>
+                                document
+                                    .getElementById("logout_modal")
+                                    .showModal()
+                            }
+                        >
+                            Generate Key
+                        </button>
+                        <button
                             type="button"
-                            value="Logout"
                             className="btn btn-outline btn-error"
-                        />
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
 
@@ -182,6 +208,58 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+        </>
+    );
+};
+
+const LogoutModal = ({ handleGenerateKey }) => {
+    return (
+        <>
+            <dialog id="logout_modal" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Logout</h3>
+                    <p className="py-4">
+                        Are you sure you want to generate a new login key?
+                    </p>
+                    <p className="text-error">This action is irreversible</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button
+                                className="btn btn-outline btn-warning"
+                                onClick={(event) => handleGenerateKey(event)}
+                            >
+                                Generate
+                            </button>
+                            <button className="btn btn-outline btn-primary ml-2">
+                                Cancel
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </>
+    );
+};
+
+const KeyModal = () => {
+    return (
+        <>
+            <dialog id="key_modal" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">New Login Key</h3>
+                    <p className="py-4 text-[.9rem]">
+                        We&apos;ve copied your new login key to your clipboard. Take care of it.
+                    </p>
+                    <p className="text-error text-center"> You will not be seeing it again 🙂</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn btn-outline btn-primary">
+                                Ok
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </>
     );
 };
