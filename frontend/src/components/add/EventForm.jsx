@@ -3,9 +3,86 @@ import React from "react";
 const EventForm = () => {
     return (
         <>
-            <div className="w-10 h-10 border ">EventForm</div>
+            <div className="ml-15 mr-5 mt-5 w-8/12">
+                <fieldset className="fieldset">
+                    <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
+                        <input type="file" className="w-11/12 file-input" />
+                        <label className="fieldset-label">Max size 2MB</label>
+                </fieldset>
+
+                <fieldset className="fieldset mt-2">
+                    <legend className="fieldset-legend text-lg text-primary">Title</legend>
+                    <input type="text" className="w-11/12 input" placeholder="Insert title here" />
+                </fieldset>
+
+                <fieldset className="fieldset mt-2">
+                    <legend className="fieldset-legend text-lg text-primary">Description</legend>
+                    <textarea className="textarea h-24 w-11/12" placeholder="Insert description here"></textarea>
+                </fieldset>
+
+                <fieldset className="fieldset mt-2">
+                    <legend className="fieldset-legend text-lg text-primary">Location</legend>
+                    <input type="text" className="w-11/12 input" placeholder="Type here" />
+                </fieldset>
+
+                <div className="flex w-full flex-col lg:flex-row mt-4">
+                <div className="w-full">
+                    <form>
+                    <p className="text-lg text-primary font-semibold">School</p>
+                        <select className="select validator" required>
+                            <option disabled selected value="">Select school here</option>
+                            <option>SAMCIS</option>
+                            <option>SONAHBS</option>
+                            <option>STELA</option>
+                            <option>SAS</option>
+                            <option>SEA</option>
+                            <option>SOM</option>
+                        </select>
+                        <p className="validator-hint">Required</p>
+                    </form>
+                    </div>
+                    <div className="w-full">
+                        <form>
+                        <p className="text-lg text-primary font-semibold">Batch</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select batch here</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+                </div>
+
+                <div className="flex flex-col lg:flex-row mt-2">
+                    <div className="w-full">
+                    <form>
+                    <p className="text-lg text-primary font-semibold">Category</p>
+                        <select className="select validator" required>
+                            <option disabled selected value="">Select category here</option>
+                            <option>Reunion</option>
+                            <option>Seminar</option>
+                            <option>Thanksgiving</option>
+                        </select>
+                        <p className="validator-hint">Required</p>
+                    </form>
+                    </div>
+                    
+                    <div className="w-full">
+                        <p className="text-lg text-primary font-semibold">Schedule</p>
+                        <input type="datetime-local" className="input"/>
+                    </div>
+                </div>
+
+                <div className="flex mr-23 mt-5 justify-end">
+                    <button className="btn btn-primary hover:select-secondary">Publish</button>
+                </div>
+            </div>
         </>
     );
 };
-
 export default EventForm;
