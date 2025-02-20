@@ -44,4 +44,24 @@ router.get("/managers", (req, res) => {
     });
 });
 
+router.put("/managers/:id", (req, res) => {
+    const { id } = req.params;
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+    }
+
+    const updateQuery = `UPDATE user SET username = ?, password = ? WHERE userid = ?`;
+
+    db.query(updateQuery, [username, password, id], (err, result) => {
+        if (err) {
+            console.error("Error updating manager:", err);
+            return res.status(500).json({ error: "Error updating manager" });
+        }
+        res.json({ message: "Manager updated successfully" });
+    });
+});
+
+
 module.exports = router;

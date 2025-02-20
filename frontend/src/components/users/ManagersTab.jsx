@@ -5,6 +5,7 @@ const ManagersTab = () => {
     const [managers, setManagers] = useState([]);
     const [selectedManager, setSelectedManager] = useState(null);
     const [newUsername, setNewUsername] = useState("");
+    const [newPassword, setNewPassword] = useState(""); // New state for password
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // Fetch managers
@@ -22,6 +23,7 @@ const ManagersTab = () => {
     const openModal = (manager) => {
         setSelectedManager(manager);
         setNewUsername(manager.username);
+        setNewPassword(""); // Clear password field when opening modal
         setIsModalOpen(true);
     };
 
@@ -29,6 +31,30 @@ const ManagersTab = () => {
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedManager(null);
+    };
+
+    // Save updated manager info
+    const saveChanges = () => {
+        if (!selectedManager) return;
+
+        const updatedData = {
+            username: newUsername,
+            password: newPassword, // Sending new password (if any)
+        };
+
+        axios.put(`http://localhost:5000/users/managers/${selectedManager.userid}`, updatedData)
+            .then(response => {
+                console.log("Manager updated:", response.data);
+                setManagers(managers.map(manager => 
+                    manager.userid === selectedManager.userid 
+                        ? { ...manager, username: newUsername } 
+                        : manager
+                ));
+                closeModal();
+            })
+            .catch(error => {
+                console.error("Error updating manager:", error);
+            });
     };
 
     return (
@@ -63,11 +89,20 @@ const ManagersTab = () => {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
                         <h3 className="text-lg font-semibold mb-4">Edit Manager</h3>
+                        <label className="block mb-2">Username</label>
                         <input 
                             type="text" 
                             className="border p-2 w-full rounded mb-4"
                             value={newUsername} 
                             onChange={(e) => setNewUsername(e.target.value)} 
+                        />
+                        <label className="block mb-2">New Password</label>
+                        <input 
+                            type="password" 
+                            className="border p-2 w-full rounded mb-4"
+                            value={newPassword} 
+                            onChange={(e) => setNewPassword(e.target.value)} 
+                            placeholder="Enter new password (optional)"
                         />
                         <div className="flex justify-end gap-2">
                             <button 
@@ -78,6 +113,7 @@ const ManagersTab = () => {
                             </button>
                             <button 
                                 className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                                onClick={saveChanges}
                             >
                                 Save
                             </button>
