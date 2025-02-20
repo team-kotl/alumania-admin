@@ -9,6 +9,8 @@ router.get("/", (req, res) => {
             u.userid, 
             a.email, 
             CONCAT(a.firstname, ' ', IFNULL(a.middlename, ''), ' ', a.lastname) AS fullname, 
+            a.school, 
+            a.batch,
             a.empstatus, 
             a.location 
         FROM user u
