@@ -5,10 +5,10 @@ const ManagersTab = () => {
     const [managers, setManagers] = useState([]);
     const [selectedManager, setSelectedManager] = useState(null);
     const [newUsername, setNewUsername] = useState("");
-    const [newPassword, setNewPassword] = useState(""); // New state for password
+    const [newPassword, setNewPassword] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-    // Fetch managers
     useEffect(() => {
         axios.get("http://localhost:5000/users/managers")
             .then(response => {
@@ -19,32 +19,38 @@ const ManagersTab = () => {
             });
     }, []);
 
-    // Open modal and set selected manager
     const openModal = (manager) => {
         setSelectedManager(manager);
         setNewUsername(manager.username);
-        setNewPassword(""); // Clear password field when opening modal
+        setNewPassword("");
         setIsModalOpen(true);
     };
 
-    // Close modal
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedManager(null);
     };
 
-    // Save updated manager info
+    const openDeleteModal = (manager) => {
+        setSelectedManager(manager);
+        setIsDeleteModalOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+        setSelectedManager(null);
+    };
+
     const saveChanges = () => {
         if (!selectedManager) return;
-
+        
         const updatedData = {
             username: newUsername,
-            password: newPassword, // Sending new password (if any)
+            password: newPassword,
         };
-
+        
         axios.put(`http://localhost:5000/users/managers/${selectedManager.userid}`, updatedData)
             .then(response => {
-                console.log("Manager updated:", response.data);
                 setManagers(managers.map(manager => 
                     manager.userid === selectedManager.userid 
                         ? { ...manager, username: newUsername } 
@@ -54,6 +60,19 @@ const ManagersTab = () => {
             })
             .catch(error => {
                 console.error("Error updating manager:", error);
+            });
+    };
+
+    const deleteManager = () => {
+        if (!selectedManager) return;
+        
+        axios.delete(`http://localhost:5000/users/managers/${selectedManager.userid}`)
+            .then(() => {
+                setManagers(managers.filter(manager => manager.userid !== selectedManager.userid));
+                closeDeleteModal();
+            })
+            .catch(error => {
+                console.error("Error deleting manager:", error);
             });
     };
 
@@ -73,10 +92,16 @@ const ManagersTab = () => {
                             <td className="border p-2">{manager.username}</td>
                             <td className="border p-2">
                                 <button 
-                                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
                                     onClick={() => openModal(manager)}
                                 >
                                     Edit
+                                </button>
+                                <button 
+                                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                    onClick={() => openDeleteModal(manager)}
+                                >
+                                    Delete
                                 </button>
                             </td>
                         </tr>
@@ -84,7 +109,6 @@ const ManagersTab = () => {
                 </tbody>
             </table>
 
-            {/* Edit Manager Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -105,18 +129,21 @@ const ManagersTab = () => {
                             placeholder="Enter new password (optional)"
                         />
                         <div className="flex justify-end gap-2">
-                            <button 
-                                className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                                onClick={closeModal}
-                            >
-                                Cancel
-                            </button>
-                            <button 
-                                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                                onClick={saveChanges}
-                            >
-                                Save
-                            </button>
+                            <button className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500" onClick={closeModal}>Cancel</button>
+                            <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600" onClick={saveChanges}>Save</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isDeleteModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h3 className="text-lg font-semibold mb-4">Confirm Deletion</h3>
+                        <p>Are you sure you want to delete <strong>{selectedManager?.username}</strong>?</p>
+                        <div className="flex justify-end gap-2 mt-4">
+                            <button className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500" onClick={closeDeleteModal}>Cancel</button>
+                            <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" onClick={deleteManager}>Delete</button>
                         </div>
                     </div>
                 </div>
