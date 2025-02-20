@@ -88,9 +88,9 @@ const RootSidebar = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <p className="text-[18px]">{username}</p>
+                                <p className="text-[18px]">{username || 'Unknown'}</p>
                                 <p className="text-[13px] font-extralight">
-                                    {usertype}
+                                    {usertype || 'N/A'}
                                 </p>
                             </div>
                         </div>

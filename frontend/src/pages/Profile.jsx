@@ -1,6 +1,6 @@
 import { PiAddressBookLight } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import { PiCopySimple } from "react-icons/pi";
+import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const Profile = () => {
@@ -14,6 +14,8 @@ const Profile = () => {
     });
 
     const [logs, setLogs] = useState([]);
+
+    const { logout } = useAuth();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -84,6 +86,10 @@ const Profile = () => {
         postNewKey();
     };
 
+    const handleLogout = () => {
+        logout();
+    };
+
     if (loading) {
         return (
             <>
@@ -96,8 +102,9 @@ const Profile = () => {
 
     return (
         <>
-            <LogoutModal handleGenerateKey={handleGenerateKey} />
+            <InitialKeyModal handleGenerateKey={handleGenerateKey} />
             <KeyModal />
+            <LogoutModal handleLogout={handleLogout}/>
             <div className="flex flex-row h-[calc(100vh-2.5rem)] my-5 text-gray-700">
                 <div className="flex flex-col w-[50%] pt-15 pl-15 border-r">
                     <div className="flex flex-row items-center gap-5">
@@ -156,7 +163,7 @@ const Profile = () => {
                             className="btn btn-outline btn-primary"
                             onClick={() =>
                                 document
-                                    .getElementById("logout_modal")
+                                    .getElementById("initial_key_modal")
                                     .showModal()
                             }
                         >
@@ -165,6 +172,11 @@ const Profile = () => {
                         <button
                             type="button"
                             className="btn btn-outline btn-error"
+                            onClick={() =>
+                                document
+                                    .getElementById("logout_modal")
+                                    .showModal()
+                            }
                         >
                             Logout
                         </button>
@@ -212,12 +224,40 @@ const Profile = () => {
     );
 };
 
-const LogoutModal = ({ handleGenerateKey }) => {
+const LogoutModal = ({ handleLogout }) => {
     return (
         <>
             <dialog id="logout_modal" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Logout</h3>
+                    <p className="py-4">
+                        Are you sure you want to logout?
+                    </p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button
+                                className="btn btn-outline btn-error"
+                                onClick={() => handleLogout()}
+                            >
+                                Logout
+                            </button>
+                            <button className="btn btn-outline btn-primary ml-2">
+                                Cancel
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </>
+    );
+}
+
+const InitialKeyModal = ({ handleGenerateKey }) => {
+    return (
+        <>
+            <dialog id="initial_key_modal" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Generate new login key</h3>
                     <p className="py-4">
                         Are you sure you want to generate a new login key?
                     </p>
