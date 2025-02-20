@@ -5,14 +5,14 @@ import {
     PiUserCircle,
     PiFoldersLight,
 } from "react-icons/pi";
-import AdminIcon from "../../assets/admin.png";
-import ManagerIcon from "../../assets/manager.png";
+import AdminIcon from "../../assets/admin.svg";
+import ManagerIcon from "../../assets/manager.svg";
 import { NavLink } from "react-router";
 const RootSidebar = () => {
     const defaultStyle = `text-primary-content hover:text-primary hover:bg-primary-content transition-all`;
     const selectedStyle = `text-primary bg-primary-content hover:opacity-70 transition-all`;
-    const username = localStorage.getItem("user") || `administrator`;
-    const usertype = localStorage.getItem("usertype") || `Admin`;
+    const username = localStorage.getItem("user");
+    const usertype = localStorage.getItem("type");
 
     return (
         <>
@@ -80,7 +80,7 @@ const RootSidebar = () => {
                                 <div className="ring-primary ring-offset-base-100 w-10 h-10 rounded-full ring ring-offset-2">
                                     <img
                                         src={
-                                            usertype === "Admin"
+                                            usertype === "admin"
                                                 ? AdminIcon
                                                 : ManagerIcon
                                         }
