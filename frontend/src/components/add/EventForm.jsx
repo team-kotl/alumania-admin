@@ -1,9 +1,10 @@
 import React from "react";
+
 // TODO: Freskkie
 const EventForm = () => {
     return (
         <>
-            <div className="ml-15 mr-5 mt-5 w-8/12">
+            <div className="ml-15 mr-5 w-8/12">
                 <fieldset className="fieldset">
                     <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
                         <input type="file" className="w-11/12 file-input" />
@@ -12,20 +13,66 @@ const EventForm = () => {
 
                 <fieldset className="fieldset mt-2">
                     <legend className="fieldset-legend text-lg text-primary">Title</legend>
-                    <input type="text" className="w-11/12 input" placeholder="Insert title here" />
+                    <input type="text" className="w-11/12 input" placeholder="Insert event title here" />
                 </fieldset>
 
                 <fieldset className="fieldset mt-2">
                     <legend className="fieldset-legend text-lg text-primary">Description</legend>
-                    <textarea className="textarea h-24 w-11/12" placeholder="Insert description here"></textarea>
-                </fieldset>
-
-                <fieldset className="fieldset mt-2">
-                    <legend className="fieldset-legend text-lg text-primary">Location</legend>
-                    <input type="text" className="w-11/12 input" placeholder="Type here" />
+                    <textarea className="textarea h-24 w-11/12" placeholder="Insert event description here"></textarea>
                 </fieldset>
 
                 <div className="flex w-full flex-col lg:flex-row mt-4">
+                    <div className="w-full">
+                        <form>
+                        <p className="text-lg text-primary font-semibold">Location</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select region</option>
+                                <option>Luzon</option>
+                                <option>Visayas</option>
+                                <option>Mindanao</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+
+                    <div className="w-full">
+                        <form>
+                        <p className="text-lg text-white font-semibold">.</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select province</option>
+                                <option>SAMCIS</option>
+                                <option>SONAHBS</option>
+                                <option>STELA</option>
+                                <option>SAS</option>
+                                <option>SEA</option>
+                                <option>SOM</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+
+                    <div className="w-full mr-18">
+                        <form>
+                        <p className="text-lg text-white font-semibold">.</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select city</option>
+                                <option>SAMCIS</option>
+                                <option>SONAHBS</option>
+                                <option>STELA</option>
+                                <option>SAS</option>
+                                <option>SEA</option>
+                                <option>SOM</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+                </div>
+
+                <fieldset className="fieldset">
+                    <input type="text" className="w-11/12 input" placeholder="Insert street number and barangay here" />
+                </fieldset>
+
+                <div className="flex w-full flex-col lg:flex-row mt-4 space-x-64">
                 <div className="w-full">
                     <form>
                     <p className="text-lg text-primary font-semibold">School</p>
@@ -58,7 +105,7 @@ const EventForm = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row mt-2">
+                <div className="flex flex-col lg:flex-row mt-2 space-x-64">
                     <div className="w-full">
                     <form>
                     <p className="text-lg text-primary font-semibold">Category</p>
