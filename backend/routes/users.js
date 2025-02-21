@@ -46,6 +46,29 @@ router.get("/managers", (req, res) => {
     });
 });
 
+router.get("/applicant", (req, res) => {
+    const query = `
+        Select
+            CONCAT(firstname, ' ', IFNULL(middlename, ''), ' ', lastname) AS fullname, 
+            course,
+            location,
+            school,
+            batch
+        FROM applicant
+    `;
+
+    db.query(query, (err, results) => {
+        if (err) { 
+            console.error("Database Error:", err.sqlMessage || err);
+            return res.status(500).json({ 
+                error: "Database query failed", 
+                details: err.sqlMessage || err
+            });
+        }
+        res.json(results)
+    });
+});
+
 router.put("/managers/:id", (req, res) => {
     const { id } = req.params;
     const { username, password } = req.body;
@@ -64,6 +87,8 @@ router.put("/managers/:id", (req, res) => {
         res.json({ message: "Manager updated successfully" });
     });
 });
+
+
 
 
 module.exports = router;
