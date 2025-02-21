@@ -6,7 +6,7 @@ const ExperiencesTab = ({ experiences }) => {
         <>
             <div className="flex flex-row w-full justify-center">
                 <div className="join join-vertical w-50% h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
-                    <div className="join-item bg-white p-4 w-full border-b border-gray-200">
+                    <div className="relative join-item bg-white p-4 w-full border-b border-gray-200">
                         <div className="flex items-center mb-2">
                             <img className="w-10 h-10 rounded-full mr-2" />
                             <div>
@@ -28,7 +28,7 @@ const ExperiencesTab = ({ experiences }) => {
                             <img src="" alt="" className="w-50 h-50" />
                         </div>
                     </div>
-                    <div className="join-item bg-white p-4 w-200 ">
+                    <div className="relative join-item bg-white p-4 w-200 ">
                         <div className="flex items-center mb-2">
                             <img className="w-10 h-10 rounded-full mr-2" />
                             <div>
@@ -50,7 +50,7 @@ const ExperiencesTab = ({ experiences }) => {
                             <img src="" alt="" className="w-50 h-50" />
                         </div>
                     </div>
-                    <div className="join-item bg-white p-4 w-200 ">
+                    <div className="relative join-item bg-white p-4 w-200 ">
                         <div className="flex items-center mb-2">
                             <img className="w-10 h-10 rounded-full mr-2" />
                             <div>
@@ -72,7 +72,7 @@ const ExperiencesTab = ({ experiences }) => {
                             <img src="" alt="" className="w-50 h-50" />
                         </div>
                     </div>
-                    <div className="join-item bg-white p-4 w-200 ">
+                    <div className="relative join-item bg-white p-4 w-200 ">
                         <div className="flex items-center mb-2">
                             <img className="w-10 h-10 rounded-full mr-2" />
                             <div>
