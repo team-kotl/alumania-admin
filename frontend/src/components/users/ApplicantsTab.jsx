@@ -31,17 +31,17 @@ const ApplicantsTab = () => {
     }
 
     return (
-        <div>
-            <table>
-                <thead>
+        <div className="overflow-x-auto ml-30 mt-13">
+            <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
+                <thead className="bg-gray-100">
                     <tr>
                         <th>Full Name</th>
                         <th>Course</th>
-                        <th>Location</th>
                         <th>School</th>
                         <th>Batch</th>
-                        <th>Accept</th>  
-                        <th>Decline</th>  
+                        <th>Location</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,9 +49,9 @@ const ApplicantsTab = () => {
                         <tr key={index}>
                             <td>{applicant.fullname}</td>
                             <td>{applicant.course}</td>
-                            <td>{applicant.location}</td>
                             <td>{applicant.school}</td>
                             <td>{applicant.batch}</td>
+                            <td>{applicant.location}</td>
                             <td>
                                 <button>
                                     Accept

@@ -89,20 +89,20 @@ const ManagersTab = () => {
   };
 
   return (
-    <div className="overflow-x-auto ml-19 mt-22">
+    <div className="overflow-x-auto ml-32 mt-22">
       <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
         <thead className="bg-gray-100">
           <tr>
-            <th className="w-1/2 px-30 py-4 text-left text-sm text-gray-600">
+            <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
               Manager ID
             </th>
-            <th className="w-1/2 px-28 py-4 text-left text-sm text-gray-600">
+            <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
               Username
             </th>
             <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
               Actions
             </th>
-            <th className="w-1/2 px-60 py-4 text-left text-sm text-gray-600">
+            <th className="w-1/2 px-32 py-4 text-left text-sm text-gray-600">
             </th>
           </tr>
         </thead>
@@ -112,10 +112,10 @@ const ManagersTab = () => {
               key={manager.userid}
               className="hover:bg-gray-50 transition duration-150 ease-in-out"
             >
-              <td className="w-1/2 px-35 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td className="w-1/2 px-42 py-4 whitespace-nowrap text-sm text-gray-900">
                 {manager.userid}
               </td>
-              <td className="w-1/2 px-28 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td className="w-1/2 px-38 py-4 whitespace-nowrap text-sm text-gray-900">
                 {manager.username}
               </td>
               <td className="w-1/2 px-34 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -129,9 +129,11 @@ const ManagersTab = () => {
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openDeleteModal(manager)}
                 >
-                  <img src="../src/assets/delete.png" alt="Delete" className="w-3.5 h-4 mr-1" />
+                  <img src="../src/assets/archive.png" alt="Delete" className="w-3.5 h-4 mr-1" />
                 </button>
               </td>
+              <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600">
+            </td>
             </tr>
           ))}
         </tbody>
