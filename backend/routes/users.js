@@ -10,9 +10,11 @@ router.get("/", (req, res) => {
             a.email, 
             CONCAT(a.firstname, ' ', IFNULL(a.middlename, ''), ' ', a.lastname) AS fullname, 
             a.school, 
-            a.batch,
+            a.batch, 
             a.empstatus, 
-            a.location 
+            a.location,
+            a.company, 
+            a.displaypic
         FROM user u
         JOIN alumni a ON u.userid = a.userid
         WHERE u.usertype = 'alumni'

@@ -8,17 +8,32 @@ const ManagersTab = () => {
   const [newPassword, setNewPassword] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/users/managers")
-      .then((response) => {
-        setManagers(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching managers:", error);
-      });
-  }, []);
+    const fetchManagers = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/users/managers", {
+                responseType: "json",
+            });
+            setManagers(response.data);
+        } catch (error) {
+            console.error("Error fetching managers:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    fetchManagers();
+}, []);
+
+if (loading) {
+  return (
+      <div className="flex flex-row h-[30rem] w-full items-center justify-center">
+          <span className="loading loading-spinner w-12"></span>
+      </div>
+  );
+}
 
   const openModal = (manager) => {
     setSelectedManager(manager);
