@@ -22,10 +22,10 @@ const locationData = [
 ];
 
 const interestedAlumni = [
-    { title: "Eucharistic Celebration", date: "2024-27-10 | 9:00 AM", rating: 120 },
-    { title: "Software Engineer", company: "Accenture", rating: 500 },
-    { title: "Nurse", company: "SU-Sacred Heart Medical Center", rating: 500 },
-    { title: "Eucharistic Celebration", date: "2024-27-10 | 9:00 AM", rating: 120 }
+    { title: "Eucharistic Celebration", date: "2024-27-10 | 9:00 AM", type: "Event", rating: 120 },
+    { title: "Software Engineer", company: "Accenture", type: "Job", rating: 500 },
+    { title: "Nurse", company: "SU-Sacred Heart Medical Center", type: "Job", rating: 500 },
+    { title: "Eucharistic Celebration", date: "2024-27-10 | 9:00 AM", type: "Event", rating: 120 }
 ];
 
 const recentManagers = [
@@ -60,6 +60,25 @@ const StatsCards = () => {
 
 
 const ChartsSection = () => {
+    // const [data, setData] = useState({
+    //     employment: { Employed: 0, Unemployed: 0, Underemployed: 0 },
+    //     location: { Domestic: 0, Foreign: 0 },
+    //     interests: []
+    // });
+
+    // const COLORS = ["#1E40AF", "#6495ED", "#60A5FA"];
+    
+    // const employmentData = [
+    //     { name: "Employed", value: data.employment.Employed, color: COLORS[0] },
+    //     { name: "Unemployed", value: data.employment.Unemployed, color: COLORS[1] },
+    //     { name: "Underemployed", value: data.employment.Underemployed, color: COLORS[2] }
+    // ];
+
+    // const locationData = [
+    //     { name: "Domestic", value: data.location.Domestic, color: COLORS[0] },
+    //     { name: "Foreign", value: data.location.Foreign, color: COLORS[1] }
+    // ];
+
     return (
         <div className="flex justify-center items-center mt-10 space-x-10">
             <div>
@@ -94,8 +113,9 @@ const ChartsSection = () => {
                             <li key={index} className="flex justify-between border-b py-2">
                                 <div>
                                     <p className="font-semibold">{alumnus.title}</p>
-                                    {alumnus.company && <p className="text-sm text-gray-500">{alumnus.company}</p>}
-                                    {alumnus.date && <p className="text-sm text-gray-500">{alumnus.date}</p>}
+                                {alumnus.company && <p className="text-sm text-gray-500">{alumnus.company}</p>}
+                                {alumnus.date && <p className="text-sm text-gray-500">{alumnus.date}</p>}
+                                <p className="text-xs text-gray-500 font-medium">{alumnus.type}</p> 
                                 </div>
                                 <div className="flex items-center">
                                     <FaStar className="text-yellow-400" />
@@ -113,6 +133,7 @@ const ChartsSection = () => {
 };
 
 const TableSection = () => {
+    // const [data, setData] = useState({ managers: [], alumni: [] });
     return (
         <div className="mt-10 flex justify-center space-x-10 ">
             <div className="w-185">
@@ -121,15 +142,15 @@ const TableSection = () => {
                     <table className="table table-zebra w-full shadow-md rounded-lg">
                         <thead>
                             <tr className="bg-gray-200 text-gray-700">
-                                <th>Name</th>
-                                <th>Joined</th>
+                                <th className="text-left p-2">Name</th>
+                                <th className="text-left p-2">Joined</th>
                             </tr>
                         </thead>
                         <tbody>
                             {recentManagers.map((manager, index) => (
                                 <tr key={index} className="hover">
-                                    <td>{manager.name}</td>
-                                    <td className="text-gray-500">{manager.joined}</td>
+                                    <td className="p-2">{manager.name}</td>
+                                    <td className="p-2">{new Date(manager.joined_at).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -142,17 +163,17 @@ const TableSection = () => {
                     <table className="table table-zebra w-full shadow-md rounded-lg">
                         <thead>
                             <tr className="bg-gray-200 text-gray-700">
-                                <th>Name</th>
-                                <th>Location</th>
-                                <th>Joined</th>
+                            <th className="text-left p-2">Name</th>
+                            <th className="text-left p-2">Location</th>
+                            <th className="text-left p-2">Joined</th>
                             </tr>
                         </thead>
                         <tbody>
                             {recentAlumni.map((alumni, index) => (
                                 <tr key={index} className="hover">
-                                    <td>{alumni.name}</td>
-                                    <td>{alumni.location}</td>
-                                    <td className="text-gray-500">{alumni.joined}</td>
+                                    <td className="p-2">{alumni.name}</td>
+                                <td className="p-2">{alumni.location}</td>
+                                <td className="p-2">{new Date(alumni.joined_at).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
