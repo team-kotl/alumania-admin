@@ -55,35 +55,36 @@ const ApplicantsTab = () => {
     }
 
     return (
-        <div className="overflow-x-auto ml-30 mt-13">
-            <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
-                <thead className="bg-gray-100">
+        <div className="overflow-x-auto ml-40 mt-4">
+            <table className="table w-full mt-7">
+                <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg">
                     <tr>
-                        <th>Full Name</th>
-                        <th>Course</th>
-                        <th>School</th>
-                        <th>Batch</th>
-                        <th>Location</th>
+                        <th className="px-17 py-3 text-gray-600 text-left rounded-tl-lg">Full Name</th>
+                        <th className="px-23 py-3 text-gray-600 text-left">Course</th>
+                        <th className="px-17 py-3 text-gray-600 text-left">School</th>
+                        <th className="px-19 py-3 text-gray-600 text-left">Batch</th>
+                        <th className="px-19 py-3 text-gray-600 text-left">Location</th>
                         <th></th>
-                        <th></th>
+                        <th className="px-19 py-3 text-gray-600 text-left rounded-tr-lg"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {applicants.map((applicant) => (
                         <tr key={applicant.applicantid}> 
-                            <td>{applicant.fullname}</td>
-                            <td>{applicant.course}</td>
-                            <td>{applicant.school}</td>
-                            <td>{applicant.batch}</td>
-                            <td>{applicant.location}</td>
+                            <td className="px-17 py-4">{applicant.fullname}</td>
+                            <td className="px-23 py-4">{applicant.course}</td>
+                            <td className="px-17 py-4">{applicant.school}</td>
+                            <td className="px-19 py-4">{applicant.batch}</td>
+                            <td className="px-19 py-4">{applicant.location}</td>
                             <td>
                                 <button
+
                                     onClick={() => {
                                         console.log("Accepting:", applicant.applicantid); 
                                         handleAccept(applicant.applicantid);
                                     }}
                                 >
-                                    Accept
+                                    <img src="../src/assets/accept.png" alt="Accept"/>
                                 </button>
                             </td>
                             <td>
@@ -93,7 +94,7 @@ const ApplicantsTab = () => {
                                         handleDecline(applicant.applicantid);
                                     }}
                                 >
-                                    Decline
+                                    <img src="../src/assets/reject.png" alt="Decline"/>
                                 </button>
                             </td>
                         </tr>
