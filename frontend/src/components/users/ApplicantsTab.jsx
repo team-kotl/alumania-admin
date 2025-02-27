@@ -100,7 +100,6 @@ const ApplicantsTab = () => {
                             <td>
                                 <button
                                     onClick={() => handleDecline(applicant.applicantid)}
-                                    className="bg-red-500 text-white px-3 py-1 rounded"
                                 >
                                     <img src="../src/assets/reject.png" alt="Decline"/>
                                 </button>
