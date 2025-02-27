@@ -104,8 +104,21 @@ if (loading) {
   };
 
   return (
-    <div className="overflow-x-auto ml-32 mt-22">
-      <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
+    <div className="overflow-x-auto ml-35 mt-5">
+       <div className="flex justify-end space-x-2 mb-3">
+        <input
+          type="text"
+          placeholder="ID, Username"
+          className="border border-gray-300 px-4 py-2 rounded-lg w-64 bg-[url('../src/assets/search.png')] bg-no-repeat bg-[length:22px] bg-[10px] pl-10"
+        />
+        <button 
+         className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+        >
+          <img src="../src/assets/filter.png" alt="Filter" />
+        </button>
+      </div>
+
+      <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg mt-7">
         <thead className="bg-gray-100">
           <tr>
             <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
