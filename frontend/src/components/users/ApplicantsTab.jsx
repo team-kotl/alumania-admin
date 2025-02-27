@@ -5,6 +5,7 @@ const ApplicantsTab = () => {
     const [applicants, setApplicants] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [notification, setNotification] = useState(""); // ✅ Notification state
 
     useEffect(() => {
         const fetchApplicants = async () => {
@@ -28,9 +29,11 @@ const ApplicantsTab = () => {
             const response = await axios.post(`http://localhost:5000/users/accept/${applicantid}`);
             console.log("Response:", response.data);
             
-            setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid)); 
+            setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid));
+            setNotification("Applicant accepted successfully!");
         } catch (err) {
             console.error("Error accepting applicant:", err.response?.data || err.message);
+            setNotification("Error accepting applicant"); 
         }
     };
     
@@ -40,11 +43,12 @@ const ApplicantsTab = () => {
             await axios.delete(`http://localhost:5000/users/decline/${applicantid}`);
     
             setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid)); 
+            setNotification("Applicant declined successfully!"); 
         } catch (err) {
             console.error("Error declining applicant:", err);
+            setNotification("Error declining applicant"); 
         }
     };
-    
 
     if (loading) {
         return (
@@ -56,6 +60,12 @@ const ApplicantsTab = () => {
 
     return (
         <div className="overflow-x-auto ml-30 mt-13">
+            {notification && (
+                <div className="bg-green-500 text-white p-2 rounded mb-4 text-center">
+                    {notification}
+                </div>
+            )}
+
             <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
                 <thead className="bg-gray-100">
                     <tr>
@@ -78,20 +88,16 @@ const ApplicantsTab = () => {
                             <td>{applicant.location}</td>
                             <td>
                                 <button
-                                    onClick={() => {
-                                        console.log("Accepting:", applicant.applicantid); 
-                                        handleAccept(applicant.applicantid);
-                                    }}
+                                    onClick={() => handleAccept(applicant.applicantid)}
+                                    className="bg-blue-500 text-white px-3 py-1 rounded"
                                 >
                                     Accept
                                 </button>
                             </td>
                             <td>
                                 <button
-                                    onClick={() => {
-                                        console.log("Declining:", applicant.applicantid); 
-                                        handleDecline(applicant.applicantid);
-                                    }}
+                                    onClick={() => handleDecline(applicant.applicantid)}
+                                    className="bg-red-500 text-white px-3 py-1 rounded"
                                 >
                                     Decline
                                 </button>

@@ -202,15 +202,16 @@ router.post("/accept/:applicantId", async (req, res) => {
 });
 
 router.delete("/decline/:applicantid", (req, res) => {
-    const { applicantid } = req.params;
-    console.log("Received applicantId:", applicantId);
-    if (!id) {
+    const { applicantid } = req.params; 
+    console.log("Received applicantId:", applicantid);
+
+    if (!applicantid) {  
         return res.status(400).json({ error: "Applicant ID is required" });
     }
 
     const query = "DELETE FROM applicant WHERE applicantid = ?";
     
-    db.query(query, [id], (err, result) => {
+    db.query(query, [applicantid], (err, result) => { 
         if (err) {
             console.error("Database Error:", err.sqlMessage || err);
             return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
@@ -219,6 +220,7 @@ router.delete("/decline/:applicantid", (req, res) => {
         res.json({ message: "Applicant declined and removed" });
     });
 });
+
 
 
 module.exports = router;
