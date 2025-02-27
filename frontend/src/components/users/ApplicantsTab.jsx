@@ -5,7 +5,7 @@ const ApplicantsTab = () => {
     const [applicants, setApplicants] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [notification, setNotification] = useState(""); // ✅ Notification state
+    const [notification, setNotification] = useState(""); 
 
     useEffect(() => {
         const fetchApplicants = async () => {
@@ -99,10 +99,8 @@ const ApplicantsTab = () => {
                             </td>
                             <td>
                                 <button
-                                    onClick={() => {
-                                        console.log("Declining:", applicant.applicantid); 
-                                        handleDecline(applicant.applicantid);
-                                    }}
+                                    onClick={() => handleDecline(applicant.applicantid)}
+                                    className="bg-red-500 text-white px-3 py-1 rounded"
                                 >
                                     <img src="../src/assets/reject.png" alt="Decline"/>
                                 </button>
