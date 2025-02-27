@@ -9,8 +9,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const authRouter = require("./routes/auth");
+const experienceRouter = require("./routes/experiences");
+const jobRouter = require("./routes/jobs");
 
 app.use("/auth", authRouter);
+app.use("/experiences", experienceRouter)
+app.use("/jobs", jobRouter);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
