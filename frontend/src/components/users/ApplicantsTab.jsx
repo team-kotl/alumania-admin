@@ -5,6 +5,7 @@ const ApplicantsTab = () => {
     const [applicants, setApplicants] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [notification, setNotification] = useState(""); // ✅ Notification state
 
     useEffect(() => {
         const fetchApplicants = async () => {
@@ -28,9 +29,11 @@ const ApplicantsTab = () => {
             const response = await axios.post(`http://localhost:5000/users/accept/${applicantid}`);
             console.log("Response:", response.data);
             
-            setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid)); 
+            setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid));
+            setNotification("Applicant accepted successfully!");
         } catch (err) {
             console.error("Error accepting applicant:", err.response?.data || err.message);
+            setNotification("Error accepting applicant"); 
         }
     };
     
@@ -40,11 +43,12 @@ const ApplicantsTab = () => {
             await axios.delete(`http://localhost:5000/users/decline/${applicantid}`);
     
             setApplicants((prev) => prev.filter((applicant) => applicant.applicantid !== applicantid)); 
+            setNotification("Applicant declined successfully!"); 
         } catch (err) {
             console.error("Error declining applicant:", err);
+            setNotification("Error declining applicant"); 
         }
     };
-    
 
     if (loading) {
         return (
@@ -56,6 +60,12 @@ const ApplicantsTab = () => {
 
     return (
         <div className="overflow-x-auto ml-40 mt-4">
+            {notification && (
+                <div className="bg-green-500 text-white p-2 rounded mb-4 text-center">
+                    {notification}
+                </div>
+            )}
+
             <table className="table w-full mt-7">
                 <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg">
                     <tr>
