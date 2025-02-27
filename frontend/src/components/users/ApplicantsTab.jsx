@@ -31,6 +31,7 @@ const ApplicantsTab = () => {
     }
 
     return (
+ 
         <div className="overflow-x-auto ml-30 mt-13">
             <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg">
                 <thead className="bg-gray-100">
