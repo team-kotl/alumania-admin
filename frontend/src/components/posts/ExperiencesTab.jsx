@@ -20,8 +20,9 @@ const ExperiencesTab = () => {
     }, []);
 
     return (
+        <>
         <div className="flex flex-row w-full justify-center">
-            <div className="join join-vertical w-50% h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
+            <div className="join join-vertical w-30% h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
                 {experiences.map((exp) => (
                     <div key={exp.xpid} className="relative join-item bg-white p-4 w-full border-b border-gray-200">
                         <div className="flex items-center mb-2">
@@ -54,7 +55,7 @@ const ExperiencesTab = () => {
 
             
                         <div className="text-gray-500 text-sm ml-12 mt-6 mb-3">
-                            <p className="mb-1">{exp.body}</p>
+                            <p className="mb-1 text-justify text-wrap">{exp.body}</p>
                             
                     
                             <div className="flex flex-wrap">
@@ -74,6 +75,7 @@ const ExperiencesTab = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 
