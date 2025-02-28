@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { IoClose } from "react-icons/io5";
 // TODO: Nikko
@@ -7,6 +8,7 @@ const JobsTab = () => {
     const [jobs, setJobs] = useState([]);
     const [interestedUsers, setInterestedUsers] = useState([]);
     const [selectedJobId, setSelectedJobId] = useState(null);
+    const { searchQuery } = useOutletContext(); // 🔹 Get searchQuery
 
     // Fetch all job posts
     useEffect(() => {
@@ -33,6 +35,13 @@ const JobsTab = () => {
         }
     };
 
+    const filteredJobs = jobs.filter(
+        (job) =>
+            job.title.toLowerCase().includes(searchQuery) ||
+            job.location.toLowerCase().includes(searchQuery) ||
+            job.companyname.toLowerCase().includes(searchQuery)
+    );
+
     return (
         <>
             <InterestedPeople interestedUsers={interestedUsers} />
@@ -40,7 +49,8 @@ const JobsTab = () => {
             <div className="flex flex-row w-full justify-center">
                 
                 <div className="join join-vertical w-[55vw] h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
-                    {jobs.map((job) => (
+                {filteredJobs.length > 0 ? (
+                filteredJobs.map((job) => (
                         <div key={job.jobpid} className="relative join-item bg-white p-4 w-full border-b border-gray-200">
                             <div className="absolute top-1 right-2">
                                 <button className="btn btn-ghost btn-square btn-error btn-sm">
@@ -61,7 +71,10 @@ const JobsTab = () => {
                                 </button>
                             </div>
                         </div>
-                    ))}
+                    ))
+                ) : (
+                    <p className="text-gray-500">No job listings found.</p>
+                )}
                 </div>
             </div>
         </>
