@@ -12,6 +12,8 @@ const ManagersTab = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredManagers, setFilteredManagers] = useState([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchManagers = async () => {
@@ -98,6 +100,33 @@ const ManagersTab = () => {
       });
   };
 
+  const openAddModal = () => {
+    setNewUsername("");
+    setNewPassword("");
+    setIsAddModalOpen(true);
+  };
+
+  const closeAddModal = () => {
+    setIsAddModalOpen(false);
+  };
+
+  const addManager = () => {
+    if (!newUsername || !newPassword) return;
+
+    axios
+      .post("http://localhost:5000/users/addManager", {
+        username: newUsername,
+        password: newPassword,
+      })
+      .then((response) => {
+        setManagers([...managers, response.data]);
+        closeAddModal();
+      })
+      .catch((error) => {
+        console.error("Error adding manager:", error);
+      });
+  };
+
   const deleteManager = () => {
     if (!selectedManager) return;
 
@@ -144,7 +173,7 @@ const ManagersTab = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </label>
-        <button className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10">
+        <button className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10" onClick={openAddModal}>
           <PiPlusCircle className="w-5 h-5 text-white" />
           <span className="text-white">Add Manager</span>
         </button>
@@ -267,6 +296,42 @@ const ManagersTab = () => {
           </div>
         </div>
       )}
+
+      {isAddModalOpen && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                  <h3 className="text-lg font-semibold mb-4">Add Manager</h3>
+                  <label className="block mb-2">Username</label>
+                  <input
+                    type="text"
+                    className="border p-2 w-full rounded mb-4"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                  />
+                  <label className="block mb-2">Password</label>
+                  <input
+                    type="password"
+                    className="border p-2 w-full rounded mb-4"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <div className="flex justify-end gap-2">
+                    <button
+                      className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
+                      onClick={closeAddModal}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                      onClick={addManager}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
     </div>
   );
 };

@@ -213,6 +213,33 @@ router.post("/accept/:applicantId", async (req, res) => {
     }
 });
 
+router.post("/addManager", async (req, res) => {
+    const { username, password } = req.body;
+    const jointimestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
+
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+    }
+
+    try {
+        const newUserId = await generateUserId();
+        const insertQuery = `INSERT INTO user (userid, username, password, usertype, jointimestamp) VALUES (?, ?, ?, 'Manager', ?)`;
+
+        db.query(insertQuery, [newUserId, username, password, jointimestamp], (err, result) => {
+            if (err) {
+                console.error("Database Error:", err);
+                return res.status(500).json({ error: "Error adding manager" });
+            }
+            res.json({ userid: newUserId, username, password, jointimestamp });
+        });
+    } catch (error) {
+        console.error("Error generating user ID:", error);
+        res.status(500).json({ error: "Error generating user ID" });
+    }
+});
+
+
+
 router.delete("/decline/:applicantid", (req, res) => {
     const { applicantid } = req.params; 
     console.log("Received applicantId:", applicantid);
