@@ -25,16 +25,16 @@ router.get("/row-1", (req, res) => {
 router.get("/row-2", (req, res) => {
     const employmentQuery = `
      SELECT 
-            SUM(CASE WHEN empstatus = 'Employed' THEN 1 ELSE 0 END) AS Employed,
-            SUM(CASE WHEN empstatus = 'Unemployed' THEN 1 ELSE 0 END) AS Unemployed,
-            SUM(CASE WHEN empstatus = 'Underemployed' THEN 1 ELSE 0 END) AS Underemployed
+            SUM(CASE WHEN empstatus = 'Employed' THEN 1 ELSE 0 END) AS employed,
+            SUM(CASE WHEN empstatus = 'Unemployed' THEN 1 ELSE 0 END) AS unemployed,
+            SUM(CASE WHEN empstatus = 'Underemployed' THEN 1 ELSE 0 END) AS underemployed
         FROM alumni;
     `;
 
     const locationQuery = `
         SELECT 
-            SUM(CASE WHEN location = 'Domestic' THEN 1 ELSE 0 END) AS Domestic,
-            SUM(CASE WHEN location = 'Foreign' THEN 1 ELSE 0 END) AS 'Foreign'
+            SUM(CASE WHEN location = 'Domestic' THEN 1 ELSE 0 END) AS domestic,
+            SUM(CASE WHEN location = 'Foreign' THEN 1 ELSE 0 END) AS 'foreign'
         FROM alumni;
     `;
 
@@ -42,7 +42,6 @@ router.get("/row-2", (req, res) => {
         SELECT 
             e.title, 
             NULL AS companyname, 
-            e.eventdate AS date, 
             e.eventloc AS location,
             COUNT(ie.userid) AS interested_count,
             'Event' AS type
@@ -55,7 +54,6 @@ router.get("/row-2", (req, res) => {
         SELECT 
             j.title, 
             j.companyname, 
-            NULL AS date, 
             j.location, 
             COUNT(ij.userid) AS interested_count,
             'Job' AS type
