@@ -9,7 +9,8 @@ const ManagersTab = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredManagers, setFilteredManagers] = useState([]);
 
   useEffect(() => {
     const fetchManagers = async () => {
@@ -18,6 +19,7 @@ const ManagersTab = () => {
                 responseType: "json",
             });
             setManagers(response.data);
+            setFilteredManagers(response.data);
         } catch (error) {
             console.error("Error fetching managers:", error);
         } finally {
@@ -26,6 +28,15 @@ const ManagersTab = () => {
     };
     fetchManagers();
 }, []);
+
+useEffect(() => {
+  const filtered = managers.filter(
+    (manager) =>
+      manager.userid.toString().includes(searchQuery) ||
+      manager.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  setFilteredManagers(filtered);
+}, [searchQuery, managers]);
 
 if (loading) {
   return (
@@ -105,17 +116,14 @@ if (loading) {
 
   return (
     <div className="overflow-x-auto ml-35 mt-5">
-       <div className="flex justify-end space-x-2 mb-3">
+      <div className="flex justify-end space-x-2 mb-3">
         <input
           type="text"
-          placeholder="ID, Username"
-          className="border border-gray-300 px-4 py-2 rounded-lg w-64 bg-[url('../src/assets/search.png')] bg-no-repeat bg-[length:22px] bg-[10px] pl-10"
+          placeholder="Search by ID or Username"
+          className="border border-gray-300 px-4 py-2 rounded-lg w-64"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button 
-         className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-        >
-          <img src="../src/assets/filter.png" alt="Filter" />
-        </button>
       </div>
 
       <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg mt-7">
@@ -135,7 +143,7 @@ if (loading) {
           </tr>
         </thead>
         <tbody>
-          {managers.map((manager) => (
+          {filteredManagers.map((manager) => (
             <tr
               key={manager.userid}
               className="hover:bg-gray-50 transition duration-150 ease-in-out"
