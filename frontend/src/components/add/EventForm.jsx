@@ -6,8 +6,8 @@ const EventForm = () => {
         title: "",
         description: "",
         category: "",
-        eventtime: "",
         eventdate: "",
+        eventtime: "",
         eventloc: "",
         batchfilter: "",
         school: "",
@@ -15,23 +15,29 @@ const EventForm = () => {
         userid: "U001", // Default User ID
     });
 
-    const formatDate = (date) => {
-        return new Date(date).toISOString().split("T")[0];
+    const formatDate = (datetime) => {
+        return new Date(datetime).toISOString().split("T")[0];
     };
 
-    const formatTime = (time) => {
-        const date = new Date(`1970-01-01T${time}`);
-        return date.toTimeString().split(" ")[0]; 
+    const formatTime = (datetime) => {
+        return new Date(datetime).toISOString().split("T")[1].split(".")[0];
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleDateTimeChange = (e) => {
+        const { value } = e.target;
 
         setEventData((prevData) => ({
             ...prevData,
-            [name]: name === "eventdate" ? formatDate(value) : 
-                    name === "eventtime" ? formatTime(value) : value,
+            eventdate: formatDate(value),
+            eventtime: formatTime(value),
         }));
+    };
+
+    const handleChange = (e) => {
+        setEventData({
+            ...eventData,
+            [e.target.name]: e.target.value,
+        });
     };
 
     const handleFileChange = (e) => {
@@ -62,8 +68,8 @@ const EventForm = () => {
                 title: "",
                 description: "",
                 category: "",
-                eventtime: "",
                 eventdate: "",
+                eventtime: "",
                 eventloc: "",
                 batchfilter: "",
                 school: "",
@@ -82,7 +88,6 @@ const EventForm = () => {
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
                 <input type="file" className="w-11/12 file-input" onChange={handleFileChange} required />
-                <label className="fieldset-label">Max size something</label>
             </fieldset>
 
             {/* Event Title */}
@@ -94,13 +99,13 @@ const EventForm = () => {
             {/* Event Description */}
             <fieldset className="fieldset mt-2">
                 <legend className="fieldset-legend text-lg text-primary">Description</legend>
-                <textarea className="textarea h-24 w-11/12" name="description" value={eventData.description} onChange={handleChange} placeholder="Insert event description here" required></textarea>
+                <textarea name="description" value={eventData.description} onChange={handleChange} className="textarea h-24 w-11/12" placeholder="Insert event description here" required></textarea>
             </fieldset>
 
             {/* Event Location */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Location</legend>
-                <input type="text" className="w-11/12 input" name="eventloc" value={eventData.eventloc} onChange={handleChange} placeholder="Insert event location here" required />
+                <input type="text" name="eventloc" value={eventData.eventloc} onChange={handleChange} className="w-11/12 input" placeholder="Insert event location here" required />
             </fieldset>
 
             {/* School and Batch */}
@@ -142,11 +147,9 @@ const EventForm = () => {
                         <option>Thanksgiving</option>
                     </select>
                 </div>
-
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold">Schedule</p>
-                    <input type="date" name="eventdate" value={eventData.eventdate} onChange={handleChange} className="input" required />
-                    <input type="time" name="eventtime" value={eventData.eventtime} onChange={handleChange} className="input mt-2" required />
+                    <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="input" required />
                 </div>
             </div>
 
