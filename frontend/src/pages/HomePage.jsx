@@ -125,27 +125,46 @@ const ChartsSection = () => {
 
     useEffect(() => {
         const fetchRowTwo = async () => {
-            const res = await axios
-                .get(`http://localhost:5000/dashboard/row-2`)
+            const res = await axios.get(
+                `http://localhost:5000/dashboard/row-2`
+            );
             const data = res.data;
             setRowTwo((prev) => ({
                 ...prev,
                 employment: [
-                    { name: "Employed", value: data.employment.employed, color: "#1E40AF" },
-                    { name: "Unemployed", value: data.employment.unemployed, color: "#6495ED" },
-                    { name: "Underemployed", value: data.employment.underemployed, color: "#60A5FA" },
+                    {
+                        name: "Employed",
+                        value: Number(data.employment.employed),
+                        color: "#1E40AF",
+                    },
+                    {
+                        name: "Unemployed",
+                        value: Number(data.employment.unemployed),
+                        color: "#6495ED",
+                    },
+                    {
+                        name: "Underemployed",
+                        value: Number(data.employment.underemployed),
+                        color: "#60A5FA",
+                    },
                 ],
                 location: [
-                    { name: "Domestic", value: data.location.domestic, color: "#1E40AF" },
-                    { name: "Foreign", value: data.location.foreign, color: "#3B82F6" },
+                    {
+                        name: "Domestic",
+                        value: Number(data.location.domestic),
+                        color: "#1E40AF",
+                    },
+                    {
+                        name: "Foreign",
+                        value: Number(data.location.foreign),
+                        color: "#3B82F6",
+                    },
                 ],
                 interests: data.interests,
             }));
         };
         fetchRowTwo();
-        console.log(rowTwo.employment)
     }, []);
-
 
     return (
         <div className="flex justify-center items-center mt-10 space-x-10">
@@ -199,7 +218,7 @@ const ChartsSection = () => {
                         {rowTwo.interests.map((alumnus, index) => (
                             <li
                                 key={index}
-                                className="flex justify-between border-b border-gray-300 py-2"
+                                className="flex justify-between border-b border-gray-300 last:border-0 py-2"
                             >
                                 <div>
                                     <p className="font-semibold">
@@ -221,7 +240,9 @@ const ChartsSection = () => {
                                 </div>
                                 <div className="flex items-center">
                                     <FaStar className="text-yellow-400" />
-                                    <p className="ml-1">{alumnus.interested_count}</p>
+                                    <p className="ml-1">
+                                        {alumnus.interested_count}
+                                    </p>
                                 </div>
                             </li>
                         ))}
@@ -242,7 +263,7 @@ const TableSection = () => {
                 .then((res) => {
                     const data = res.data;
                     setRowThree(data);
-                })
+                });
         };
         fetchRowThree();
     }, []);
@@ -281,9 +302,8 @@ const TableSection = () => {
                             {rowThree.managers.map((manager, index) => (
                                 <tr key={index} className="hover">
                                     <td className="p-2">{manager.username}</td>
-                                    <td className="p-2">{
-                                        formatDate(manager.jointimestamp)
-                                    }
+                                    <td className="p-2">
+                                        {formatDate(manager.jointimestamp)}
                                     </td>
                                 </tr>
                             ))}
@@ -309,9 +329,8 @@ const TableSection = () => {
                                 <tr key={index} className="hover">
                                     <td className="p-2">{alumni.username}</td>
                                     <td className="p-2">{alumni.location}</td>
-                                    <td className="p-2">{
-                                        formatDate(alumni.jointimestamp)
-                                    }
+                                    <td className="p-2">
+                                        {formatDate(alumni.jointimestamp)}
                                     </td>
                                 </tr>
                             ))}
