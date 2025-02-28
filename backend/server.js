@@ -9,8 +9,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const authRouter = require("./routes/auth");
+const eventRouter = require("./routes/event");
 
 app.use("/auth", authRouter);
+app.use("/event", eventRouter);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

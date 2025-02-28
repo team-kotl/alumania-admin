@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const EventForm = () => {
     const [eventData, setEventData] = useState({
@@ -6,125 +7,105 @@ const EventForm = () => {
         description: "",
         category: "",
         eventtime: "",
+        eventdate: "",
         eventloc: "",
         batchfilter: "",
-        eventphoto: null,
         school: "",
+        eventphoto: null,
+        userid: "U001", // Default User ID
     });
 
-    const handleChange = (e) => {
-        setEventData({
-            ...eventData,
-            [e.target.name]: e.target.value,
-        });
+    // Function to format date as YYYY-MM-DD
+    const formatDate = (date) => {
+        return new Date(date).toISOString().split("T")[0]; // Extract YYYY-MM-DD
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
+    // Function to format time as HH:MM:SS
+    const formatTime = (time) => {
+        const date = new Date(`1970-01-01T${time}`);
+        return date.toTimeString().split(" ")[0]; // Extract HH:MM:SS
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
         setEventData((prevData) => ({
             ...prevData,
-            eventphoto: file, // Store the file directly for FormData
+            [name]: name === "eventdate" ? formatDate(value) : 
+                     name === "eventtime" ? formatTime(value) : value,
         }));
     };
 
-    const handlePublish = async () => {
-        const timestamp = new Date().toISOString();
+    const handleFileChange = (e) => {
+        setEventData({ ...eventData, eventphoto: e.target.files[0] });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!eventData.eventphoto) {
+            alert("Event photo is required.");
+            return;
+        }
+
         const formData = new FormData();
-
-        Object.entries(eventData).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
-        });
-
-        formData.append("publishtimestamp", timestamp);
+        for (const key in eventData) {
+            if (eventData[key]) {
+                formData.append(key, eventData[key]);
+            }
+        }
 
         try {
-            const response = await fetch("/api/events", {
-                method: "POST",
-                body: formData,
+            await axios.post("http://localhost:5000/event", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
             });
-
-            if (response.ok) {
-                alert("Event published successfully!");
-                setEventData({
-                    title: "",
-                    description: "",
-                    category: "",
-                    eventtime: "",
-                    eventloc: "",
-                    batchfilter: "",
-                    eventphoto: null,
-                    school: "",
-                });
-            } else {
-                alert("Failed to publish event.");
-            }
+            alert("Event created successfully!");
+            setEventData({
+                title: "",
+                description: "",
+                category: "",
+                eventtime: "",
+                eventdate: "",
+                eventloc: "",
+                batchfilter: "",
+                school: "",
+                eventphoto: null,
+                userid: "U001", // Reset to default user ID
+            });
         } catch (error) {
-            console.error("Error publishing event:", error);
-            alert("An error occurred while publishing the event.");
+            console.error("Error creating event:", error);
+            alert("Failed to create event.");
         }
     };
 
     return (
         <div className="ml-15 mr-5 w-8/12">
+            {/* Event Photo */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
-                <input type="file" className="w-11/12 file-input" onChange={handleFileChange} />
-                <label className="fieldset-label">Max size 2MB</label>
+                <input type="file" className="w-11/12 file-input" onChange={handleFileChange} required />
+                <label className="fieldset-label">Max size something</label>
             </fieldset>
 
+            {/* Event Title */}
             <fieldset className="fieldset mt-2">
                 <legend className="fieldset-legend text-lg text-primary">Title</legend>
-                <input type="text" name="title" value={eventData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert event title here" />
+                <input type="text" name="title" value={eventData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert event title here" required />
             </fieldset>
 
+            {/* Event Description */}
             <fieldset className="fieldset mt-2">
                 <legend className="fieldset-legend text-lg text-primary">Description</legend>
-                <textarea className="textarea h-24 w-11/12" name="description" value={eventData.description} onChange={handleChange} placeholder="Insert event description here"></textarea>
+                <textarea className="textarea h-24 w-11/12" name="description" value={eventData.description} onChange={handleChange} placeholder="Insert event description here" required></textarea>
             </fieldset>
 
-            <div className="flex w-full flex-col lg:flex-row mt-4">
-                    <div className="w-full">
-                        <form>
-                        <p className="text-lg text-primary font-semibold">Location</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select region</option>
-                                <option>Luzon</option>
-                                <option>Visayas</option>
-                                <option>Mindanao</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
-
-                    <div className="w-full">
-                        <form>
-                        <p className="text-lg text-white font-semibold">.</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select province</option>
-                                <option>Province 1</option>
-                                <option>Province 2</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
-
-                    <div className="w-full mr-18">
-                        <form>
-                        <p className="text-lg text-white font-semibold">.</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select city</option>
-                                <option>City 1</option>
-                                <option>City 2</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
-            </div>
-
+            {/* Event Location */}
             <fieldset className="fieldset">
-                <input type="text" className="w-11/12 input" name="eventloc" value={eventData.eventloc} onChange={handleChange} placeholder="Insert street number and barangay here" />
+                <legend className="fieldset-legend text-lg text-primary">Location</legend>
+                <input type="text" className="w-11/12 input" name="eventloc" value={eventData.eventloc} onChange={handleChange} placeholder="Insert event location here" required />
             </fieldset>
 
+            {/* School and Batch */}
             <div className="flex w-full flex-col lg:flex-row mt-4 space-x-64">
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold">School</p>
@@ -137,7 +118,6 @@ const EventForm = () => {
                         <option>SEA</option>
                         <option>SOM</option>
                     </select>
-                    <p className="validator-hint">Required</p>
                 </div>
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold">Batch</p>
@@ -150,10 +130,10 @@ const EventForm = () => {
                         <option>2024</option>
                         <option>2025</option>
                     </select>
-                    <p className="validator-hint">Required</p>
                 </div>
             </div>
 
+            {/* Category and Schedule */}
             <div className="flex flex-col lg:flex-row mt-2 space-x-64">
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold">Category</p>
@@ -163,17 +143,18 @@ const EventForm = () => {
                         <option>Seminar</option>
                         <option>Thanksgiving</option>
                     </select>
-                    <p className="validator-hint">Required</p>
                 </div>
-                
+
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold">Schedule</p>
-                    <input type="datetime-local" name="eventtime" value={eventData.eventtime} onChange={handleChange} className="input" />
+                    <input type="date" name="eventdate" value={eventData.eventdate} onChange={handleChange} className="input" required />
+                    <input type="time" name="eventtime" value={eventData.eventtime} onChange={handleChange} className="input mt-2" required />
                 </div>
             </div>
 
+            {/* Submit Button */}
             <div className="flex mr-23 mt-5 justify-end">
-                <button onClick={handlePublish} className="btn btn-primary hover:select-secondary">Publish</button>
+                <button onClick={handleSubmit} className="btn btn-primary hover:select-secondary">Publish</button>
             </div>
         </div>
     );
