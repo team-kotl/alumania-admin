@@ -10,44 +10,6 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import "daisyui";
 
-const employmentData = [
-    { name: "Employed", value: 6, color: "#1E40AF" },
-    { name: "Unemployed", value: 2, color: "#6495ED" },
-    { name: "Underemployed", value: 3, color: "#60A5FA" },
-];
-
-const locationData = [
-    { name: "Domestic", value: 6, color: "#1E40AF" },
-    { name: "Foreign", value: 5, color: "#3B82F6" },
-];
-
-const interestedAlumni = [
-    {
-        title: "Eucharistic Celebration",
-        date: "2024-27-10 | 9:00 AM",
-        type: "Event",
-        rating: 120,
-    },
-    {
-        title: "Software Engineer",
-        company: "Accenture",
-        type: "Job",
-        rating: 500,
-    },
-    {
-        title: "Nurse",
-        company: "SU-Sacred Heart Medical Center",
-        type: "Job",
-        rating: 500,
-    },
-    {
-        title: "Eucharistic Celebration",
-        date: "2024-27-10 | 9:00 AM",
-        type: "Event",
-        rating: 120,
-    },
-];
-
 const recentManagers = [
     { name: "Sean", joined: "December 9, 2024 at 4:08 PM" },
     { name: "Manager", joined: "December 6, 2024 at 1:57 PM" },
@@ -169,24 +131,35 @@ const StatsCards = () => {
 };
 
 const ChartsSection = () => {
-    // const [data, setData] = useState({
-    //     employment: { Employed: 0, Unemployed: 0, Underemployed: 0 },
-    //     location: { Domestic: 0, Foreign: 0 },
-    //     interests: []
-    // });
+    const [rowTwo, setRowTwo] = useState({
+        employment: [],
+        location: [],
+        interests: [],
+    });
 
-    // const COLORS = ["#1E40AF", "#6495ED", "#60A5FA"];
+    useEffect(() => {
+        const fetchRowOne = async () => {
+            const res = await axios
+                .get(`http://localhost:5000/dashboard/row-2`)
+            const data = res.data;
+            setRowTwo((prev) => ({
+                ...prev,
+                employment: [
+                    { name: "Employed", value: data.employment.employed, color: "#1E40AF" },
+                    { name: "Unemployed", value: data.employment.unemployed, color: "#6495ED" },
+                    { name: "Underemployed", value: data.employment.underemployed, color: "#60A5FA" },
+                ],
+                location: [
+                    { name: "Domestic", value: data.location.domestic, color: "#1E40AF" },
+                    { name: "Foreign", value: data.location.foreign, color: "#3B82F6" },
+                ],
+                interests: data.interests,
+            }));
+        };
+        fetchRowOne();
+        console.log(rowTwo.employment)
+    }, []);
 
-    // const employmentData = [
-    //     { name: "Employed", value: data.employment.Employed, color: COLORS[0] },
-    //     { name: "Unemployed", value: data.employment.Unemployed, color: COLORS[1] },
-    //     { name: "Underemployed", value: data.employment.Underemployed, color: COLORS[2] }
-    // ];
-
-    // const locationData = [
-    //     { name: "Domestic", value: data.location.Domestic, color: COLORS[0] },
-    //     { name: "Foreign", value: data.location.Foreign, color: COLORS[1] }
-    // ];
 
     return (
         <div className="flex justify-center items-center mt-10 space-x-10">
@@ -196,16 +169,16 @@ const ChartsSection = () => {
                 </h2>
                 <PieChart width={400} height={400}>
                     <Pie
-                        data={employmentData}
+                        data={rowTwo.employment}
                         dataKey="value"
                         cx="50%"
                         cy="50%"
                         outerRadius={170}
                         fill="#8884d8"
                     >
-                        {employmentData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
+                        <Cell fill="#1E40AF" />
+                        <Cell fill="#6495ED" />
+                        <Cell fill="#60A5FA" />
                     </Pie>
                     <Legend />
                     <Tooltip />
@@ -217,16 +190,15 @@ const ChartsSection = () => {
                 </h2>
                 <PieChart width={400} height={400}>
                     <Pie
-                        data={locationData}
+                        data={rowTwo.location}
                         dataKey="value"
                         cx="50%"
                         cy="50%"
                         outerRadius={170}
                         fill="#82ca9d"
                     >
-                        {locationData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
+                        <Cell fill="#1E40AF" />
+                        <Cell fill="#6495ED" />
                     </Pie>
                     <Legend />
                     <Tooltip />
@@ -238,10 +210,10 @@ const ChartsSection = () => {
                         Interested Alumni
                     </h2>
                     <ul className="shadow-md rounded-lg p-8 h-93">
-                        {interestedAlumni.map((alumnus, index) => (
+                        {rowTwo.interests.map((alumnus, index) => (
                             <li
                                 key={index}
-                                className="flex justify-between border-b py-2"
+                                className="flex justify-between border-b border-gray-300 py-2"
                             >
                                 <div>
                                     <p className="font-semibold">
@@ -249,12 +221,12 @@ const ChartsSection = () => {
                                     </p>
                                     {alumnus.company && (
                                         <p className="text-sm text-gray-500">
-                                            {alumnus.company}
+                                            {alumnus.companyname}
                                         </p>
                                     )}
-                                    {alumnus.date && (
+                                    {alumnus.location && (
                                         <p className="text-sm text-gray-500">
-                                            {alumnus.date}
+                                            {alumnus.location}
                                         </p>
                                     )}
                                     <p className="text-xs text-gray-500 font-medium">
@@ -263,7 +235,7 @@ const ChartsSection = () => {
                                 </div>
                                 <div className="flex items-center">
                                     <FaStar className="text-yellow-400" />
-                                    <p className="ml-1">{alumnus.rating}</p>
+                                    <p className="ml-1">{alumnus.interested_count}</p>
                                 </div>
                             </li>
                         ))}
