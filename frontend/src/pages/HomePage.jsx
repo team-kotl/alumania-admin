@@ -10,20 +10,6 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import "daisyui";
 
-const recentManagers = [
-    { name: "Sean", joined: "December 9, 2024 at 4:08 PM" },
-    { name: "Manager", joined: "December 6, 2024 at 1:57 PM" },
-];
-
-const recentAlumni = [
-    {
-        name: "Yukiro",
-        location: "Foreign",
-        joined: "December 6, 2024 at 3:14 PM",
-    },
-    { name: "May", location: "Foreign", joined: "December 6, 2024 at 1:57 PM" },
-];
-
 const StatsCards = () => {
     const [loading, setLoading] = useState(true);
     const [rowOne, setRowOne] = useState({
@@ -138,7 +124,7 @@ const ChartsSection = () => {
     });
 
     useEffect(() => {
-        const fetchRowOne = async () => {
+        const fetchRowTwo = async () => {
             const res = await axios
                 .get(`http://localhost:5000/dashboard/row-2`)
             const data = res.data;
@@ -156,7 +142,7 @@ const ChartsSection = () => {
                 interests: data.interests,
             }));
         };
-        fetchRowOne();
+        fetchRowTwo();
         console.log(rowTwo.employment)
     }, []);
 
@@ -247,7 +233,36 @@ const ChartsSection = () => {
 };
 
 const TableSection = () => {
-    // const [data, setData] = useState({ managers: [], alumni: [] });
+    const [rowThree, setRowThree] = useState({ managers: [], alumni: [] });
+
+    useEffect(() => {
+        const fetchRowThree = async () => {
+            await axios
+                .get(`http://localhost:5000/dashboard/row-3`)
+                .then((res) => {
+                    const data = res.data;
+                    setRowThree(data);
+                })
+        };
+        fetchRowThree();
+    }, []);
+
+    function formatDate(isoString) {
+        const date = new Date(isoString);
+
+        const options = {
+            year: "numeric",
+            month: "long",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+        };
+
+        return date.toLocaleString("en-US", options);
+    }
+
     return (
         <div className="mt-10 flex justify-center space-x-10 ">
             <div className="w-185">
@@ -263,13 +278,12 @@ const TableSection = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {recentManagers.map((manager, index) => (
+                            {rowThree.managers.map((manager, index) => (
                                 <tr key={index} className="hover">
-                                    <td className="p-2">{manager.name}</td>
-                                    <td className="p-2">
-                                        {new Date(
-                                            manager.joined_at
-                                        ).toLocaleString()}
+                                    <td className="p-2">{manager.username}</td>
+                                    <td className="p-2">{
+                                        formatDate(manager.jointimestamp)
+                                    }
                                     </td>
                                 </tr>
                             ))}
@@ -291,14 +305,13 @@ const TableSection = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {recentAlumni.map((alumni, index) => (
+                            {rowThree.alumni.map((alumni, index) => (
                                 <tr key={index} className="hover">
-                                    <td className="p-2">{alumni.name}</td>
+                                    <td className="p-2">{alumni.username}</td>
                                     <td className="p-2">{alumni.location}</td>
-                                    <td className="p-2">
-                                        {new Date(
-                                            alumni.joined_at
-                                        ).toLocaleString()}
+                                    <td className="p-2">{
+                                        formatDate(alumni.jointimestamp)
+                                    }
                                     </td>
                                 </tr>
                             ))}
