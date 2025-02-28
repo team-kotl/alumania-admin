@@ -2,7 +2,7 @@ const router = require("express").Router();
 const db = require("../db").db;
 
 // Fetch Stats
-app.get("/dashboard-counts", (req, res) => {
+router.get("/row-1", (req, res) => {
     const query = `
         SELECT 
             (SELECT COUNT(*) FROM user WHERE usertype = 'Alumni' ) AS Alumni,
@@ -22,7 +22,7 @@ app.get("/dashboard-counts", (req, res) => {
 });
 
 // Fetch Employment Status, Location, Interested Alumni
-app.get("/dashboard-status-loc-interest", (req, res) => {
+router.get("/row-2", (req, res) => {
     const employmentQuery = `
      SELECT 
             SUM(CASE WHEN empstatus = 'Employed' THEN 1 ELSE 0 END) AS Employed,
@@ -34,7 +34,7 @@ app.get("/dashboard-status-loc-interest", (req, res) => {
     const locationQuery = `
         SELECT 
             SUM(CASE WHEN location = 'Domestic' THEN 1 ELSE 0 END) AS Domestic,
-            SUM(CASE WHEN location = 'Foreign' THEN 1 ELSE 0 END) AS Foreign
+            SUM(CASE WHEN location = 'Foreign' THEN 1 ELSE 0 END) AS 'Foreign'
         FROM alumni;
     `;
 
@@ -63,17 +63,27 @@ app.get("/dashboard-status-loc-interest", (req, res) => {
         JOIN interestedinjobpost ij ON j.jobpid = ij.jobpid
         GROUP BY j.jobpid
 
-        ORDER BY interested_count DESC;
+        ORDER BY interested_count DESC
+        LIMIT 4;
     `;
 
     db.query(employmentQuery, (err, employmentData) => {
-        if (err) return res.status(500).json({ error: "Database error" });
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: "Database error" });
+        }
 
         db.query(locationQuery, (err, locationData) => {
-            if (err) return res.status(500).json({ error: "Database error" });
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: "Database error" });
+            }
 
             db.query(interestQuery, (err, interestData) => {
-                if (err) return res.status(500).json({ error: "Database error" });
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: "Database error" });
+                }
 
                 res.json({
                     employment: employmentData[0],
@@ -87,7 +97,7 @@ app.get("/dashboard-status-loc-interest", (req, res) => {
 
 
 // Fetch Recent Managers and Recent Alumni
-app.get("dashboard-recent-alumni-manager", (req, res) => {
+router.get("/row-3", (req, res) => {
     const managersQuery = `SELECT username, jointimestamp FROM user ORDER BY jointimestamp DESC LIMIT 3;`;
     const alumniQuery = `SELECT u.username, a.location, u.jointimestamp 
                         FROM user u
@@ -97,10 +107,16 @@ app.get("dashboard-recent-alumni-manager", (req, res) => {
     `;
 
     db.query(managersQuery, (err, managersData) => {
-        if (err) return res.status(500).json({ error: "Database error" });
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: "Database error" });
+        }
 
         db.query(alumniQuery, (err, alumniData) => {
-            if (err) return res.status(500).json({ error: "Database error" });
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: "Database error" });
+            }
 
             res.json({ managers: managersData, alumni: alumniData });
         });
