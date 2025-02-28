@@ -84,13 +84,22 @@ router.put("/managers/:id", (req, res) => {
     const { id } = req.params;
     const { username, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({ error: "Username and password are required" });
+    if (!username) {
+        return res.status(400).json({ error: "Username is required" });
     }
 
-    const updateQuery = `UPDATE user SET username = ?, password = ? WHERE userid = ?`;
+    let updateQuery;
+    let queryParams;
 
-    db.query(updateQuery, [username, password, id], (err, result) => {
+    if (password) {
+        updateQuery = `UPDATE user SET username = ?, password = ? WHERE userid = ?`;
+        queryParams = [username, password, id];
+    } else {
+        updateQuery = `UPDATE user SET username = ? WHERE userid = ?`;
+        queryParams = [username, id];
+    }
+
+    db.query(updateQuery, queryParams, (err, result) => {
         if (err) {
             console.error("Error updating manager:", err);
             return res.status(500).json({ error: "Error updating manager" });
@@ -98,6 +107,7 @@ router.put("/managers/:id", (req, res) => {
         res.json({ message: "Manager updated successfully" });
     });
 });
+
 
 const generateUserId = async () => {
     return new Promise((resolve, reject) => {

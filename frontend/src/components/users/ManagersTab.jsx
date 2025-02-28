@@ -71,10 +71,8 @@ if (loading) {
   const saveChanges = () => {
     if (!selectedManager) return;
 
-    const updatedData = {
-      username: newUsername,
-      password: newPassword,
-    };
+    const updatedData = { username: newUsername };
+    if (newPassword) updatedData.password = newPassword;
 
     axios
       .put(
