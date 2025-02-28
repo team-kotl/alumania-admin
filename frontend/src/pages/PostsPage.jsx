@@ -1,11 +1,12 @@
 import { Outlet } from "react-router";
 import PostsNavbar from "../components/navs/PostsNavbar.jsx";
 import { useNavigate, useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const PostsPage = () => {
     const nav = useNavigate();
     const location = useLocation();
+    const [searchQuery, setSearchQuery] = useState(""); // 🔹 Manage search bar
     useEffect(() => {
         if (location.pathname === "/posts") {
             nav("/posts/experiences", { replace: true }); // Use `replace: true` to avoid adding to history
@@ -19,9 +20,9 @@ const PostsPage = () => {
                     View and Manage Experiences, Events, and Job Listings
                 </p>
             </header>
-            <PostsNavbar />
+            <PostsNavbar  setSearchQuery={setSearchQuery} />
             <main className="flex flex-row">
-                <Outlet />
+                <Outlet context={{ searchQuery }} />
             </main>
         </>
     );
