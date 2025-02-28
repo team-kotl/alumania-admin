@@ -15,15 +15,13 @@ const EventForm = () => {
         userid: "U001", // Default User ID
     });
 
-    // Function to format date as YYYY-MM-DD
     const formatDate = (date) => {
-        return new Date(date).toISOString().split("T")[0]; // Extract YYYY-MM-DD
+        return new Date(date).toISOString().split("T")[0];
     };
 
-    // Function to format time as HH:MM:SS
     const formatTime = (time) => {
         const date = new Date(`1970-01-01T${time}`);
-        return date.toTimeString().split(" ")[0]; // Extract HH:MM:SS
+        return date.toTimeString().split(" ")[0]; 
     };
 
     const handleChange = (e) => {
@@ -32,7 +30,7 @@ const EventForm = () => {
         setEventData((prevData) => ({
             ...prevData,
             [name]: name === "eventdate" ? formatDate(value) : 
-                     name === "eventtime" ? formatTime(value) : value,
+                    name === "eventtime" ? formatTime(value) : value,
         }));
     };
 
