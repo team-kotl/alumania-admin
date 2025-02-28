@@ -96,12 +96,12 @@ router.get("/row-2", (req, res) => {
 
 // Fetch Recent Managers and Recent Alumni
 router.get("/row-3", (req, res) => {
-    const managersQuery = `SELECT username, jointimestamp FROM user ORDER BY jointimestamp DESC LIMIT 3;`;
+    const managersQuery = `SELECT username, jointimestamp FROM user ORDER BY jointimestamp DESC LIMIT 2;`;
     const alumniQuery = `SELECT u.username, a.location, u.jointimestamp 
                         FROM user u
                         JOIN alumni a ON u.userid = a.userid
                         ORDER BY u.jointimestamp DESC 
-                        LIMIT 3;
+                        LIMIT 2;
     `;
 
     db.query(managersQuery, (err, managersData) => {
