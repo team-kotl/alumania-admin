@@ -122,7 +122,7 @@ const AlumniTab = () => {
           <input
             type="search"
             required
-            placeholder="Search"
+            placeholder="Name, ID, Email, School..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

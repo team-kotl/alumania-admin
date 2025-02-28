@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { PiPlusCircle } from "react-icons/pi";
 // TODO: Joyce at si Badang
 const ManagersTab = () => {
   const [managers, setManagers] = useState([]);
@@ -14,37 +15,40 @@ const ManagersTab = () => {
 
   useEffect(() => {
     const fetchManagers = async () => {
-        try {
-            const response = await axios.get("http://localhost:5000/users/managers", {
-                responseType: "json",
-            });
-            setManagers(response.data);
-            setFilteredManagers(response.data);
-        } catch (error) {
-            console.error("Error fetching managers:", error);
-        } finally {
-            setLoading(false);
-        }
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/users/managers",
+          {
+            responseType: "json",
+          }
+        );
+        setManagers(response.data);
+        setFilteredManagers(response.data);
+      } catch (error) {
+        console.error("Error fetching managers:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchManagers();
-}, []);
+  }, []);
 
-useEffect(() => {
-  const filtered = managers.filter(
-    (manager) =>
-      manager.userid.toString().includes(searchQuery) ||
-      manager.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-  setFilteredManagers(filtered);
-}, [searchQuery, managers]);
+  useEffect(() => {
+    const filtered = managers.filter(
+      (manager) =>
+        manager.userid.toString().includes(searchQuery) ||
+        manager.username.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredManagers(filtered);
+  }, [searchQuery, managers]);
 
-if (loading) {
-  return (
+  if (loading) {
+    return (
       <div className="flex flex-row h-[30rem] w-full items-center justify-center">
-          <span className="loading loading-spinner w-12"></span>
+        <span className="loading loading-spinner w-12"></span>
       </div>
-  );
-}
+    );
+  }
 
   const openModal = (manager) => {
     setSelectedManager(manager);
@@ -115,13 +119,35 @@ if (loading) {
   return (
     <div className="overflow-x-auto ml-35 mt-5">
       <div className="flex justify-end space-x-2 mb-3">
-        <input
-          type="text"
-          placeholder="Search by ID or Username"
-          className="border border-gray-300 px-4 py-2 rounded-lg w-64"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        <label className="input">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            type="search"
+            required
+            placeholder="Name, ID, Email, School..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </label>
+        <button className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10">
+          <PiPlusCircle className="w-5 h-5 text-white" />
+          <span className="text-white">Add Manager</span>
+        </button>
       </div>
 
       <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg mt-7">
@@ -136,8 +162,7 @@ if (loading) {
             <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
               Actions
             </th>
-            <th className="w-1/2 px-32 py-4 text-left text-sm text-gray-600">
-            </th>
+            <th className="w-1/2 px-32 py-4 text-left text-sm text-gray-600"></th>
           </tr>
         </thead>
         <tbody>
@@ -157,17 +182,24 @@ if (loading) {
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openModal(manager)}
                 >
-                  <img src="../src/assets/edit.png" alt="Edit" className="w-4 h-4 mr-1" />
+                  <img
+                    src="../src/assets/edit.png"
+                    alt="Edit"
+                    className="w-4 h-4 mr-1"
+                  />
                 </button>
                 <button
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openDeleteModal(manager)}
                 >
-                  <img src="../src/assets/archive.png" alt="Delete" className="w-3.5 h-4 mr-1" />
+                  <img
+                    src="../src/assets/archive.png"
+                    alt="Delete"
+                    className="w-3.5 h-4 mr-1"
+                  />
                 </button>
               </td>
-              <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600">
-            </td>
+              <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600"></td>
             </tr>
           ))}
         </tbody>
