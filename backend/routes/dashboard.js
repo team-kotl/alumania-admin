@@ -5,10 +5,10 @@ const db = require("../db").db;
 router.get("/row-1", (req, res) => {
     const query = `
         SELECT 
-            (SELECT COUNT(*) FROM user WHERE usertype = 'Alumni' ) AS Alumni,
-            (SELECT COUNT(*) FROM user WHERE usertype = 'Manager' ) AS Managers,
-            (SELECT COUNT(*) FROM event) AS Events,
-            (SELECT COUNT(*) FROM jobpost) AS "Job Posting";
+            (SELECT COUNT(*) FROM user WHERE usertype = 'Alumni' ) AS alumni,
+            (SELECT COUNT(*) FROM user WHERE usertype = 'Manager' ) AS managers,
+            (SELECT COUNT(*) FROM event) AS events,
+            (SELECT COUNT(*) FROM jobpost) AS jobs;
     `;
 
     db.query(query, (err, result) => {
