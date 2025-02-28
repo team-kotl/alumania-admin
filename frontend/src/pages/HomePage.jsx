@@ -36,7 +36,7 @@ const StatsCards = () => {
         <div className="flex justify-center items-center mt-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-10 w-320">
                 <div
-                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-900`}
+                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-900 hover:-translate-y-2 transition-all`}
                 >
                     <div className="flex items-center space-x-15">
                         <div className="text-4xl ml-5">
@@ -55,7 +55,7 @@ const StatsCards = () => {
                     </div>
                 </div>
                 <div
-                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-500`}
+                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-500 hover:-translate-y-2 transition-all`}
                 >
                     <div className="flex items-center space-x-15">
                         <div className="text-4xl ml-5">
@@ -74,7 +74,7 @@ const StatsCards = () => {
                     </div>
                 </div>
                 <div
-                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-400`}
+                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-400 hover:-translate-y-2 transition-all`}
                 >
                     <div className="flex items-center space-x-15">
                         <div className="text-4xl ml-5">
@@ -93,7 +93,7 @@ const StatsCards = () => {
                     </div>
                 </div>
                 <div
-                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-300`}
+                    className={`card bg-base-100 shadow-lg p-6 border-l-6 border-blue-300 hover:-translate-y-2 transition-all`}
                 >
                     <div className="flex items-center space-x-15">
                         <div className="text-4xl ml-5">
@@ -117,6 +117,7 @@ const StatsCards = () => {
 };
 
 const ChartsSection = () => {
+    const [loading, setLoading] = useState(true);
     const [rowTwo, setRowTwo] = useState({
         employment: [],
         location: [],
@@ -162,6 +163,7 @@ const ChartsSection = () => {
                 ],
                 interests: data.interests,
             }));
+            setLoading(false);
         };
         fetchRowTwo();
     }, []);
@@ -172,81 +174,99 @@ const ChartsSection = () => {
                 <h2 className="text-center text-lg font-semibold">
                     Employment Status
                 </h2>
-                <PieChart width={400} height={400}>
-                    <Pie
-                        data={rowTwo.employment}
-                        dataKey="value"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={170}
-                        fill="#8884d8"
-                    >
-                        <Cell fill="#1E40AF" />
-                        <Cell fill="#6495ED" />
-                        <Cell fill="#60A5FA" />
-                    </Pie>
-                    <Legend />
-                    <Tooltip />
-                </PieChart>
+                {loading ? (
+                    <div className="flex w-[400px] h-[400px] justify-center items-center">
+                        <span className="loading loading-dots loading-xl"></span>
+                    </div>
+                ) : (
+                    <PieChart width={400} height={400}>
+                        <Pie
+                            data={rowTwo.employment}
+                            dataKey="value"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={170}
+                            fill="#8884d8"
+                        >
+                            <Cell fill="#1E40AF" />
+                            <Cell fill="#6495ED" />
+                            <Cell fill="#60A5FA" />
+                        </Pie>
+                        <Legend />
+                        <Tooltip />
+                    </PieChart>
+                )}
             </div>
             <div>
                 <h2 className="text-center text-lg font-semibold">
                     User Location
                 </h2>
-                <PieChart width={400} height={400}>
-                    <Pie
-                        data={rowTwo.location}
-                        dataKey="value"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={170}
-                        fill="#82ca9d"
-                    >
-                        <Cell fill="#1E40AF" />
-                        <Cell fill="#6495ED" />
-                    </Pie>
-                    <Legend />
-                    <Tooltip />
-                </PieChart>
+                {loading ? (
+                    <div className="flex w-[400px] h-[400px] justify-center items-center">
+                        <span className="loading loading-dots loading-xl"></span>
+                    </div>
+                ) : (
+                    <PieChart width={400} height={400}>
+                        <Pie
+                            data={rowTwo.location}
+                            dataKey="value"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={170}
+                            fill="#82ca9d"
+                        >
+                            <Cell fill="#1E40AF" />
+                            <Cell fill="#6495ED" />
+                        </Pie>
+                        <Legend />
+                        <Tooltip />
+                    </PieChart>
+                )}
             </div>
             <div className="flex justify-center">
                 <div className="w-120 h-107">
                     <h2 className="text-lg font-semibold mb-5 text-center">
                         Interested Alumni
                     </h2>
-                    <ul className="shadow-md rounded-lg p-8 h-93">
-                        {rowTwo.interests.map((alumnus, index) => (
-                            <li
-                                key={index}
-                                className="flex justify-between border-b border-gray-300 last:border-0 py-2"
-                            >
-                                <div>
-                                    <p className="font-semibold">
-                                        {alumnus.title}
-                                    </p>
-                                    {alumnus.company && (
-                                        <p className="text-sm text-gray-500">
-                                            {alumnus.companyname}
+                    {loading ? (
+                        <div className="flex w-[400px] h-[400px] justify-center items-center">
+                            <span className="loading loading-dots loading-xl"></span>
+                        </div>
+                    ) : (
+                        <ul className="shadow-md rounded-lg p-8 h-93">
+                            {rowTwo.interests.map((alumnus, index) => (
+                                <li
+                                    key={index}
+                                    className="flex justify-between border-b border-gray-300 last:border-0 py-2"
+                                >
+                                    <div>
+                                        <p className="font-semibold">
+                                            {alumnus.title}
                                         </p>
-                                    )}
-                                    {alumnus.location && (
-                                        <p className="text-sm text-gray-500">
-                                            {alumnus.location}
+                                        {alumnus.company && (
+                                            <p className="text-sm text-gray-500">
+                                                {alumnus.companyname}
+                                            </p>
+                                        )}
+                                        {alumnus.location && (
+                                            <p className="text-sm text-gray-500">
+                                                {alumnus.location}
+                                            </p>
+                                        )}
+                                        <p className="text-xs text-gray-500 font-medium">
+                                            {alumnus.type}
                                         </p>
-                                    )}
-                                    <p className="text-xs text-gray-500 font-medium">
-                                        {alumnus.type}
-                                    </p>
-                                </div>
-                                <div className="flex items-center">
-                                    <FaStar className="text-yellow-400" />
-                                    <p className="ml-1">
-                                        {alumnus.interested_count}
-                                    </p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <FaStar className="text-yellow-400" />
+                                        <p className="ml-1">
+                                            {alumnus.interested_count}
+                                        </p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
         </div>
@@ -254,6 +274,7 @@ const ChartsSection = () => {
 };
 
 const TableSection = () => {
+    const [loading, setLoading] = useState(true);
     const [rowThree, setRowThree] = useState({ managers: [], alumni: [] });
 
     useEffect(() => {
@@ -264,6 +285,7 @@ const TableSection = () => {
                     const data = res.data;
                     setRowThree(data);
                 });
+            setLoading(false);
         };
         fetchRowThree();
     }, []);
@@ -298,16 +320,29 @@ const TableSection = () => {
                                 <th className="text-left p-2">Joined</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {rowThree.managers.map((manager, index) => (
-                                <tr key={index} className="hover">
-                                    <td className="p-2">{manager.username}</td>
-                                    <td className="p-2">
-                                        {formatDate(manager.jointimestamp)}
-                                    </td>
+                        {loading ? (
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <div className="flex col-span-2">
+                                        <span className="loading loading-dots loading-xl"></span>
+                                    </div>
                                 </tr>
-                            ))}
-                        </tbody>
+                            </tbody>
+                        ) : (
+                            <tbody>
+                                {rowThree.managers.map((manager, index) => (
+                                    <tr key={index} className="hover">
+                                        <td className="p-2">
+                                            {manager.username}
+                                        </td>
+                                        <td className="p-2">
+                                            {formatDate(manager.jointimestamp)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        )}
                     </table>
                 </div>
             </div>
@@ -324,17 +359,32 @@ const TableSection = () => {
                                 <th className="text-left p-2">Joined</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {rowThree.alumni.map((alumni, index) => (
-                                <tr key={index} className="hover">
-                                    <td className="p-2">{alumni.username}</td>
-                                    <td className="p-2">{alumni.location}</td>
-                                    <td className="p-2">
-                                        {formatDate(alumni.jointimestamp)}
-                                    </td>
+                        {loading ? (
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <div className="flex justify-center items-center col-span-2">
+                                        <span className="loading loading-dots loading-xl"></span>
+                                    </div>
                                 </tr>
-                            ))}
-                        </tbody>
+                            </tbody>
+                        ) : (
+                            <tbody>
+                                {rowThree.alumni.map((alumni, index) => (
+                                    <tr key={index} className="hover">
+                                        <td className="p-2">
+                                            {alumni.username}
+                                        </td>
+                                        <td className="p-2">
+                                            {alumni.location}
+                                        </td>
+                                        <td className="p-2">
+                                            {formatDate(alumni.jointimestamp)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        )}
                     </table>
                 </div>
             </div>
