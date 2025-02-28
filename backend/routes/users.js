@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
             CONCAT(a.firstname, ' ', IFNULL(a.middlename, ''), ' ', a.lastname) AS fullname, 
             a.school, 
             a.batch, 
+            a.course,
             a.empstatus, 
             a.location,
             a.company, 
@@ -34,7 +35,8 @@ router.get("/managers", (req, res) => {
     const query = `
         SELECT 
             userid, 
-            username
+            username,
+            password
         FROM user
         WHERE usertype = 'manager'
     `;
