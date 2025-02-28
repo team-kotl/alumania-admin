@@ -167,49 +167,60 @@ const AlumniTab = () => {
       </table>
 
       {isOpen && (
-        <div
+        <dialog
+          id="filter_modal"
+          className="modal open"
           ref={filterRef}
-          className="absolute top-12 right-2 bg-white shadow-lg rounded-lg p-4 w-72 border border-gray-200 z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              e.target.close(); 
+              setIsOpen(false); 
+            }
+          }}
+          open
         >
-          <h3 className="text-lg font-semibold text-center">Search Filters</h3>
-          <hr className="my-2" />
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <h4 className="font-semibold mb-1">Status</h4>
-              {["Employed", "Unemployed", "Underemployed"].map((status) => (
-                <button
-                  key={status}
-                  className={`block w-full text-left px-2 py-1 rounded ${
-                    selectedFilters.status === status
-                      ? "bg-blue-500 text-white"
-                      : "hover:text-blue-600"
-                  }`}
-                  onClick={() => toggleFilter("status", status)}
-                >
-                  {status}
-                </button>
-              ))}
-            </div>
-            <div>
-              <h4 className="font-semibold mb-1">Location</h4>
-              {["Domestic", "Foreign"].map((location) => (
-                <button
-                  key={location}
-                  className={`block w-full text-left px-2 py-1 rounded ${
-                    selectedFilters.location === location
-                      ? "bg-blue-500 text-white"
-                      : "hover:text-blue-600"
-                  }`}
-                  onClick={() => toggleFilter("location", location)}
-                >
-                  {location}
-                </button>
-              ))}
+          <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-4 w-72 border border-gray-200 z-50">
+            <h3 className="text-lg font-semibold text-center">
+              Search Filters
+            </h3>
+            <hr className="my-2" />
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <h4 className="font-semibold mb-1">Status</h4>
+                {["Employed", "Unemployed", "Underemployed"].map((status) => (
+                  <button
+                    key={status}
+                    className={`block w-full text-left px-2 py-1 rounded ${
+                      selectedFilters.status === status
+                        ? "bg-blue-500 text-white"
+                        : "hover:text-blue-600"
+                    }`}
+                    onClick={() => toggleFilter("status", status)}
+                  >
+                    {status}
+                  </button>
+                ))}
+              </div>
+              <div>
+                <h4 className="font-semibold mb-1">Location</h4>
+                {["Domestic", "Foreign"].map((location) => (
+                  <button
+                    key={location}
+                    className={`block w-full text-left px-2 py-1 rounded ${
+                      selectedFilters.location === location
+                        ? "bg-blue-500 text-white"
+                        : "hover:text-blue-600"
+                    }`}
+                    onClick={() => toggleFilter("location", location)}
+                  >
+                    {location}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </dialog>
       )}
-
 
       <dialog
         id="my_modal_2"
