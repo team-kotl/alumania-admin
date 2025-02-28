@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { PiFunnelSimpleLight } from "react-icons/pi";
+import { FaUserGraduate } from "react-icons/fa";
 
 const AlumniTab = () => {
   const [alumni, setAlumni] = useState([]);
@@ -43,11 +45,15 @@ const AlumniTab = () => {
     }
 
     if (selectedFilters.status) {
-      filtered = filtered.filter((user) => user.empstatus === selectedFilters.status);
+      filtered = filtered.filter(
+        (user) => user.empstatus === selectedFilters.status
+      );
     }
 
     if (selectedFilters.location) {
-      filtered = filtered.filter((user) => user.location === selectedFilters.location);
+      filtered = filtered.filter(
+        (user) => user.location === selectedFilters.location
+      );
     }
 
     setFilteredAlumni(filtered);
@@ -55,13 +61,16 @@ const AlumniTab = () => {
 
   const handleSelectAlumni = (user) => {
     if (user.displaypic) {
-      const blob = new Blob([new Uint8Array(user.displaypic.data)], { type: "image/jpeg" });
+      const blob = new Blob([new Uint8Array(user.displaypic.data)], {
+        type: "image/jpeg",
+      });
       const url = URL.createObjectURL(blob);
       setImageUrl(url);
     } else {
       setImageUrl(null);
     }
     setSelectedAlumni(user);
+    modalRef.current?.showModal();
   };
 
   const toggleFilter = (filterType, value) => {
@@ -73,9 +82,6 @@ const AlumniTab = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setSelectedAlumni(null);
       }
@@ -94,52 +100,77 @@ const AlumniTab = () => {
   }
 
   return (
-    <div className="overflow-x-auto ml-17 mt-5">
+    <div className="overflow-auto ml-19 mt-3">
       <div className="flex justify-end space-x-2 mb-3">
-        <input
-          type="text"
-          placeholder="Name, ID, Email"
-          className="border border-gray-300 px-4 py-2 rounded-lg w-64 bg-[url('../src/assets/search.png')] bg-no-repeat bg-[length:22px] bg-[10px] pl-10"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button 
+        <label className="input">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            type="search"
+            required
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </label>
+        <button
           className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <img src="../src/assets/filter.png" alt="Filter" />
+          <PiFunnelSimpleLight className="w-6 h-6 text-gray-700" />
         </button>
       </div>
 
       <table className="table w-full border-collapse border border-gray-100 shadow-md mt-7">
         <thead className="bg-gray-100">
           <tr>
-            <th className="px-15 py-3.5 text-gray-600">UserID</th>
-            <th className="px-15 py-3.5 text-gray-600">Email</th>
-            <th className="px-15 py-3.5 text-gray-600">Full Name</th>
-            <th className="px-15 py-3.5 text-gray-600">School</th>
-            <th className="px-13 py-3.5 text-gray-600">Batch</th>
-            <th className="px-15 py-3.5 text-gray-600">Employment Status</th>
-            <th className="px-15 py-3.5 text-gray-600">Location</th>
+            <th className="px-12 py-3.5 text-gray-600">UserID</th>
+            <th className="px-12 py-3.5 text-gray-600">Email</th>
+            <th className="px-12 py-3.5 text-gray-600">Full Name</th>
+            <th className="px-12 py-3.5 text-gray-600">School</th>
+            <th className="px-14 py-3.5 text-gray-600">Batch</th>
+            <th className="px-12 py-3.5 text-gray-600">Employment Status</th>
+            <th className="px-12 py-3.5 text-gray-600">Location</th>
           </tr>
         </thead>
         <tbody>
           {filteredAlumni.map((user) => (
-            <tr key={user.userid} className="hover:bg-gray-100 cursor-pointer" onClick={() => handleSelectAlumni(user)}>
-              <td className="px-15 py-5">{user.userid}</td>
-              <td className="px-15 py-5">{user.email}</td>
-              <td className="px-15 py-5">{user.fullname}</td>
-              <td className="px-15 py-5">{user.school}</td>
-              <td className="px-13 py-5">{user.batch}</td>
-              <td className="px-15 py-5">{user.empstatus}</td>
-              <td className="px-15 py-5">{user.location}</td>
+            <tr
+              key={user.userid}
+              className="hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleSelectAlumni(user)}
+            >
+              <td className="px-12 py-5">{user.userid}</td>
+              <td className="px-12 py-5">{user.email}</td>
+              <td className="px-12 py-5">{user.fullname}</td>
+              <td className="px-12 py-5">{user.school}</td>
+              <td className="px-14 py-5">{user.batch}</td>
+              <td className="px-12 py-5">{user.empstatus}</td>
+              <td className="px-12 py-5">{user.location}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       {isOpen && (
-        <div ref={filterRef} className="absolute top-12 right-2 bg-white shadow-lg rounded-lg p-4 w-72 border border-gray-200 z-50">
+        <div
+          ref={filterRef}
+          className="absolute top-12 right-2 bg-white shadow-lg rounded-lg p-4 w-72 border border-gray-200 z-50"
+        >
           <h3 className="text-lg font-semibold text-center">Search Filters</h3>
           <hr className="my-2" />
           <div className="grid grid-cols-2 gap-4 text-sm">
@@ -149,7 +180,9 @@ const AlumniTab = () => {
                 <button
                   key={status}
                   className={`block w-full text-left px-2 py-1 rounded ${
-                    selectedFilters.status === status ? "bg-blue-500 text-white" : "hover:text-blue-600"
+                    selectedFilters.status === status
+                      ? "bg-blue-500 text-white"
+                      : "hover:text-blue-600"
                   }`}
                   onClick={() => toggleFilter("status", status)}
                 >
@@ -163,7 +196,9 @@ const AlumniTab = () => {
                 <button
                   key={location}
                   className={`block w-full text-left px-2 py-1 rounded ${
-                    selectedFilters.location === location ? "bg-blue-500 text-white" : "hover:text-blue-600"
+                    selectedFilters.location === location
+                      ? "bg-blue-500 text-white"
+                      : "hover:text-blue-600"
                   }`}
                   onClick={() => toggleFilter("location", location)}
                 >
@@ -175,25 +210,87 @@ const AlumniTab = () => {
         </div>
       )}
 
-      {selectedAlumni && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div ref={modalRef} className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-              onClick={() => setSelectedAlumni(null)}
-            >
-              ✕
-            </button>
-            <img src={imageUrl || "https://via.placeholder.com/150"} alt="Profile" className="w-32 h-32 mx-auto rounded-full mb-4" />
-            <h2 className="text-xl font-semibold text-center mb-2">{selectedAlumni.fullname}</h2>
-            <p className="text-gray-600 text-center">{selectedAlumni.email}</p>
-            <p className="text-gray-600 text-center">School: {selectedAlumni.school}</p>
-            <p className="text-gray-600 text-center">Batch: {selectedAlumni.batch}</p>
-            <p className="text-gray-600 text-center">Employment: {selectedAlumni.empstatus}</p>
-            <p className="text-gray-600 text-center">Location: {selectedAlumni.location}</p>
-          </div>
+
+      <dialog
+        id="my_modal_2"
+        ref={modalRef}
+        className="modal"
+        onClick={(e) => {
+          if (e.target === modalRef.current) {
+            setSelectedAlumni(null);
+            modalRef.current.close();
+          }
+        }}
+      >
+        <div className="modal-box">
+          {selectedAlumni && (
+            <div className="text-center">
+              <img
+                src={imageUrl || "https://via.placeholder.com/150"}
+                alt="Profile"
+                className="w-32 h-32 mx-auto rounded-full mb-4"
+              />
+              <h2 className="text-xl font-semibold mb-2">
+                {selectedAlumni.fullname}
+              </h2>
+            </div>
+          )}
+
+          {selectedAlumni && (
+            <section className="mt-7 mb-6">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <FaUserGraduate className="text-gray-600 ml-3" />
+                Alumni Information
+              </h3>
+
+              <table className="w-full mt-3 border rounded-lg overflow-hidden">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="px-3 py-2 font-semibold bg-gray-100 w-32">
+                      Email
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.email || "N/A"}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="px-3 py-2 font-semibold bg-gray-100">
+                      Course
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.course || "N/A"}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="px-3 py-2 font-semibold bg-gray-100">
+                      Status
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.empstatus || "N/A"}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="px-3 py-2 font-semibold bg-gray-100">
+                      Location
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.location || "N/A"}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 font-semibold bg-gray-100">
+                      Company
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.company || "N/A"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          )}
         </div>
-      )}
+      </dialog>
     </div>
   );
 };
