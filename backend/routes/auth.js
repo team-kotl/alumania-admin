@@ -28,10 +28,10 @@ router.post("/login", (req, res) => {
                     JWT_TOKEN,
                     { expiresIn: JWT_EXPIRATION }
                 );
-                res.status(200).json({ 
+                res.status(200).json({
                     username: results[0].username,
                     usertype: results[0].usertype,
-                    token: token
+                    token: token,
                 });
             }
         }
@@ -67,6 +67,90 @@ router.get("/validate-token", (req, res) => {
         if (err) return res.status(401).json({ error: "Invalid token" });
         res.json({ message: `goods` });
     });
+});
+
+// Get User Information
+router.get("/user-details", (req, res) => {
+    const { username } = req.query;
+
+    if (!username) {
+        return res.status(400).json({ message: "Internal Server Error" });
+    }
+
+    db.query(
+        "SELECT userid, jointimestamp FROM user WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+                return res
+                    .status(500)
+                    .json({ message: "Internal Server Error" });
+            }
+            res.status(200).json({
+                userid: results[0]["userid"],
+                joined: results[0]["jointimestamp"],
+            });
+        }
+    );
+});
+
+// Get User Activity Logs
+router.get("/logs", (req, res) => {
+    const { username } = req.query;
+
+    db.query(
+        "SELECT * FROM managementlog WHERE userid = (SELECT userid FROM user WHERE username = ?)",
+        [username],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+                return res
+                    .status(500)
+                    .json({ message: "Internal Server Error" });
+            }
+            res.status(200).json({
+                logs: results,
+            });
+        }
+    );
+});
+
+// Generate new Admin Key
+router.post("/new-key", (req, res) => {
+    const { username } = req.body;
+
+    const generateAdminKey = () => {
+        const characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let password = "";
+
+        for (let i = 0; i < 20; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            password += characters[randomIndex];
+        }
+
+        return password;
+    };
+
+    const newPass = generateAdminKey();
+
+    db.query(
+        "UPDATE user SET password = ? WHERE username = ?",
+        [newPass, username],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                return res
+                    .status(500)
+                    .json({ message: "Internal Server Error" });
+            }
+            console.log(result);
+            res.status(200).json({
+                message: newPass,
+            });
+        }
+    );
 });
 
 module.exports = router;
