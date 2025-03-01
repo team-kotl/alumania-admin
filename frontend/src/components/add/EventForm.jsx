@@ -15,6 +15,8 @@ const EventForm = () => {
         userid: "U001", // Default User ID
     });
 
+    const [errors, setErrors] = useState({});
+
     const formatDate = (datetime) => {
         return new Date(datetime).toISOString().split("T")[0];
     };
@@ -25,7 +27,6 @@ const EventForm = () => {
 
     const handleDateTimeChange = (e) => {
         const { value } = e.target;
-
         setEventData((prevData) => ({
             ...prevData,
             eventdate: formatDate(value),
@@ -38,19 +39,40 @@ const EventForm = () => {
             ...eventData,
             [e.target.name]: e.target.value,
         });
+        setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
     };
 
     const handleFileChange = (e) => {
         setEventData({ ...eventData, eventphoto: e.target.files[0] });
+        setErrors((prevErrors) => ({ ...prevErrors, eventphoto: "" }));
+    };
+
+    const validateForm = () => {
+        let newErrors = {};
+        const requiredFields = [
+            "title",
+            "description",
+            "category",
+            "eventdate",
+            "eventtime",
+            "eventloc",
+            "batchfilter",
+            "school",
+            "eventphoto"
+        ];
+
+        requiredFields.forEach((field) => {
+            if (!eventData[field]) {
+                newErrors[field] = "This field is required.";
+            }
+        });
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!eventData.eventphoto) {
-            alert("Event photo is required.");
-            return;
-        }
+        if (!validateForm()) return;
 
         const formData = new FormData();
         for (const key in eventData) {
@@ -74,8 +96,9 @@ const EventForm = () => {
                 batchfilter: "",
                 school: "",
                 eventphoto: null,
-                userid: "U001", // Reset to default user ID
+                userid: "U001",
             });
+            setErrors({});
         } catch (error) {
             console.error("Error creating event:", error);
             alert("Failed to create event.");
@@ -87,32 +110,36 @@ const EventForm = () => {
             {/* Event Photo */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
-                <input type="file" className="w-11/12 file-input" onChange={handleFileChange} required />
+                <input type="file" className="w-11/12 file-input" onChange={handleFileChange} />
+                {errors.eventphoto && <p className="text-red-500">{errors.eventphoto}</p>}
             </fieldset>
 
             {/* Event Title */}
-            <fieldset className="fieldset mt-2">
+            <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Title</legend>
-                <input type="text" name="title" value={eventData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert event title here" required />
+                <input type="text" name="title" value={eventData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert event title here" />
+                {errors.title && <p className="text-red-500">{errors.title}</p>}
             </fieldset>
 
             {/* Event Description */}
-            <fieldset className="fieldset mt-2">
+            <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Description</legend>
-                <textarea name="description" value={eventData.description} onChange={handleChange} className="textarea h-24 w-11/12" placeholder="Insert event description here" required></textarea>
+                <textarea name="description" value={eventData.description} onChange={handleChange} className="textarea h-24 w-11/12" placeholder="Insert event description here"></textarea>
+                {errors.description && <p className="text-red-500">{errors.description}</p>}
             </fieldset>
 
             {/* Event Location */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Location</legend>
-                <input type="text" name="eventloc" value={eventData.eventloc} onChange={handleChange} className="w-11/12 input" placeholder="Insert event location here" required />
+                <input type="text" name="eventloc" value={eventData.eventloc} onChange={handleChange} className="w-11/12 input" placeholder="Insert event location here" />
+                {errors.eventloc && <p className="text-red-500">{errors.eventloc}</p>}
             </fieldset>
 
             {/* School and Batch */}
-            <div className="flex w-full flex-col lg:flex-row mt-4 space-x-64">
+            <div className="flex w-full flex-col lg:flex-row mt-2 space-x-64">
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold mb-2">School</p>
-                    <select className="select validator" name="school" value={eventData.school} onChange={handleChange} required>
+                    <select className="select validator" name="school" value={eventData.school} onChange={handleChange}>
                         <option value="">Select school here</option>
                         <option>SAMCIS</option>
                         <option>SONAHBS</option>
@@ -121,10 +148,11 @@ const EventForm = () => {
                         <option>SEA</option>
                         <option>SOM</option>
                     </select>
+                    {errors.school && <p className="text-red-500 text-xs">{errors.school}</p>}
                 </div>
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold mb-2">Batch</p>
-                    <select className="select validator" name="batchfilter" value={eventData.batchfilter} onChange={handleChange} required>
+                    <select className="select validator" name="batchfilter" value={eventData.batchfilter} onChange={handleChange}>
                         <option value="">Select batch here</option>
                         <option>2020</option>
                         <option>2021</option>
@@ -133,23 +161,26 @@ const EventForm = () => {
                         <option>2024</option>
                         <option>2025</option>
                     </select>
+                    {errors.batchfilter && <p className="text-red-500 text-xs">{errors.batchfilter}</p>}
                 </div>
             </div>
 
             {/* Category and Schedule */}
-            <div className="flex flex-col lg:flex-row mt-4 space-x-64">
+            <div className="flex flex-col lg:flex-row mt-2 space-x-64">
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold mb-2">Category</p>
-                    <select className="select validator" name="category" value={eventData.category} onChange={handleChange} required>
+                    <select className="select validator" name="category" value={eventData.category} onChange={handleChange}>
                         <option value="">Select category here</option>
                         <option>Reunion</option>
                         <option>Seminar</option>
                         <option>Thanksgiving</option>
                     </select>
+                    {errors.category && <p className="text-red-500 text-xs">{errors.category}</p>}
                 </div>
                 <div className="w-full">
                     <p className="text-lg text-primary font-semibold mb-2">Schedule</p>
-                    <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="input" required />
+                    <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="input" />
+                    {errors.eventdate && <p className="text-red-500 text-xs">{errors.eventdate}</p>}
                 </div>
             </div>
 
