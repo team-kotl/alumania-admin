@@ -54,7 +54,7 @@ const ManagersTab = () => {
     );
   }
 
-  const openModal = (manager) => {
+  const editManager = (manager) => {
     setSelectedManager(manager);
     setNewUsername(manager.username);
     setNewPassword("");
@@ -110,6 +110,7 @@ const ManagersTab = () => {
 
   const closeAddModal = () => {
     setIsAddModalOpen(false);
+    document.getElementById("add_manager_modal").close();
   };
 
   const addManager = () => {
@@ -177,7 +178,10 @@ const ManagersTab = () => {
         </label>
         <button
           className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10"
-          onClick={openAddModal}
+          onClick={() => {
+            openAddModal();
+            document.getElementById("add_manager_modal").showModal();
+          }}
         >
           <PiPlusCircle className="w-5 h-5 text-white" />
           <span className="text-white">Add Manager</span>
@@ -233,7 +237,7 @@ const ManagersTab = () => {
         </tbody>
       </table>
 
-      {openModal && (
+      {editManager && (
         <dialog
           id="edit_manager_modal"
           className="modal"
@@ -355,43 +359,108 @@ const ManagersTab = () => {
         </div>
       )}
 
-      {isAddModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 className="text-lg font-semibold mb-4">Add Manager</h3>
-            <label className="block mb-2">Username</label>
-            <input
-              type="text"
-              className="border p-2 w-full rounded mb-4"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
-            />
-            <label className="block mb-2">Password</label>
-            <input
-              type="password"
-              className="border p-2 w-full rounded mb-4"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-            <div className="flex justify-end gap-2">
+      <dialog
+        id="add_manager_modal"
+        className="modal"
+        onClose={() => setIsAddModalOpen(false)}
+      >
+        {isAddModalOpen && (
+          <div className="modal-box bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="font-semibold text-xl text-gray-900 mb-4">
+              Add Manager
+            </h3>
+
+            {/* Username Input */}
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Username:
+              </label>
+              <div className="flex items-center border border-gray-200 rounded-md p-2 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400">
+                <svg
+                  className="h-5 w-5 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <input
+                  type="text"
+                  className="w-full bg-gray-50 text-gray-700 placeholder-gray-500 border-none outline-none ml-2 focus:ring-0 focus:outline-none"
+                  placeholder="Enter username"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Password Input */}
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Password:
+              </label>
+              <div className="flex items-center border border-gray-200 rounded-md p-2 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400">
+                <svg
+                  className="h-5 w-5 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                  <circle
+                    cx="16.5"
+                    cy="7.5"
+                    r=".5"
+                    fill="currentColor"
+                  ></circle>
+                </svg>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="w-full bg-gray-50 text-gray-700 placeholder-gray-500 border-none outline-none ml-2 focus:ring-0 focus:outline-none"
+                  placeholder="Enter password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
               <button
-                className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                onClick={closeAddModal}
+                className="text-blue-600 text-sm mt-1 hover:underline"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide Password" : "Show Password"}
+              </button>
+            </div>
+
+            <div className="mt-4 flex gap-2">
+              <button
+                className="w-full bg-gray-400 text-white p-2 rounded-md hover:bg-gray-500 transition"
+                onClick={() => {
+                  closeAddModal();
+                  document.getElementById("add_manager_modal").close();
+                }}
               >
                 Cancel
               </button>
               <button
-                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                className="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition"
                 onClick={addManager}
               >
-                Add
+                Add Manager
               </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
+        <form method="dialog" className="modal-backdrop">
+          <button>Close</button>
+        </form>
+      </dialog>
     </div>
   );
 };
-
 export default ManagersTab;
