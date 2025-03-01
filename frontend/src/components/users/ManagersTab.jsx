@@ -4,20 +4,18 @@ import { PiPlusCircle } from "react-icons/pi";
 import { PiPencilSimple } from "react-icons/pi";
 import { PiArchive } from "react-icons/pi";
 
-
 // TODO: Joyce at si Badang
 const ManagersTab = () => {
   const [managers, setManagers] = useState([]);
   const [selectedManager, setSelectedManager] = useState(null);
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
 
   useEffect(() => {
     const fetchManagers = async () => {
@@ -177,7 +175,10 @@ const ManagersTab = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </label>
-        <button className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10" onClick={openAddModal}>
+        <button
+          className="flex items-center space-x-2 p-3 bg-blue-500 rounded-lg hover:bg-blue-300 h-10"
+          onClick={openAddModal}
+        >
           <PiPlusCircle className="w-5 h-5 text-white" />
           <span className="text-white">Add Manager</span>
         </button>
@@ -213,18 +214,17 @@ const ManagersTab = () => {
               <td className="w-1/2 px-34 py-4 whitespace-nowrap text-sm text-gray-900">
                 <button
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
-                  onClick={() => openModal(manager)}
+                  onClick={() =>
+                    document.getElementById("edit_manager_modal").showModal()
+                  }
                 >
-                  <PiPencilSimple 
-                    className="w-5 h-5 mr-1"
-                  />
+                  <PiPencilSimple className="w-5 h-5 mr-1" />
                 </button>
                 <button
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openDeleteModal(manager)}
                 >
-                  <PiArchive className="w-5 h-6 mr-1 text-red-600"
-                  />
+                  <PiArchive className="w-5 h-6 mr-1 text-red-600" />
                 </button>
               </td>
               <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600"></td>
@@ -233,42 +233,88 @@ const ManagersTab = () => {
         </tbody>
       </table>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 className="text-lg font-semibold mb-4">Edit Manager</h3>
-            <label className="block mb-2">Username</label>
-            <input
-              type="text"
-              className="border p-2 w-full rounded mb-4"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
-            />
-            <label className="block mb-2">New Password</label>
-            <input
-              type="password"
-              className="border p-2 w-full rounded mb-4"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="Enter new password (optional)"
-            />
-            <div className="flex justify-end gap-2">
-              <button
-                className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                onClick={closeModal}
+      {/* Edit Manager Modal */}
+      <dialog
+        id="edit_manager_modal"
+        className="modal"
+        onClick={(e) => {
+          const modal = document.getElementById("edit_manager_modal");
+          if (e.target === modal) modal.close();
+        }}
+      >
+        <div className="modal-box bg-white p-6 rounded-lg shadow-xl w-96">
+          <h3 className="font-semibold text-xl text-gray-800 mb-5">
+            Edit Manager
+          </h3>
+
+          {/* Username Input */}
+          <div className="mb-4">
+            <label className="flex items-center border border-gray-300 rounded-lg p-3 shadow-sm focus-within:border-blue-500 bg-gray-100">
+              <svg
+                className="h-5 w-5 text-gray-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
               >
-                Cancel
-              </button>
-              <button
-                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                onClick={saveChanges}
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </g>
+              </svg>
+              <input
+                type="text"
+                className="w-full bg-transparent text-gray-700 outline-none ml-2"
+                placeholder="Username"
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+              />
+            </label>
+          </div>
+
+          {/* Password Input */}
+          <div className="mb-5">
+            <label className="flex items-center border border-gray-300 rounded-lg p-3 shadow-sm focus-within:border-blue-500 bg-gray-100">
+              <svg
+                className="h-5 w-5 text-gray-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
               >
-                Save
-              </button>
-            </div>
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
+                  <circle
+                    cx="16.5"
+                    cy="7.5"
+                    r=".5"
+                    fill="currentColor"
+                  ></circle>
+                </g>
+              </svg>
+              <input
+                type="password"
+                className="w-full bg-transparent text-gray-700 outline-none ml-2"
+                placeholder="Enter new password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </label>
           </div>
         </div>
-      )}
+
+        <form method="dialog" className="modal-backdrop">
+          <button>Close</button>
+        </form>
+      </dialog>
 
       {isDeleteModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -297,40 +343,40 @@ const ManagersTab = () => {
       )}
 
       {isAddModalOpen && (
-              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                  <h3 className="text-lg font-semibold mb-4">Add Manager</h3>
-                  <label className="block mb-2">Username</label>
-                  <input
-                    type="text"
-                    className="border p-2 w-full rounded mb-4"
-                    value={newUsername}
-                    onChange={(e) => setNewUsername(e.target.value)}
-                  />
-                  <label className="block mb-2">Password</label>
-                  <input
-                    type="password"
-                    className="border p-2 w-full rounded mb-4"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                  <div className="flex justify-end gap-2">
-                    <button
-                      className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
-                      onClick={closeAddModal}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                      onClick={addManager}
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-lg font-semibold mb-4">Add Manager</h3>
+            <label className="block mb-2">Username</label>
+            <input
+              type="text"
+              className="border p-2 w-full rounded mb-4"
+              value={newUsername}
+              onChange={(e) => setNewUsername(e.target.value)}
+            />
+            <label className="block mb-2">Password</label>
+            <input
+              type="password"
+              className="border p-2 w-full rounded mb-4"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500"
+                onClick={closeAddModal}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                onClick={addManager}
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
