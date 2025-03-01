@@ -1,0 +1,3192 @@
+[
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ABRA",
+    "CITY/ MUNICIPALITY": "BANGUED"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "BACACAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "CAMALIG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "DARAGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "GUINOBATAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "LEGASPI CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "LIGAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "PIO DURAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "POLANGUI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "TABACO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ALBAY",
+    "CITY/ MUNICIPALITY": "TIWI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "AURORA",
+    "CITY/ MUNICIPALITY": "BALER"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "AURORA",
+    "CITY/ MUNICIPALITY": "DINALUNGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "AURORA",
+    "CITY/ MUNICIPALITY": "DIPACULAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "AURORA",
+    "CITY/ MUNICIPALITY": "MARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "BALANGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "DINALUPIHAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "HERMOSA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "LIMAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "MARIVELES"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "ORANI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATAAN",
+    "CITY/ MUNICIPALITY": "ORION"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "ALITAGTAG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "BALAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "BATANGAS CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "BAUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "CALACA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "CALATAGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "CUENCA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "IBAAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "LEMERY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "LIAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "LIPA CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "MABINI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "MALVAR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "MATAAS NA KAHOY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "NASUGBU"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "PADRE GARCIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "ROSARIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "SAN JUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "SAN LUIS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "SAN PASCUAL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "STO TOMAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "TANAUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "TAYSAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BATANGAS",
+    "CITY/ MUNICIPALITY": "TINGLOY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BENGUET",
+    "CITY/ MUNICIPALITY": "BAGUIO CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BENGUET",
+    "CITY/ MUNICIPALITY": "BUGUIAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BENGUET",
+    "CITY/ MUNICIPALITY": "LA TRINIDAD"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BENGUET",
+    "CITY/ MUNICIPALITY": "LA TRINIDAD"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "ANGAT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "BALAGTAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "BALIUAG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "BOCAUE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "BULACAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "BUSTOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "CALUMPIT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "GUIGUINTO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "HAGONOY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "MALOLOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "MARILAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "MEYCAUAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "NORZAGARAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "OBANDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "PANDI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "PLARIDEL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "PULILAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "PULILAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "SAN ILDEFONSO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "SAN JOSE DEL MONTE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "SAN MIGUEL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "SAN RAFAEL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "BULACAN",
+    "CITY/ MUNICIPALITY": "STA MARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "ABULUG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "ALCALA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "APARRI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "BAGGAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "CALAMANUIGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "CLAVERIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "GATTARAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "GONZAGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "LASAM"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "MIRA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "SANTIAGO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "SOLANA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "STA ANA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAGAYAN",
+    "CITY/ MUNICIPALITY": "TUGUEGARAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES NORTE",
+    "CITY/ MUNICIPALITY": "DAET"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES NORTE",
+    "CITY/ MUNICIPALITY": "LABO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES NORTE",
+    "CITY/ MUNICIPALITY": "PARACALE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES NORTE",
+    "CITY/ MUNICIPALITY": "STA ELENA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES NORTE",
+    "CITY/ MUNICIPALITY": "TIGAON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "BAAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "BUHI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "BULA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "BULU"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "CALABANGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "GARCHITORENA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "GOA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "IRIGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "LAGONOY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "LIBMANAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "NABUA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "NAGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "OCAMPO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "PASACAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "PILI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "SAN FERNANDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAMARINES SUR",
+    "CITY/ MUNICIPALITY": "SIPOCOT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "ALFONSO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "BACOOR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "BALIBAGO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "CARMONA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "CAVITE CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "DASMARINAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "GENERAL TRIAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "GMA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "IMUS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "INDANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "KAWIT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "MADERAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "MARAGONDON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "MENDEZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "NAIC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "NOVELETA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "ROSARIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "SILANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "TAGAYTAY CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "TANZA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "TRECE MARTIRES"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "IMUS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "CAVITE",
+    "CITY/ MUNICIPALITY": "INDANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "IFUGAO",
+    "CITY/ MUNICIPALITY": "LAGAWE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "BACARRA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "BATAC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "BATAC CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "DINGRAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "LAOAG CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "PAOAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "SAN NICOLAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS NORTE",
+    "CITY/ MUNICIPALITY": "VINTAR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "CANDON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "CANDON CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "NARVACAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "SINAIT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "STA CATALINA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "STA CRUZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "STA LUCIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "STO DOMINGO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "TAGUDIN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "VIGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ILOCOS SUR",
+    "CITY/ MUNICIPALITY": "VIGAN CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "ALICIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "AURORA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "BALIGATAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "CABAGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "CABATUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "CAUAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "CORDON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "ECHAGUE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "ILAGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "JONES"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "MALLIG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "RAMON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "ROXAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "SAN MATEO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "SANTIAGO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "SOLANA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "TUMAUINI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ISABELA",
+    "CITY/ MUNICIPALITY": "CABAGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "KALINGA",
+    "CITY/ MUNICIPALITY": "TABUK"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "KALINGA",
+    "CITY/ MUNICIPALITY": "TABUK"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "AGOO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "ARINGAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "BACNOTAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "BALAOAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "BANGAR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "BAUANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "LUNA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "ROSARIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "SAN FERNANDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LA UNION",
+    "CITY/ MUNICIPALITY": "SAN FERNANDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "ALAMINOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "BAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "BINAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "CABUYAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "CALAMBA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "CALANAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "CALAUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "CALAUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "LILIW"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "LOS BANOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "LUMBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "MAJAYJAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "NAGCARLAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "PAETE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "PAGSANJAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "SAN PABLO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "SAN PEDRO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "SINILOAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "STA CRUZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "STA MARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "STA ROSA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "VICTORIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "SAN PABLO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "LAGUNA",
+    "CITY/ MUNICIPALITY": "SAN PEDRO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MARINDUQUE",
+    "CITY/ MUNICIPALITY": "BOAC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MASBATE",
+    "CITY/ MUNICIPALITY": "CAWAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MASBATE",
+    "CITY/ MUNICIPALITY": "MASBATE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MASBATE",
+    "CITY/ MUNICIPALITY": "MILAGROS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MASBATE",
+    "CITY/ MUNICIPALITY": "SAN JACINTO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "CALOOCAN CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "LAS PINAS CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MAKATI CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MALABON CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MANDALUYONG CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MANILA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MARIKINA CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "MUNTINLUPA CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "NAVOTAS CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "PARANAQUE CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "PASAY CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "PASIG CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "PATEROS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "QUEZON CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "SAN JUAN CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "TAGUIG CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "METRO MANILA",
+    "CITY/ MUNICIPALITY": "VALENZUELA CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO ORIENTAL",
+    "CITY/ MUNICIPALITY": "BACO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO ORIENTAL",
+    "CITY/ MUNICIPALITY": "CALAPAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO ORIENTAL",
+    "CITY/ MUNICIPALITY": "PINAMALAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO ORIENTAL",
+    "CITY/ MUNICIPALITY": "SOCORRO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MINDORO ORIENTAL",
+    "CITY/ MUNICIPALITY": "VICTORIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "MOUNTAIN PROVINCE",
+    "CITY/ MUNICIPALITY": "BONTOC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "ALIAGA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "BONGABON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "CABANATUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "CABANATUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "CABIAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "CUYAPAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "GABALDON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "GAPAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "GEN TINIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "GUIMBA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "JAEN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "LUPAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "MUNOZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "NAMPICUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "PALAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "PENARANDA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "QUEZON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "RIZAL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "SAN ANTONIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "SAN LEONARDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "SCIENCE  MUNOZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "STA ROSA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "TALAVERA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "TINIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA ECIJA",
+    "CITY/ MUNICIPALITY": "ZARAGOSA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA VIZCAYA",
+    "CITY/ MUNICIPALITY": "ARITTAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA VIZCAYA",
+    "CITY/ MUNICIPALITY": "BAGABAG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA VIZCAYA",
+    "CITY/ MUNICIPALITY": "BAMBANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA VIZCAYA",
+    "CITY/ MUNICIPALITY": "BAYOMBONG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "NUEVA VIZCAYA",
+    "CITY/ MUNICIPALITY": "SOLANO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PALAWAN",
+    "CITY/ MUNICIPALITY": "CORON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PALAWAN",
+    "CITY/ MUNICIPALITY": "CULION"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PALAWAN",
+    "CITY/ MUNICIPALITY": "PUERTO PRINCESA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "ANGELES CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "APALIT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "ARAYAT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "FLORIDABLANCA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "GUAGUA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "LUBAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "MABALACAT"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "MAGALANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "MEXICO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "PORAC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "SAN FERNANDO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PAMPANGA",
+    "CITY/ MUNICIPALITY": "STA RITA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "AGUILAR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "ALAMINOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "ALCALA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "ANDA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "ASINGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BANI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BAYAMBANG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BINALONAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BINMALEY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BOLINAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "BUGALLON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "CALASIAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "DAGUPAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "INFANTA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "LABRADOR"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "LINGAYEN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "MALASIQUI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "MANAOAG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "MANGALDAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "MANGATAREM"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "MAPANDAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "POZORRUBIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "ROSALES"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "SAN CARLOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "SAN FABIAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "SAN JACINTO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "SAN MANUEL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "STA BARBARA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "STA MARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "SUAL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "TAYUG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "UMINGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "URDANETA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "PANGASINAN",
+    "CITY/ MUNICIPALITY": "VILLASIS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "AGDANGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "ATIMONAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "BURGOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "CALAUAG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "CANDELARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "CATANAUAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "DOLORES"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "GENERAL LUNA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "GUINAYANGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "GUMACA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "INFANTA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "LOPEZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "LUCBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "LUCENA CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "MACALELON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "MAUBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "MULANAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "PAGBILAO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "PITOGO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "POLILIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "REAL"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "SAMPALOC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "SAN FRANCISCO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "SARIAYA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "TAGKAWAYAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "TAYABAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "TIAONG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "UNISAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "ATIMONAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "GUMACA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "LOPEZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "LUCBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "MAUBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "SAN FRANCISCO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUEZON",
+    "CITY/ MUNICIPALITY": "TAYABAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUIRINO",
+    "CITY/ MUNICIPALITY": "CABARROGUIS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUIRINO",
+    "CITY/ MUNICIPALITY": "DIFFUN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "QUIRINO",
+    "CITY/ MUNICIPALITY": "MADDELA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "ANGONO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "ANTIPOLO CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "BARAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "BINANGONAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "CAINTA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "CARDONA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "MONTALBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "MORONG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "PILILLA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "SAN MATEO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "TANAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "TAYTAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "TERESA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "ANGONO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "ANTIPOLO CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "BINANGONAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "CAINTA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "MONTALBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "SAN MATEO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "TANAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "RIZAL",
+    "CITY/ MUNICIPALITY": "TAYTAY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "SORSOGON",
+    "CITY/ MUNICIPALITY": "BULAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "SORSOGON",
+    "CITY/ MUNICIPALITY": "IROSIN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "SORSOGON",
+    "CITY/ MUNICIPALITY": "SORSOGON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "SORSOGON",
+    "CITY/ MUNICIPALITY": "BULAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "SORSOGON",
+    "CITY/ MUNICIPALITY": "SORSOGON"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "BAMBAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "CABANATUAN CITY"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "CAMILING"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "CAPAS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "CONCEPCION"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "GERONA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "LA PAZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "MONCADA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "PANIQUI"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "STA IGNACIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "TARLAC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "TARLAC",
+    "CITY/ MUNICIPALITY": "VICTORIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "BOTOLAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "CABANGAN"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "CANDELARIA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "CASTILLEJOS"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "IBA"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "MASINLOC"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "OLONGAPO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "OLONGAPO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "PALAUIG"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "SAN ANTONIO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "SAN FELIPE"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "SAN MARCELINO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "SAN NARCISO"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "STA CRUZ"
+  },
+  {
+    "REGION": "LUZON",
+    "PROVINCE": "ZAMBALES",
+    "CITY/ MUNICIPALITY": "SUBIC"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL NORTE",
+    "CITY/ MUNICIPALITY": "BAYUGAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL NORTE",
+    "CITY/ MUNICIPALITY": "BUENAVISTA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL NORTE",
+    "CITY/ MUNICIPALITY": "BUTUAN CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL NORTE",
+    "CITY/ MUNICIPALITY": "KITCHARAO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL SUR",
+    "CITY/ MUNICIPALITY": "BAYUGAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "AGUSAN DEL SUR",
+    "CITY/ MUNICIPALITY": "SAN FRANCISCO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BASILAN",
+    "CITY/ MUNICIPALITY": "ISABELA CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "DON CARLOS"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "MALAYBALAY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "MARAMAG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "QUEZON"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "TALAKAG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "BUKIDNON",
+    "CITY/ MUNICIPALITY": "VALENCIA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "CAMIGUIN",
+    "CITY/ MUNICIPALITY": "MAMBAJAO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "PANABO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "SAMAL"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "TAGUM"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL SUR",
+    "CITY/ MUNICIPALITY": "COMPOSTELLA VALLEY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL SUR",
+    "CITY/ MUNICIPALITY": "DAVAO CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL SUR",
+    "CITY/ MUNICIPALITY": "DIGOS"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL SUR",
+    "CITY/ MUNICIPALITY": "MAGSAYSAY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO DEL SUR",
+    "CITY/ MUNICIPALITY": "PAGADIAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "DAVAO ORIENTAL",
+    "CITY/ MUNICIPALITY": "MATI"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "LANAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "ILIGAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "LANAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "LALA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MAGUINDANAO",
+    "CITY/ MUNICIPALITY": "COTABATO CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "CALAMBA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "OROQUIETA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "OZAMIZ CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS ORIENTAL",
+    "CITY/ MUNICIPALITY": "BALINGASAG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS ORIENTAL",
+    "CITY/ MUNICIPALITY": "CAGAYAN DE ORO CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS ORIENTAL",
+    "CITY/ MUNICIPALITY": "GINGOOG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS ORIENTAL",
+    "CITY/ MUNICIPALITY": "MANTICAO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "MISAMIS ORIENTAL",
+    "CITY/ MUNICIPALITY": "OPOL"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "NORTH COTABATO",
+    "CITY/ MUNICIPALITY": "KIDAPAWAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "NORTH COTABATO",
+    "CITY/ MUNICIPALITY": "MAKILALA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SARANGGANI",
+    "CITY/ MUNICIPALITY": "ALABEL"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SARANGGANI",
+    "CITY/ MUNICIPALITY": "GLAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SOUTH COTABATO",
+    "CITY/ MUNICIPALITY": "KORONADAL"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SOUTH COTABATO",
+    "CITY/ MUNICIPALITY": "GENERAL SANTOS"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SOUTH COTABATO",
+    "CITY/ MUNICIPALITY": "POLOMOLOK"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SULTAN KUDARAT",
+    "CITY/ MUNICIPALITY": "ISULAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SULTAN KUDARAT",
+    "CITY/ MUNICIPALITY": "LAMBAYONG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SULTAN KUDARAT",
+    "CITY/ MUNICIPALITY": "TACURONG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SURIGAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "PLACER"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SURIGAO DEL NORTE",
+    "CITY/ MUNICIPALITY": "SURIGAO CITY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SURIGAO DEL SUR",
+    "CITY/ MUNICIPALITY": "BAROBO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "SURIGAO DEL SUR",
+    "CITY/ MUNICIPALITY": "TANDAG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "DAPITAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "DIPOLOG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "JOSE DALMAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "Zamboanga DEL NORTE",
+    "CITY/ MUNICIPALITY": "KATIPUNAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "LANGATIAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "LILOY"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "MANUKAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "MOLAVE"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "POLANCO"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "SALUG"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "SERGIO OSMENA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "SIBUTAD"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "SINDANGAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL NORTE",
+    "CITY/ MUNICIPALITY": "TAMPILISAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL SUR",
+    "CITY/ MUNICIPALITY": "AURORA"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL SUR",
+    "CITY/ MUNICIPALITY": "MOLAVE"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL SUR",
+    "CITY/ MUNICIPALITY": "PAGADIAN"
+  },
+  {
+    "REGION": "MINDANAO",
+    "PROVINCE": "ZAMBOANGA DEL SUR",
+    "CITY/ MUNICIPALITY": "ZAMBOANGA CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "AKLAN",
+    "CITY/ MUNICIPALITY": "CATICLAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "AKLAN",
+    "CITY/ MUNICIPALITY": "KALIBO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "AKLAN",
+    "CITY/ MUNICIPALITY": "MALAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "AKLAN",
+    "CITY/ MUNICIPALITY": "MALINAO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "AKLAN",
+    "CITY/ MUNICIPALITY": "NABAS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ANTIQUE",
+    "CITY/ MUNICIPALITY": "BUGASONG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ANTIQUE",
+    "CITY/ MUNICIPALITY": "CULASI"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ANTIQUE",
+    "CITY/ MUNICIPALITY": "PATNONGON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ANTIQUE",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ANTIQUE",
+    "CITY/ MUNICIPALITY": "SIBALOM"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BILIRAN",
+    "CITY/ MUNICIPALITY": "NAVAL"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "GUINDULMAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "JAGNA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "LOON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "TAGBILARAN CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "TALIBON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "TUBIGON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "BOHOL",
+    "CITY/ MUNICIPALITY": "UBAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "DUMALAG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "MAMBUSAO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "PANAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "PILAR"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "ROXAS CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CAPIZ",
+    "CITY/ MUNICIPALITY": "TAPAZ"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "ASTURIAS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "BADIAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "BALAMBAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "BANTAYAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "BOGO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CAMOTES ISLAND"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CARCAR"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CATMON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CEBU CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CONSOLACION"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "CORDOVA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "DAANBANTAYAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "DALAGUETE"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "DANAO CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "DUMANJUG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "GINATILAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "LAPU LAPU CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "LILO-AN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "MADRIDEJOS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "MANDAUE CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "MEDELLIN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "MINGLANILLA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "MOALBOAL"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "NAGA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "OSLOB"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "PINAMUNGAHAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "SAN FERNANDO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "TALISAY CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "TOLEDO CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "TUBURAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "CEBU",
+    "CITY/ MUNICIPALITY": "BOGO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "EASTERN SAMAR",
+    "CITY/ MUNICIPALITY": "BORONGAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "EASTERN SAMAR",
+    "CITY/ MUNICIPALITY": "GUIAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "EASTERN SAMAR",
+    "CITY/ MUNICIPALITY": "GUIUAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "EASTERN SAMAR",
+    "CITY/ MUNICIPALITY": "TAFT"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "GUIMARAS",
+    "CITY/ MUNICIPALITY": "JORDAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "BALASAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "BANATE"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "BAROTAC NUEVO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "BAROTAC VIEJO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "CABATUAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "CONCEPCION"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "ESTANCIA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "IGBARAS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "ILOILO CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "IZNART"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "JANIUAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "JARO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "LAMBUNAO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "MAASIN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "MIAG-AO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "MOLO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "OTON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "PASSI"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "POTOTAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "SAN MIGUEL"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "SARA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "ILOILO",
+    "CITY/ MUNICIPALITY": "STA BARBARA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "ABUYOG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "ALANG ALANG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "BABATNGON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "BATO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "BAYBAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "BURAUEN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "CARIAGA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "CARIGARA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "DAGAMI"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "DULAG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "HILONGOS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "ISABEL"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "JAVIER"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "JULITA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "KANANGA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "LA PAZ"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "MAHAPLAG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "MAYORGA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "ORMOC CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "PALO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "PALOMPON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "POBLACION"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "TABON TABON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "TACLOBAN CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "TANAUAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "LEYTE",
+    "CITY/ MUNICIPALITY": "TUNGA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "BACOLOD CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "BAGO CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "BINALBAGAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "CADIZ CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "CALATRAVA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "EB MAGALONA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "ESCALANTE"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "HIMAMAYLAN CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "HINIGARAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "ISABELA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "KABANKALAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "LA CARLOTA CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "LA CASTELLANA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "MANAPLA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "MURCIA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "PONTEVEDRA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "SAGAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "SAN CARLOS CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "SILAY CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "TALISAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "VALLADOLID"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS OCCIDENTAL",
+    "CITY/ MUNICIPALITY": "VICTORIAS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "GUIHULNGAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "AYUNGON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "BAIS"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "BASAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "BAYAWAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "BINDOY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "CANLAON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "DAUIN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "DUMAGUETE CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "GUIHULNGAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "JIMALALUD"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "LALIBERTAD"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "MABINAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "SAN JOSE"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "SIATON"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "SIBULAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "STA CATALINA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "TANJAY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "VALENCIA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "VALLEHERMOSO"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NEGROS ORIENTAL",
+    "CITY/ MUNICIPALITY": "ZAMBOANGUITA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NORTHEN SAMAR",
+    "CITY/ MUNICIPALITY": "ALLEN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "NORTHEN SAMAR",
+    "CITY/ MUNICIPALITY": "CATARMAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SAMAR",
+    "CITY/ MUNICIPALITY": "BASEY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SAMAR",
+    "CITY/ MUNICIPALITY": "CALBAYOG"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SAMAR",
+    "CITY/ MUNICIPALITY": "CATBALOGAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SAMAR",
+    "CITY/ MUNICIPALITY": "GANDARA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SIQUIJOR",
+    "CITY/ MUNICIPALITY": "LAZI"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SIQUIJOR",
+    "CITY/ MUNICIPALITY": "POBLACION"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SIQUIJOR",
+    "CITY/ MUNICIPALITY": "SAN JUAN"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SIQUIJOR",
+    "CITY/ MUNICIPALITY": "SIQUIJOR"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SIQUIJOR",
+    "CITY/ MUNICIPALITY": "STA MARIA"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SOUTHERN LEYTE",
+    "CITY/ MUNICIPALITY": "MAASIN CITY"
+  },
+  {
+    "REGION": "VISAYAS",
+    "PROVINCE": "SOUTHERN LEYTE",
+    "CITY/ MUNICIPALITY": "SOGOD"
+  }
+]

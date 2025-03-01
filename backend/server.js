@@ -11,10 +11,12 @@ app.use(bodyParser.json());
 const authRouter = require("./routes/auth");
 const eventRouter = require("./routes/event");
 const jobRouter = require("./routes/job");
+const locationRouter = require("./routes/location");
 
 app.use("/auth", authRouter);
 app.use("/event", eventRouter);
 app.use("/job", jobRouter);
+app.use("/location", locationRouter);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

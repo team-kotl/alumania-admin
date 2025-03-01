@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const EventForm = () => {
@@ -16,56 +16,99 @@ const EventForm = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [locationsData, setLocationsData] = useState([]);
+    const [regions, setRegions] = useState([]);
+    const [provinces, setProvinces] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [selectedRegion, setSelectedRegion] = useState("");
+    const [selectedProvince, setSelectedProvince] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
+    const [street, setStreet] = useState("");
 
-    const formatDate = (datetime) => {
-        return new Date(datetime).toISOString().split("T")[0];
-    };
+    useEffect(() => {
+        fetch("/locations.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Locations data loaded:", data); // Debugging
+                setLocationsData(data);
+                const uniqueRegions = [...new Set(data.map(item => item.REGION))];
+                setRegions(uniqueRegions);
+            })
+            .catch(error => console.error("Error loading locations:", error));
+    }, []);
+    
+    
+    // Load provinces based on selected region
+    useEffect(() => {
+        if (selectedRegion) {
+            const filteredProvinces = [
+                ...new Set(locationsData.filter(item => item.REGION === selectedRegion).map(item => item.PROVINCE))
+            ];
+            setProvinces(filteredProvinces);
+            setCities([]); // Reset cities when region changes
+            setSelectedProvince("");
+        } else {
+            setProvinces([]);
+            setCities([]);
+        }
+    }, [selectedRegion]);
 
-    const formatTime = (datetime) => {
-        return new Date(datetime).toISOString().split("T")[1].split(".")[0];
-    };
+    // Load cities based on selected province
+    useEffect(() => {
+        if (selectedProvince) {
+            const filteredCities = locationsData
+                .filter(item => item.PROVINCE === selectedProvince)
+                .map(item => item["CITY/ MUNICIPALITY"]);
+            setCities(filteredCities);
+            setSelectedCity("");
+        } else {
+            setCities([]);
+        }
+    }, [selectedProvince]);
+
+    // Update `eventloc` dynamically
+    useEffect(() => {
+        const fullLocation = [selectedRegion, selectedProvince, selectedCity, street]
+            .filter(Boolean)
+            .join(", ");
+        setEventData(prevData => ({ ...prevData, eventloc: fullLocation }));
+    }, [selectedRegion, selectedProvince, selectedCity, street]);
 
     const handleDateTimeChange = (e) => {
         const { value } = e.target;
+        const date = new Date(value);
         setEventData((prevData) => ({
             ...prevData,
-            eventdate: formatDate(value),
-            eventtime: formatTime(value),
+            eventdate: date.toISOString().split("T")[0],
+            eventtime: date.toISOString().split("T")[1].split(".")[0],
         }));
     };
 
     const handleChange = (e) => {
-        setEventData({
-            ...eventData,
-            [e.target.name]: e.target.value,
-        });
-        setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
+        setEventData({ ...eventData, [e.target.name]: e.target.value });
+        setErrors(prevErrors => ({ ...prevErrors, [e.target.name]: "" }));
     };
 
     const handleFileChange = (e) => {
         setEventData({ ...eventData, eventphoto: e.target.files[0] });
-        setErrors((prevErrors) => ({ ...prevErrors, eventphoto: "" }));
+        setErrors(prevErrors => ({ ...prevErrors, eventphoto: "" }));
     };
 
     const validateForm = () => {
         let newErrors = {};
-        const requiredFields = [
-            "title",
-            "description",
-            "category",
-            "eventdate",
-            "eventtime",
-            "eventloc",
-            "batchfilter",
-            "school",
-            "eventphoto"
-        ];
+        const requiredFields = ["title", "description", "category", "eventdate", "eventtime", "eventloc", "batchfilter", "school", "eventphoto"];
 
         requiredFields.forEach((field) => {
             if (!eventData[field]) {
                 newErrors[field] = "This field is required.";
             }
         });
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -73,19 +116,44 @@ const EventForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-
+    
+        // Format the event location correctly
+        const fullLocation = [selectedRegion, selectedProvince, selectedCity, street]
+            .filter(Boolean)
+            .join(", ");
+        
+        setEventData(prevData => ({ ...prevData, eventloc: fullLocation }));
+    
         const formData = new FormData();
-        for (const key in eventData) {
-            if (eventData[key]) {
-                formData.append(key, eventData[key]);
+        const updatedEventData = { ...eventData, eventloc: fullLocation, userid: "U001" }; // ✅ Ensure userid is included
+    
+        for (const key in updatedEventData) {
+            if (updatedEventData[key] !== null && updatedEventData[key] !== "") {
+                formData.append(key, updatedEventData[key]);
             }
         }
-
+    
+        // Ensure file is selected before sending the request
+        if (!eventData.eventphoto) {
+            alert("Please upload an event photo.");
+            return;
+        }
+    
+        // ✅ Debugging: Log the data being sent to the server
+        console.log("Sending data to the backend:");
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}:`, pair[1]);
+        }
+    
         try {
-            await axios.post("http://localhost:5000/event", formData, {
+            const response = await axios.post("http://localhost:5000/event", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+    
+            console.log("Response from server:", response.data);
             alert("Event created successfully!");
+    
+            // Reset form fields
             setEventData({
                 title: "",
                 description: "",
@@ -98,12 +166,18 @@ const EventForm = () => {
                 eventphoto: null,
                 userid: "U001",
             });
+            setSelectedRegion("");
+            setSelectedProvince("");
+            setSelectedCity("");
+            setStreet("");
             setErrors({});
         } catch (error) {
-            console.error("Error creating event:", error);
-            alert("Failed to create event.");
+            console.error("Error creating event:", error.response ? error.response.data : error);
+            alert(`Failed to create event: ${error.response ? error.response.data.error : error.message}`);
         }
     };
+    
+    
 
     return (
         <div className="ml-15 mr-3 mt-2 w-8/12">
@@ -130,46 +204,48 @@ const EventForm = () => {
 
             {/* Event Location */}
             <div className="flex w-full flex-col lg:flex-row mt-4">
-                    <div className="w-full">
-                        <form>
-                        <p className="text-lg text-primary font-semibold">Location</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select region</option>
-                                <option>Luzon</option>
-                                <option>Visayas</option>
-                                <option>Mindanao</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
-
-                    <div className="w-full">
-                        <form>
-                        <p className="text-lg text-white font-semibold">.</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select province</option>
-                                <option>Province 1</option>
-                                <option>Province 2</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
-
-                    <div className="w-full mr-18">
-                        <form>
-                        <p className="text-lg text-white font-semibold">.</p>
-                            <select className="select validator" required>
-                                <option disabled selected value="">Select city</option>
-                                <option>City 1</option>
-                                <option>City 2</option>
-                            </select>
-                            <p className="validator-hint">Required</p>
-                        </form>
-                    </div>
+                <div className="w-full">
+                    <form>
+                    <p className="text-lg text-primary font-semibold">Location</p>
+                        <select className="select validator" onChange={(e) => setSelectedRegion(e.target.value)} value={selectedRegion}>
+                            <option value="">Select Region</option>
+                            {regions.map((region, index) => (
+                                <option key={index} value={region}>{region}</option>
+                            ))}
+                        </select>
+                    <p className="validator-hint">Required</p>
+                    </form>
                 </div>
 
+                <div className="w-full">
+                    <form>
+                    <p className="text-lg text-white font-semibold">.</p>
+                        <select className="select validator" onChange={(e) => setSelectedProvince(e.target.value)} value={selectedProvince} disabled={!selectedRegion}>
+                            <option value="">Select Province</option>
+                            {provinces.map((province, index) => (
+                                <option key={index} value={province}>{province}</option>
+                            ))}
+                        </select>
+                        <p className="validator-hint">Required</p>
+                    </form>
+                </div>
+
+                <div className="w-full mr-18">
+                    <form>
+                    <p className="text-lg text-white font-semibold">.</p>
+                        <select className="select validator" onChange={(e) => setSelectedCity(e.target.value)} value={selectedCity} disabled={!selectedProvince}>
+                            <option value="">Select City</option>
+                            {cities.map((city, index) => (
+                                <option key={index} value={city}>{city}</option>
+                            ))}
+                        </select>
+                        <p className="validator-hint">Required</p>
+                    </form>
+                </div>
+            </div>
+
             <fieldset className="fieldset">
-                <input type="text" name="eventloc" value={eventData.eventloc} onChange={handleChange} className="w-11/12 input" placeholder="Insert event location here" />
+                <input type="text" name="eventloc" onChange={(e) => setStreet(e.target.value)} value={street} className="w-11/12 input" placeholder="Insert street here" />
                 {errors.eventloc && <p className="text-red-500">{errors.eventloc}</p>}
             </fieldset>
 
