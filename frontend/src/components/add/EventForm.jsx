@@ -129,8 +129,46 @@ const EventForm = () => {
             </fieldset>
 
             {/* Event Location */}
+            <div className="flex w-full flex-col lg:flex-row mt-4">
+                    <div className="w-full">
+                        <form>
+                        <p className="text-lg text-primary font-semibold">Location</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select region</option>
+                                <option>Luzon</option>
+                                <option>Visayas</option>
+                                <option>Mindanao</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+
+                    <div className="w-full">
+                        <form>
+                        <p className="text-lg text-white font-semibold">.</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select province</option>
+                                <option>Province 1</option>
+                                <option>Province 2</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+
+                    <div className="w-full mr-18">
+                        <form>
+                        <p className="text-lg text-white font-semibold">.</p>
+                            <select className="select validator" required>
+                                <option disabled selected value="">Select city</option>
+                                <option>City 1</option>
+                                <option>City 2</option>
+                            </select>
+                            <p className="validator-hint">Required</p>
+                        </form>
+                    </div>
+                </div>
+
             <fieldset className="fieldset">
-                <legend className="fieldset-legend text-lg text-primary">Location</legend>
                 <input type="text" name="eventloc" value={eventData.eventloc} onChange={handleChange} className="w-11/12 input" placeholder="Insert event location here" />
                 {errors.eventloc && <p className="text-red-500">{errors.eventloc}</p>}
             </fieldset>
