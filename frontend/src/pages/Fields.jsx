@@ -99,7 +99,7 @@ const Fields = () => {
                     <span className="loading loading-spinner loading-xl"></span>
                 </div>
             ) : (
-                <main className="flex flex-row w-full h-[calc(100vh-6rem)] p-16 pt-9">
+                <main className="flex flex-row w-full h-[calc(100vh-7rem)] p-16 pt-9">
                     <section className="flex flex-col w-[50%] pr-10 border-r border-gray-200">
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend">
