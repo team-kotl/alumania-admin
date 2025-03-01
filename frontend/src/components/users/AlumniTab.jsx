@@ -14,7 +14,7 @@ const AlumniTab = () => {
     status: "",
     location: "",
   });
-  const [isOpen, setIsOpen] = useState(false);
+  const [filterOpen, setIsOpen] = useState(false);
   const filterRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -129,7 +129,7 @@ const AlumniTab = () => {
         </label>
         <button
           className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen(!filterOpen)}
         >
           <PiFunnelSimpleLight className="w-6 h-6 text-gray-700" />
         </button>
@@ -166,34 +166,34 @@ const AlumniTab = () => {
         </tbody>
       </table>
 
-      {isOpen && (
+      {filterOpen && (
         <dialog
           id="filter_modal"
           className="modal open"
           ref={filterRef}
           onClick={(e) => {
             if (e.target === e.currentTarget) {
-              e.target.close(); 
-              setIsOpen(false); 
+              e.target.close();
+              setIsOpen(false);
             }
           }}
           open
         >
-          <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-4 w-72 border border-gray-200 z-50">
-            <h3 className="text-lg font-semibold text-center">
+           <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-6 w-90 border border-gray-200 z-50">
+            <h3 className="text-l font-bold text-center text-gray-800">
               Search Filters
             </h3>
-            <hr className="my-2" />
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <hr className="my-3 border-gray-300" />
+            <div className="grid grid-cols-2 gap-6 text-sm text-gray-700">
               <div>
-                <h4 className="font-semibold mb-1">Status</h4>
+                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">Status</h4>
                 {["Employed", "Unemployed", "Underemployed"].map((status) => (
                   <button
                     key={status}
-                    className={`block w-full text-left px-2 py-1 rounded ${
+                    className={`block w-full text-left px-3 py-2 rounded-lg transition ${
                       selectedFilters.status === status
-                        ? "bg-blue-500 text-white"
-                        : "hover:text-blue-600"
+                        ? "bg-blue-600 text-white"
+                        : "hover:bg-gray-100"
                     }`}
                     onClick={() => toggleFilter("status", status)}
                   >
@@ -202,14 +202,14 @@ const AlumniTab = () => {
                 ))}
               </div>
               <div>
-                <h4 className="font-semibold mb-1">Location</h4>
+                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">Location</h4>
                 {["Domestic", "Foreign"].map((location) => (
                   <button
                     key={location}
-                    className={`block w-full text-left px-2 py-1 rounded ${
+                    className={`block w-full text-left px-3 py-2 rounded-lg transition ${
                       selectedFilters.location === location
-                        ? "bg-blue-500 text-white"
-                        : "hover:text-blue-600"
+                        ? "bg-blue-600 text-white"
+                        : "hover:bg-gray-100"
                     }`}
                     onClick={() => toggleFilter("location", location)}
                   >

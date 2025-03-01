@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { PiPlusCircle } from "react-icons/pi";
+import { PiPencilSimple } from "react-icons/pi";
+import { PiArchive } from "react-icons/pi";
+
+
 // TODO: Joyce at si Badang
 const ManagersTab = () => {
   const [managers, setManagers] = useState([]);
@@ -211,20 +215,15 @@ const ManagersTab = () => {
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openModal(manager)}
                 >
-                  <img
-                    src="../src/assets/edit.png"
-                    alt="Edit"
-                    className="w-4 h-4 mr-1"
+                  <PiPencilSimple 
+                    className="w-5 h-5 mr-1"
                   />
                 </button>
                 <button
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openDeleteModal(manager)}
                 >
-                  <img
-                    src="../src/assets/archive.png"
-                    alt="Delete"
-                    className="w-3.5 h-4 mr-1"
+                  <PiArchive className="w-5 h-6 mr-1 text-red-600"
                   />
                 </button>
               </td>
