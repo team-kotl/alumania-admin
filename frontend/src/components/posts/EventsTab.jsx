@@ -101,19 +101,48 @@ const EventsTab = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [category, setCategory] = useState("");
     const [sortOrder, setSortOrder] = useState("");
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [eventsList, setEventsList] = useState([...events]);
+    const [eventToDelete, setEventToDelete] = useState(null);
 
     const sortEvents = (events) => {
         if (sortOrder === "A-Z") {
             return [...events].sort((a, b) => a.title.localeCompare(b.title));
         }
         return events;
-        
     };
+
+    const handleEditChange = (e) => {
+        const { name, value } = e.target;
+        setSelectedEvent(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+    const handleDeleteEvent = () => {
+        if (!eventToDelete) return;
+        setEventsList(prevEvents => prevEvents.filter(event => event.title !== eventToDelete.title));
+        setEventToDelete(null);
+        document.getElementById("deleteModal").close();
+    };
+    const handleSaveEdit = () => {
+        if (!selectedEvent) return;
+    
+        setEventsList(prevEvents =>
+            prevEvents.map(event =>
+                event.title === selectedEvent.title ? { ...event, ...selectedEvent } : event
+            )
+        );
+    
+        setSelectedEvent(null);
+        document.getElementById("editModal").close();
+    };
+
     const filteredEvents = events.filter(event =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (category === "" || event.category === category)
-        
     );
+
     const sortedEvents = sortEvents(filteredEvents);
     return (
        
@@ -194,15 +223,26 @@ const EventsTab = () => {
 
                             
                             <div className="absolute bottom-4 right-4 flex gap-2">
-                                
-                            <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer">
-    <PiPencilSimple className="w-5 h-5 text-gray-900" />
-</button>
+                                <button 
+                                    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer"
+                                    onClick={() => {
+                                        setSelectedEvent(event);
+                                        document.getElementById("editModal").showModal();
+                                    }}
+                                >
+                                    <PiPencilSimple className="w-5 h-5 text-gray-900" />
+                                </button>
 
                               
-                                <button className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer">
-                                <PiTrashSimpleBold className="w-5 h-5 text-gray-900" />
-</button>
+                                <button 
+                                    className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer"
+                                    onClick={() => {
+                                        setEventToDelete(event);
+                                        document.getElementById("deleteModal").showModal();
+                                    }}
+                                >
+                                    <PiTrashSimpleBold className="w-5 h-5" />
+                                </button>
                             </div>
                         </div>
                     ))
@@ -211,10 +251,107 @@ const EventsTab = () => {
                         <p className="text-gray-500 text-xl font-semibold">No events found.</p>
                     </div>
                 )}
+                
             </div>
+            <dialog 
+    id="editModal" 
+    className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-6 w-96"
+>
+    <h2 className="text-lg font-bold text-center mb-4">Edit Event</h2>
+    
+    {selectedEvent && (
+        <div className="space-y-3">
+            <label className="block font-semibold">Title:</label>
+            <input
+                type="text"
+                name="title"
+                value={selectedEvent.title}
+                onChange={handleEditChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter event title"
+            />
+
+<label className="block font-semibold">Date:</label>
+<input
+    type="date"
+    name="date"
+    value={new Date(selectedEvent.date).toISOString().split("T")[0]} 
+    onChange={handleEditChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+/>
+
+<label className="block font-semibold">Time:</label>
+<input
+    type="time"
+    name="time"
+    value={selectedEvent.time} 
+    onChange={handleEditChange}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+/>
+
+            <label className="block font-semibold">Location:</label>
+            <input
+                type="text"
+                name="location"
+                value={selectedEvent.location}
+                onChange={handleEditChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter event location"
+            />
+
+            <label className="block font-semibold">Category:</label>
+            <select
+                name="category"
+                value={selectedEvent.category}
+                onChange={handleEditChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            >
+                <option value="Reunion">Reunion</option>
+                <option value="Thanksgiving">Thanksgiving</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Festival">Festival</option>
+            </select>
         </div>
+    )}
+
+<div className="flex justify-between mt-4 gap-3">
+    <button 
+        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
+        onClick={() => document.getElementById("editModal").close()}
+    >
+        Cancel
+    </button>
+    <button 
+        className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+        onClick={handleSaveEdit}
+        disabled={!selectedEvent?.title || !selectedEvent?.date || !selectedEvent?.time || !selectedEvent?.location}
+    >
+        Save
+    </button>
+</div>
+</dialog>
+<dialog id="deleteModal" className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-6 w-96">
+                <h2 className="text-lg font-bold text-center mb-4">Confirm Archive</h2>
+                <p className="text-center">Are you sure you want to Archive"{eventToDelete?.title}"?</p>
+                <div className="flex justify-between mt-4 gap-3">
+                    <button 
+                        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
+                        onClick={() => document.getElementById("deleteModal").close()}
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        className="w-1/2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                        onClick={handleDeleteEvent}
+                    >
+                        Archive
+                    </button>
+                </div>
+            </dialog>
+        </div>
+        
     );
+
 };
 
 export default EventsTab;
-
