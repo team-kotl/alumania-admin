@@ -16,7 +16,7 @@ const ManagersTab = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredManagers, setFilteredManagers] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   useEffect(() => {
     const fetchManagers = async () => {
       try {
@@ -233,63 +233,61 @@ const ManagersTab = () => {
         </tbody>
       </table>
 
-      {/* Edit Manager Modal */}
-      <dialog
-        id="edit_manager_modal"
-        className="modal"
-        onClick={(e) => {
-          const modal = document.getElementById("edit_manager_modal");
-          if (e.target === modal) modal.close();
-        }}
-      >
-        <div className="modal-box bg-white p-6 rounded-lg shadow-xl w-96">
-          <h3 className="font-semibold text-xl text-gray-800 mb-5">
-            Edit Manager
-          </h3>
-
-          {/* Username Input */}
-          <div className="mb-4">
-            <label className="flex items-center border border-gray-300 rounded-lg p-3 shadow-sm focus-within:border-blue-500 bg-gray-100">
-              <svg
-                className="h-5 w-5 text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
+      {openModal && (
+        <dialog
+          id="edit_manager_modal"
+          className="modal"
+          onClick={(e) => {
+            const modal = document.getElementById("edit_manager_modal");
+            if (e.target === modal) modal.close();
+          }}
+        >
+          <div className="modal-box bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="font-semibold text-xl text-gray-900 mb-4">
+              Edit Manager
+            </h3>
+            {/* Username Input */}
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Username:
+              </label>
+              <div className="flex items-center border border-gray-200 rounded-md p-2 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400">
+                <svg
+                  className="h-5 w-5 text-gray-500"
+                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
-                </g>
-              </svg>
-              <input
-                type="text"
-                className="w-full bg-transparent text-gray-700 outline-none ml-2"
-                placeholder="Username"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-            </label>
-          </div>
+                </svg>
+                <input
+                  type="text"
+                  className="w-full bg-gray-50 text-gray-700 placeholder-gray-500 border-none outline-none ml-2 focus:ring-0 focus:outline-none"
+                  placeholder="Enter username"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+              </div>
+            </div>
 
-          {/* Password Input */}
-          <div className="mb-5">
-            <label className="flex items-center border border-gray-300 rounded-lg p-3 shadow-sm focus-within:border-blue-500 bg-gray-100">
-              <svg
-                className="h-5 w-5 text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
+            {/* Password Input */}
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Password:
+              </label>
+              <div className="flex items-center border border-gray-200 rounded-md p-2 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400">
+                <svg
+                  className="h-5 w-5 text-gray-500"
+                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path>
                   <circle
@@ -298,23 +296,38 @@ const ManagersTab = () => {
                     r=".5"
                     fill="currentColor"
                   ></circle>
-                </g>
-              </svg>
-              <input
-                type="password"
-                className="w-full bg-transparent text-gray-700 outline-none ml-2"
-                placeholder="Enter new password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-            </label>
-          </div>
-        </div>
+                </svg>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="w-full bg-gray-50 text-gray-700 placeholder-gray-500 border-none outline-none ml-2 focus:ring-0 focus:outline-none"
+                  placeholder="Enter new password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+              <button
+                className="text-blue-600 text-sm mt-1 hover:underline"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide Password" : "Show Password"}
+              </button>
+            </div>
 
-        <form method="dialog" className="modal-backdrop">
-          <button>Close</button>
-        </form>
-      </dialog>
+            <div className="mt-4">
+              <button
+                className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
+                onClick={saveChanges}
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+
+          <form method="dialog" className="modal-backdrop">
+            <button>Close</button>
+          </form>
+        </dialog>
+      )}
 
       {isDeleteModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
