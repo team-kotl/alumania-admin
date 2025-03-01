@@ -20,6 +20,7 @@ import JobsTab from "./components/posts/JobsTab.jsx";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import RootLayout from "./layouts/RootLayout";
+import Fields from "./pages/Fields.jsx";
 
 function App() {
     useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
                             <Route path="events" element={<EventsTab />} />
                             <Route path="jobs" element={<JobsTab />} />
                         </Route>
+                        <Route path="fields" element={<Fields />} />
                         <Route path="profile" element={<Profile />} />
                     </Route>
                     <Route path="*" element={<ErrorPage />} />

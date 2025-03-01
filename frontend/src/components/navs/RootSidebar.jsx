@@ -4,6 +4,7 @@ import {
     PiCirclesThreePlus,
     PiUserCircle,
     PiFoldersLight,
+    PiCursorTextThin,
 } from "react-icons/pi";
 import AdminIcon from "../../assets/admin.svg";
 import ManagerIcon from "../../assets/manager.svg";
@@ -64,6 +65,18 @@ const RootSidebar = () => {
                             >
                                 <PiFoldersLight size={30} />
                                 <p className="text-[18px]">Posts</p>
+                            </div>
+                        )}
+                    </NavLink>
+                    <NavLink to="/fields" className="w-full">
+                        {({ isActive }) => (
+                            <div
+                                className={`flex flex-row py-4 gap-2 pl-8 rounded-xl ${
+                                    isActive ? selectedStyle : defaultStyle
+                                }`}
+                            >
+                                <PiCursorTextThin size={30} />
+                                <p className="text-[18px]">Fields</p>
                             </div>
                         )}
                     </NavLink>
