@@ -7,7 +7,7 @@ const events = [
     {
         title: "SLU AWARDING NIGHT",
         date: "May 20, 2024",
-        time: "6:00 PM",
+        time: "5:00 PM",
         location: "Saint Louis University, Upper Bonifacio, Baguio City",
         image: "https://www.slu.edu.ph/wp-content/uploads/2023/07/IMG_0146-scaled-e1690512500464-650x407.jpg",
         interested: "100 interested - 70 going",
