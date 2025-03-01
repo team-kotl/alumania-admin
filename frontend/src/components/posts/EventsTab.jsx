@@ -5,6 +5,7 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 const events = [
     {
+        eventid:"E011",
         title: "Thanksgiving Alumni Gala",
         date: "October 18, 2025",
         time: "8:00 PM",
@@ -14,6 +15,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E008",
         title: "Financial Freedom 101",
         date: "April 20, 2025",
         time: "6:00 PM",
@@ -23,6 +25,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E013",
         title: "Navigating Life After Graduation",
         date: "July 10, 2025",
         time: "3:00 PM",
@@ -32,6 +35,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E015",
         title: "Reunion Photo Booth and Memory Wall",
         date: "December 1, 2025",
         time: "5:00 PM",
@@ -41,6 +45,7 @@ const events = [
         category: "Reunion",
     },
     {
+        eventid:"E012",
         title: "Alumni Awards Ceremony",
         date: "September 24, 2025",
         time: "4:00 PM",
@@ -50,6 +55,7 @@ const events = [
         category: "Thanksgiving",
     },
     {
+        eventid:"E014",
         title: "Creative Entrepreneurship",
         date: "January 30, 2025",
         time: "9:00 AM",
@@ -59,6 +65,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E007",
         title: "Mastering Soft Skills for Success",
         date: "May 12, 2025",
         time: "4:00 PM",
@@ -68,6 +75,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E010",
         title: "Arts & Crafts Fair",
         date: "June 3, 2025",
         time: "2:15 PM",
@@ -77,6 +85,7 @@ const events = [
         category: "Festival",
     },
     {
+        eventid:"E002",
         title: "Thanksgiving Celebration",
         date: "March 8, 2025",
         time: "10:00 AM",
@@ -86,6 +95,7 @@ const events = [
         category: "Thanksgiving",
     },
     {
+        eventid:"E001",
         title: "Alumni Grand Reunion",
         date: "March 25, 2025",
         time: "1:00 PM",
@@ -95,6 +105,7 @@ const events = [
         category: "Reunion",
     },
     {
+        eventid:"E006",
         title: "Victory and Unity: Sports Festival",
         date: "March 25, 2025",
         time: "2:00 PM",
@@ -104,6 +115,7 @@ const events = [
         category: "Festival",
     },
     {
+        eventid:"E003",
         title: "Leadership in the Digital Age",
         date: "April 3, 2025",
         time: "9:00 AM",
@@ -113,6 +125,7 @@ const events = [
         category: "Seminar",
     },
     {
+        eventid:"E009",
         title: "Thanksgiving Potluck Feast",
         date: "June 10, 2025",
         time: "3:00 PM",
@@ -122,6 +135,7 @@ const events = [
         category: "Thanksgiving",
     },
     {
+        eventid:"E005",
         title: "Summer Fun Festival",
         date: "April 15, 2025",
         time: "10:00 AM",
@@ -131,6 +145,7 @@ const events = [
         category: "Festival",
     },
     {
+        eventid:"E004",
         title: "Hearts &amp; Memories",
         date: "February 14, 2025",
         time: "6:00 PM",
@@ -163,24 +178,54 @@ const EventsTab = () => {
             ...prev,
             [name]: value
         }));
-    };
-    const handleDeleteEvent = () => {
+    };    
+    const handleDeleteEvent = async () => {
         if (!eventToDelete) return;
-        setEventsList(prevEvents => prevEvents.filter(event => event.title !== eventToDelete.title));
-        setEventToDelete(null);
-        document.getElementById("deleteModal").close();
+    
+        try {
+            const response = await fetch("http://localhost:5000/events", { 
+                method: "DELETE",
+            });
+    
+            if (response.ok) {
+                alert("Event deleted successfully!");
+                setEventsList(prevEvents => prevEvents.filter(event => event.eventid !== eventToDelete.eventid));
+                document.getElementById("deleteModal").close();
+            } else {
+                alert("Failed to archive event.");
+            }
+        } catch (error) {
+            console.error("Error archiving event:", error);
+        }
     };
-    const handleSaveEdit = () => {
+    
+    
+    const handleSaveEdit = async () => {
         if (!selectedEvent) return;
     
-        setEventsList(prevEvents =>
-            prevEvents.map(event =>
-                event.title === selectedEvent.title ? { ...event, ...selectedEvent } : event
-            )
-        );
+        try {
+            const response = await fetch(`http://localhost:5000/events`, { 
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(selectedEvent),
+            });
     
-        setSelectedEvent(null);
-        document.getElementById("editModal").close();
+            if (response.ok) {
+                alert("Event updated successfully!");
+                setEventsList(prevEvents =>
+                    prevEvents.map(event =>
+                        event.eventid === selectedEvent.eventid ? { ...event, ...selectedEvent } : event
+                    )
+                );
+                setSelectedEvent(null);
+                document.getElementById("editModal").close();
+            } else {
+                alert("Failed to update event.");
+            }
+        } catch (error) {
+            console.error("Error updating event:", error);
+            alert("An error occurred while updating the event.");
+        }
     };
 
     const filteredEvents = events.filter(event =>
@@ -320,10 +365,11 @@ const EventsTab = () => {
 <input
     type="date"
     name="date"
-    value={new Date(selectedEvent.date).toISOString().split("T")[0]} 
+    value={selectedEvent.date ? new Date(selectedEvent.date).toISOString().split("T")[0] : ""} 
     onChange={handleEditChange}
     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
 />
+
 
 <label className="block font-semibold">Time:</label>
 <input
@@ -361,13 +407,13 @@ const EventsTab = () => {
 
 <div className="flex justify-between mt-4 gap-3">
     <button 
-        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
+        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition cursor-pointer"
         onClick={() => document.getElementById("editModal").close()}
     >
         Cancel
     </button>
     <button 
-        className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+        className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
         onClick={handleSaveEdit}
         disabled={!selectedEvent?.title || !selectedEvent?.date || !selectedEvent?.time || !selectedEvent?.location}
     >
@@ -377,16 +423,16 @@ const EventsTab = () => {
 </dialog>
 <dialog id="deleteModal" className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-6 w-96">
                 <h2 className="text-lg font-bold text-center mb-4">Confirm Archive</h2>
-                <p className="text-center">Are you sure you want to Archive"{eventToDelete?.title}"?</p>
+                <p className="text-center">Are you sure you want to Archive "{eventToDelete?.title}"?</p>
                 <div className="flex justify-between mt-4 gap-3">
                     <button 
-                        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition"
+                        className="w-1/2 px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition cursor-pointer"
                         onClick={() => document.getElementById("deleteModal").close()}
                     >
                         Cancel
                     </button>
                     <button 
-                        className="w-1/2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                        className="w-1/2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition cursor-pointer"
                         onClick={handleDeleteEvent}
                     >
                         Archive
