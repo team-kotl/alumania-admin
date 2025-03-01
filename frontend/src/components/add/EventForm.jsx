@@ -106,7 +106,7 @@ const EventForm = () => {
     };
 
     return (
-        <div className="ml-15 mr-5 mt-5 w-8/12">
+        <div className="ml-15 mr-3 mt-2 w-8/12">
             {/* Event Photo */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
@@ -136,10 +136,11 @@ const EventForm = () => {
             </fieldset>
 
             {/* School and Batch */}
-            <div className="flex w-full flex-col lg:flex-row mt-2 space-x-64">
-                <div className="w-full">
-                    <p className="text-lg text-primary font-semibold mb-2">School</p>
-                    <select className="select validator" name="school" value={eventData.school} onChange={handleChange}>
+            <div className="flex w-full flex-col lg:flex-row space-x-10">
+                {/* School Selection */}
+                <fieldset className="fieldset w-1/2">
+                    <legend className="fieldset-legend text-lg text-primary">School</legend>
+                    <select className="select validator w-full" name="school" value={eventData.school} onChange={handleChange}>
                         <option value="">Select school here</option>
                         <option>SAMCIS</option>
                         <option>SONAHBS</option>
@@ -149,10 +150,12 @@ const EventForm = () => {
                         <option>SOM</option>
                     </select>
                     {errors.school && <p className="text-red-500 text-xs">{errors.school}</p>}
-                </div>
-                <div className="w-full">
-                    <p className="text-lg text-primary font-semibold mb-2">Batch</p>
-                    <select className="select validator" name="batchfilter" value={eventData.batchfilter} onChange={handleChange}>
+                </fieldset>
+
+                {/* Batch Selection */}
+                <fieldset className="fieldset w-1/2 mr-23">
+                    <legend className="fieldset-legend text-lg text-primary">Batch</legend>
+                    <select className="select validator w-full" name="batchfilter" value={eventData.batchfilter} onChange={handleChange}>
                         <option value="">Select batch here</option>
                         <option>2020</option>
                         <option>2021</option>
@@ -162,30 +165,33 @@ const EventForm = () => {
                         <option>2025</option>
                     </select>
                     {errors.batchfilter && <p className="text-red-500 text-xs">{errors.batchfilter}</p>}
-                </div>
+                </fieldset>
             </div>
 
             {/* Category and Schedule */}
-            <div className="flex flex-col lg:flex-row mt-2 space-x-64">
-                <div className="w-full">
-                    <p className="text-lg text-primary font-semibold mb-2">Category</p>
-                    <select className="select validator" name="category" value={eventData.category} onChange={handleChange}>
+            <div className="flex flex-col lg:flex-row space-x-10">
+                {/* Category Selection */}
+                <fieldset className="fieldset w-1/2">
+                    <legend className="fieldset-legend text-lg text-primary">Category</legend>
+                    <select className="select validator w-full" name="category" value={eventData.category} onChange={handleChange}>
                         <option value="">Select category here</option>
                         <option>Reunion</option>
                         <option>Seminar</option>
                         <option>Thanksgiving</option>
                     </select>
                     {errors.category && <p className="text-red-500 text-xs">{errors.category}</p>}
-                </div>
-                <div className="w-full">
-                    <p className="text-lg text-primary font-semibold mb-2">Schedule</p>
-                    <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="input" />
+                </fieldset>
+
+                {/* Event Schedule */}
+                <fieldset className="fieldset w-1/2 mr-23">
+                    <legend className="fieldset-legend text-lg text-primary">Schedule</legend>
+                    <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="w-full input" />
                     {errors.eventdate && <p className="text-red-500 text-xs">{errors.eventdate}</p>}
-                </div>
+                </fieldset>
             </div>
 
             {/* Submit Button */}
-            <div className="flex mr-23 mt-8 justify-end">
+            <div className="flex justify-end mt-8 mr-23">
                 <button onClick={handleSubmit} className="btn btn-primary hover:select-secondary">Publish</button>
             </div>
         </div>
