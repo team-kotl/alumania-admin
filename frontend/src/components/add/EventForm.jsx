@@ -83,7 +83,7 @@ const EventForm = () => {
     };
 
     return (
-        <div className="ml-15 mr-5 w-8/12">
+        <div className="ml-15 mr-5 mt-5 w-8/12">
             {/* Event Photo */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Upload a picture</legend>
@@ -111,7 +111,7 @@ const EventForm = () => {
             {/* School and Batch */}
             <div className="flex w-full flex-col lg:flex-row mt-4 space-x-64">
                 <div className="w-full">
-                    <p className="text-lg text-primary font-semibold">School</p>
+                    <p className="text-lg text-primary font-semibold mb-2">School</p>
                     <select className="select validator" name="school" value={eventData.school} onChange={handleChange} required>
                         <option value="">Select school here</option>
                         <option>SAMCIS</option>
@@ -123,7 +123,7 @@ const EventForm = () => {
                     </select>
                 </div>
                 <div className="w-full">
-                    <p className="text-lg text-primary font-semibold">Batch</p>
+                    <p className="text-lg text-primary font-semibold mb-2">Batch</p>
                     <select className="select validator" name="batchfilter" value={eventData.batchfilter} onChange={handleChange} required>
                         <option value="">Select batch here</option>
                         <option>2020</option>
@@ -137,9 +137,9 @@ const EventForm = () => {
             </div>
 
             {/* Category and Schedule */}
-            <div className="flex flex-col lg:flex-row mt-2 space-x-64">
+            <div className="flex flex-col lg:flex-row mt-4 space-x-64">
                 <div className="w-full">
-                    <p className="text-lg text-primary font-semibold">Category</p>
+                    <p className="text-lg text-primary font-semibold mb-2">Category</p>
                     <select className="select validator" name="category" value={eventData.category} onChange={handleChange} required>
                         <option value="">Select category here</option>
                         <option>Reunion</option>
@@ -148,13 +148,13 @@ const EventForm = () => {
                     </select>
                 </div>
                 <div className="w-full">
-                    <p className="text-lg text-primary font-semibold">Schedule</p>
+                    <p className="text-lg text-primary font-semibold mb-2">Schedule</p>
                     <input type="datetime-local" name="eventdatetime" onChange={handleDateTimeChange} className="input" required />
                 </div>
             </div>
 
             {/* Submit Button */}
-            <div className="flex mr-23 mt-5 justify-end">
+            <div className="flex mr-23 mt-8 justify-end">
                 <button onClick={handleSubmit} className="btn btn-primary hover:select-secondary">Publish</button>
             </div>
         </div>
