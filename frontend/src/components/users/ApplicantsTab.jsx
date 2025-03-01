@@ -29,31 +29,21 @@ const ApplicantsTab = () => {
   }, []);
 
   const handleAccept = async (applicantid) => {
-    console.log("Accepting:", applicantid);
     try {
-      const response = await axios.post(
-        `http://localhost:5000/users/accept/${applicantid}`
-      );
-      console.log("Response:", response.data);
-
+      await axios.post(`http://localhost:5000/users/accept/${applicantid}`);
       setApplicants((prev) =>
         prev.filter((applicant) => applicant.applicantid !== applicantid)
       );
       setNotification("Applicant accepted successfully!");
     } catch (err) {
-      console.error(
-        "Error accepting applicant:",
-        err.response?.data || err.message
-      );
+      console.error("Error accepting applicant:", err);
       setNotification("Error accepting applicant");
     }
   };
 
   const handleDecline = async (applicantid) => {
-    console.log("Declining:", applicantid);
     try {
       await axios.delete(`http://localhost:5000/users/decline/${applicantid}`);
-
       setApplicants((prev) =>
         prev.filter((applicant) => applicant.applicantid !== applicantid)
       );
@@ -63,6 +53,18 @@ const ApplicantsTab = () => {
       setNotification("Error declining applicant");
     }
   };
+
+  const filteredApplicants = applicants.filter((applicant) =>
+    [
+      applicant.fullname,
+      applicant.course,
+      applicant.school,
+      applicant.batch
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
+  );
 
   if (loading) {
     return (
@@ -75,31 +77,31 @@ const ApplicantsTab = () => {
   return (
     <div className="overflow-x-auto ml-40 mt-4">
       <div className="flex justify-end space-x-2 mb-3">
-      <label className="input">
-        <svg
-          className="h-[1em] opacity-50"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <g
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            strokeWidth="2.5"
-            fill="none"
-            stroke="currentColor"
+        <label className="input">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
           >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
-        </svg>
-        <input
-          type="search"
-          required
-          placeholder="Name, Course, School, Batch"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </label>
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            type="search"
+            required
+            placeholder="Name, Course, School, Batch"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </label>
       </div>
 
       <table className="table w-full mt-7">
@@ -117,7 +119,7 @@ const ApplicantsTab = () => {
           </tr>
         </thead>
         <tbody>
-          {applicants.map((applicant) => (
+          {filteredApplicants.map((applicant) => (
             <tr key={applicant.applicantid}>
               <td className="px-17 py-4">{applicant.fullname}</td>
               <td className="px-23 py-4">{applicant.course}</td>
@@ -125,12 +127,7 @@ const ApplicantsTab = () => {
               <td className="px-19 py-4">{applicant.batch}</td>
               <td className="px-19 py-4">{applicant.location}</td>
               <td>
-                <button
-                  onClick={() => {
-                    console.log("Accepting:", applicant.applicantid);
-                    handleAccept(applicant.applicantid);
-                  }}
-                >
+                <button onClick={() => handleAccept(applicant.applicantid)}>
                   <FcCheckmark className="w-5 h-5 mr-1" />
                 </button>
               </td>
