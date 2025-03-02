@@ -100,7 +100,7 @@ const AlumniTab = () => {
   }
 
   return (
-    <div className="overflow-auto ml-19 mt-3">
+    <div className="overflow-auto ml-19 mt-3 pb-10">
       <div className="flex justify-end space-x-2 mb-3">
         <label className="input">
           <svg
@@ -135,16 +135,54 @@ const AlumniTab = () => {
         </button>
       </div>
 
-      <table className="table w-full border-collapse border border-gray-100 shadow-md mt-7">
+      <table
+        className="table w-370 border-collapse border border-gray-100 shadow-md mt-7"
+        style={{ tableLayout: "fixed" }}
+      >
         <thead className="bg-gray-100">
           <tr>
-            <th className="px-12 py-3.5 text-gray-600">UserID</th>
-            <th className="px-12 py-3.5 text-gray-600">Email</th>
-            <th className="px-12 py-3.5 text-gray-600">Full Name</th>
-            <th className="px-12 py-3.5 text-gray-600">School</th>
-            <th className="px-14 py-3.5 text-gray-600">Batch</th>
-            <th className="px-12 py-3.5 text-gray-600">Employment Status</th>
-            <th className="px-12 py-3.5 text-gray-600">Location</th>
+            <th
+              className="px-10 py-3.5 text-gray-600"
+              style={{ width: "100px" }}
+            >
+              UserID
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "180px" }}
+            >
+              Email
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "220px" }}
+            >
+              Full Name
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "120px" }}
+            >
+              School
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "120px" }}
+            >
+              Batch
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "150px" }}
+            >
+              Employment Status
+            </th>
+            <th
+              className="px-4 py-3.5 text-gray-600"
+              style={{ width: "90px" }}
+            >
+              Location
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -154,13 +192,27 @@ const AlumniTab = () => {
               className="hover:bg-gray-100 cursor-pointer"
               onClick={() => handleSelectAlumni(user)}
             >
-              <td className="px-12 py-5">{user.userid}</td>
-              <td className="px-12 py-5">{user.email}</td>
-              <td className="px-12 py-5">{user.fullname}</td>
-              <td className="px-12 py-5">{user.school}</td>
-              <td className="px-14 py-5">{user.batch}</td>
-              <td className="px-12 py-5">{user.empstatus}</td>
-              <td className="px-12 py-5">{user.location}</td>
+              <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
+                {user.userid}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                {user.email}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                {user.fullname}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                {user.school}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
+                {user.batch}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                {user.empstatus}
+              </td>
+              <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
+                {user.location}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -179,14 +231,16 @@ const AlumniTab = () => {
           }}
           open
         >
-           <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-6 w-90 border border-gray-200 z-50">
+          <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-6 w-90 border border-gray-200 z-50">
             <h3 className="text-l font-bold text-center text-gray-800">
               Search Filters
             </h3>
             <hr className="my-3 border-gray-300" />
             <div className="grid grid-cols-2 gap-6 text-sm text-gray-700">
               <div>
-                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">Status</h4>
+                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">
+                  Status
+                </h4>
                 {["Employed", "Unemployed", "Underemployed"].map((status) => (
                   <button
                     key={status}
@@ -202,7 +256,9 @@ const AlumniTab = () => {
                 ))}
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">Location</h4>
+                <h4 className="font-semibold text-gray-900 ml-3 mb-2 border-b-2 border-blue-500 inline-block pb-1">
+                  Location
+                </h4>
                 {["Domestic", "Foreign"].map((location) => (
                   <button
                     key={location}
