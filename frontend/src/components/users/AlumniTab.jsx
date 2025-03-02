@@ -231,7 +231,7 @@ const AlumniTab = () => {
           }}
           open
         >
-          <div className="absolute top-62 right-37 bg-white shadow-lg rounded-lg p-6 w-90 border border-gray-200 z-50">
+          <div className="absolute top-62 right-25 bg-white shadow-lg rounded-lg p-6 w-90 border border-gray-200 z-50">
             <h3 className="text-l font-bold text-center text-gray-800">
               Search Filters
             </h3>
