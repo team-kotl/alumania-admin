@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const authRouter = require("./routes/auth");
 const eventRouter = require("./routes/event");
 const jobRouter = require("./routes/job");
-const locationRouter = require("./routes/location");
+const locationRouter = require("./routes/location.js");
 
 app.use("/auth", authRouter);
 app.use("/event", eventRouter);
