@@ -2,41 +2,70 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db").db;
 
-
-router.put("/edit-event/:eventid", (req, res) => {
-    const { eventid } = req.params;
-    const { title, category, eventtime, eventdate, eventloc, } = req.body;
-
-    const query = `
-        UPDATE event 
-        SET title = ?, category = ?, eventtime = ?, eventdate = ?, eventloc = ?
-        WHERE eventid = ?
-    `;
-
-    db.query(query, [title, category, eventtime, eventdate, eventloc, eventid], (err, results) => {
-        if (err) {
-            console.log("Error updating event:", err);
-            return res.status(500).json({ error: err.message });
+// Get all events
+router.get("/", (req, res) => {
+    db.query(
+        `SELECT eventid, title, description, category, 
+                TIME_FORMAT(eventtime, '%h:%i %p') AS eventtime, 
+                DATE_FORMAT(eventdate, '%M %d, %Y') AS eventdate,
+                 eventloc, batchfilter, publishtimestamp, school, 
+                TO_BASE64(eventphoto) AS eventphoto, userid 
+        FROM event
+        ORDER BY publishtimestamp DESC`,
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(200).json(results);
         }
-        console.log("Event updated successfully:", results);
-        res.status(200).json({ message: "Event updated successfully", results });
-    });
+    );
 });
 
-
-router.delete("/delete-event/:eventid", (req, res) => {
+// Get interested users for an event
+router.get("/interested/:eventid", (req, res) => {
     const { eventid } = req.params;
-    
-    const query = `DELETE FROM event WHERE eventid = ?`;
-
-    db.query(query, [eventid], (err, results) => {
-        if (err) {
-            console.log("Error deleting event:", err);
-            return res.status(500).json({ error: err.message });
+    db.query(
+        `SELECT alumni.firstname, alumni.lastname, alumni.course, TO_BASE64(alumni.displaypic) AS displaypic
+        FROM interestedinevent
+        INNER JOIN alumni ON interestedinevent.userid = alumni.userid
+        WHERE interestedinevent.eventid = ?`,
+        [eventid],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(200).json(results);
         }
-        console.log("Event deleted successfully:", results);
-        res.status(200).json({ message: "Event deleted successfully" });
-    });
+    );
+});
+
+// Edit an event
+router.put("/:eventid", (req, res) => {
+    const { eventid } = req.params;
+    const { title, date, time, location, category } = req.body;
+
+    if (!title || !date || !time || !location || !category) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
+
+    db.query(
+        `UPDATE event 
+        SET title = ?, eventdate = ?, eventtime = ?, eventloc = ?, category = ?
+        WHERE eventid = ?`,
+        [title, date, time, location, category, eventid],
+        (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: err.message });
+            }
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ error: "Event not found" });
+            }
+            res.status(200).json({ message: "Event updated successfully" });
+        }
+    );
 });
 
 module.exports = router;
