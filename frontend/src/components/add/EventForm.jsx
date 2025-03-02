@@ -34,7 +34,7 @@ const EventForm = () => {
                 return response.json();
             })
             .then(data => {
-                console.log("Locations data loaded:", data); // Debugging
+                console.log("Locations data loaded:", data);
                 setLocationsData(data);
                 const uniqueRegions = [...new Set(data.map(item => item.REGION))];
                 setRegions(uniqueRegions);
@@ -49,7 +49,7 @@ const EventForm = () => {
                 ...new Set(locationsData.filter(item => item.REGION === selectedRegion).map(item => item.PROVINCE))
             ];
             setProvinces(filteredProvinces);
-            setCities([]); // Reset cities when region changes
+            setCities([]); 
             setSelectedProvince("");
         } else {
             setProvinces([]);
@@ -100,8 +100,19 @@ const EventForm = () => {
 
     const validateForm = () => {
         let newErrors = {};
-        const requiredFields = ["title", "description", "category", "eventdate", "eventtime", "batchfilter", "school", "eventphoto"];
-        requiredFields.forEach(field => { if (!eventData[field]) newErrors[field] = "This field is required."; });
+        const requiredFields = [
+            "title", 
+            "description", 
+            "category", 
+            "eventdate", 
+            "eventtime", 
+            "batchfilter", 
+            "school", 
+            "eventphoto"
+        ];
+        requiredFields.forEach(field => { 
+            if (!eventData[field]) newErrors[field] = "This field is required."; 
+        });
         if (!selectedRegion) newErrors.selectedRegion = "Region is required.";
         if (!selectedProvince) newErrors.selectedProvince = "Province is required.";
         if (!selectedCity) newErrors.selectedCity = "City is required.";
@@ -112,19 +123,19 @@ const EventForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        // Format the event location correctly
         const fullLocation = [selectedRegion, selectedProvince, selectedCity, street]
             .filter(Boolean)
             .join(", ");
         setEventData(prevData => ({ ...prevData, eventloc: fullLocation }));
+        
         const formData = new FormData();
-        const updatedEventData = { ...eventData, eventloc: fullLocation, userid: "U001" }; // ✅ Ensure userid is included
+        const updatedEventData = { ...eventData, eventloc: fullLocation, userid: "U001" }; 
+        
         for (const key in updatedEventData) {
             if (updatedEventData[key] !== null && updatedEventData[key] !== "") {
                 formData.append(key, updatedEventData[key]);
             }
         }
-        // Ensure file is selected before sending the request
         if (!eventData.eventphoto) {
             alert("Please upload an event photo.");
             return;
@@ -166,21 +177,18 @@ const EventForm = () => {
                 <input type="file" className="w-11/12 file-input" onChange={handleFileChange} />
                 {errors.eventphoto && <p className="text-red-500">{errors.eventphoto}</p>}
             </fieldset>
-
             {/* Event Title */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Title</legend>
                 <input type="text" name="title" value={eventData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert event title here" />
                 {errors.title && <p className="text-red-500">{errors.title}</p>}
             </fieldset>
-
             {/* Event Description */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Description</legend>
                 <textarea name="description" value={eventData.description} onChange={handleChange} className="textarea h-24 w-11/12" placeholder="Insert event description here"></textarea>
                 {errors.description && <p className="text-red-500">{errors.description}</p>}
             </fieldset>
-
             {/* Event Location */}
             <div className="flex w-full flex-col lg:flex-row mt-4">
                 <div className="w-full">
@@ -218,7 +226,6 @@ const EventForm = () => {
                 <input type="text" name="eventloc" onChange={(e) => setStreet(e.target.value)} value={street} className="w-11/12 input" placeholder="Insert street here" />
                 {errors.eventloc && <p className="text-red-500">{errors.eventloc}</p>}
             </fieldset>
-
             {/* School and Batch */}
             <div className="flex w-full flex-col lg:flex-row space-x-10">
                 <fieldset className="fieldset w-1/2">
@@ -250,7 +257,6 @@ const EventForm = () => {
                     {errors.batchfilter && <p className="text-red-500 text-xs">{errors.batchfilter}</p>}
                 </fieldset>
             </div>
-
             {/* Category and Schedule */}
             <div className="flex flex-col lg:flex-row space-x-10">
                 <fieldset className="fieldset w-1/2">
@@ -270,7 +276,6 @@ const EventForm = () => {
                     {errors.eventdate && <p className="text-red-500 text-xs">{errors.eventdate}</p>}
                 </fieldset>
             </div>
-
             {/* Submit Button */}
             <div className="flex justify-end mt-5 mr-23">
                 <button onClick={handleSubmit} className="btn btn-primary hover:select-secondary">Publish</button>
