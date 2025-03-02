@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const JobForm = () => {
@@ -15,18 +15,77 @@ const JobForm = () => {
     });
 
     const [errors, setErrors] = useState({});
+        const [locationsData, setLocationsData] = useState([]);
+        const [regions, setRegions] = useState([]);
+        const [provinces, setProvinces] = useState([]);
+        const [cities, setCities] = useState([]);
+        const [selectedRegion, setSelectedRegion] = useState("");
+        const [selectedProvince, setSelectedProvince] = useState("");
+        const [selectedCity, setSelectedCity] = useState("");
+        const [street, setStreet] = useState("");
+
+    useEffect(() => {
+        fetch("/locations.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Locations data loaded:", data); // Debugging
+                setLocationsData(data);
+                const uniqueRegions = [...new Set(data.map(item => item.REGION))];
+                setRegions(uniqueRegions);
+            })
+            .catch(error => console.error("Error loading locations:", error));
+    }, []);
+
+    useEffect(() => {
+        if (selectedRegion) {
+            const filteredProvinces = [
+                ...new Set(locationsData.filter(item => item.REGION === selectedRegion).map(item => item.PROVINCE))
+            ];
+            setProvinces(filteredProvinces);
+            setCities([]);
+            setSelectedProvince("");
+        } else {
+            setProvinces([]);
+            setCities([]);
+        }
+    }, [selectedRegion]);
+
+    useEffect(() => {
+        if (selectedProvince) {
+            const filteredCities = locationsData
+                .filter(item => item.PROVINCE === selectedProvince)
+                .map(item => item["CITY/ MUNICIPALITY"]);
+            setCities(filteredCities);
+            setSelectedCity("");
+        } else {
+            setCities([]);
+        }
+    }, [selectedProvince]);
+
+    useEffect(() => {
+        const fullLocation = [selectedRegion, selectedProvince, selectedCity, street]
+            .filter(Boolean)
+            .join(", ");
+        setJobData(prevData => ({ ...prevData, location: fullLocation }));
+    }, [selectedRegion, selectedProvince, selectedCity, street]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setJobData({
-            ...jobData,
-            [name]: value,
+        setJobData(prevData => {
+            const updatedData = { ...prevData, [name]: value };
+            console.log("Updated Job Data:", updatedData);  // Debugging
+            return updatedData;
         });
-
         setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     };
-
+    
     const validateForm = () => {
+        console.log("Validating Job Data:", jobData);
         let newErrors = {};
         const requiredFields = [
             "title",
@@ -38,13 +97,14 @@ const JobForm = () => {
             "contactemail",
             "contactnumber",
         ];
-
         requiredFields.forEach((field) => {
             if (!jobData[field]) {
                 newErrors[field] = "This field is required.";
             }
         });
-        // Validate Contact Number
+        if (!selectedRegion) newErrors.selectedRegion = "Region is required.";
+        if (!selectedProvince) newErrors.selectedProvince = "Province is required.";
+        if (!selectedCity) newErrors.selectedCity = "City is required.";
         if (jobData.contactnumber) {
             if (!/^\d{11}$/.test(jobData.contactnumber)) {
                 newErrors.contactnumber = "Must be exactly 11 digits.";
@@ -52,16 +112,27 @@ const JobForm = () => {
                 newErrors.contactnumber = "Must start with '09'.";
             }
         }
+        console.log("Validation Errors:", newErrors);
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()) {
+            console.log("Form validation failed:", errors);
+            return;
+        }
+        const fullLocation = [selectedRegion, selectedProvince, selectedCity, street]
+            .filter(Boolean)
+            .join(", ");
+        setJobData(prevData => ({ ...prevData, location: fullLocation }));
+        const updatedJobData = { ...jobData, location: fullLocation, userid: "U001" };
+        console.log("Job Data before sending:", updatedJobData);
         
         try {
-            await axios.post("http://localhost:5000/job", jobData);
+            const response = await axios.post("http://localhost:5000/job", updatedJobData);
+            console.log("Server Response:", response.data);
             alert("Job posted successfully!");
             setJobData({
                 title: "",
@@ -74,10 +145,14 @@ const JobForm = () => {
                 contactnumber: "",
                 userid: "U001",
             });
+            setSelectedRegion("");
+            setSelectedProvince("");
+            setSelectedCity("");
+            setStreet("");
             setErrors({});
         } catch (error) {
-            console.error("Error posting job:", error);
-            alert("Failed to post job.");
+            console.error("Error posting job:", error.response?.data || error.message);
+            alert(`Failed to post job: ${error.response?.data?.message || "Unknown error"}`);
         }
     };
 
@@ -89,28 +164,55 @@ const JobForm = () => {
                 <input type="text" name="title" value={jobData.title} onChange={handleChange} className="w-11/12 input" placeholder="Insert job title here" />
                 {errors.title && <p className="text-red-500">{errors.title}</p>}
             </fieldset>
-
             {/* Job Description */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Description</legend>
                 <textarea name="description" value={jobData.description} onChange={handleChange} className="textarea h-24 w-11/12" placeholder="Insert job description here"></textarea>
                 {errors.description && <p className="text-red-500">{errors.description}</p>}
             </fieldset>
-
-            {/* Location */}
-            <fieldset className="fieldset">
-                <legend className="fieldset-legend text-lg text-primary">Location</legend>
-                <input type="text" name="location" value={jobData.location} onChange={handleChange} className="w-11/12 input" placeholder="Insert company location here" />
+            {/* Event Location */}
+            <div className="flex w-full flex-col lg:flex-row mt-4">
+                <div className="w-full">
+                    <form>
+                    <p className="text-lg text-primary font-semibold">Location</p>
+                        <select className="select validator" onChange={(e) => setSelectedRegion(e.target.value)} value={selectedRegion}>
+                            <option value="">Select Region</option>
+                            {regions.map((region, index) => <option key={index} value={region}>{region}</option>)}
+                        </select>
+                        {errors.selectedRegion && <p className="text-red-500 text-xs">{errors.selectedRegion}</p>}
+                    </form>
+                </div>
+                <div className="w-full">
+                    <form>
+                    <p className="text-lg text-white font-semibold">.</p>
+                        <select className="select validator" onChange={(e) => setSelectedProvince(e.target.value)} value={selectedProvince} disabled={!selectedRegion}>
+                            <option value="">Select Province</option>
+                            {provinces.map((province, index) => <option key={index} value={province}>{province}</option>)}
+                        </select>
+                        {errors.selectedProvince && <p className="text-red-500 text-xs">{errors.selectedProvince}</p>}
+                    </form>
+                </div>
+                <div className="w-full mr-18">
+                    <form>
+                    <p className="text-lg text-white font-semibold">.</p>
+                        <select className="select validator" onChange={(e) => setSelectedCity(e.target.value)} value={selectedCity} disabled={!selectedProvince}>
+                            <option value="">Select City</option>
+                            {cities.map((city, index) => <option key={index} value={city}>{city}</option>)}
+                        </select>
+                        {errors.selectedCity && <p className="text-red-500 text-xs">{errors.selectedCity}</p>}
+                    </form>
+                </div>
+            </div>
+            <fieldset className="fieldset mt-1">
+                <input type="text" name="location" onChange={(e) => setStreet(e.target.value)} value={street} className="w-11/12 input" placeholder="Insert street here" />
                 {errors.location && <p className="text-red-500">{errors.location}</p>}
             </fieldset>
-
             {/* Company Name */}
             <fieldset className="fieldset">
                 <legend className="fieldset-legend text-lg text-primary">Company Name</legend>
                 <input type="text" name="companyname" value={jobData.companyname} onChange={handleChange} className="w-11/12 input" placeholder="Insert company name here" />
                 {errors.companyname && <p className="text-red-500">{errors.companyname}</p>}
             </fieldset>
-            
             <div className="flex flex-col lg:flex-row space-x-10 mr-23 mt-2">
                 {/* Contact Name Field */}
                 <fieldset className="w-1/2 flex flex-col">
@@ -125,7 +227,6 @@ const JobForm = () => {
                     />
                     {errors.contactname && <p className="text-red-500 text-xs">{errors.contactname}</p>}
                 </fieldset>
-
                 {/* Company Email Field */}
                 <div className="w-1/2 flex flex-col">
                     <p className="text-lg text-primary mb-1 font-semibold">Company Email</p>
@@ -149,7 +250,6 @@ const JobForm = () => {
                     {errors.contactemail && <p className="text-red-500 text-xs">{errors.contactemail}</p>}
                 </div>
             </div>
-
             <div className="flex flex-col lg:flex-row space-x-10 mt-2 mr-11">
                 {/* Contact Number Field */}
                 <div className="w-1/2 flex flex-col">
@@ -179,7 +279,6 @@ const JobForm = () => {
                     </label>
                     {errors.contactnumber && <p className="text-red-500 text-xs">{errors.contactnumber}</p>}
                 </div>
-
                 {/* Work Type Field */}
                 <div className="w-1/2 mr-12 flex flex-col">
                     <p className="text-lg text-primary font-semibold mb-1">Work Type</p>
@@ -192,7 +291,6 @@ const JobForm = () => {
                     {errors.type && <p className="text-red-500 text-xs">{errors.type}</p>}
                 </div>
             </div>
-
             {/* Submit Button */}
             <div className="flex mr-23 mt-5 justify-end">
                 <button onClick={handleSubmit} className="btn btn-primary hover:select-secondary">Publish</button>
