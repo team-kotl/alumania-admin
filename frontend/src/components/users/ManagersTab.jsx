@@ -130,23 +130,23 @@ const ManagersTab = () => {
       });
   };
 
-  const deleteManager = () => {
-    if (!selectedManager) return;
-
-    axios
-      .delete(`http://localhost:5000/users/managers/${selectedManager.userid}`)
-      .then(() => {
-        setManagers(
-          managers.filter(
-            (manager) => manager.userid !== selectedManager.userid
-          )
-        );
-        closeDeleteModal();
-      })
-      .catch((error) => {
-        console.error("Error deleting manager:", error);
-      });
-  };
+//  const deleteManager = () => {
+//    if (!selectedManager) return;
+//
+//   axios
+//      .delete(`http://localhost:5000/users/managers/${selectedManager.userid}`)
+//      .then(() => {
+//        setManagers(
+//          managers.filter(
+//            (manager) => manager.userid !== selectedManager.userid
+//          )
+//        );
+//        closeDeleteModal();
+//      })
+//      .catch((error) => {
+//        console.error("Error deleting manager:", error);
+//      });
+//  };
 
   return (
     <div className="overflow-x-auto ml-35 mt-5">
@@ -227,6 +227,7 @@ const ManagersTab = () => {
                 <button
                   className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
                   onClick={() => openDeleteModal(manager)}
+                  disabled
                 >
                   <PiArchive className="w-5 h-6 mr-1 text-red-600" />
                 </button>

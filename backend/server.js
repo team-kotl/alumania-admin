@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 
 const authRouter = require("./routes/auth");
 
-app.use("/auth", authRouter);
-
 const usersRouter = require("./routes/users");
+
+app.use("/auth", authRouter);
 
 app.use("/users", usersRouter);
 
