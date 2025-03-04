@@ -4,7 +4,6 @@ import { PiFunnelSimpleLight } from "react-icons/pi";
 import { FaUserGraduate } from "react-icons/fa";
 
 const AlumniTab = () => {
-  const [alumni, setAlumni] = useState([]);
   const [filteredAlumni, setFilteredAlumni] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,47 +16,28 @@ const AlumniTab = () => {
   const [filterOpen, setIsOpen] = useState(false);
   const filterRef = useRef(null);
   const modalRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/users");
-        setAlumni(response.data);
+        const response = await axios.get("http://localhost:5000/users", {
+          params: {
+            search: searchQuery.trim() !== "" ? searchQuery : undefined,
+            status: selectedFilters.status || undefined,
+            location: selectedFilters.location || undefined,
+          },
+        });
         setFilteredAlumni(response.data);
       } catch (error) {
         console.error("Error fetching alumni:", error);
       }
       setLoading(false);
     };
+  
     fetchUsers();
-  }, []);
-
-  useEffect(() => {
-    let filtered = alumni;
-
-    if (searchQuery.trim() !== "") {
-      filtered = filtered.filter((user) =>
-        [user.userid, user.email, user.fullname]
-          .join(" ")
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
-      );
-    }
-
-    if (selectedFilters.status) {
-      filtered = filtered.filter(
-        (user) => user.empstatus === selectedFilters.status
-      );
-    }
-
-    if (selectedFilters.location) {
-      filtered = filtered.filter(
-        (user) => user.location === selectedFilters.location
-      );
-    }
-
-    setFilteredAlumni(filtered);
-  }, [searchQuery, selectedFilters, alumni]);
+  }, [searchQuery, selectedFilters]);
 
   const handleSelectAlumni = (user) => {
     if (user.displaypic) {
@@ -120,6 +100,7 @@ const AlumniTab = () => {
             </g>
           </svg>
           <input
+            ref={inputRef}
             type="search"
             required
             placeholder="Name, ID, Email, School..."

@@ -4,7 +4,9 @@ const db = require("../db").db;
 
 // Get alumni users
 router.get("/", (req, res) => {
-    const query = `
+    const { search, status, location } = req.query;
+
+    let query = `
         SELECT 
             u.userid, 
             a.email, 
@@ -21,7 +23,34 @@ router.get("/", (req, res) => {
         WHERE u.usertype = 'alumni'
     `;
 
-    db.query(query, (err, results) => {
+    let conditions = [];
+    let params = [];
+
+    // Search across multiple fields
+    if (search) {
+        conditions.push(`
+            (u.userid LIKE ? 
+            OR a.email LIKE ? 
+            OR CONCAT(a.firstname, ' ', IFNULL(a.middlename, ''), ' ', a.lastname) LIKE ?)
+        `);
+        params.push(`%${search}%`, `%${search}%`, `%${search}%`);
+    }
+
+    if (status) {
+        conditions.push("a.empstatus = ?");
+        params.push(status);
+    }
+
+    if (location) {
+        conditions.push("a.location = ?");
+        params.push(location);
+    }
+
+    if (conditions.length > 0) {
+        query += ` AND ${conditions.join(" AND ")}`;
+    }
+
+    db.query(query, params, (err, results) => {
         if (err) {
             console.error("Database Error:", err.sqlMessage || err);
             return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
