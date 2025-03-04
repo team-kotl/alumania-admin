@@ -35,7 +35,7 @@ const AlumniTab = () => {
       }
       setLoading(false);
     };
-  
+
     fetchUsers();
   }, [searchQuery, selectedFilters]);
 
@@ -158,10 +158,7 @@ const AlumniTab = () => {
             >
               Employment Status
             </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "90px" }}
-            >
+            <th className="px-4 py-3.5 text-gray-600" style={{ width: "90px" }}>
               Location
             </th>
           </tr>
@@ -260,7 +257,7 @@ const AlumniTab = () => {
       )}
 
       <dialog
-        id="my_modal_2"
+        id="alumni_modal"
         ref={modalRef}
         className="modal"
         onClick={(e) => {
@@ -272,15 +269,21 @@ const AlumniTab = () => {
       >
         <div className="modal-box">
           {selectedAlumni && (
-            <div className="text-center">
+            <div className="flex items-center space-x-4">
               <img
                 src={imageUrl || "https://via.placeholder.com/150"}
                 alt="Profile"
-                className="w-32 h-32 mx-auto rounded-full mb-4"
+                className="w-20 h-20 rounded-full"
               />
-              <h2 className="text-xl font-semibold mb-2">
-                {selectedAlumni.fullname}
-              </h2>
+              <div>
+                <h2 className="text-xl font-semibold">
+                  {selectedAlumni.fullname}
+                </h2>
+                <p className="text-gray-500">
+                  <span className="font-semibold mt-5">User ID:</span>{" "}
+                  {selectedAlumni.userid}
+                </p>
+              </div>
             </div>
           )}
 
