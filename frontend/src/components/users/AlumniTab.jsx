@@ -148,13 +148,13 @@ const AlumniTab = () => {
             </th>
             <th
               className="px-4 py-3.5 text-gray-600"
-              style={{ width: "120px" }}
+              style={{ width: "100px" }}
             >
               Batch
             </th>
             <th
               className="px-4 py-3.5 text-gray-600"
-              style={{ width: "150px" }}
+              style={{ width: "170px" }}
             >
               Employment Status
             </th>
@@ -182,10 +182,10 @@ const AlumniTab = () => {
               <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
                 {user.school}
               </td>
-              <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
+              <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
                 {user.batch}
               </td>
-              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+              <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
                 {user.empstatus}
               </td>
               <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
