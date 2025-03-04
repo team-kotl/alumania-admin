@@ -314,6 +314,14 @@ const AlumniTab = () => {
                   </tr>
                   <tr className="border-b border-gray-200">
                     <td className="px-3 py-2 font-semibold bg-gray-100">
+                      Batch
+                    </td>
+                    <td className="px-3 py-2">
+                      {selectedAlumni?.batch || "N/A"}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="px-3 py-2 font-semibold bg-gray-100">
                       Status
                     </td>
                     <td className="px-3 py-2">
