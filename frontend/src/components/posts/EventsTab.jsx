@@ -52,9 +52,9 @@ const EventsTab = () => {
                 location: selectedEvent.location,
                 category: selectedEvent.category
             };
-    
+
             await axios.put(`http://localhost:5000/events/${selectedEvent.eventid}`, updatedEvent);
-    
+
             setEvents((prevEvents) =>
                 prevEvents.map((event) =>
                     event.eventid === selectedEvent.eventid ? { ...event, ...updatedEvent } : event
@@ -87,8 +87,13 @@ const EventsTab = () => {
     };*/}
 
     const filteredEvents = events
-        .filter(event => event.title.toLowerCase().includes(searchQuery) &&
-            (category === "" || event.category === category));
+        .filter(
+            (event) =>
+                (event.title.toLowerCase().includes(searchQuery) &&
+                    (category === "" || event.category === category)) ||
+                (event.eventloc.toLowerCase().includes(searchQuery) &&
+                    (category === "" || event.category === category))
+        );
 
     const sortedEvents = sortEvents(filteredEvents, sortOrder);
 
@@ -253,19 +258,19 @@ const EventsTab = () => {
                                 <div className="h-16"></div>
 
                                 <div className="absolute bottom-4 right-4 flex gap-2">
-                                <button
-                                    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer"
-                                    onClick={() => openModal(event)}
-                                >
-                                    <PiPencilSimple className="w-5 h-5 text-gray-900" />
-                                </button>
+                                    <button
+                                        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer"
+                                        onClick={() => openModal(event)}
+                                    >
+                                        <PiPencilSimple className="w-5 h-5 text-gray-900" />
+                                    </button>
 
-                                <button className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer">
-                                    <PiTrashSimpleBold className="w-5 h-5" />
-                                </button>
+                                    <button className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer">
+                                        <PiTrashSimpleBold className="w-5 h-5" />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))
+                        ))
                     ) : (
                         <div className="flex justify-center items-center h-[50vh] w-full col-span-full">
                             <p className="text-gray-500 text-xl font-semibold">No events found.</p>
@@ -273,7 +278,7 @@ const EventsTab = () => {
                     )}
                 </div>
                 {renderEditEventModal()}
-            
+
                 <dialog id="deleteModal" className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-6 w-96">
                     <h2 className="text-lg font-bold text-center mb-4">Confirm Archive</h2>
                     <p className="text-center">Are you sure you want to Archive "{eventToDelete?.title}"?</p>
@@ -286,7 +291,7 @@ const EventsTab = () => {
                         </button>
                         <button
                             className="w-1/2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition cursor-pointer"
-                            /*onClick={handleDeleteEvent}*/
+                        /*onClick={handleDeleteEvent}*/
                         >
                             Archive
                         </button>
