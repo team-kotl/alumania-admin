@@ -4,18 +4,31 @@ const db = require("../db").db;
 
 
 router.get("/", (req, res) => {
-    db.query(
-        `SELECT jobpid, title, type, location, description, companyname, publishtimestamp, userid 
+    const { search } = req.query; // Get search query from request
+
+    let query = `
+        SELECT jobpid, title, type, location, description, companyname, publishtimestamp, userid 
         FROM jobpost
-        ORDER BY publishtimestamp DESC`,
-        (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: err.message });
-            }
-            res.status(200).json(results);
+    `;
+
+    // Add search filter if search query is provided
+    if (search) {
+        query += ` WHERE title LIKE ? OR location LIKE ? OR companyname LIKE ?`;
+    }
+
+    // Order by publish timestamp
+    query += ` ORDER BY publishtimestamp DESC`;
+
+    // Prepare parameters for the query
+    const params = search ? [`%${search}%`, `%${search}%`, `%${search}%`] : [];
+
+    db.query(query, params, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: err.message });
         }
-    );
+        res.status(200).json(results);
+    });
 });
 
 // Get interested users for a job post
