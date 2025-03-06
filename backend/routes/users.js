@@ -59,34 +59,34 @@ router.get("/", (req, res) => {
     });
 });
 
-// Get manager users
 router.get("/managers", (req, res) => {
-    const query = `
-        SELECT 
-            userid, 
-            username,
-            password
-        FROM user
-        WHERE usertype = 'manager'
-    `;
-
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error("Database Error:", err.sqlMessage || err);
-            return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
-        }
+    const { search } = req.query;
+    let query = `SELECT userid, username, password FROM user WHERE usertype = 'manager'`;
+    let conditions = [];
+    let params = [];
+    
+    if (search) {
+        conditions.push("(userid LIKE ? OR username LIKE ?)");
+        params.push(`%${search}%`, `%${search}%`);
+    }
+    if (conditions.length > 0) {
+        query += ` AND ${conditions.join(" AND ")}`;
+    }
+    db.query(query, params, (err, results) => {
+        if (err) return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
         res.json(results);
     });
 });
 
 router.get("/applicant", (req, res) => {
-    const query = `
-        Select
+    const { search } = req.query;
+    let query = `
+        SELECT
             applicantid,
             username,
             password,
             email,
-            CONCAT(firstname, ' ', IFNULL(middlename, ''), ' ', lastname) AS fullname, 
+            CONCAT(firstname, ' ', IFNULL(middlename, ''), ' ', lastname) AS fullname,
             course,
             company,
             empstatus,
@@ -96,18 +96,22 @@ router.get("/applicant", (req, res) => {
             batch
         FROM applicant
     `;
-
-    db.query(query, (err, results) => {
-        if (err) { 
-            console.error("Database Error:", err.sqlMessage || err);
-            return res.status(500).json({ 
-                error: "Database query failed", 
-                details: err.sqlMessage || err
-            });
-        }
-        res.json(results)
+    let conditions = [];
+    let params = [];
+    
+    if (search) {
+        conditions.push("(applicantid LIKE ? OR email LIKE ? OR CONCAT(firstname, ' ', IFNULL(middlename, ''), ' ', lastname) LIKE ?)");
+        params.push(`%${search}%`, `%${search}%`, `%${search}%`);
+    }
+    if (conditions.length > 0) {
+        query += ` WHERE ${conditions.join(" AND ")}`;
+    }
+    db.query(query, params, (err, results) => {
+        if (err) return res.status(500).json({ error: "Database query failed", details: err.sqlMessage || err });
+        res.json(results);
     });
 });
+
 
 router.put("/managers/:id", (req, res) => {
     const { id } = req.params;
