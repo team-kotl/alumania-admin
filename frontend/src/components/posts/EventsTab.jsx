@@ -18,14 +18,16 @@ const EventsTab = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/events");
+                const response = await axios.get("http://localhost:5000/events", {
+                    params: { search: searchQuery }, // 🔹 Pass searchQuery as a query parameter
+                });
                 setEvents(response.data);
             } catch (error) {
                 console.error("Error fetching events:", error);
             }
         };
         fetchEvents();
-    }, []);
+    }, [searchQuery]);
 
     const sortEvents = (events, sortOrder) => {
         if (sortOrder === "A-Z") {
@@ -95,7 +97,7 @@ const EventsTab = () => {
                     (category === "" || event.category === category))
         );
 
-    const sortedEvents = sortEvents(filteredEvents, sortOrder);
+    const sortedEvents = sortEvents(events, sortOrder);
 
     const openModal = (event) => {
         setSelectedEvent(event);
