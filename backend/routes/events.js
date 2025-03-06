@@ -4,22 +4,35 @@ const db = require("../db").db;
 
 // Get all events
 router.get("/", (req, res) => {
-    db.query(
-        `SELECT eventid, title, description, category, 
+    const { search } = req.query; // Get search query from request
+
+     let query = `
+        SELECT eventid, title, description, category, 
                 TIME_FORMAT(eventtime, '%h:%i %p') AS eventtime, 
                 DATE_FORMAT(eventdate, '%M %d, %Y') AS eventdate,
-                 eventloc, batchfilter, publishtimestamp, school, 
+                eventloc, batchfilter, publishtimestamp, school, 
                 TO_BASE64(eventphoto) AS eventphoto, userid 
         FROM event
-        ORDER BY publishtimestamp DESC`,
-        (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: err.message });
-            }
-            res.status(200).json(results);
+    `;
+
+    // Add search filter if search query is provided
+    if (search) {
+        query += ` WHERE title LIKE ? OR eventloc LIKE ?`;
+    }
+
+    // Order by publish timestamp
+    query += ` ORDER BY publishtimestamp DESC`;
+
+    // Prepare parameters for the query
+    const params = search ? [`%${search}%`, `%${search}%`] : [];
+
+    db.query(query, params, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: err.message });
         }
-    );
+        res.status(200).json(results);
+    });
 });
 
 // Get interested users for an event
@@ -67,5 +80,7 @@ router.put("/:eventid", (req, res) => {
         }
     );
 });
+
+
 
 module.exports = router;
