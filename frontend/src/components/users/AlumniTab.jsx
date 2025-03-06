@@ -71,14 +71,6 @@ const AlumniTab = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex flex-row h-[30rem] w-full items-center justify-center">
-        <span className="loading loading-spinner w-12"></span>
-      </div>
-    );
-  }
-
   return (
     <div className="overflow-auto ml-19 mt-3 pb-10">
       <div className="flex justify-end space-x-2 mb-3">
@@ -164,36 +156,44 @@ const AlumniTab = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredAlumni.map((user) => (
-            <tr
-              key={user.userid}
-              className="hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleSelectAlumni(user)}
-            >
-              <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
-                {user.userid}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                {user.email}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                {user.fullname}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                {user.school}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
-                {user.batch}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
-                {user.empstatus}
-              </td>
-              <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
-                {user.location}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="7" className="text-center py-10">
+                  <span className="loading loading-spinner w-12"></span>
+                </td>
+              </tr>
+            ) : (
+              filteredAlumni.map((user) => (
+                <tr
+                  key={user.userid}
+                  className="hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleSelectAlumni(user)}
+                >
+                  <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
+                    {user.userid}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                    {user.email}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                    {user.fullname}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                    {user.school}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
+                    {user.batch}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
+                    {user.empstatus}
+                  </td>
+                  <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
+                    {user.location}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
       </table>
 
       {filterOpen && (
