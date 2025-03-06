@@ -14,14 +14,16 @@ const JobsTab = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/jobs");
+                const response = await axios.get("http://localhost:5000/jobs", {
+                    params: { search: searchQuery }, // 🔹 Pass searchQuery as a query parameter
+                });
                 setJobs(response.data);
             } catch (error) {
                 console.error("Error fetching jobs:", error);
             }
         };
         fetchJobs();
-    }, []);
+    }, [searchQuery]);
 
     // Fetch interested users when a job is selected
     const fetchInterestedUsers = async (jobpid) => {
@@ -35,13 +37,6 @@ const JobsTab = () => {
         }
     };
 
-    const filteredJobs = jobs.filter(
-        (job) =>
-            job.title.toLowerCase().includes(searchQuery) ||
-            job.location.toLowerCase().includes(searchQuery) ||
-            job.companyname.toLowerCase().includes(searchQuery)
-    );
-
     return (
         <>
             <InterestedPeople interestedUsers={interestedUsers} />
@@ -49,8 +44,8 @@ const JobsTab = () => {
             <div className="flex flex-row w-full justify-center">
                 
                 <div className="join join-vertical w-[55vw] h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
-                {filteredJobs.length > 0 ? (
-                filteredJobs.map((job) => (
+                {jobs.length > 0 ? (
+                    jobs.map((job) => (
                         <div key={job.jobpid} className="relative join-item bg-white p-4 w-full border-b border-gray-200">
                             <div className="absolute top-1 right-2">
                                 <button className="btn btn-ghost btn-square btn-error btn-sm">
