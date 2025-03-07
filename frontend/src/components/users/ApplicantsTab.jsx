@@ -12,21 +12,23 @@ const ApplicantsTab = () => {
 
   useEffect(() => {
     const fetchApplicants = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get(
-          "http://localhost:5000/users/applicant"
-        );
+        const response = await axios.get("http://localhost:5000/users/applicant", {
+          params: {
+            search: searchQuery.trim() !== "" ? searchQuery : undefined,
+          },
+        });
         setApplicants(response.data);
       } catch (err) {
         console.error("Error fetching applicants:", err);
         setError(err.message || "Failed to fetch applicants.");
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     fetchApplicants();
-  }, []);
+  }, [searchQuery]);
 
   const handleAccept = async (applicantid) => {
     try {
@@ -53,26 +55,6 @@ const ApplicantsTab = () => {
       setNotification("Error declining applicant");
     }
   };
-
-  const filteredApplicants = applicants.filter((applicant) =>
-    [
-      applicant.fullname,
-      applicant.course,
-      applicant.school,
-      applicant.batch
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  );
-
-  if (loading) {
-    return (
-      <div className="flex flex-row h-[30rem] w-full items-center justify-center">
-        <span className="loading loading-spinner w-12"></span>
-      </div>
-    );
-  }
 
   return (
     <div className="overflow-x-auto ml-40 mt-4">
@@ -119,25 +101,35 @@ const ApplicantsTab = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredApplicants.map((applicant) => (
-            <tr key={applicant.applicantid}>
-              <td className="px-17 py-4">{applicant.fullname}</td>
-              <td className="px-23 py-4">{applicant.course}</td>
-              <td className="px-17 py-4">{applicant.school}</td>
-              <td className="px-19 py-4">{applicant.batch}</td>
-              <td className="px-19 py-4">{applicant.location}</td>
-              <td>
-                <button onClick={() => handleAccept(applicant.applicantid)}>
-                  <FcCheckmark className="w-5 h-5 mr-1" />
-                </button>
-              </td>
-              <td>
-                <button onClick={() => handleDecline(applicant.applicantid)}>
-                  <PiX className="w-5 h-5 mr-1 text-red-500" />
-                </button>
+          {loading ? (
+            <tr>
+              <td colSpan="7" className="text-center py-4">
+                <div className="flex flex-row h-[30rem] w-full items-center justify-center">
+                  <span className="loading loading-spinner w-12"></span>
+                </div>
               </td>
             </tr>
-          ))}
+          ) : (
+            applicants.map((applicant) => (
+              <tr key={applicant.applicantid}>
+                <td className="px-17 py-4">{applicant.fullname}</td>
+                <td className="px-23 py-4">{applicant.course}</td>
+                <td className="px-17 py-4">{applicant.school}</td>
+                <td className="px-19 py-4">{applicant.batch}</td>
+                <td className="px-19 py-4">{applicant.location}</td>
+                <td>
+                  <button onClick={() => handleAccept(applicant.applicantid)}>
+                    <FcCheckmark className="w-5 h-5 mr-1" />
+                  </button>
+                </td>
+                <td>
+                  <button onClick={() => handleDecline(applicant.applicantid)}>
+                    <PiX className="w-5 h-5 mr-1 text-red-500" />
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
