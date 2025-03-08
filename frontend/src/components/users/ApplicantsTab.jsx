@@ -90,7 +90,7 @@ const ApplicantsTab = () => {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
           <table className="table w-full mt-7">
-          <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg">
+          <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg sticky z-10">
             <tr>
               <th className="px-17 py-3 text-gray-600 text-left rounded-tl-lg">
                 Full Name

@@ -71,6 +71,35 @@ const AlumniTab = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const generateDefaultAvatar = (name) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 100;
+    canvas.height = 100;
+    const ctx = canvas.getContext("2d");
+
+    const randomColor = `hsl(${Math.random() * 360}, 60%, 70%)`;
+    ctx.fillStyle = randomColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#fff";
+    ctx.font = "40px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+  
+    const initials = name
+      ? name
+          .split(" ")
+          .map((word) => word[0])
+          .slice(0, 2)
+          .join("")
+          .toUpperCase()
+      : "?";
+  
+    ctx.fillText(initials, canvas.width / 2, canvas.height / 2);
+  
+    return canvas.toDataURL();
+  };
+
   return (
     <div className="overflow-auto ml-19 mt-3 pb-10">
       <div className="flex justify-end space-x-2 mb-3">
@@ -109,14 +138,14 @@ const AlumniTab = () => {
       </div>
 
       <div
-        className="overflow-y-auto max-h-[650px]"
+        className="overflow-y-auto max-h-[650px] relative"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <table
         className="table w-370 border-collapse border border-gray-100 shadow-md mt-6 sticky top-0 z-1"
         style={{ tableLayout: "fixed"  }}
       >
-          <thead className="bg-gray-100 sticky top-0 z-1">
+          <thead className="bg-gray-100 sticky top-0 z-20">
             <tr>
               <th
                 className="px-10 py-3.5 text-gray-600"
@@ -159,7 +188,7 @@ const AlumniTab = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="relative z-0">
               {loading ? (
                 <tr>
                   <td colSpan="7" className="text-center py-10">
@@ -170,7 +199,7 @@ const AlumniTab = () => {
                 filteredAlumni.map((user) => (
                   <tr
                     key={user.userid}
-                    className="hover:bg-gray-100 cursor-pointer"
+                    className="hover:bg-gray-100 cursor-pointer relative"
                     onClick={() => handleSelectAlumni(user)}
                   >
                     <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
@@ -277,7 +306,7 @@ const AlumniTab = () => {
           {selectedAlumni && (
             <div className="flex items-center space-x-4">
               <img
-                src={imageUrl || "https://via.placeholder.com/150"}
+                src={imageUrl || generateDefaultAvatar(selectedAlumni?.fullname)}
                 alt="Profile"
                 className="w-20 h-20 rounded-full"
               />

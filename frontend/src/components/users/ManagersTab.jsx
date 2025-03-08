@@ -170,13 +170,13 @@ useEffect(() => {
           <span className="text-white">Add Manager</span>
         </button>
       </div>
-      
+
       <div
         className="overflow-y-auto max-h-[500px]"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <table className="table w-full max-w-none border-collapse border border-gray-100 shadow-lg rounded-lg mt-7">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 sticky z-10">
             <tr>
               <th className="w-1/2 px-37 py-4 text-left text-sm text-gray-600">
                 Manager ID
