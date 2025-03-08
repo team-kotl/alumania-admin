@@ -109,14 +109,14 @@ const AlumniTab = () => {
       </div>
 
       <div
-        className="overflow-y-auto max-h-[500px]"
+        className="overflow-y-auto max-h-[650px]"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         <table
-        className="table w-370 border-collapse border border-gray-100 shadow-md mt-7"
-        style={{ tableLayout: "fixed" }}
+        className="table w-370 border-collapse border border-gray-100 shadow-md mt-6 sticky top-0 z-1"
+        style={{ tableLayout: "fixed"  }}
       >
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 sticky top-0 z-1">
             <tr>
               <th
                 className="px-10 py-3.5 text-gray-600"
