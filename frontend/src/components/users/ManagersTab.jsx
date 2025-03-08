@@ -14,45 +14,28 @@ const ManagersTab = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredManagers, setFilteredManagers] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  useEffect(() => {
-    const fetchManagers = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/users/managers",
-          {
-            responseType: "json",
-          }
-        );
-        setManagers(response.data);
-        setFilteredManagers(response.data);
-      } catch (error) {
-        console.error("Error fetching managers:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchManagers();
-  }, []);
 
-  useEffect(() => {
-    const filtered = managers.filter(
-      (manager) =>
-        manager.userid.toString().includes(searchQuery) ||
-        manager.username.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredManagers(filtered);
-  }, [searchQuery, managers]);
+useEffect(() => {
+  const fetchManagers = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:5000/users/managers", {
+        params: {
+          search: searchQuery.trim() !== "" ? searchQuery : undefined,
+        },
+      });
+      setManagers(response.data);
+    } catch (err) {
+      console.error("Error fetching managers:", err);
+      setError(err.message || "Failed to fetch managers.");
+    }
+    setLoading(false);
+  };
 
-  if (loading) {
-    return (
-      <div className="flex flex-row h-[30rem] w-full items-center justify-center">
-        <span className="loading loading-spinner w-12"></span>
-      </div>
-    );
-  }
+  fetchManagers();
+}, [searchQuery]); 
 
   const editManager = (manager) => {
     setSelectedManager(manager);
@@ -171,7 +154,7 @@ const ManagersTab = () => {
           <input
             type="search"
             required
-            placeholder="Name, ID, Email, School..."
+            placeholder="Name, ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -204,37 +187,47 @@ const ManagersTab = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredManagers.map((manager) => (
-            <tr
-              key={manager.userid}
-              className="hover:bg-gray-50 transition duration-150 ease-in-out"
-            >
-              <td className="w-1/2 px-42 py-4 whitespace-nowrap text-sm text-gray-900">
-                {manager.userid}
+          {loading ? (
+            <tr>
+              <td colSpan="4">
+                <div className="flex flex-row h-[30rem] w-full items-center justify-center">
+                  <span className="loading loading-spinner w-12"></span>
+                </div>
               </td>
-              <td className="w-1/2 px-38 py-4 whitespace-nowrap text-sm text-gray-900">
-                {manager.username}
-              </td>
-              <td className="w-1/2 px-34 py-4 whitespace-nowrap text-sm text-gray-900">
-                <button
-                  className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
-                  onClick={() =>
-                    document.getElementById("edit_manager_modal").showModal()
-                  }
-                >
-                  <PiPencilSimple className="w-5 h-5 mr-1" />
-                </button>
-                <button
-                  className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
-                  onClick={() => openDeleteModal(manager)}
-                  disabled
-                >
-                  <PiArchive className="w-5 h-6 mr-1 text-red-600" />
-                </button>
-              </td>
-              <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600"></td>
             </tr>
-          ))}
+          ) : (
+            managers.map((manager) => (
+              <tr
+                key={manager.userid}
+                className="hover:bg-gray-50 transition duration-150 ease-in-out"
+              >
+                <td className="w-1/2 px-42 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {manager.userid}
+                </td>
+                <td className="w-1/2 px-38 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {manager.username}
+                </td>
+                <td className="w-1/2 px-34 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <button
+                    className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
+                    onClick={() =>
+                      document.getElementById("edit_manager_modal").showModal()
+                    }
+                  >
+                    <PiPencilSimple className="w-5 h-5 mr-1" />
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded-lg hover:opacity-80 transition duration-150 ease-in-out mr-2"
+                    onClick={() => openDeleteModal(manager)}
+                    disabled
+                  >
+                    <PiArchive className="w-5 h-6 mr-1 text-red-600" />
+                  </button>
+                </td>
+                <td className="w-1/2 px-30 py-4 text-left text-sm text-gray-600"></td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 

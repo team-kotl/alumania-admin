@@ -79,7 +79,7 @@ const ApplicantsTab = () => {
           <input
             type="search"
             required
-            placeholder="Name, Course, School, Batch"
+            placeholder="Name, Course, Batch..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
