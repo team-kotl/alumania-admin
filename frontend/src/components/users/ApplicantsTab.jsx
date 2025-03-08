@@ -85,53 +85,57 @@ const ApplicantsTab = () => {
           />
         </label>
       </div>
-
-      <table className="table w-full mt-7">
-        <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg">
-          <tr>
-            <th className="px-17 py-3 text-gray-600 text-left rounded-tl-lg">
-              Full Name
-            </th>
-            <th className="px-23 py-3 text-gray-600 text-left">Course</th>
-            <th className="px-17 py-3 text-gray-600 text-left">School</th>
-            <th className="px-19 py-3 text-gray-600 text-left">Batch</th>
-            <th className="px-19 py-3 text-gray-600 text-left">Location</th>
-            <th></th>
-            <th className="px-19 py-3 text-gray-600 text-left rounded-tr-lg"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
+      <div
+        className="overflow-y-auto max-h-[500px]"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+          <table className="table w-full mt-7">
+          <thead className="bg-gray-100 border-b-2 border-gray-100 rounded-tl-lg rounded-tr-lg">
             <tr>
-              <td colSpan="7" className="text-center py-4">
-                <div className="flex flex-row h-[30rem] w-full items-center justify-center">
-                  <span className="loading loading-spinner w-12"></span>
-                </div>
-              </td>
+              <th className="px-17 py-3 text-gray-600 text-left rounded-tl-lg">
+                Full Name
+              </th>
+              <th className="px-23 py-3 text-gray-600 text-left">Course</th>
+              <th className="px-17 py-3 text-gray-600 text-left">School</th>
+              <th className="px-19 py-3 text-gray-600 text-left">Batch</th>
+              <th className="px-19 py-3 text-gray-600 text-left">Location</th>
+              <th></th>
+              <th className="px-19 py-3 text-gray-600 text-left rounded-tr-lg"></th>
             </tr>
-          ) : (
-            applicants.map((applicant) => (
-              <tr key={applicant.applicantid}>
-                <td className="px-17 py-4">{applicant.fullname}</td>
-                <td className="px-23 py-4">{applicant.course}</td>
-                <td className="px-17 py-4">{applicant.school}</td>
-                <td className="px-19 py-4">{applicant.batch}</td>
-                <td className="px-19 py-4">{applicant.location}</td>
-                <td>
-                  <button onClick={() => handleAccept(applicant.applicantid)}>
-                    <FcCheckmark className="w-5 h-5 mr-1" />
-                  </button>
-                </td>
-                <td>
-                  <button onClick={() => handleDecline(applicant.applicantid)}>
-                    <PiX className="w-5 h-5 mr-1 text-red-500" />
-                  </button>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="7" className="text-center py-4">
+                  <div className="flex flex-row h-[30rem] w-full items-center justify-center">
+                    <span className="loading loading-spinner w-12"></span>
+                  </div>
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              applicants.map((applicant) => (
+                <tr key={applicant.applicantid}>
+                  <td className="px-17 py-4">{applicant.fullname}</td>
+                  <td className="px-23 py-4">{applicant.course}</td>
+                  <td className="px-17 py-4">{applicant.school}</td>
+                  <td className="px-19 py-4">{applicant.batch}</td>
+                  <td className="px-19 py-4">{applicant.location}</td>
+                  <td>
+                    <button onClick={() => handleAccept(applicant.applicantid)}>
+                      <FcCheckmark className="w-5 h-5 mr-1" />
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleDecline(applicant.applicantid)}>
+                      <PiX className="w-5 h-5 mr-1 text-red-500" />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div> 
     </div>
   );
 };

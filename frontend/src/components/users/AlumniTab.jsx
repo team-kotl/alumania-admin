@@ -108,93 +108,99 @@ const AlumniTab = () => {
         </button>
       </div>
 
-      <table
+      <div
+        className="overflow-y-auto max-h-[500px]"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        <table
         className="table w-370 border-collapse border border-gray-100 shadow-md mt-7"
         style={{ tableLayout: "fixed" }}
       >
-        <thead className="bg-gray-100">
-          <tr>
-            <th
-              className="px-10 py-3.5 text-gray-600"
-              style={{ width: "100px" }}
-            >
-              UserID
-            </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "180px" }}
-            >
-              Email
-            </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "220px" }}
-            >
-              Full Name
-            </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "120px" }}
-            >
-              School
-            </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "100px" }}
-            >
-              Batch
-            </th>
-            <th
-              className="px-4 py-3.5 text-gray-600"
-              style={{ width: "170px" }}
-            >
-              Employment Status
-            </th>
-            <th className="px-4 py-3.5 text-gray-600" style={{ width: "90px" }}>
-              Location
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan="7" className="text-center py-10">
-                  <span className="loading loading-spinner w-12"></span>
-                </td>
-              </tr>
-            ) : (
-              filteredAlumni.map((user) => (
-                <tr
-                  key={user.userid}
-                  className="hover:bg-gray-100 cursor-pointer"
-                  onClick={() => handleSelectAlumni(user)}
-                >
-                  <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
-                    {user.userid}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                    {user.email}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                    {user.fullname}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
-                    {user.school}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
-                    {user.batch}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
-                    {user.empstatus}
-                  </td>
-                  <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
-                    {user.location}
+          <thead className="bg-gray-100">
+            <tr>
+              <th
+                className="px-10 py-3.5 text-gray-600"
+                style={{ width: "100px" }}
+              >
+                UserID
+              </th>
+              <th
+                className="px-4 py-3.5 text-gray-600"
+                style={{ width: "180px" }}
+              >
+                Email
+              </th>
+              <th
+                className="px-4 py-3.5 text-gray-600"
+                style={{ width: "220px" }}
+              >
+                Full Name
+              </th>
+              <th
+                className="px-4 py-3.5 text-gray-600"
+                style={{ width: "120px" }}
+              >
+                School
+              </th>
+              <th
+                className="px-4 py-3.5 text-gray-600"
+                style={{ width: "100px" }}
+              >
+                Batch
+              </th>
+              <th
+                className="px-4 py-3.5 text-gray-600"
+                style={{ width: "170px" }}
+              >
+                Employment Status
+              </th>
+              <th className="px-4 py-3.5 text-gray-600" style={{ width: "90px" }}>
+                Location
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan="7" className="text-center py-10">
+                    <span className="loading loading-spinner w-12"></span>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-      </table>
+              ) : (
+                filteredAlumni.map((user) => (
+                  <tr
+                    key={user.userid}
+                    className="hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleSelectAlumni(user)}
+                  >
+                    <td className="px-10 py-5 truncate" style={{ width: "90px" }}>
+                      {user.userid}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                      {user.email}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                      {user.fullname}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "120px" }}>
+                      {user.school}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
+                      {user.batch}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "100px" }}>
+                      {user.empstatus}
+                    </td>
+                    <td className="px-4 py-5 truncate" style={{ width: "90px" }}>
+                      {user.location}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+        </table>
+      </div>
+      
 
       {filterOpen && (
         <dialog
