@@ -6,7 +6,10 @@ import { PiMagnifyingGlassThin } from "react-icons/pi";
 import axios from "axios";
 import { PiStarFill } from "react-icons/pi";
 import { useOutletContext } from "react-router-dom";
-
+import { SlLocationPin } from "react-icons/sl";
+import { PiCalendarBlankBold } from "react-icons/pi";
+import { PiClock } from "react-icons/pi";
+import { PiStarBold } from "react-icons/pi";
 
 const EventsTab = () => {
     const { searchQuery } = useOutletContext();
@@ -15,12 +18,13 @@ const EventsTab = () => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [events, setEvents] = useState([]);
     const [eventToDelete, setEventToDelete] = useState(null);
+    const [selectedEventModal, setSelectedEventModal] = useState(null);
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/events", {
-                    params: { search: searchQuery }, // 🔹 Pass searchQuery as a query parameter
+                    params: { search: searchQuery },
                 });
                 setEvents(response.data);
             } catch (error) {
@@ -36,7 +40,6 @@ const EventsTab = () => {
         }
         return events;
     };
-
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
@@ -70,7 +73,33 @@ const EventsTab = () => {
         }
     };
 
-    {/*const handleDeleteEvent = async () => {
+    const filteredEvents = events
+        .filter(
+            (event) =>
+                (event.title.toLowerCase().includes(searchQuery) &&
+                (category === "" || event.category === category)) ||
+                (event.eventloc.toLowerCase().includes(searchQuery) &&
+                (category === "" || event.category === category))
+        );
+
+    const sortedEvents = sortEvents(events, sortOrder);
+
+    const openModal = (event) => {
+        setSelectedEvent(event);
+        document.getElementById("editModal").showModal();
+    };
+
+    const closeModal = () => {
+        document.getElementById("editModal").close();
+        setSelectedEvent(null);
+    };
+
+    const handleEventCardClick = (event) => {
+        setSelectedEventModal(event);
+        document.getElementById('eventDetailsModal').showModal();
+    };
+
+     {/*const handleDeleteEvent = async () => {
         if (!eventToDelete) return;
 
         try {
@@ -89,27 +118,6 @@ const EventsTab = () => {
             console.error("Error archiving event:", error);
         }
     };*/}
-
-    const filteredEvents = events
-        .filter(
-            (event) =>
-                (event.title.toLowerCase().includes(searchQuery) &&
-                    (category === "" || event.category === category)) ||
-                (event.eventloc.toLowerCase().includes(searchQuery) &&
-                    (category === "" || event.category === category))
-        );
-
-    const sortedEvents = sortEvents(events, sortOrder);
-
-    const openModal = (event) => {
-        setSelectedEvent(event);
-        document.getElementById("editModal").showModal();
-    };
-
-    const closeModal = () => {
-        document.getElementById("editModal").close();
-        setSelectedEvent(null);
-    };
 
     const renderEditEventModal = () => (
         <dialog
@@ -191,12 +199,206 @@ const EventsTab = () => {
         </dialog>
     );
 
+    const renderEventDetailsModal = () => {
+        const [activeTab, setActiveTab] = useState("interested"); // State to manage active tab
+    
+        return (
+            <dialog id="eventDetailsModal" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box bg-white shadow-lg rounded-lg p-6 w-96">
+                    {/* Flex container for avatar and title */}
+                    <div className="flex items-start mb-4">
+                        {/* Avatar */}
+                        <div className="avatar mr-4">
+                            <div className="ring-primary ring-offset-base-100 w-20 rounded-full ring ring-offset-2">
+                                <img 
+                                    src={selectedEventModal?.eventphoto ? `data:image/jpeg;base64,${selectedEventModal.eventphoto}` : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} 
+                                    alt="Avatar" 
+                                />
+                            </div>
+                        </div>
+                        {/* Title */}
+                        <h3 className="font-bold text-lg mt-2">{selectedEventModal?.title}</h3>
+                    </div>
+    
+                    {/* Event details below the title */}
+                    <div className="ml-28">
+                        {/* Location with icon */}
+                        <div className="flex items-center relative -top-[58px] -ml-5">
+                            <SlLocationPin className="-mr-1" /> 
+                            <span className="font-semibold"></span>
+                            <span className="ml-2 text-gray-500">{selectedEventModal?.eventloc}</span>
+                        </div>
+    
+                        {/* Time with adjusted icon */}
+                        <div className="flex items-center">
+                            <div className="relative -top-[55px] -right-[158px]"> {/* Adjust icon position */}
+                                <PiClock className="w-5 h-5" /> {/* Set icon size */}
+                            </div>
+                            <span className="font-semibold"></span>
+                            <span className="ml-41 -mt-[110px] text-gray-500">{selectedEventModal?.eventtime}</span>
+                        </div>
+    
+                        {/* Date with adjusted icon */}
+                        <div className="flex items-center relative -top-[79px] -ml-1">
+                            <PiCalendarBlankBold className="-ml-4" />
+                            <span className="font-semibold"></span>
+                            <span className="mr-11 ml-1 text-gray-500">{selectedEventModal?.eventdate}</span>
+                        </div>
+    
+                        {/* Interested with adjusted icon */}
+                        <div className="flex items-center">
+                            <div className="relative -top-[101px] -right-[287px]"> {/* Adjust icon position */}
+                                <PiStarBold className="w-5 h-5" /> {/* Set icon size */}
+                            </div>
+                            <span className="font-semibold"></span>
+                            <span className="ml-74 -mt-[200px] text-gray-500">{selectedEventModal?.interested_count}</span>
+                        </div>
+                    </div>
+    
+                    {/* Tabs for Interested and Sponsors */}
+                <div className="mt-1"> 
+                    {/* Tab Buttons - Centered */}
+                    <div className="flex justify-center relative space-x-32  -mt-21">
+                        <button
+                            className={`pb-2 focus:outline-none ${activeTab === "interested" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
+                            onClick={() => setActiveTab("interested")}
+                        >
+                            Interested
+                        </button>
+                        <button
+                            className={`pb-2 focus:outline-none ${activeTab === "sponsors" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
+                            onClick={() => setActiveTab("sponsors")}
+                        >
+                            Sponsors
+                        </button>
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="mt-4">
+                    {activeTab === "interested" && (
+    <div className="space-y-2">
+        <div className="flex items-center">
+            <div className="avatar mr-2">
+                <div className="w-8 h-8 rounded-full">
+                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjVZnfg9wvhhv78FkUabx5SN8IDsRQqFPBEmogGU7ufFwWLE5yeK=s80-p-k-rw-no" alt="User Avatar" />
+                </div>
+            </div>
+            <span className="">Shan Aromin</span>
+        </div>
+        <hr className="my-2 border-gray-300" />
+
+        <div className="flex items-center">
+            <div className="avatar mr-2">
+                <div className="w-8 h-8 rounded-full">
+                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjVQl0MV1aRjP_DFjXPn5pAPEcH1hMLSdrlVszx2RcZ-BiCUUp-x=s80-p-k-rw-no" alt="User Avatar" />
+                </div>
+            </div>
+            <span className="">Harrdy Dominguez</span>
+        </div>
+        <hr className="my-2 border-gray-300" />
+
+        <div className="flex items-center">
+            <div className="avatar mr-2">
+                <div className="w-8 h-8 rounded-full">
+                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjXqE7OWnrwkniuELEbNVDlYg2lZXoCkBdaYnZRBDmWJM4pvVFY=s80-p-k-rw-no" alt="User Avatar" />
+                </div>
+            </div>
+            <span className="">Cazandruh Lapig</span>
+        </div>
+        <hr className="my-2 border-gray-300" />
+
+        <div className="flex items-center">
+            <div className="avatar mr-2">
+                <div className="w-8 h-8 rounded-full">
+                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjW_M-VJpGzu4FPUy2tgSQVBSK0_j-nBGqB3Lx-s_papKl8GLtU=s80-p-k-rw-no" alt="User Avatar" />
+                </div>
+            </div>
+            <span className="">Cariel Magz</span>
+        </div>
+        <hr className="my-2 border-gray-300" />
+    </div>
+)}
+
+                        {activeTab === "sponsors" && (
+                           <div className="space-y-2">
+                           <div className="flex items-center justify-between">
+                               <div className="flex items-center">
+                                   <div className="avatar mr-2">
+                                       <div className="w-8 h-8 rounded-full">
+                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjVZnfg9wvhhv78FkUabx5SN8IDsRQqFPBEmogGU7ufFwWLE5yeK=s80-p-k-rw-no" alt="User Avatar" />
+                                       </div>
+                                   </div>
+                                   <span className="">Shan Aromin</span>
+                               </div>
+                               <div className="">
+                                   <span className="mr-25">₱1,000.00</span>  Individual
+                               </div>
+                           </div>
+                           <hr className="my-2 border-gray-300" />
+                   
+                           <div className="flex items-center justify-between">
+                               <div className="flex items-center">
+                                   <div className="avatar mr-2">
+                                       <div className="w-8 h-8 rounded-full">
+                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjVQl0MV1aRjP_DFjXPn5pAPEcH1hMLSdrlVszx2RcZ-BiCUUp-x=s80-p-k-rw-no" alt="User Avatar" />
+                                       </div>
+                                   </div>
+                                   <span className="">Harrdy Dominguez</span>
+                               </div>
+                               <div className="">
+                                   <span className="mr-25">₱1,000.00</span>  Individual
+                               </div>
+                           </div>
+                           <hr className="my-2 border-gray-300" />
+                   
+                           <div className="flex items-center justify-between">
+                               <div className="flex items-center">
+                                   <div className="avatar mr-2">
+                                       <div className="w-8 h-8 rounded-full">
+                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjXqE7OWnrwkniuELEbNVDlYg2lZXoCkBdaYnZRBDmWJM4pvVFY=s80-p-k-rw-no" alt="User Avatar" />
+                                       </div>
+                                   </div>
+                                   <span className="">Cazandruh Lapig</span>
+                               </div>
+                               <div className="">
+                                   <span className="mr-25">₱1,000.00</span>  Individual
+                               </div>
+                           </div>
+                           <hr className="my-2 border-gray-300" />
+                   
+                           <div className="flex items-center justify-between">
+                               <div className="flex items-center">
+                                   <div className="avatar mr-2">
+                                       <div className="w-8 h-8 rounded-full">
+                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjW_M-VJpGzu4FPUy2tgSQVBSK0_j-nBGqB3Lx-s_papKl8GLtU=s80-p-k-rw-no" alt="User Avatar" />
+                                       </div>
+                                   </div>
+                                   <span className="">Cariel Magz</span>
+                               </div>
+                               <div className="">
+                                   <span className="mr-25">₱1,000.00</span>  Individual
+                               </div>
+                           </div>
+                           <hr className="my-2 border-gray-300" />
+                       </div>
+                   )}
+                    </div>
+                </div>
+
+                {/* Close button */}
+                <div className="modal-action">
+                    <form method="dialog">
+                        <button className="btn bg-gray-300 text-gray-800 hover:bg-gray-400">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    );
+};
     return (
         <>
             <div className="px-8 sm:px-8 md:px-16 lg:px-20 mb-20 relative">
-
                 <div className="relative w-full sm:w-80 md:w-96 lg:w-[250px] mx-auto -mt-12 mb-6 ml-auto mr-[15vw]">
-
                     <select
                         className="flex items-center border px-4 py-2 pr-8 rounded-lg shadow-md mt-[-40px] ml-70 mx-auto focus:outline-none focus:ring-0 focus:border-gray-400 cursor-pointer text-gray-400 "
                         value={category}
@@ -235,14 +437,16 @@ const EventsTab = () => {
                             </li>
                         </ul>
                     </details>
-
                 </div>
-
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 -mt-5 max-w-7xl mx-auto">
                     {sortedEvents.length > 0 ? (
                         sortedEvents.map((event) => (
-                            <div key={event.eventid} className="bg-white shadow-lg rounded-lg overflow-hidden relative transition-transform transform hover:scale-105 cursor-pointer">
+                            <div 
+                                key={event.eventid} 
+                                className="bg-white shadow-lg rounded-lg overflow-hidden relative transition-transform transform hover:scale-105 cursor-pointer"
+                                onClick={() => handleEventCardClick(event)}
+                            >
                                 <img
                                     src={event.eventphoto ? `data:image/jpeg;base64,${event.eventphoto}` : "/default-event.jpg"}
                                     alt={event.title}
@@ -270,12 +474,22 @@ const EventsTab = () => {
                                 <div className="absolute bottom-4 right-4 flex gap-2">
                                     <button
                                         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer"
-                                        onClick={() => openModal(event)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            openModal(event);
+                                        }}
                                     >
                                         <PiPencilSimple className="w-5 h-5 text-gray-900" />
                                     </button>
 
-                                    <button className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer">
+                                    <button 
+                                        className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setEventToDelete(event);
+                                            document.getElementById("deleteModal").showModal();
+                                        }}
+                                    >
                                         <PiTrashSimpleBold className="w-5 h-5" />
                                     </button>
                                 </div>
@@ -287,6 +501,7 @@ const EventsTab = () => {
                         </div>
                     )}
                 </div>
+                {renderEventDetailsModal()}
                 {renderEditEventModal()}
 
                 <dialog id="deleteModal" className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-6 w-96">
@@ -310,7 +525,6 @@ const EventsTab = () => {
             </div>
         </>
     );
-
 };
 
 export default EventsTab;
