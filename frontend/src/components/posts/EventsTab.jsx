@@ -194,7 +194,7 @@ const EventsTab = () => {
         <>
             <div className="px-8 sm:px-8 md:px-16 lg:px-20 mb-20 relative">
 
-                <div className="relative w-full sm:w-80 md:w-96 lg:w-[250px] mx-auto -mt-12 mb-6 ml-[19vw]">
+                <div className="relative w-full sm:w-80 md:w-96 lg:w-[250px] mx-auto -mt-12 mb-6 ml-auto mr-[15vw]">
 
                     <select
                         className="flex items-center border px-4 py-2 pr-8 rounded-lg shadow-md mt-[-40px] ml-70 mx-auto focus:outline-none focus:ring-0 focus:border-gray-400 cursor-pointer text-gray-400 "
@@ -253,6 +253,7 @@ const EventsTab = () => {
                                         <div className="text-left">
                                             <p className="font-medium">{event.eventdate}</p>
                                             <p className="text-sm text-gray-600">{event.eventloc}</p>
+                                            <p className="text-sm text-gray-600">{event.interested_count} interested</p>
                                         </div>
                                         <p className="font-medium whitespace-nowrap">{event.eventtime}</p>
                                     </div>
