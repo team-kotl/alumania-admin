@@ -25,7 +25,7 @@ const UsersNavbar = () => {
                         </div>
                     )}
                 </NavLink>
-                <NavLink to="managers">
+                <NavLink to="applicants">
                     {({ isActive }) => (
                         <div
                             className={`flex flex-row py-2 px-4 items-center gap-2 transition-all ${
@@ -37,7 +37,7 @@ const UsersNavbar = () => {
                         </div>
                     )}
                 </NavLink>
-                <NavLink to="applicants">
+                <NavLink to="managers">
                     {({ isActive }) => (
                         <div
                             className={`flex flex-row py-2 px-4 rounded-tr-2xl items-center gap-2 transition-all ${
