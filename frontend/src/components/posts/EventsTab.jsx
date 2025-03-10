@@ -35,6 +35,7 @@ const EventsTab = () => {
         }
         return events;
     };
+    
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
@@ -240,7 +241,7 @@ const EventsTab = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 -mt-5 max-w-7xl mx-auto">
                     {sortedEvents.length > 0 ? (
                         sortedEvents.map((event) => (
-                            <div key={event.eventid} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
+                            <div key={event.eventid} className="bg-white shadow-lg rounded-lg overflow-hidden relative transition-transform transform hover:scale-105 cursor-pointer">
                                 <img
                                     src={event.eventphoto ? `data:image/jpeg;base64,${event.eventphoto}` : "/default-event.jpg"}
                                     alt={event.title}
