@@ -6,22 +6,27 @@ const db = require("../db").db;
 router.get("/", (req, res) => {
     const { search } = req.query; // Get search query from request
 
-     let query = `
-        SELECT eventid, title, description, category, 
-                TIME_FORMAT(eventtime, '%h:%i %p') AS eventtime, 
-                DATE_FORMAT(eventdate, '%M %d, %Y') AS eventdate,
-                eventloc, batchfilter, publishtimestamp, school, 
-                TO_BASE64(eventphoto) AS eventphoto, userid 
+    let query = `
+        SELECT event.eventid, event.title, event.description, event.category, 
+                TIME_FORMAT(event.eventtime, '%h:%i %p') AS eventtime, 
+                DATE_FORMAT(event.eventdate, '%M %d, %Y') AS eventdate,
+                event.eventloc, event.batchfilter, event.publishtimestamp, event.school, 
+                TO_BASE64(event.eventphoto) AS eventphoto, event.userid,
+                COUNT(interestedinevent.userid) AS interested_count
         FROM event
+        LEFT JOIN interestedinevent ON event.eventid = interestedinevent.eventid
     `;
 
     // Add search filter if search query is provided
     if (search) {
-        query += ` WHERE title LIKE ? OR eventloc LIKE ?`;
+        query += ` WHERE event.title LIKE ? OR event.eventloc LIKE ?`;
     }
 
+    // Group by event details to get the correct count
+    query += ` GROUP BY event.eventid`;
+
     // Order by publish timestamp
-    query += ` ORDER BY publishtimestamp DESC`;
+    query += ` ORDER BY event.publishtimestamp DESC`;
 
     // Prepare parameters for the query
     const params = search ? [`%${search}%`, `%${search}%`] : [];
