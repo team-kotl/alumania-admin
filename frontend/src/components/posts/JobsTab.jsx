@@ -40,36 +40,36 @@ const JobsTab = () => {
     return (
         <>
             <InterestedPeople interestedUsers={interestedUsers} />
-            
+
             <div className="flex flex-row w-full justify-center">
-                
+
                 <div className="join join-vertical w-[55vw] h-[80vh] overflow-y-auto items-center shadow-[0px_1px_5px_rgba(0,0,0,0.05)] rounded-3xl">
-                {jobs.length > 0 ? (
-                    jobs.map((job) => (
-                        <div key={job.jobpid} className="relative join-item bg-white p-4 w-full border-b border-gray-200">
-                            <div className="absolute top-1 right-2">
-                                <button className="btn btn-ghost btn-square btn-error btn-sm">
-                                    <IoClose />
-                                </button>
+                    {jobs.length > 0 ? (
+                        jobs.map((job) => (
+                            <div key={job.jobpid} className="relative join-item bg-white p-4 w-full border-b border-gray-200">
+                                <div className="absolute top-1 right-2">
+                                    <button className="btn btn-ghost btn-square btn-error btn-sm">
+                                        <IoClose />
+                                    </button>
+                                </div>
+                                <h3 className="font-semibold text-lg text-black">{job.title}</h3>
+                                <p className="text-gray-500 text-sm">{job.companyname}</p>
+                                <p className="text-gray-500 text-sm">{job.location}</p>
+                                <p className="mt-2 ml-5 text-gray-500 text-sm text-justify">{job.description}</p>
+                                <div className="flex justify-end mt-2">
+                                    <button
+                                        type="button"
+                                        className="btn btn-active bottom-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-lg"
+                                        onClick={() => fetchInterestedUsers(job.jobpid)}
+                                    >
+                                        View Interested
+                                    </button>
+                                </div>
                             </div>
-                            <h3 className="font-semibold text-lg text-black">{job.title}</h3>
-                            <p className="text-gray-500 text-sm">{job.companyname}</p>
-                            <p className="text-gray-500 text-sm">{job.location}</p>
-                            <p className="mt-2 ml-5 text-gray-500 text-sm text-justify">{job.description}</p>
-                            <div className="flex justify-end mt-2">
-                                <button
-                                    type="button"
-                                    className="btn btn-active bottom-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-lg"
-                                    onClick={() => fetchInterestedUsers(job.jobpid)}
-                                >
-                                    View Interested
-                                </button>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p className="text-gray-500">No job listings found.</p>
-                )}
+                        ))
+                    ) : (
+                        <p className="text-gray-500">No job listings found.</p>
+                    )}
                 </div>
             </div>
         </>
@@ -105,6 +105,9 @@ const InterestedPeople = ({ interestedUsers }) => {
                     </ul>
                 </div>
             </div>
+            <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+            </form>
         </dialog>
     );
 };
