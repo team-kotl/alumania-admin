@@ -54,7 +54,7 @@ const PostsNavbar = ({ setSearchQuery }) => {
                 </NavLink>
 
                 {!isExperiencesTab && (
-                    <label className="input flex items-center gap-2 ml-auto mr-[16vw]">
+                    <label className="input flex items-center gap-2 ml-auto mr-[30vw] mt-[0.4vh]">
                         <input 
                             type="text" 
                             className="grow" 
