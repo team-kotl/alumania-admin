@@ -4,6 +4,7 @@ import { PiPencilSimple } from "react-icons/pi";
 import { PiTrashSimpleBold } from "react-icons/pi";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import axios from "axios";
+import { PiStarFill } from "react-icons/pi";
 import { useOutletContext } from "react-router-dom";
 
 
@@ -35,7 +36,7 @@ const EventsTab = () => {
         }
         return events;
     };
-    
+
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
@@ -248,12 +249,17 @@ const EventsTab = () => {
                                     className="w-full h-48 object-cover"
                                 />
                                 <div className="p-4">
-                                    <h2 className="text-lg font-bold text-center">{event.title}</h2>
+                                    <div className="min-h-[3.25rem] flex items-center justify-center">
+                                        <h2 className="text-lg font-bold text-center">{event.title}</h2>
+                                    </div>
                                     <div className="flex flex-col sm:flex-row justify-between text-sm text-gray-900 mt-2">
                                         <div className="text-left">
                                             <p className="font-medium">{event.eventdate}</p>
                                             <p className="text-sm text-gray-600">{event.eventloc}</p>
-                                            <p className="text-sm text-gray-600">{event.interested_count} interested</p>
+                                            <div className="flex flex-row items-center">
+                                                <div className="text-yellow-400"><PiStarFill /></div>
+                                                <p className="text-sm text-gray-600 ml-1">{event.interested_count} interested</p>
+                                            </div>
                                         </div>
                                         <p className="font-medium whitespace-nowrap">{event.eventtime}</p>
                                     </div>
