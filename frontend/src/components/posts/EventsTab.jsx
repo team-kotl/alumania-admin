@@ -13,12 +13,16 @@ import { PiStarBold } from "react-icons/pi";
 
 const EventsTab = () => {
     const { searchQuery } = useOutletContext();
+    const [selectedEventId, setSelectedEventId] = useState(null);
     const [category, setCategory] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [events, setEvents] = useState([]);
     const [eventToDelete, setEventToDelete] = useState(null);
     const [selectedEventModal, setSelectedEventModal] = useState(null);
+    const [interestedUsers, setInterestedUsers] = useState([]);
+    const [sponsors, setSponsors] = useState([]);
+    const [activeTab, setActiveTab] = useState("interested"); // State to manage active tab
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -33,6 +37,53 @@ const EventsTab = () => {
         };
         fetchEvents();
     }, [searchQuery]);
+
+
+    const fetchInterestedUsers = async (eventid) => {
+        try {
+            const response = await axios.get(`http://localhost:5000/events/interested/${eventid}`);
+            setInterestedUsers(response.data);
+            setSelectedEventId(eventid); // Set the selected event ID
+            document.getElementById("view_Interested").showModal(); // Open the modal
+        } catch (error) {
+            console.error("Error fetching interested users:", error);
+        }
+    };
+
+
+    const fetchSponsors = async (eventid) => {
+        try {
+            const response = await axios.get(`http://localhost:5000/events/sponsors/${eventid}`);
+            setSponsors(response.data);
+            setSelectedEventId(eventid); // Set the selected event ID
+            document.getElementById("view_Interested").showModal(); // Open the modal
+        } catch (error) {
+            console.error("Error fetching sponsors:", error);
+        }
+    };
+
+    // Handle tab change
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+        if (selectedEventId) {
+            if (tab === "interested") {
+                fetchInterestedUsers(selectedEventId);
+            } else if (tab === "sponsors") {
+                fetchSponsors(selectedEventId);
+            }
+        }
+    };
+
+    const handleEventCardClick = (event) => {
+        setSelectedEventModal(event); // Set the event details for the modal
+        setSelectedEventId(event.eventid); // Set the selected event ID
+        if (activeTab === "interested") {
+            fetchInterestedUsers(event.eventid); // Fetch interested users
+        } else if (activeTab === "sponsors") {
+            fetchSponsors(event.eventid); // Fetch sponsors
+        }
+        document.getElementById("eventDetailsModal").showModal(); // Open the modal
+    };
 
     const sortEvents = (events, sortOrder) => {
         if (sortOrder === "A-Z") {
@@ -77,9 +128,9 @@ const EventsTab = () => {
         .filter(
             (event) =>
                 (event.title.toLowerCase().includes(searchQuery) &&
-                (category === "" || event.category === category)) ||
+                    (category === "" || event.category === category)) ||
                 (event.eventloc.toLowerCase().includes(searchQuery) &&
-                (category === "" || event.category === category))
+                    (category === "" || event.category === category))
         );
 
     const sortedEvents = sortEvents(events, sortOrder);
@@ -94,12 +145,7 @@ const EventsTab = () => {
         setSelectedEvent(null);
     };
 
-    const handleEventCardClick = (event) => {
-        setSelectedEventModal(event);
-        document.getElementById('eventDetailsModal').showModal();
-    };
-
-     {/*const handleDeleteEvent = async () => {
+    {/*const handleDeleteEvent = async () => {
         if (!eventToDelete) return;
 
         try {
@@ -200,8 +246,7 @@ const EventsTab = () => {
     );
 
     const renderEventDetailsModal = () => {
-        const [activeTab, setActiveTab] = useState("interested"); // State to manage active tab
-    
+
         return (
             <dialog id="eventDetailsModal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box bg-white shadow-lg rounded-lg p-6 w-96">
@@ -210,25 +255,25 @@ const EventsTab = () => {
                         {/* Avatar */}
                         <div className="avatar mr-4">
                             <div className="ring-primary ring-offset-base-100 w-20 rounded-full ring ring-offset-2">
-                                <img 
-                                    src={selectedEventModal?.eventphoto ? `data:image/jpeg;base64,${selectedEventModal.eventphoto}` : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} 
-                                    alt="Avatar" 
+                                <img
+                                    src={selectedEventModal?.eventphoto ? `data:image/jpeg;base64,${selectedEventModal.eventphoto}` : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                                    alt="Avatar"
                                 />
                             </div>
                         </div>
                         {/* Title */}
                         <h3 className="font-bold text-lg mt-2">{selectedEventModal?.title}</h3>
                     </div>
-    
+
                     {/* Event details below the title */}
                     <div className="ml-28">
                         {/* Location with icon */}
                         <div className="flex items-center relative -top-[58px] -ml-5">
-                            <SlLocationPin className="-mr-1" /> 
+                            <SlLocationPin className="-mr-1" />
                             <span className="font-semibold"></span>
                             <span className="ml-2 text-gray-500">{selectedEventModal?.eventloc}</span>
                         </div>
-    
+
                         {/* Time with adjusted icon */}
                         <div className="flex items-center">
                             <div className="relative -top-[55px] -right-[158px]"> {/* Adjust icon position */}
@@ -237,14 +282,14 @@ const EventsTab = () => {
                             <span className="font-semibold"></span>
                             <span className="ml-41 -mt-[110px] text-gray-500">{selectedEventModal?.eventtime}</span>
                         </div>
-    
+
                         {/* Date with adjusted icon */}
                         <div className="flex items-center relative -top-[79px] -ml-1">
                             <PiCalendarBlankBold className="-ml-4" />
                             <span className="font-semibold"></span>
                             <span className="mr-11 ml-1 text-gray-500">{selectedEventModal?.eventdate}</span>
                         </div>
-    
+
                         {/* Interested with adjusted icon */}
                         <div className="flex items-center">
                             <div className="relative -top-[101px] -right-[287px]"> {/* Adjust icon position */}
@@ -254,147 +299,82 @@ const EventsTab = () => {
                             <span className="ml-74 -mt-[200px] text-gray-500">{selectedEventModal?.interested_count}</span>
                         </div>
                     </div>
-    
+
                     {/* Tabs for Interested and Sponsors */}
-                <div className="mt-1"> 
-                    {/* Tab Buttons - Centered */}
-                    <div className="flex justify-center relative space-x-32  -mt-21">
-                        <button
-                            className={`pb-2 focus:outline-none ${activeTab === "interested" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
-                            onClick={() => setActiveTab("interested")}
-                        >
-                            Interested
-                        </button>
-                        <button
-                            className={`pb-2 focus:outline-none ${activeTab === "sponsors" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
-                            onClick={() => setActiveTab("sponsors")}
-                        >
-                            Sponsors
-                        </button>
+                    <div className="mt-1">
+                        {/* Tab Buttons - Centered */}
+                        <div className="flex justify-center relative space-x-32 -mt-21">
+                            <button
+                                className={`pb-2 focus:outline-none ${activeTab === "interested" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
+                                onClick={() => handleTabChange("interested")}
+                            >
+                                Interested
+                            </button>
+                            <button
+                                className={`pb-2 focus:outline-none ${activeTab === "sponsors" ? "border-b-5 border-blue-700 text-blue-700 cursor-pointer" : "text-gray-500"}`}
+                                onClick={() => handleTabChange("sponsors")}
+                            >
+                                Sponsors
+                            </button>
+                        </div>
+
+                        {/* Tab Content */}
+                        <div className="mt-4">
+                            {activeTab === "interested" && (
+                                <div className="space-y-2">
+                                    {interestedUsers.map((user, index) => (
+                                        <div key={index}>
+                                            <div className="flex items-center">
+                                                <div className="avatar mr-2">
+                                                    <div className="w-8 h-8 rounded-full">
+                                                        <img src={`data:image/jpeg;base64,${user.displaypic}`} alt="User Avatar" />
+                                                    </div>
+                                                </div>
+                                                <span className="">{user.firstname} {user.lastname}</span>
+                                            </div>
+                                            <hr className="my-2 border-gray-300" />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div className="space-y-2">
+                                {sponsors.map((sponsor, index) => (
+                                    <div key={index}>
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center">
+                                                <div className="avatar mr-2">
+                                                    <div className="w-8 h-8 rounded-full">
+                                                        <img src={`data:image/jpeg;base64,${sponsor.displaypic}`} alt="User Avatar" />
+                                                    </div>
+                                                </div>
+                                                <span className="">{sponsor.firstname} {sponsor.lastname}</span>
+                                            </div>
+                                            <div className="">
+                                                <span className="mr-25">₱{sponsor.amount.toFixed(2)}</span> {sponsor.type}
+                                            </div>
+                                        </div>
+                                        <hr className="my-2 border-gray-300" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Tab Content */}
-                    <div className="mt-4">
-                    {activeTab === "interested" && (
-    <div className="space-y-2">
-        <div className="flex items-center">
-            <div className="avatar mr-2">
-                <div className="w-8 h-8 rounded-full">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjVZnfg9wvhhv78FkUabx5SN8IDsRQqFPBEmogGU7ufFwWLE5yeK=s80-p-k-rw-no" alt="User Avatar" />
-                </div>
-            </div>
-            <span className="">Shan Aromin</span>
-        </div>
-        <hr className="my-2 border-gray-300" />
-
-        <div className="flex items-center">
-            <div className="avatar mr-2">
-                <div className="w-8 h-8 rounded-full">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjVQl0MV1aRjP_DFjXPn5pAPEcH1hMLSdrlVszx2RcZ-BiCUUp-x=s80-p-k-rw-no" alt="User Avatar" />
-                </div>
-            </div>
-            <span className="">Harrdy Dominguez</span>
-        </div>
-        <hr className="my-2 border-gray-300" />
-
-        <div className="flex items-center">
-            <div className="avatar mr-2">
-                <div className="w-8 h-8 rounded-full">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjXqE7OWnrwkniuELEbNVDlYg2lZXoCkBdaYnZRBDmWJM4pvVFY=s80-p-k-rw-no" alt="User Avatar" />
-                </div>
-            </div>
-            <span className="">Cazandruh Lapig</span>
-        </div>
-        <hr className="my-2 border-gray-300" />
-
-        <div className="flex items-center">
-            <div className="avatar mr-2">
-                <div className="w-8 h-8 rounded-full">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjW_M-VJpGzu4FPUy2tgSQVBSK0_j-nBGqB3Lx-s_papKl8GLtU=s80-p-k-rw-no" alt="User Avatar" />
-                </div>
-            </div>
-            <span className="">Cariel Magz</span>
-        </div>
-        <hr className="my-2 border-gray-300" />
-    </div>
-)}
-
-                        {activeTab === "sponsors" && (
-                           <div className="space-y-2">
-                           <div className="flex items-center justify-between">
-                               <div className="flex items-center">
-                                   <div className="avatar mr-2">
-                                       <div className="w-8 h-8 rounded-full">
-                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjVZnfg9wvhhv78FkUabx5SN8IDsRQqFPBEmogGU7ufFwWLE5yeK=s80-p-k-rw-no" alt="User Avatar" />
-                                       </div>
-                                   </div>
-                                   <span className="">Shan Aromin</span>
-                               </div>
-                               <div className="">
-                                   <span className="mr-25">₱1,000.00</span>  Individual
-                               </div>
-                           </div>
-                           <hr className="my-2 border-gray-300" />
-                   
-                           <div className="flex items-center justify-between">
-                               <div className="flex items-center">
-                                   <div className="avatar mr-2">
-                                       <div className="w-8 h-8 rounded-full">
-                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjVQl0MV1aRjP_DFjXPn5pAPEcH1hMLSdrlVszx2RcZ-BiCUUp-x=s80-p-k-rw-no" alt="User Avatar" />
-                                       </div>
-                                   </div>
-                                   <span className="">Harrdy Dominguez</span>
-                               </div>
-                               <div className="">
-                                   <span className="mr-25">₱1,000.00</span>  Individual
-                               </div>
-                           </div>
-                           <hr className="my-2 border-gray-300" />
-                   
-                           <div className="flex items-center justify-between">
-                               <div className="flex items-center">
-                                   <div className="avatar mr-2">
-                                       <div className="w-8 h-8 rounded-full">
-                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjXqE7OWnrwkniuELEbNVDlYg2lZXoCkBdaYnZRBDmWJM4pvVFY=s80-p-k-rw-no" alt="User Avatar" />
-                                       </div>
-                                   </div>
-                                   <span className="">Cazandruh Lapig</span>
-                               </div>
-                               <div className="">
-                                   <span className="mr-25">₱1,000.00</span>  Individual
-                               </div>
-                           </div>
-                           <hr className="my-2 border-gray-300" />
-                   
-                           <div className="flex items-center justify-between">
-                               <div className="flex items-center">
-                                   <div className="avatar mr-2">
-                                       <div className="w-8 h-8 rounded-full">
-                                           <img src="https://lh3.googleusercontent.com/a-/ALV-UjW_M-VJpGzu4FPUy2tgSQVBSK0_j-nBGqB3Lx-s_papKl8GLtU=s80-p-k-rw-no" alt="User Avatar" />
-                                       </div>
-                                   </div>
-                                   <span className="">Cariel Magz</span>
-                               </div>
-                               <div className="">
-                                   <span className="mr-25">₱1,000.00</span>  Individual
-                               </div>
-                           </div>
-                           <hr className="my-2 border-gray-300" />
-                       </div>
-                   )}
+                    {/* Close button */}
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn bg-gray-300 text-gray-800 hover:bg-gray-400">Close</button>
+                        </form>
                     </div>
                 </div>
-
-                {/* Close button */}
-                <div className="modal-action">
-                    <form method="dialog">
-                        <button className="btn bg-gray-300 text-gray-800 hover:bg-gray-400">Close</button>
-                    </form>
-                </div>
-            </div>
-        </dialog>
-    );
-};
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+        );
+    };
+    
     return (
         <>
             <div className="px-8 sm:px-8 md:px-16 lg:px-20 mb-20 relative">
@@ -442,8 +422,8 @@ const EventsTab = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 -mt-5 max-w-7xl mx-auto">
                     {sortedEvents.length > 0 ? (
                         sortedEvents.map((event) => (
-                            <div 
-                                key={event.eventid} 
+                            <div
+                                key={event.eventid}
                                 className="bg-white shadow-lg rounded-lg overflow-hidden relative transition-transform transform hover:scale-105 cursor-pointer"
                                 onClick={() => handleEventCardClick(event)}
                             >
@@ -482,7 +462,7 @@ const EventsTab = () => {
                                         <PiPencilSimple className="w-5 h-5 text-gray-900" />
                                     </button>
 
-                                    <button 
+                                    <button
                                         className="p-2 rounded-full bg-red-400 hover:bg-red-600 transition cursor-pointer"
                                         onClick={(e) => {
                                             e.stopPropagation();
