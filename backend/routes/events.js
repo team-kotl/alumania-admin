@@ -59,6 +59,26 @@ router.get("/interested/:eventid", (req, res) => {
     );
 });
 
+// Get sponsors for an event
+router.get("/sponsors/:eventid", (req, res) => {
+    const { eventid } = req.params;
+    db.query(
+        `SELECT alumni.firstname, alumni.lastname, alumni.course, TO_BASE64(alumni.displaypic) AS displaypic, 
+                eventsponsor.type, eventsponsor.amount
+        FROM eventsponsor
+        INNER JOIN alumni ON eventsponsor.userid = alumni.userid
+        WHERE eventsponsor.eventid = ?`,
+        [eventid],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(200).json(results);
+        }
+    );
+});
+
 // Edit an event
 router.put("/:eventid", (req, res) => {
     const { eventid } = req.params;
