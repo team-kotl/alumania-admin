@@ -82,7 +82,7 @@ const RootSidebar = () => {
                     </NavLink>
                 </div>
 
-                {/* <NavLink to="/profile" className="w-full mt-auto">
+                <NavLink to="/profile" className="w-full mt-auto">
                     {({ isActive }) => (
                         <div
                             className={`flex flex-row pb-2 pt-4 gap-3 border-t items-center pl-4 ${
@@ -108,7 +108,7 @@ const RootSidebar = () => {
                             </div>
                         </div>
                     )}
-                </NavLink> */}
+                </NavLink>
             </aside>
         </>
     );

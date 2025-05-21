@@ -33,8 +33,8 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/login" element={<Login />} />
-                    {/* <Route path="/" element={<ProtectedRoute />}> */}
-                    <Route path="/" element={<RootLayout />}>
+                    <Route path="/" element={<ProtectedRoute />}>
+                    {/* <Route path="/" element={<RootLayout />}> */}
                         <Route path="home" element={<HomePage />} />
                         <Route path="add" element={<AddPage />}>
                             <Route path="event" element={<EventForm />} />

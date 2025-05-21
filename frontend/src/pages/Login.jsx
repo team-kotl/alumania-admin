@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Banner from "../components/core/BrandBanner.jsx";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -10,13 +10,13 @@ export default function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const flag = await login({ username, password });
         if (flag === true) {
-            navigate("/");
+            navigate("/home");
         } else {
             setError(flag);
         }
